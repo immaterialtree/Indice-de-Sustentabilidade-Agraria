@@ -8,15 +8,21 @@ package view.indicadores;
  *
  * @author naoki
  */
-public class IndicadoresPanel extends javax.swing.JPanel {
-
+public class IndicadorItemPanel extends javax.swing.JPanel {
+    
     /**
      * Creates new form IndicadoresPanel
      */
-    public IndicadoresPanel() {
+    public IndicadorItemPanel() {
+        indicadorNome = "Sem nome";
         initComponents();
     }
-
+    
+    String indicadorNome;
+    public IndicadorItemPanel(String nome) {
+        indicadorNome = nome;
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,21 +40,18 @@ public class IndicadoresPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Indicador de sustentabilidade agraria");
+        jLabel1.setText(indicadorNome);
         jLabel1.setIconTextGap(1);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 10;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 2.0;
         add(jLabel1, gridBagConstraints);
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("0");
         jTextField1.setToolTipText("Digite a pontuação desta modalidade (número real)");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.ipady = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 1.0;
         add(jTextField1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
