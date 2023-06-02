@@ -4,6 +4,8 @@
  */
 package isa;
 
+import view.MainFrame;
+
 /**
  *
  * @author Admin
@@ -14,7 +16,8 @@ public class ISA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        MainFrame telaPrincipal = new MainFrame();
+        telaPrincipal.setVisible(true);
     }
     
 }
