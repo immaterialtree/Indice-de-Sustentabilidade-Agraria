@@ -9,7 +9,8 @@ package view.indicadores;
  * @author Admin
  */
 public class IndicadoresFrame extends javax.swing.JFrame {
-
+    
+    int rows = 0; // number of "grupos" received by gridLayout<-gruposPanel
     /**
      * Creates new form Indicadores
      */
@@ -21,6 +22,8 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         initComponents();
         for (int i=0; i<gruposNome.length; i++) {
             IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(gruposNome[i], itemsNome[i]);
+            gruposPanel.add(grupo);
+            grupo.setVisible(true);
         }
     }
 
@@ -32,7 +35,6 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
         lblIndicadores = new javax.swing.JLabel();
@@ -87,6 +89,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        gruposPanel.setLayout(new java.awt.GridLayout(rows, 1, 0, 10));
         jScrollPane1.setViewportView(gruposPanel);
 
         jLabel2.setText("Média Geral:");

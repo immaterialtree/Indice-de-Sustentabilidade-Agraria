@@ -33,31 +33,43 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblNomeItem = new javax.swing.JLabel();
+        lblValorItem = new javax.swing.JTextField();
 
         setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText(indicadorNome);
-        jLabel1.setIconTextGap(1);
+        lblNomeItem.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+        lblNomeItem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNomeItem.setText(indicadorNome);
+        lblNomeItem.setIconTextGap(1);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 2.0;
-        add(jLabel1, gridBagConstraints);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        add(lblNomeItem, gridBagConstraints);
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("0");
-        jTextField1.setToolTipText("Digite a pontuação desta modalidade (número real)");
+        lblValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        lblValorItem.setText("0");
+        lblValorItem.setToolTipText("Digite a pontuação desta modalidade (número real)");
+        lblValorItem.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                lblValorItemPropertyChange(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        add(jTextField1, gridBagConstraints);
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        add(lblValorItem, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblValorItemPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblValorItemPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblValorItemPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblNomeItem;
+    private javax.swing.JTextField lblValorItem;
     // End of variables declaration//GEN-END:variables
 }

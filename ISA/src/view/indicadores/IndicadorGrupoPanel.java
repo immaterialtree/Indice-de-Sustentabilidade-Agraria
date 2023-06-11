@@ -10,6 +10,8 @@ package view.indicadores;
  */
 public class IndicadorGrupoPanel extends javax.swing.JPanel {
 
+    String grupoNome = "Sem Nome";
+    int rows = 0;
     /**
      * Creates new form IndicadorGrupoPanel
      */
@@ -17,8 +19,6 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         initComponents();
     }
     
-    String grupoNome;
-    int rows;
     public IndicadorGrupoPanel(String nome, String[] items) {
         grupoNome = nome;
         this.rows = items.length;
@@ -26,6 +26,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         for (String name : items) {
             IndicadorItemPanel item = new IndicadorItemPanel(name);
             itemsPanel.add(item);
+            item.setVisible(true);
         }
     }
     /**
@@ -49,15 +50,21 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
+        lblGrupoNome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGrupoNome.setText(grupoNome      );
-        jPanel1.add(lblGrupoNome, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(lblGrupoNome, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 56;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
         add(jPanel1, gridBagConstraints);
 
         itemsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -65,9 +72,9 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 286;
+        gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 0);
         add(itemsPanel, gridBagConstraints);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -79,9 +86,11 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.ipadx = 32;
+        gridBagConstraints.ipady = 14;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 6);
         add(jPanel5, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
