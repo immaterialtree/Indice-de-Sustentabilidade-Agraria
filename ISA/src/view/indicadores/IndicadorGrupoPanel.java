@@ -4,6 +4,8 @@
  */
 package view.indicadores;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Admin
@@ -29,6 +31,21 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
             item.setVisible(true);
         }
     }
+    
+    // panel getters
+    public JPanel getGrupoNomePanel() {
+        return grupoNomePanel;
+    }
+
+    public JPanel getItemsPanel() {
+        return itemsPanel;
+    }
+
+    public JPanel getNumPanel() {
+        return numPanel;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,16 +56,16 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
+        grupoNomePanel = new javax.swing.JPanel();
         lblGrupoNome = new javax.swing.JLabel();
         itemsPanel = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        lblNumGrupo = new javax.swing.JLabel();
+        numPanel = new javax.swing.JPanel();
+        lblNum = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        grupoNomePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        grupoNomePanel.setLayout(new java.awt.GridBagLayout());
 
         lblGrupoNome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGrupoNome.setText(grupoNome      );
@@ -57,14 +74,14 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 9);
-        jPanel1.add(lblGrupoNome, gridBagConstraints);
+        grupoNomePanel.add(lblGrupoNome, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        add(jPanel1, gridBagConstraints);
+        add(grupoNomePanel, gridBagConstraints);
 
         itemsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         itemsPanel.setLayout(new java.awt.GridLayout(rows, 0));
@@ -77,11 +94,11 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 0);
         add(itemsPanel, gridBagConstraints);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel5.setLayout(new java.awt.GridBagLayout());
+        numPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        numPanel.setLayout(new java.awt.GridBagLayout());
 
-        lblNumGrupo.setText("Nº");
-        jPanel5.add(lblNumGrupo, new java.awt.GridBagConstraints());
+        lblNum.setText("Nº");
+        numPanel.add(lblNum, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -91,15 +108,15 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 6);
-        add(jPanel5, gridBagConstraints);
+        add(numPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel grupoNomePanel;
     private javax.swing.JPanel itemsPanel;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblGrupoNome;
-    private javax.swing.JLabel lblNumGrupo;
+    private javax.swing.JLabel lblNum;
+    private javax.swing.JPanel numPanel;
     // End of variables declaration//GEN-END:variables
 }
