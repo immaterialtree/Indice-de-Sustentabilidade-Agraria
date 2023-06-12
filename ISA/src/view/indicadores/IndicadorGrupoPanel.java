@@ -53,18 +53,17 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         lblGrupoNome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGrupoNome.setText(grupoNome      );
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 9);
         jPanel1.add(lblGrupoNome, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(jPanel1, gridBagConstraints);
 
         itemsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -72,8 +71,9 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 246;
-        gridBagConstraints.ipady = 30;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.weightx = 2.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 0);
         add(itemsPanel, gridBagConstraints);
 
@@ -88,7 +88,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 32;
         gridBagConstraints.ipady = 14;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 6);
         add(jPanel5, gridBagConstraints);
