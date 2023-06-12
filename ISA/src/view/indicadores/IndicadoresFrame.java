@@ -89,7 +89,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        gruposPanel.setLayout(new java.awt.GridLayout(rows, 1, 0, 10));
+        gruposPanel.setLayout(new java.awt.GridLayout(rows, 1));
         jScrollPane1.setViewportView(gruposPanel);
 
         jLabel2.setText("Média Geral:");

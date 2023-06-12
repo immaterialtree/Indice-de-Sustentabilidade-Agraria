@@ -4,6 +4,9 @@
  */
 package view.indicadores;
 
+import java.awt.Color;
+import javax.swing.JTextField;
+
 /**
  *
  * @author naoki
@@ -34,7 +37,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         lblNomeItem = new javax.swing.JLabel();
-        lblValorItem = new javax.swing.JTextField();
+        txtValorItem = new javax.swing.JTextField();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -43,33 +46,70 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         lblNomeItem.setText(indicadorNome);
         lblNomeItem.setIconTextGap(1);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         add(lblNomeItem, gridBagConstraints);
 
-        lblValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        lblValorItem.setText("0");
-        lblValorItem.setToolTipText("Digite a pontuação desta modalidade (número real)");
-        lblValorItem.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                lblValorItemPropertyChange(evt);
+        txtValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtValorItem.setText("0");
+        txtValorItem.setToolTipText("Digite a pontuação desta modalidade (número real)");
+        txtValorItem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtValorItemKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtValorItemKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtValorItemKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.ipadx = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 1.0;
-        add(lblValorItem, gridBagConstraints);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        add(txtValorItem, gridBagConstraints);
+        txtValorItem.getAccessibleContext().setAccessibleName("valorItem");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblValorItemPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblValorItemPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblValorItemPropertyChange
+    private void txtValorItemKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorItemKeyTyped
+        updateTxtColor();
+    }//GEN-LAST:event_txtValorItemKeyTyped
 
+    private void txtValorItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorItemKeyReleased
+        updateTxtColor();
+    }//GEN-LAST:event_txtValorItemKeyReleased
+
+    private void txtValorItemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorItemKeyPressed
+        updateTxtColor();
+    }//GEN-LAST:event_txtValorItemKeyPressed
+
+    private void updateTxtColor() {
+        Double[] qualidade = {3.5, 7., 10.};
+        Color[] qCor = {Color.RED, Color.YELLOW, Color.GREEN};
+        Double valor;
+        try {
+            valor = Double.parseDouble(txtValorItem.getText().replace(",", "."));
+        } catch (Exception e) {
+            txtValorItem.setBackground(Color.WHITE);
+            return;
+        }
+        System.out.println(valor);
+        for (int i=0; i<qualidade.length; i++) {
+            if (valor<qualidade[i]) {
+                txtValorItem.setBackground(qCor[i].brighter());
+                txtValorItem.setForeground(qCor[i].darker());
+                break;
+            }
+        }
+    }
+    public JTextField getTxtValorItem() {
+        return txtValorItem;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblNomeItem;
-    private javax.swing.JTextField lblValorItem;
+    private javax.swing.JTextField txtValorItem;
     // End of variables declaration//GEN-END:variables
 }

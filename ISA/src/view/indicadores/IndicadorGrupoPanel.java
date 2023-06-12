@@ -4,6 +4,8 @@
  */
 package view.indicadores;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author Admin
@@ -73,6 +75,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.ipadx = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 0);
         add(itemsPanel, gridBagConstraints);
@@ -86,14 +89,16 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 32;
-        gridBagConstraints.ipady = 14;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 6);
         add(jPanel5, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public JLabel getLblNumGrupo() {
+        return lblNumGrupo;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel itemsPanel;

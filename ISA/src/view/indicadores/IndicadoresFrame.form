@@ -120,7 +120,6 @@
             <Property name="rows" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="rows" type="code"/>
             </Property>
-            <Property name="verticalGap" type="int" value="10"/>
           </Layout>
         </Container>
       </SubComponents>
