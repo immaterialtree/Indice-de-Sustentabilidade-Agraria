@@ -29,12 +29,20 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuTabelas = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        mainPanel.setBackground(new java.awt.Color(204, 255, 255));
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setText("Novo modelo");
+        mainPanel.add(jButton1);
+
+        jButton2.setText("abrir modelos");
+        mainPanel.add(jButton2);
 
         menuTabelas.setText("Tabelas");
         menuTabelas.addActionListener(new java.awt.event.ActionListener() {
@@ -61,10 +69,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuTabelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelasActionPerformed
-        String nome = JOptionPane.showInputDialog(this, "Digite um nome");
-        TablePanel tabela = new TablePanel(nome);
-        mainPanel.add(tabela);
-        tabela.setVisible(true);
+        return;
     }//GEN-LAST:event_menuTabelasActionPerformed
 
     /**
@@ -103,6 +108,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenu menuTabelas;

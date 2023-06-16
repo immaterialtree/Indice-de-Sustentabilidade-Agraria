@@ -4,7 +4,10 @@
  */
 package view.indicadores;
 
+import java.awt.Color;
+import java.util.Arrays;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -14,6 +17,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
 
     String grupoNome = "Sem Nome";
     int rows = 0;
+    Double[] itensValor;
     /**
      * Creates new form IndicadorGrupoPanel
      */
@@ -23,10 +27,35 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
     
     public IndicadorGrupoPanel(String nome, String[] items) {
         grupoNome = nome;
-        this.rows = items.length;
+        rows = items.length;
+        itensValor = new Double[rows];
+        Arrays.fill(itensValor, 0.);
         initComponents();
-        for (String name : items) {
-            IndicadorItemPanel item = new IndicadorItemPanel(name);
+        for (int i=0; i<items.length; i++) {
+            IndicadorItemPanel item = new IndicadorItemPanel(items[i]);
+            item.getTxtValorItem().setName(String.valueOf(i));
+            item.getTxtValorItem().addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JTextField txt = (JTextField) evt.getComponent();
+                updateTxtColor(txt);
+                try {
+                    int txtIndex = Integer.parseInt(txt.getName());
+                    itensValor[txtIndex] = Double.valueOf(txt.getText());
+                } catch (NumberFormatException e) {
+                }
+                calcularMedia();
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JTextField txt = (JTextField) evt.getComponent();
+                updateTxtColor(txt);
+                try {
+                    int txtIndex = Integer.parseInt(txt.getName());
+                    itensValor[txtIndex] = Double.valueOf(txt.getText());
+                } catch (NumberFormatException e) {
+                }
+                calcularMedia();
+            }
+        });
             itemsPanel.add(item);
             item.setVisible(true);
         }
@@ -83,7 +112,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        lblNumGrupo.setText("Nº");
+        lblNumGrupo.setText("0.00");
         jPanel5.add(lblNumGrupo, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -96,6 +125,36 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         add(jPanel5, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void calcularMedia() {
+        Double media = Arrays.stream(itensValor).mapToDouble(Double::doubleValue).average().orElse(Double.NaN);
+        lblNumGrupo.setText(String.format("%.2f", media));
+    }
+    
+    private void updateTxtColor(JTextField txt) {
+        Double[] qualidade = {7., 3.5, 0.};
+        Color[] qCor = {Color.GREEN, Color.YELLOW, Color.RED};
+        Double valor;
+        try {
+            valor = Double.valueOf(txt.getText().replace(",", "."));
+        } catch (NumberFormatException e) {
+            txt.setBackground(Color.WHITE);
+            txt.setForeground(Color.RED);
+            return;
+        }
+        if (valor < 0 || valor > 10) {
+            txt.setBackground(Color.WHITE);
+            txt.setForeground(Color.RED);
+            return;
+        }
+        for (int i=0; i<qualidade.length; i++) {
+            if (valor >= qualidade[i]) {
+                txt.setBackground(qCor[i].brighter());
+                txt.setForeground(qCor[i].darker());
+                break;
+            }
+        }
+    }
+    
     public JLabel getLblNumGrupo() {
         return lblNumGrupo;
     }

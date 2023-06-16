@@ -52,19 +52,8 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         add(lblNomeItem, gridBagConstraints);
 
         txtValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtValorItem.setText("0");
+        txtValorItem.setText("0.0");
         txtValorItem.setToolTipText("Digite a pontuação desta modalidade (número real)");
-        txtValorItem.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtValorItemKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtValorItemKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtValorItemKeyTyped(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.ipadx = 20;
@@ -73,37 +62,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         txtValorItem.getAccessibleContext().setAccessibleName("valorItem");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtValorItemKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorItemKeyTyped
-        updateTxtColor();
-    }//GEN-LAST:event_txtValorItemKeyTyped
-
-    private void txtValorItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorItemKeyReleased
-        updateTxtColor();
-    }//GEN-LAST:event_txtValorItemKeyReleased
-
-    private void txtValorItemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorItemKeyPressed
-        updateTxtColor();
-    }//GEN-LAST:event_txtValorItemKeyPressed
-
-    private void updateTxtColor() {
-        Double[] qualidade = {3.5, 7., 10.};
-        Color[] qCor = {Color.RED, Color.YELLOW, Color.GREEN};
-        Double valor;
-        try {
-            valor = Double.parseDouble(txtValorItem.getText().replace(",", "."));
-        } catch (Exception e) {
-            txtValorItem.setBackground(Color.WHITE);
-            return;
-        }
-        System.out.println(valor);
-        for (int i=0; i<qualidade.length; i++) {
-            if (valor<qualidade[i]) {
-                txtValorItem.setBackground(qCor[i].brighter());
-                txtValorItem.setForeground(qCor[i].darker());
-                break;
-            }
-        }
-    }
+    
     public JTextField getTxtValorItem() {
         return txtValorItem;
     }
