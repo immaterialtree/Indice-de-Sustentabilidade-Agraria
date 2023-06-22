@@ -6,6 +6,7 @@ package model;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -55,6 +56,9 @@ public class IndicadoresModelo {
     }
     
     // itens - get/add/remove
+    public List<List<String>> getAllItems() {
+        return List.copyOf(indicadores.values());
+    }
     public List<String> getItens(String grupo) {
         return indicadores.get(grupo);
     }
@@ -62,7 +66,16 @@ public class IndicadoresModelo {
     public void addItem(String grupo, String item) {
         indicadores.get(grupo).add(item);
     }
-    public void removeItem(String grupo, String item){
-        indicadores.get(grupo).remove(item);
+    
+    public void addAllItems(String grupo, String... items) {
+        indicadores.get(grupo).addAll(Arrays.asList(items));
+    }
+    
+    public void removeItem(String grupo, String items){
+        indicadores.get(grupo).remove(items);
+    }
+    
+    public void removeAllItems(String grupo, String... items) {
+        indicadores.get(grupo).removeAll(Arrays.asList(items));
     }
 }

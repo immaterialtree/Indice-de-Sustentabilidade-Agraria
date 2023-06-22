@@ -4,6 +4,9 @@
  */
 package view.indicadores;
 
+import java.util.ArrayList;
+import model.IndicadoresModelo;
+import java.util.List;
 /**
  *
  * @author Admin
@@ -22,6 +25,17 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         initComponents();
         for (int i=0; i<gruposNome.length; i++) {
             IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(gruposNome[i], itemsNome[i]);
+            gruposPanel.add(grupo);
+            grupo.setVisible(true);
+        }
+    }
+    
+    public IndicadoresFrame(IndicadoresModelo indicador) {
+        List<String> grupos = List.copyOf(indicador.getGrupos());
+        List<List<String>> items = indicador.getAllItems();
+        initComponents();
+        for (int i=0; i<indicador.getGrupos().size(); i++) {
+            IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(grupos.get(i), items.get(i).toArray(String[]::new));
             gruposPanel.add(grupo);
             grupo.setVisible(true);
         }

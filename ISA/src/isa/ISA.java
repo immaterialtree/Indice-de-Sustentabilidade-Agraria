@@ -4,6 +4,7 @@
  */
 package isa;
 
+import model.IndicadoresModelo;
 import view.MainFrame;
 import view.indicadores.IndicadoresFrame;
 
@@ -28,7 +29,13 @@ public class ISA {
                 "Atmosfera", "Água", "Solo"
             },
         };
-        IndicadoresFrame tela = new IndicadoresFrame("Indicadores Ambientais", grupos, items);
+        
+        IndicadoresModelo ambientalTabela = new IndicadoresModelo("Indicadores Ambientais");
+        for (int i=0; i<grupos.length; i++) {
+            ambientalTabela.addGrupo(grupos[i]);
+            ambientalTabela.addAllItems(grupos[i], items[i]);
+        }
+        IndicadoresFrame tela = new IndicadoresFrame(ambientalTabela);
         tela.setVisible(true);
     }
     
