@@ -43,8 +43,8 @@ public class IndicadoresModelo {
     }
     
     // grupos - get/add/remove
-    public java.util.Set<String> getGrupos() {
-        return indicadores.keySet();
+    public java.util.ArrayList<String> getGrupos() {
+        return new ArrayList<>(indicadores.keySet());
     }
     
     public void addGrupo(String grupo) {
