@@ -153,7 +153,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnGerenciarModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarModelosActionPerformed
         this.setVisible(false);
-        new CrudModelo(ISA.modelList).setVisible(true);
+        new CrudIndicadores(ISA.indicadoresList).setVisible(true);
     }//GEN-LAST:event_btnGerenciarModelosActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

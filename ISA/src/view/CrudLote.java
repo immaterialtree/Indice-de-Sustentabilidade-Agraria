@@ -4,6 +4,7 @@
  */
 package view;
 
+import isa.ISA;
 import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -17,22 +18,21 @@ import model.Lote;
  */
 public class CrudLote extends javax.swing.JFrame {
 
-    List<Lote> loteList = new ArrayList<>();
+//    List<Lote> loteList = new ArrayList<>();
     int indice = 0;
     
     public CrudLote() {
         initComponents();
         atualizarBotoes();
-        loteList.add(new Lote("Lote do Jose", "4834144", "(61) 99876-4444", new double[]{48d, -56d}));
-        if (! loteList.isEmpty()) {
+        if (! ISA.loteList.isEmpty()) {
             preencherTabela();
             mostrarDadosTela(indice);
+            tabLote.changeSelection(indice, 1, false, false);
         }
-        tabLote.changeSelection(indice, 1, false, false);
     }
     
     private void mostrarDadosTela(int i) {
-        if (loteList.isEmpty()) {
+        if (ISA.loteList.isEmpty()) {
             txtNome.setText("");
             txtNumParcela.setText("");
             txtContato.setText("");
@@ -40,11 +40,11 @@ public class CrudLote extends javax.swing.JFrame {
             txtCoordenadaY.setValue(0d);
         } 
         else {
-            txtNome.setText(loteList.get(i).getNome());
-            txtNumParcela.setText(loteList.get(i).getNumParcela());
-            txtContato.setText(loteList.get(i).getContato());
-            txtCoordenadaX.setValue(loteList.get(i).getCoordenada()[0]);
-            txtCoordenadaY.setValue(loteList.get(i).getCoordenada()[1]);
+            txtNome.setText(ISA.loteList.get(i).getNome());
+            txtNumParcela.setText(ISA.loteList.get(i).getNumParcela());
+            txtContato.setText(ISA.loteList.get(i).getContato());
+            txtCoordenadaX.setValue(ISA.loteList.get(i).getCoordenada()[0]);
+            txtCoordenadaY.setValue(ISA.loteList.get(i).getCoordenada()[1]);
         }
     }
     
@@ -52,8 +52,8 @@ public class CrudLote extends javax.swing.JFrame {
         btnPrevious.setEnabled(indice>0);
         btnFirst.setEnabled(indice>0);
 
-        btnNext.setEnabled(indice<loteList.size()-1);
-        btnLast.setEnabled(indice<loteList.size()-1);
+        btnNext.setEnabled(indice<ISA.loteList.size()-1);
+        btnLast.setEnabled(indice<ISA.loteList.size()-1);
         
         btnRemover.setEnabled(indice!=-1);
         btnEditar.setEnabled(indice!=-1);
@@ -72,7 +72,7 @@ public class CrudLote extends javax.swing.JFrame {
         
         DefaultTableModel modelo = (DefaultTableModel) tabLote.getModel();
         modelo.setNumRows(0);
-        for (Lote lote: loteList) {
+        for (Lote lote: ISA.loteList) {
             modelo.addRow(new Object[]{
                 lote.getNome(), 
                 lote.getNumParcela(), 
@@ -91,6 +91,17 @@ public class CrudLote extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogEditar = new javax.swing.JDialog();
+        txtNome_editar = new javax.swing.JTextField();
+        txtNumParcela_editar = new javax.swing.JTextField();
+        txtContato_editar = new javax.swing.JFormattedTextField();
+        paneCoordenadas_editar = new javax.swing.JPanel();
+        lblLatitude_editar = new javax.swing.JLabel();
+        lblLongitude_editar = new javax.swing.JLabel();
+        txtCoordenadaX_editar = new javax.swing.JFormattedTextField();
+        txtCoordenadaY_editar = new javax.swing.JFormattedTextField();
+        btnSalvar_editar = new javax.swing.JButton();
+        btnCancelar_editar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtNome = new javax.swing.JTextField();
         lblCadTitulo = new javax.swing.JLabel();
@@ -111,6 +122,118 @@ public class CrudLote extends javax.swing.JFrame {
         txtCoordenadaX = new javax.swing.JFormattedTextField();
         txtCoordenadaY = new javax.swing.JFormattedTextField();
         txtContato = new javax.swing.JFormattedTextField();
+        btnLimpar = new javax.swing.JButton();
+
+        dialogEditar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialogEditar.setTitle("Editar");
+
+        txtNome_editar.setBackground(new java.awt.Color(204, 255, 255));
+        txtNome_editar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOME", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+
+        txtNumParcela_editar.setBackground(new java.awt.Color(204, 255, 255));
+        txtNumParcela_editar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nº DA PARCELA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+
+        txtContato_editar.setBackground(new java.awt.Color(204, 255, 255));
+        txtContato_editar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONTATO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+        try {
+            txtContato_editar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        paneCoordenadas_editar.setBackground(new java.awt.Color(204, 255, 255));
+        paneCoordenadas_editar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COORDENADAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+
+        lblLatitude_editar.setForeground(new java.awt.Color(0, 153, 153));
+        lblLatitude_editar.setText("Latitude");
+
+        lblLongitude_editar.setForeground(new java.awt.Color(0, 153, 153));
+        lblLongitude_editar.setText("Longitude");
+
+        txtCoordenadaX_editar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
+        txtCoordenadaY_editar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
+        javax.swing.GroupLayout paneCoordenadas_editarLayout = new javax.swing.GroupLayout(paneCoordenadas_editar);
+        paneCoordenadas_editar.setLayout(paneCoordenadas_editarLayout);
+        paneCoordenadas_editarLayout.setHorizontalGroup(
+            paneCoordenadas_editarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneCoordenadas_editarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblLatitude_editar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCoordenadaX_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLongitude_editar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCoordenadaY_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        paneCoordenadas_editarLayout.setVerticalGroup(
+            paneCoordenadas_editarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneCoordenadas_editarLayout.createSequentialGroup()
+                .addGroup(paneCoordenadas_editarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLatitude_editar)
+                    .addComponent(lblLongitude_editar)
+                    .addComponent(txtCoordenadaX_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCoordenadaY_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnSalvar_editar.setBackground(new java.awt.Color(204, 255, 255));
+        btnSalvar_editar.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
+        btnSalvar_editar.setForeground(new java.awt.Color(0, 153, 153));
+        btnSalvar_editar.setText("Salvar");
+        btnSalvar_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvar_editarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar_editar.setBackground(new java.awt.Color(204, 255, 255));
+        btnCancelar_editar.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
+        btnCancelar_editar.setForeground(new java.awt.Color(0, 153, 153));
+        btnCancelar_editar.setText("Cancelar");
+        btnCancelar_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelar_editarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogEditarLayout = new javax.swing.GroupLayout(dialogEditar.getContentPane());
+        dialogEditar.getContentPane().setLayout(dialogEditarLayout);
+        dialogEditarLayout.setHorizontalGroup(
+            dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogEditarLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNome_editar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNumParcela_editar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(paneCoordenadas_editar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtContato_editar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(dialogEditarLayout.createSequentialGroup()
+                        .addComponent(btnSalvar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        dialogEditarLayout.setVerticalGroup(
+            dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogEditarLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(txtNome_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtNumParcela_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtContato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(paneCoordenadas_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar_editar)
+                    .addComponent(btnCancelar_editar))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerenciar Lotes");
@@ -280,6 +403,16 @@ public class CrudLote extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        btnLimpar.setBackground(new java.awt.Color(204, 255, 255));
+        btnLimpar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnLimpar.setForeground(new java.awt.Color(0, 153, 153));
+        btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -287,7 +420,7 @@ public class CrudLote extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(333, 333, 333)
+                        .addGap(343, 343, 343)
                         .addComponent(lblCadTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
@@ -302,17 +435,19 @@ public class CrudLote extends javax.swing.JFrame {
                             .addComponent(txtNumParcela)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(87, 87, 87)
-                                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
+                                .addComponent(btnLimpar)
+                                .addGap(12, 12, 12)
+                                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtContato))
                         .addGap(18, 18, 18)
                         .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(98, 98, 98)
@@ -339,7 +474,8 @@ public class CrudLote extends javax.swing.JFrame {
                             .addComponent(btnLast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnFirst, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnPrevious, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLimpar))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRemover)
@@ -351,7 +487,7 @@ public class CrudLote extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(120, 120, 120)
                     .addComponent(lblErro)
-                    .addContainerGap(295, Short.MAX_VALUE)))
+                    .addContainerGap(351, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -370,35 +506,50 @@ public class CrudLote extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-
+        // check null fields
+        if (txtNome.getText().isBlank() ||
+            txtNumParcela.getText().isBlank() ||
+            txtContato.getText().isBlank() ||
+            txtCoordenadaX.getText().isBlank() ||
+            txtCoordenadaY.getText().isBlank()
+        ) {
+            JOptionPane.showMessageDialog(
+                this, "Preencha todos os campos", 
+                "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+          
         Lote lote = new Lote();
-
+        
         lote.setNome(txtNome.getText());
         lote.setNumParcela(txtNumParcela.getText());
         lote.setContato(txtContato.getText());
         double x = Double.parseDouble(txtCoordenadaX.getText().replace(',','.'));
         double y = Double.parseDouble(txtCoordenadaY.getText().replace(',', '.'));
         lote.setCoordenada(new double[] {x, y});
-        loteList.add(lote);
+        ISA.loteList.add(lote);
 
-        indice = loteList.size()-1;
+        indice = ISA.loteList.size()-1;
         mostrarDadosTela(indice);
         preencherTabela();
         tabLote.changeSelection(indice, 1, false, false);
         atualizarBotoes();
     }//GEN-LAST:event_btnSalvarActionPerformed
-
+    
+    int editing_row;
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Lote lote = new Lote();
-        lote.setNome(txtNome.getText());
-        lote.setNumParcela(txtNumParcela.getText());
-        lote.setContato(txtContato.getText());
-        double x = (double) txtCoordenadaX.getValue();
-        double y = (double) txtCoordenadaY.getValue();
-        lote.setCoordenada(new double[] {x, y});
+        editing_row = tabLote.getSelectedRow();
+        Lote lote = ISA.loteList.get(editing_row);
         
-        loteList.add(lote);
-        preencherTabela();
+        txtNome_editar.setText(lote.getNome());
+        txtNumParcela_editar.setText(lote.getNumParcela());
+        txtContato_editar.setText(lote.getContato());
+        txtCoordenadaX_editar.setText(String.valueOf(lote.getCoordenada()[0]));
+        txtCoordenadaY_editar.setText(String.valueOf(lote.getCoordenada()[1]));
+        
+        dialogEditar.setSize(390, 370);
+        dialogEditar.setLocationRelativeTo(null);
+        dialogEditar.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
@@ -406,40 +557,14 @@ public class CrudLote extends javax.swing.JFrame {
         if (0!=JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir?", "Confirmar exclusão", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION)) {
             return;
         }
-        loteList.remove(indice);
-        indice += (indice>0 || loteList.isEmpty()) ? -1 : 0;
+        ISA.loteList.remove(indice);
+        indice += (indice>0 || ISA.loteList.isEmpty()) ? -1 : 0;
         mostrarDadosTela(indice);
         preencherTabela();
         tabLote.changeSelection(indice, 1, false, false);
         atualizarBotoes();
 
     }//GEN-LAST:event_btnRemoverActionPerformed
-
-    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-        indice = 0;
-        mostrarDadosTela(indice);
-        tabLote.changeSelection(indice, 1, false, false);
-        atualizarBotoes();
-    }//GEN-LAST:event_btnFirstActionPerformed
-
-    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        indice = loteList.size()-1;
-        mostrarDadosTela(indice);
-        tabLote.changeSelection(indice, 1, false, false);
-        atualizarBotoes();
-    }//GEN-LAST:event_btnLastActionPerformed
-
-    private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
-        mostrarDadosTela(--indice);
-        tabLote.changeSelection(indice, 1, false, false);
-        atualizarBotoes();
-    }//GEN-LAST:event_btnPreviousActionPerformed
-
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        mostrarDadosTela(++indice);
-        tabLote.changeSelection(indice, 1, false, false);
-        atualizarBotoes();
-    }//GEN-LAST:event_btnNextActionPerformed
 
     private void tabLoteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLoteMouseClicked
         indice = tabLote.getSelectedRow();
@@ -456,6 +581,72 @@ public class CrudLote extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         getWindows()[0].setVisible(true);
     }//GEN-LAST:event_formWindowClosed
+
+    private void btnSalvar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar_editarActionPerformed
+        // check null fields
+        if (txtNome_editar.getText().isBlank() ||
+            txtNumParcela_editar.getText().isBlank() ||
+            txtContato_editar.getText().isBlank() ||
+            txtCoordenadaX_editar.getText().isBlank() ||
+            txtCoordenadaY_editar.getText().isBlank()
+        ) {
+            JOptionPane.showMessageDialog(
+                this, "Preencha todos os campos", 
+                "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Lote lote = new Lote();
+        lote.setNome(txtNome_editar.getText());
+        lote.setNumParcela(txtNumParcela_editar.getText());
+        lote.setContato(txtContato_editar.getText());
+        double x = Double.parseDouble(txtCoordenadaX_editar.getText().replace(',','.'));
+        double y = Double.parseDouble(txtCoordenadaY_editar.getText().replace(',','.'));
+        lote.setCoordenada(new double[] {x, y});
+        
+        ISA.loteList.remove(editing_row);
+        ISA.loteList.add(editing_row, lote);
+        preencherTabela();
+        dialogEditar.dispose();
+    }//GEN-LAST:event_btnSalvar_editarActionPerformed
+
+    private void btnCancelar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar_editarActionPerformed
+        dialogEditar.dispose();
+    }//GEN-LAST:event_btnCancelar_editarActionPerformed
+
+    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
+        indice = 0;
+        mostrarDadosTela(indice);
+        tabLote.changeSelection(indice, 1, false, false);
+        atualizarBotoes();
+    }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
+        mostrarDadosTela(--indice);
+        tabLote.changeSelection(indice, 1, false, false);
+        atualizarBotoes();
+    }//GEN-LAST:event_btnPreviousActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        mostrarDadosTela(++indice);
+        tabLote.changeSelection(indice, 1, false, false);
+        atualizarBotoes();
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
+        indice = ISA.loteList.size()-1;
+        mostrarDadosTela(indice);
+        tabLote.changeSelection(indice, 1, false, false);
+        atualizarBotoes();
+    }//GEN-LAST:event_btnLastActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        txtNome.setText("");
+        txtNumParcela.setText("");
+        txtContato.setText("");
+        txtCoordenadaX.setText("");
+        txtCoordenadaY.setText("");
+    }//GEN-LAST:event_btnLimparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -494,25 +685,47 @@ public class CrudLote extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar_editar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnLast;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnSalvar_editar;
+    private javax.swing.JDialog dialogEditar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblCadTitulo;
     private javax.swing.JLabel lblErro;
+    private javax.swing.JLabel lblLatitude_editar;
+    private javax.swing.JLabel lblLongitude_editar;
+    private javax.swing.JPanel paneCoordenadas_editar;
     private javax.swing.JScrollPane scrollTabela;
     private javax.swing.JTable tabLote;
     private javax.swing.JFormattedTextField txtContato;
+    private javax.swing.JFormattedTextField txtContato_editar;
     private javax.swing.JFormattedTextField txtCoordenadaX;
+    private javax.swing.JFormattedTextField txtCoordenadaX1;
+    private javax.swing.JFormattedTextField txtCoordenadaX2;
+    private javax.swing.JFormattedTextField txtCoordenadaX_editar;
     private javax.swing.JFormattedTextField txtCoordenadaY;
+    private javax.swing.JFormattedTextField txtCoordenadaY1;
+    private javax.swing.JFormattedTextField txtCoordenadaY2;
+    private javax.swing.JFormattedTextField txtCoordenadaY_editar;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNome_editar;
     private javax.swing.JTextField txtNumParcela;
+    private javax.swing.JTextField txtNumParcela_editar;
     // End of variables declaration//GEN-END:variables
 }

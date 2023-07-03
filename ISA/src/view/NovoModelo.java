@@ -4,6 +4,7 @@
  */
 package view;
 
+import isa.ISA;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -122,6 +123,11 @@ public class NovoModelo extends javax.swing.JPanel {
         txtNome.setBackground(new java.awt.Color(204, 255, 255));
         txtNome.setForeground(new java.awt.Color(0, 153, 153));
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome do modelo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+        txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNomeFocusLost(evt);
+            }
+        });
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
@@ -140,6 +146,11 @@ public class NovoModelo extends javax.swing.JPanel {
         txtGrupo.setBackground(new java.awt.Color(204, 255, 255));
         txtGrupo.setForeground(new java.awt.Color(0, 153, 153));
         txtGrupo.setToolTipText("Escreva o nome do grupo");
+        txtGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGrupoActionPerformed(evt);
+            }
+        });
 
         lblNovoGrupo.setForeground(new java.awt.Color(0, 153, 153));
         lblNovoGrupo.setText("Novo grupo");
@@ -150,6 +161,11 @@ public class NovoModelo extends javax.swing.JPanel {
         txtItem.setBackground(new java.awt.Color(204, 255, 255));
         txtItem.setForeground(new java.awt.Color(0, 153, 153));
         txtItem.setToolTipText("Escreva o nome do indicador");
+        txtItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtItemActionPerformed(evt);
+            }
+        });
 
         btnAddItem.setBackground(new java.awt.Color(204, 255, 255));
         btnAddItem.setForeground(new java.awt.Color(0, 153, 153));
@@ -180,10 +196,7 @@ public class NovoModelo extends javax.swing.JPanel {
 
         tabIndicadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
@@ -305,12 +318,11 @@ public class NovoModelo extends javax.swing.JPanel {
     private void tabIndicadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabIndicadoresMouseClicked
         if (evt.getClickCount() > 1) {
             int rowIndex = tabIndicadores.rowAtPoint(evt.getPoint());
-            if (rowIndex < 0) {
-                
-            } 
-            else {
-                
-            }
+            int columnIndex = tabIndicadores.columnAtPoint(evt.getPoint());
+            String columnName = header.getColumnModel().getColumn(columnIndex).getHeaderValue().toString();
+            String oldItem = tabIndicadores.getModel().getValueAt(rowIndex, columnIndex).toString();
+            String newItem = JOptionPane.showInputDialog("Novo nome:");
+            novoIndicador.replaceItem(columnName, oldItem, newItem);
         }
     }//GEN-LAST:event_tabIndicadoresMouseClicked
 
@@ -325,10 +337,21 @@ public class NovoModelo extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        CrudModelo pai = (CrudModelo) this.getParent();
-        pai.modeloList.add(novoIndicador);
-        pai.preencherLista();
+        ISA.indicadoresList.add(novoIndicador);
+        this.getParent();
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
+        lblNome.setText(txtNome.getText());
+    }//GEN-LAST:event_txtNomeFocusLost
+
+    private void txtGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGrupoActionPerformed
+        btnAddGrupoActionPerformed(evt);
+    }//GEN-LAST:event_txtGrupoActionPerformed
+
+    private void txtItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtItemActionPerformed
+        btnAddItemActionPerformed(evt);
+    }//GEN-LAST:event_txtItemActionPerformed
     
     private javax.swing.JPopupMenu renamePopup;
     private javax.swing.table.TableColumn column;

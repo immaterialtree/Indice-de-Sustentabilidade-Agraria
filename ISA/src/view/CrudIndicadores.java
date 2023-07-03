@@ -4,6 +4,7 @@
  */
 package view;
 
+import isa.ISA;
 import java.util.*;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingConstants;
@@ -15,16 +16,17 @@ import model.IndicadoresModelo;
  *
  * @author naoki
  */
-public class CrudModelo extends javax.swing.JFrame {
-    List<IndicadoresModelo> modeloList = new ArrayList<>();
+public class CrudIndicadores extends javax.swing.JFrame {
+//    List<IndicadoresModelo> ISA.indicadoresList = new ArrayList<>();
+    
     DefaultListModel resultList = new DefaultListModel();
     int indice = 0;
-    public CrudModelo() {
+    public CrudIndicadores() {
         initAll();
     }
     
-    public CrudModelo(List<IndicadoresModelo> indicadores) {
-        modeloList = indicadores;
+    public CrudIndicadores(List<IndicadoresModelo> indicadores) {
+        ISA.indicadoresList = indicadores;
         initAll();
         
     }
@@ -40,22 +42,22 @@ public class CrudModelo extends javax.swing.JFrame {
     
     void preencherLista() {
         
-        for (IndicadoresModelo i : modeloList) {
+        for (IndicadoresModelo i : ISA.indicadoresList) {
             resultList.addElement(i.getNome());
         }
         jListModelos.setModel(resultList);
     }
     void preencherTabela(int indice) {
-        if (modeloList.size()<1) return;
+        if (ISA.indicadoresList.size()<1) return;
         DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
 	cellRender.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i=0; i<tabModelo.getColumnCount(); i++)
             tabModelo.getColumnModel().getColumn(i).setCellRenderer(cellRender);
         
-        lblNomeModelo.setText(modeloList.get(indice).getNome());
+        lblNomeModelo.setText(ISA.indicadoresList.get(indice).getNome());
         DefaultTableModel modelo = (DefaultTableModel) tabModelo.getModel();
         modelo.setNumRows(0);
-        for (Map.Entry grupo: modeloList.get(indice).getIndicadores().entrySet()) {
+        for (Map.Entry grupo: ISA.indicadoresList.get(indice).getIndicadores().entrySet()) {
             modelo.addColumn(grupo.getKey(), ((List<String>) grupo.getValue()).toArray());
         }
     }
@@ -88,6 +90,12 @@ public class CrudModelo extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+        });
+
+        jPanel2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPanel2FocusGained(evt);
             }
         });
 
@@ -165,11 +173,9 @@ public class CrudModelo extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnExcluir)
-                            .addComponent(btnEditar))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(scrollTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(18, Short.MAX_VALUE))))
+                            .addComponent(btnEditar)))
+                    .addComponent(scrollTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Gerenciar", jPanel2);
@@ -202,6 +208,11 @@ public class CrudModelo extends javax.swing.JFrame {
         indice = jListModelos.getSelectedIndex();
         preencherTabela(indice);
     }//GEN-LAST:event_jListModelosKeyPressed
+
+    private void jPanel2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel2FocusGained
+        preencherLista();
+        preencherTabela(indice);
+    }//GEN-LAST:event_jPanel2FocusGained
     
     
    
@@ -222,21 +233,23 @@ public class CrudModelo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrudModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudIndicadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrudModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudIndicadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrudModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudIndicadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrudModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudIndicadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrudModelo().setVisible(true);
+                new CrudIndicadores().setVisible(true);
             }
         });
     }
