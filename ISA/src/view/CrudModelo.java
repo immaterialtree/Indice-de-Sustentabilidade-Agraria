@@ -5,75 +5,60 @@
 package view;
 
 import java.util.*;
+import javax.swing.DefaultListModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.tree.DefaultMutableTreeNode;
 import model.IndicadoresModelo;
-import model.Lote;
 
 /**
  *
  * @author naoki
  */
 public class CrudModelo extends javax.swing.JFrame {
-    IndicadoresModelo novoModelo = new IndicadoresModelo();
+    List<IndicadoresModelo> modeloList = new ArrayList<>();
+    DefaultListModel resultList = new DefaultListModel();
     int indice = 0;
     public CrudModelo() {
-        initComponents();
-        atualizarBotoes();
-        preencherTabela();
-        mostrarDadosTela(indice);
-        tabModelo.changeSelection(indice, 1, false, false);
+        initAll();
     }
-
-    private void mostrarDadosTela(int i) {
-        int grupoSelecionado = tabModelo.getSelectedColumn();
-        int itemSelecionado = tabModelo.getSelectedRow();
-        txtNome.setText(novoModelo.getNome());
-        if (grupoSelecionado == -1) {
-            txtGrupo.setText("");
-            cboxGrupo.setSelectedIndex(0);
-        } 
-        else {
-            txtGrupo.setText(novoModelo.getGrupos());
-            cboxGrupo.setSelectedIndex(0);
-        }
-    }
-    private void preencherTabela() {
+    
+    public CrudModelo(List<IndicadoresModelo> indicadores) {
+        modeloList = indicadores;
+        initAll();
         
+    }
+    
+    private void initAll() {
+        initComponents();
+        jTabbedPane1.addTab("Novo", new NovoModelo());
+        preencherLista();
+        preencherTabela(0);
+        tabModelo.changeSelection(0, 1, false, false);
+        jListModelos.setSelectedIndex(0);
+    }
+    
+    void preencherLista() {
+        
+        for (IndicadoresModelo i : modeloList) {
+            resultList.addElement(i.getNome());
+        }
+        jListModelos.setModel(resultList);
+    }
+    void preencherTabela(int indice) {
+        if (modeloList.size()<1) return;
         DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
 	cellRender.setHorizontalAlignment(SwingConstants.CENTER);
-        tabModelo.getColumnModel().getColumn(0).setPreferredWidth(100);  //Preferencia de largura medidad em pixels
-        tabModelo.getColumnModel().getColumn(1).setPreferredWidth(100);  
-        tabModelo.getColumnModel().getColumn(2).setPreferredWidth(100);  
-        tabModelo.getColumnModel().getColumn(3).setPreferredWidth(100);
         for (int i=0; i<tabModelo.getColumnCount(); i++)
             tabModelo.getColumnModel().getColumn(i).setCellRenderer(cellRender);
         
+        lblNomeModelo.setText(modeloList.get(indice).getNome());
         DefaultTableModel modelo = (DefaultTableModel) tabModelo.getModel();
         modelo.setNumRows(0);
-        for (Lote lote: loteList) {
-            modelo.addRow(new Object[]{
-                lote.getNome(), 
-                lote.getNumParcela(), 
-                lote.getContato(), 
-                Arrays.toString(lote.getCoordenada())
-            });
+        for (Map.Entry grupo: modeloList.get(indice).getIndicadores().entrySet()) {
+            modelo.addColumn(grupo.getKey(), ((List<String>) grupo.getValue()).toArray());
         }
     }
-    
-    private void atualizarBotoes() {
-        btnPrevious.setEnabled(indice>0);
-        btnFirst.setEnabled(indice>0);
-
-        btnNext.setEnabled(indice<novoModelo.size()-1);
-        btnLast.setEnabled(indice<novoModelo.size()-1);
-        
-        btnRemover.setEnabled(indice!=-1);
-        btnEditar.setEnabled(indice!=-1);
-    }
-    
     
     /**
      * Creates new form CadastrarModelo
@@ -88,297 +73,106 @@ public class CrudModelo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel3 = new javax.swing.JLabel();
+        jListModelos = new javax.swing.JList<>();
+        lblNomeModelo = new javax.swing.JLabel();
         scrollTabela1 = new javax.swing.JScrollPane();
-        tabModelo1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        txtNome = new javax.swing.JTextField();
-        lblTitleNovo = new javax.swing.JLabel();
-        btnAddGrupo = new javax.swing.JButton();
-        txtGrupo = new javax.swing.JTextField();
-        lblNovoGrupo = new javax.swing.JLabel();
-        lblNovoIndicador = new javax.swing.JLabel();
-        txtItem = new javax.swing.JTextField();
-        btnAddItem = new javax.swing.JButton();
-        cboxGrupo = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        scrollTabela = new javax.swing.JScrollPane();
         tabModelo = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        btnEditar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
-        jTextField1.setText("jTextField1");
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("GRUPO"));
-
-        jTextField2.setText("jTextField2");
-        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder("ITEM"));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder("GRUPO DO ITEM"));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Editar");
-        jLabel2.setToolTipText("");
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jDialog1Layout.createSequentialGroup()
-                            .addGap(172, 172, 172)
-                            .addComponent(jLabel2))
-                        .addGroup(jDialog1Layout.createSequentialGroup()
-                            .addGap(22, 22, 22)
-                            .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField2)
-                                .addComponent(jComboBox1, 0, 340, Short.MAX_VALUE)))))
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
-        );
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
         });
-        jScrollPane2.setViewportView(jList1);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Nome do modelo");
-        jLabel3.setToolTipText("");
+        jListModelos.setBorder(null);
+        jListModelos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListModelosMouseClicked(evt);
+            }
+        });
+        jListModelos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jListModelosKeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jListModelos);
+
+        lblNomeModelo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNomeModelo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNomeModelo.setText("Nome do modelo");
+        lblNomeModelo.setToolTipText("");
 
         scrollTabela1.setBackground(new java.awt.Color(255, 255, 204));
         scrollTabela1.setForeground(new java.awt.Color(0, 204, 204));
         scrollTabela1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        tabModelo1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        tabModelo1.setShowGrid(false);
-        tabModelo1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabModelo1MouseClicked(evt);
-            }
-        });
-        tabModelo1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tabModelo1KeyReleased(evt);
-            }
-        });
-        scrollTabela1.setViewportView(tabModelo1);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scrollTabela1)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(103, 103, 103))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(scrollTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Gerenciar", jPanel2);
-
-        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome do modelo"));
-        txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNomeFocusLost(evt);
-            }
-        });
-
-        lblTitleNovo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblTitleNovo.setText("Criar novo modelo");
-
-        btnAddGrupo.setText("Adicionar Grupo ao modelo");
-        btnAddGrupo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddGrupoActionPerformed(evt);
-            }
-        });
-
-        txtGrupo.setToolTipText("Escreva o nome do grupo");
-
-        lblNovoGrupo.setText("Novo grupo");
-
-        lblNovoIndicador.setText("Novo indicador");
-
-        txtItem.setToolTipText("Escreva o nome do indicador");
-
-        btnAddItem.setText("Adicionar indicador ao grupo");
-        btnAddItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddItemActionPerformed(evt);
-            }
-        });
-
-        cboxGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecionar Grupo>" }));
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Salvar");
-
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("Editar");
-
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setText("Excluir");
-
-        scrollTabela.setBackground(new java.awt.Color(255, 255, 204));
-        scrollTabela.setForeground(new java.awt.Color(0, 204, 204));
-        scrollTabela.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         tabModelo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
             }
         ));
         tabModelo.setShowGrid(false);
-        tabModelo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabModeloMouseClicked(evt);
-            }
-        });
-        tabModelo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tabModeloKeyReleased(evt);
-            }
-        });
-        scrollTabela.setViewportView(tabModelo);
+        scrollTabela1.setViewportView(tabModelo);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Nome do modelo");
-        jLabel1.setToolTipText("");
+        btnEditar.setBackground(new java.awt.Color(204, 255, 255));
+        btnEditar.setForeground(new java.awt.Color(0, 153, 153));
+        btnEditar.setText("Editar");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(lblTitleNovo))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+        btnExcluir.setBackground(new java.awt.Color(204, 255, 255));
+        btnExcluir.setForeground(new java.awt.Color(0, 153, 153));
+        btnExcluir.setText("Excluir");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(352, 352, 352)
+                        .addComponent(lblNomeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNome)
-                            .addComponent(txtGrupo)
-                            .addComponent(btnAddGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtItem)
-                            .addComponent(btnAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboxGrupo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNovoGrupo)
-                                    .addComponent(lblNovoIndicador))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scrollTabela)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(62, 62, 62)
+                        .addComponent(scrollTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTitleNovo)
-                    .addComponent(jLabel1))
+                .addComponent(lblNomeModelo)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblNovoGrupo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddGrupo)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lblNovoIndicador)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboxGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddItem)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(18, Short.MAX_VALUE))
-                    .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnExcluir)
+                            .addComponent(btnEditar))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(scrollTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
 
-        jTabbedPane1.addTab("Novo", jPanel3);
+        jTabbedPane1.addTab("Gerenciar", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -395,65 +189,22 @@ public class CrudModelo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
-        String nome = txtNome.getText();
-        novoModelo.setNome(nome);
-    }//GEN-LAST:event_txtNomeFocusLost
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        getWindows()[0].setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
-    private void btnAddGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGrupoActionPerformed
-        String grupo = txtGrupo.getText();
-        txtGrupo.setText("");
-        if (! novoModelo.getIndicadores().containsKey(grupo)){
-            novoModelo.addGrupo(grupo);
-            cboxGrupo.addItem(grupo);
-        }
-    }//GEN-LAST:event_btnAddGrupoActionPerformed
+    private void jListModelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListModelosMouseClicked
+        indice = jListModelos.getSelectedIndex();
+        preencherTabela(indice);
+    }//GEN-LAST:event_jListModelosMouseClicked
 
-    private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-        String grupo = (String) cboxGrupo.getSelectedItem();
-        String item = txtItem.getText();
-        if (novoModelo.getIndicadores().containsKey(grupo)) {
-            if (! novoModelo.getItens(grupo).contains(item)) {
-                novoModelo.addItem(grupo, item);
-            }
-        }
-        createTreeModelNovo();
-    }//GEN-LAST:event_btnAddItemActionPerformed
-
-    private void tabModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabModeloMouseClicked
-        indice = tabModelo.getSelectedRow();
-        mostrarDadosTela(indice);
-        atualizarBotoes();
-    }//GEN-LAST:event_tabModeloMouseClicked
-
-    private void tabModeloKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabModeloKeyReleased
-        indice = tabModelo.getSelectedRow();
-        mostrarDadosTela(indice);
-        atualizarBotoes();
-    }//GEN-LAST:event_tabModeloKeyReleased
-
-    private void tabModelo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabModelo1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tabModelo1MouseClicked
-
-    private void tabModelo1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabModelo1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tabModelo1KeyReleased
+    private void jListModelosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jListModelosKeyPressed
+        indice = jListModelos.getSelectedIndex();
+        preencherTabela(indice);
+    }//GEN-LAST:event_jListModelosKeyPressed
     
-    private void createTreeModelNovo() {
-        DefaultMutableTreeNode rootNode, midNode, leafNode;
-        rootNode = new DefaultMutableTreeNode(novoModelo.getNome());
-        for (Map.Entry<String, List<String>> kv : novoModelo.getIndicadores().entrySet()) {
-            midNode = new DefaultMutableTreeNode(kv.getKey());
-            for (String item : kv.getValue()) {
-                leafNode = new DefaultMutableTreeNode(item);
-                midNode.add(leafNode);
-            }
-            rootNode.add(midNode);
-        }
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(rootNode));
-    }
     
+   
     /**
      * @param args the command line arguments
      */
@@ -491,33 +242,14 @@ public class CrudModelo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddGrupo;
-    private javax.swing.JButton btnAddItem;
-    private javax.swing.JComboBox<String> cboxGrupo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JDialog jDialog1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JList<String> jListModelos;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JLabel lblNovoGrupo;
-    private javax.swing.JLabel lblNovoIndicador;
-    private javax.swing.JLabel lblTitleNovo;
-    private javax.swing.JScrollPane scrollTabela;
+    private javax.swing.JLabel lblNomeModelo;
     private javax.swing.JScrollPane scrollTabela1;
     private javax.swing.JTable tabModelo;
-    private javax.swing.JTable tabModelo1;
-    private javax.swing.JTextField txtGrupo;
-    private javax.swing.JTextField txtItem;
-    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

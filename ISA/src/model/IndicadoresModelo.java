@@ -23,9 +23,13 @@ public class IndicadoresModelo {
         indicadores = new HashMap<>();
     }
     
-    public IndicadoresModelo(String nome) {
+    public IndicadoresModelo(String nome, String[] grupos, String[][] itens) {
         this.nome = nome;
         indicadores = new HashMap<>();
+        for (int i = 0; i < grupos.length; i++) {
+            List<String> list = Arrays.asList(itens[i]);
+            indicadores.put(grupos[i], list);
+        }
     }
     
     // nome - getter/setter
@@ -58,6 +62,14 @@ public class IndicadoresModelo {
     // itens - get/add/remove
     public List<List<String>> getAllItems() {
         return List.copyOf(indicadores.values());
+    }
+    public String[][] getAllItemsArr() {
+        List<List<String>> itemList = getAllItems();
+        String[][] itemArr = new String[itemList.size()][];
+        for (int i = 0; i < itemList.size(); i++) {
+            itemArr[i] = itemList.get(i).toArray(String[]::new);
+        }
+        return itemArr;
     }
     public List<String> getItens(String grupo) {
         return indicadores.get(grupo);

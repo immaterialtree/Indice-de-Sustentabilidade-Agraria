@@ -23,6 +23,7 @@ public class CrudLote extends javax.swing.JFrame {
     public CrudLote() {
         initComponents();
         atualizarBotoes();
+        loteList.add(new Lote("Lote do Jose", "4834144", "(61) 99876-4444", new double[]{48d, -56d}));
         if (! loteList.isEmpty()) {
             preencherTabela();
             mostrarDadosTela(indice);
@@ -35,15 +36,15 @@ public class CrudLote extends javax.swing.JFrame {
             txtNome.setText("");
             txtNumParcela.setText("");
             txtContato.setText("");
-            spinCoordenadaX.setValue(0d);
-            spinCoordenadaY.setValue(0d);
+            txtCoordenadaX.setValue(0d);
+            txtCoordenadaY.setValue(0d);
         } 
         else {
             txtNome.setText(loteList.get(i).getNome());
             txtNumParcela.setText(loteList.get(i).getNumParcela());
             txtContato.setText(loteList.get(i).getContato());
-            spinCoordenadaX.setValue(loteList.get(i).getCoordenada()[0]);
-            spinCoordenadaY.setValue(loteList.get(i).getCoordenada()[1]);
+            txtCoordenadaX.setValue(loteList.get(i).getCoordenada()[0]);
+            txtCoordenadaY.setValue(loteList.get(i).getCoordenada()[1]);
         }
     }
     
@@ -105,13 +106,20 @@ public class CrudLote extends javax.swing.JFrame {
         tabLote = new javax.swing.JTable();
         txtNumParcela = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        spinCoordenadaX = new javax.swing.JSpinner();
-        spinCoordenadaY = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtCoordenadaX = new javax.swing.JFormattedTextField();
+        txtCoordenadaY = new javax.swing.JFormattedTextField();
         txtContato = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gerenciar Lotes");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         txtNome.setBackground(new java.awt.Color(204, 255, 255));
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOME", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
@@ -194,10 +202,7 @@ public class CrudLote extends javax.swing.JFrame {
 
         tabLote.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Lote do José", "2.567.865", "61 9988 6402", "[426, -478]"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "NOME", "Nº DA PARCELA", "CONTATO", "COORDENADAS"
@@ -211,6 +216,7 @@ public class CrudLote extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabLote.setFocusable(false);
         tabLote.setShowGrid(false);
         tabLote.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -230,13 +236,15 @@ public class CrudLote extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COORDENADAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
 
-        spinCoordenadaX.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
-
-        spinCoordenadaY.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
-
+        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("Latitude");
 
+        jLabel2.setForeground(new java.awt.Color(0, 153, 153));
         jLabel2.setText("Longitude");
+
+        txtCoordenadaX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
+        txtCoordenadaY.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -246,21 +254,21 @@ public class CrudLote extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spinCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(txtCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spinCoordenadaY)
+                .addComponent(txtCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spinCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spinCoordenadaX)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(txtCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -314,9 +322,9 @@ public class CrudLote extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(28, 28, 28)
                 .addComponent(lblCadTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,7 +334,7 @@ public class CrudLote extends javax.swing.JFrame {
                         .addComponent(txtContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
+                        .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnFirst, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -337,7 +345,7 @@ public class CrudLote extends javax.swing.JFrame {
                             .addComponent(btnRemover)
                             .addComponent(btnSalvar)
                             .addComponent(btnEditar)))
-                    .addComponent(scrollTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
+                    .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(36, 36, 36))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -358,6 +366,7 @@ public class CrudLote extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -367,11 +376,10 @@ public class CrudLote extends javax.swing.JFrame {
         lote.setNome(txtNome.getText());
         lote.setNumParcela(txtNumParcela.getText());
         lote.setContato(txtContato.getText());
-        double x = (double) spinCoordenadaX.getValue();
-        double y = (double) spinCoordenadaY.getValue();
+        double x = Double.parseDouble(txtCoordenadaX.getText().replace(',','.'));
+        double y = Double.parseDouble(txtCoordenadaY.getText().replace(',', '.'));
         lote.setCoordenada(new double[] {x, y});
         loteList.add(lote);
-        JOptionPane.showMessageDialog(this, "Lote salvo\n"+lote.toString());
 
         indice = loteList.size()-1;
         mostrarDadosTela(indice);
@@ -385,8 +393,8 @@ public class CrudLote extends javax.swing.JFrame {
         lote.setNome(txtNome.getText());
         lote.setNumParcela(txtNumParcela.getText());
         lote.setContato(txtContato.getText());
-        double x = (double) spinCoordenadaX.getValue();
-        double y = (double) spinCoordenadaY.getValue();
+        double x = (double) txtCoordenadaX.getValue();
+        double y = (double) txtCoordenadaY.getValue();
         lote.setCoordenada(new double[] {x, y});
         
         loteList.add(lote);
@@ -395,6 +403,9 @@ public class CrudLote extends javax.swing.JFrame {
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
 
+        if (0!=JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir?", "Confirmar exclusão", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION)) {
+            return;
+        }
         loteList.remove(indice);
         indice += (indice>0 || loteList.isEmpty()) ? -1 : 0;
         mostrarDadosTela(indice);
@@ -441,6 +452,10 @@ public class CrudLote extends javax.swing.JFrame {
         mostrarDadosTela(indice);
         atualizarBotoes();
     }//GEN-LAST:event_tabLoteKeyReleased
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        getWindows()[0].setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -493,10 +508,10 @@ public class CrudLote extends javax.swing.JFrame {
     private javax.swing.JLabel lblCadTitulo;
     private javax.swing.JLabel lblErro;
     private javax.swing.JScrollPane scrollTabela;
-    private javax.swing.JSpinner spinCoordenadaX;
-    private javax.swing.JSpinner spinCoordenadaY;
     private javax.swing.JTable tabLote;
     private javax.swing.JFormattedTextField txtContato;
+    private javax.swing.JFormattedTextField txtCoordenadaX;
+    private javax.swing.JFormattedTextField txtCoordenadaY;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumParcela;
     // End of variables declaration//GEN-END:variables

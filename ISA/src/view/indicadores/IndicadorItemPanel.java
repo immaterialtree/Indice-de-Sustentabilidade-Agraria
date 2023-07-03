@@ -54,6 +54,11 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         txtValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtValorItem.setText("0.0");
         txtValorItem.setToolTipText("Digite a pontuação desta modalidade (número real)");
+        txtValorItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorItemActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.ipadx = 20;
@@ -62,6 +67,34 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         txtValorItem.getAccessibleContext().setAccessibleName("valorItem");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtValorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorItemActionPerformed
+        
+    }//GEN-LAST:event_txtValorItemActionPerformed
+
+    public void updateTxtColor() {
+        Double[] qualidade = {7., 3.5, 0.};
+        Color[] qCor = {Color.GREEN, Color.YELLOW, Color.RED};
+        Double valor;
+        try {
+            valor = Double.valueOf(txtValorItem.getText().replace(",", "."));
+        } catch (NumberFormatException e) {
+            txtValorItem.setBackground(Color.WHITE);
+            txtValorItem.setForeground(Color.RED);
+            return;
+        }
+        if (valor < 0 || valor > 10) {
+            txtValorItem.setBackground(Color.WHITE);
+            txtValorItem.setForeground(Color.RED);
+            return;
+        }
+        for (int i=0; i<qualidade.length; i++) {
+            if (valor >= qualidade[i]) {
+                txtValorItem.setBackground(qCor[i].brighter());
+                txtValorItem.setForeground(qCor[i].darker());
+                break;
+            }
+        }
+    }
     
     public JTextField getTxtValorItem() {
         return txtValorItem;

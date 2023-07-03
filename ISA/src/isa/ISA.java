@@ -4,6 +4,8 @@
  */
 package isa;
 
+import java.util.ArrayList;
+import java.util.List;
 import model.IndicadoresModelo;
 import view.MainFrame;
 import view.indicadores.IndicadoresFrame;
@@ -13,30 +15,33 @@ import view.indicadores.IndicadoresFrame;
  * @author Admin
  */
 public class ISA {
+    public static List<IndicadoresModelo> modelList = new ArrayList<>();
 
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         String[] grupos = {"Paisagem", "Qualidade Ambiental"};
         String[][] items = {
             {
-                "Fisionomia e conservação de habitats naturais", 
-                "Cumprimento com requerimento da reserva legal",
-                "Cumprimento com requerimento de áreas de PP"
+                "Conservação de habitats", 
+                "reserva legal",
+                "áreas de PP"
             },
             {
                 "Atmosfera", "Água", "Solo"
             },
         };
         
-        IndicadoresModelo ambientalTabela = new IndicadoresModelo("Indicadores Ambientais");
-        for (int i=0; i<grupos.length; i++) {
-            ambientalTabela.addGrupo(grupos[i]);
-            ambientalTabela.addAllItems(grupos[i], items[i]);
-        }
-        IndicadoresFrame tela = new IndicadoresFrame(ambientalTabela);
-        tela.setVisible(true);
+         
+        IndicadoresModelo ambientalTabela = new IndicadoresModelo("Indicadores Ambientais", grupos, items);
+        modelList.add(ambientalTabela);
+        MainFrame telaPrincipal = new MainFrame();
+        telaPrincipal.setVisible(true);
+        
+//        IndicadoresFrame tela = new IndicadoresFrame(ambientalTabela);
+//        tela.setVisible(true);
     }
     
 }
