@@ -23,7 +23,8 @@ import model.IndicadoresModelo;
  * @author naoki
  */
 public class NovoModelo extends javax.swing.JPanel {
-    IndicadoresModelo novoIndicador = new IndicadoresModelo();
+    private IndicadoresModelo novoIndicador = new IndicadoresModelo();
+    boolean salvo = false;
     /**
      * Creates new form NovoModelo
      */
@@ -35,13 +36,13 @@ public class NovoModelo extends javax.swing.JPanel {
         initAll();
         novoIndicador = modelo;
         lblNome.setText(modelo.getNome());
-        preencherTabela();
+        atualizarTabela();
     }
     
 
     private void initAll() {
         initComponents();
-        preencherTabela();
+        atualizarTabela();
         mostrarDadosTela();
         
         header = tabIndicadores.getTableHeader();
@@ -72,7 +73,7 @@ public class NovoModelo extends javax.swing.JPanel {
             cboxGrupo.setSelectedIndex(0);
         }
     }
-    private void preencherTabela() {
+    private void atualizarTabela() {
         DefaultTableModel tableModel = (DefaultTableModel) tabIndicadores.getModel();
         tableModel.setColumnCount(0);
         String[][] valores = novoIndicador.getAllItemsArr();
@@ -85,6 +86,12 @@ public class NovoModelo extends javax.swing.JPanel {
 	cellRender.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i=0; i<tabIndicadores.getColumnCount(); i++)
             tabIndicadores.getColumnModel().getColumn(i).setCellRenderer(cellRender);
+    }
+    
+    public void atualizarCbox() {
+        cboxGrupo.removeAllItems();
+        for (String grupo : novoIndicador.getGrupos())
+            cboxGrupo.addItem(grupo);
     }
     
     
@@ -111,6 +118,8 @@ public class NovoModelo extends javax.swing.JPanel {
         scrollTabela = new javax.swing.JScrollPane();
         tabIndicadores = new javax.swing.JTable();
         lblNome = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         txtEditHeader.setText("jTextField1");
         txtEditHeader.setBorder(null);
@@ -216,35 +225,55 @@ public class NovoModelo extends javax.swing.JPanel {
         lblNome.setText("Nome do modelo");
         lblNome.setToolTipText("");
 
+        btnVoltar.setBackground(new java.awt.Color(204, 255, 255));
+        btnVoltar.setForeground(new java.awt.Color(0, 153, 153));
+        btnVoltar.setText("Voltar");
+
+        jButton1.setBackground(new java.awt.Color(204, 255, 255));
+        jButton1.setForeground(new java.awt.Color(0, 153, 153));
+        jButton1.setText("Resetar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnAddItem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtItem, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboxGrupo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddGrupo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtGrupo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNovoGrupo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNovoIndicador, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtItem)
+                    .addComponent(cboxGrupo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAddGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtGrupo)
+                    .addComponent(lblNovoGrupo)
+                    .addComponent(lblNovoIndicador)
+                    .addComponent(txtNome)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                    .addComponent(btnVoltar)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scrollTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
+                    .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(lblNome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(lblNome))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVoltar)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -261,13 +290,23 @@ public class NovoModelo extends javax.swing.JPanel {
                         .addComponent(txtItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAddItem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public boolean isSalvo() {
+        return salvo;
+    }
+    
+    public javax.swing.JButton getBtnVoltar() {
+        return btnVoltar;
+    }
     private void editColumnAt(Point p) {
         int columnIndex = header.columnAtPoint(p);
 
@@ -286,9 +325,13 @@ public class NovoModelo extends javax.swing.JPanel {
      }
 
     private void renameColumn() {
-        column.setHeaderValue(txtEditHeader.getText());
+        String oldKey = column.getHeaderValue().toString();
+        String newKey = txtEditHeader.getText();
+//        if (oldKey.equals(newKey)) return;
+        novoIndicador.replaceGrupo(oldKey, newKey);
         renamePopup.setVisible(false);
-        header.repaint();
+        atualizarTabela();
+        atualizarCbox();
     }
   
     private void btnAddGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGrupoActionPerformed
@@ -296,12 +339,13 @@ public class NovoModelo extends javax.swing.JPanel {
             return;
         }
         String grupo = txtGrupo.getText();
-        txtGrupo.setText("");
         if (! novoIndicador.getIndicadores().containsKey(grupo)){
+            txtGrupo.setText("");
             novoIndicador.addGrupo(grupo);
             cboxGrupo.addItem(grupo);
+            
         }
-        preencherTabela();
+        atualizarTabela();
     }//GEN-LAST:event_btnAddGrupoActionPerformed
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
@@ -312,7 +356,8 @@ public class NovoModelo extends javax.swing.JPanel {
                 novoIndicador.addItem(grupo, item);
             }
         }
-        preencherTabela();
+        txtItem.setText("");
+        atualizarTabela();
     }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void tabIndicadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabIndicadoresMouseClicked
@@ -327,22 +372,16 @@ public class NovoModelo extends javax.swing.JPanel {
     }//GEN-LAST:event_tabIndicadoresMouseClicked
 
     private void txtEditHeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditHeaderActionPerformed
-        column.setHeaderValue(txtEditHeader.getText());
-        renamePopup.setVisible(false);
-        header.repaint();
+        renameColumn();
     }//GEN-LAST:event_txtEditHeaderActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         lblNome.setText(txtNome.getText());
+        novoIndicador.setNome(txtNome.getText());
     }//GEN-LAST:event_txtNomeActionPerformed
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        ISA.indicadoresList.add(novoIndicador);
-        this.getParent();
-    }//GEN-LAST:event_btnSalvarActionPerformed
-
     private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
-        lblNome.setText(txtNome.getText());
+        txtNomeActionPerformed(null);
     }//GEN-LAST:event_txtNomeFocusLost
 
     private void txtGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGrupoActionPerformed
@@ -352,6 +391,35 @@ public class NovoModelo extends javax.swing.JPanel {
     private void txtItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtItemActionPerformed
         btnAddItemActionPerformed(evt);
     }//GEN-LAST:event_txtItemActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        if (JOptionPane.showConfirmDialog(this, 
+                "Tem certeza que deseja salvar?", 
+                "Salvar?", 
+                JOptionPane.YES_NO_OPTION)
+                !=0) 
+            return;
+        ISA.indicadoresList.add(novoIndicador);
+        novoIndicador = new IndicadoresModelo();
+        txtGrupo.setText("");
+        txtItem.setText("");
+        txtNome.setText("");
+        lblNome.setText("Nome do modelo");
+        cboxGrupo.removeAllItems();
+        cboxGrupo.addItem("<Selecionar Grupo>");
+        atualizarTabela();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        novoIndicador = new IndicadoresModelo();
+        txtGrupo.setText("");
+        txtItem.setText("");
+        txtNome.setText("");
+        lblNome.setText("Nome do modelo");
+        cboxGrupo.removeAllItems();
+        cboxGrupo.addItem("<Selecionar Grupo>");
+        atualizarTabela();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     private javax.swing.JPopupMenu renamePopup;
     private javax.swing.table.TableColumn column;
@@ -360,7 +428,9 @@ public class NovoModelo extends javax.swing.JPanel {
     private javax.swing.JButton btnAddGrupo;
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cboxGrupo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNovoGrupo;
     private javax.swing.JLabel lblNovoIndicador;

@@ -24,12 +24,21 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     }
     public IndicadoresFrame(List<IndicadoresModelo> indicadores) {
         this.indicadores = indicadores;
+        if (indicadores.isEmpty()) {
+            indice = -1;
+            btnProximo.setEnabled(false);
+        }
         initComponents();
         cl = (CardLayout) cardPane.getLayout();
         for (IndicadoresModelo i : indicadores) {
             cardPane.add(new IndicadorTabelaPanel(i), i.getNome());
         }
         cl.show(cardPane, indicadores.get(indice).getNome());
+    }
+    
+    private void atualizarBotoes() {
+        btnAnterior.setEnabled(true);
+        btnProximo.setEnabled(false);
     }
 
 
@@ -44,8 +53,8 @@ public class IndicadoresFrame extends javax.swing.JFrame {
 
         cardPane = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAnterior = new javax.swing.JButton();
+        btnProximo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -70,22 +79,22 @@ public class IndicadoresFrame extends javax.swing.JFrame {
 
         cardPane.add(jPanel1, "card2");
 
-        jButton1.setBackground(new java.awt.Color(255, 252, 252));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setText("<");
-        jButton1.setEnabled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAnterior.setBackground(new java.awt.Color(255, 252, 252));
+        btnAnterior.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnAnterior.setText("<");
+        btnAnterior.setEnabled(false);
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAnteriorActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 252, 252));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton2.setText(">");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnProximo.setBackground(new java.awt.Color(255, 252, 252));
+        btnProximo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnProximo.setText(">");
+        btnProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnProximoActionPerformed(evt);
             }
         });
 
@@ -95,11 +104,11 @@ public class IndicadoresFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cardPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,10 +118,10 @@ public class IndicadoresFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(203, 203, 203))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(195, 195, 195))))
         );
 
@@ -124,19 +133,18 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         getWindows()[0].setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        indice++;
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+        indice += indice < indicadores.size()-1 ? 1 : 0;
         cl.show(jPanel1, indicadores.get(indice).getNome());
-        jButton1.setEnabled(true);
-        jButton2.setEnabled(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        btnAnterior.setEnabled(true);
+        btnProximo.setEnabled(false);
+    }//GEN-LAST:event_btnProximoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        indice--;
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        indice -= (indice > 0 || 0 == indicadores.size()-1) ? 1 : 0;
         cl.show(jPanel1, indicadores.get(indice).getNome());
-        jButton1.setEnabled(true);
-        jButton2.setEnabled(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_btnAnteriorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,9 +183,9 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnProximo;
     private javax.swing.JPanel cardPane;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

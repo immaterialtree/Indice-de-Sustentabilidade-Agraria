@@ -7,6 +7,7 @@ package csv;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,14 +15,15 @@ import java.util.stream.Stream;
  *
  * @author naoki
  */
-public class Csv {
-    public String lineToCSV(String[] data) {
+public class CSV {
+
+    private static String lineToCSV(String[] data) {
         return Stream.of(data)
-          .map(this::escapeSpecialCharacters)
+          .map(CSV::escapeSpecialCharacters)
           .collect(Collectors.joining(","));
     }
     
-    public String escapeSpecialCharacters(String data) {
+    private static String escapeSpecialCharacters(String data) {
         String escapedData = data.replaceAll("\\R", " ");
         if (data.contains(",") || data.contains("\"") || data.contains("'")) {
             data = data.replace("\"", "\"\"");
@@ -30,12 +32,24 @@ public class Csv {
         return escapedData;
     }
     
-    public void dataArrayToCSV(List<String[]> dataLines, String CSV_FILE_NAME) throws IOException {
-        File csvOutputFile = new File(CSV_FILE_NAME);
+    public static void dataArrayToCSV(List<String[]> dataLines, String path) throws IOException {
+        File csvOutputFile = new File(path);
         try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
             dataLines.stream()
-              .map(this::lineToCSV)
+              .map(CSV::lineToCSV)
               .forEach(pw::println);
         }
+    }
+    
+
+    public static ArrayList<String[]> readCSV(String path) throws FileNotFoundException {
+        Scanner scan = new Scanner(new File(path));
+        ArrayList<String[]> records = new ArrayList<>();
+        String[] record;
+        while(scan.hasNext()) {
+            record = scan.nextLine().split(",");
+            records.add(record);
+        }
+        return records;
     }
 }

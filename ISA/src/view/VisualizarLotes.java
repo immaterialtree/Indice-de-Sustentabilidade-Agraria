@@ -5,6 +5,8 @@
 package view;
 
 import isa.ISA;
+import javax.swing.DefaultListModel;
+import model.Lote;
 import view.indicadores.IndicadoresFrame;
 
 /**
@@ -18,6 +20,15 @@ public class VisualizarLotes extends javax.swing.JFrame {
      */
     public VisualizarLotes() {
         initComponents();
+        preencherLista();
+    }
+    
+    private void preencherLista() {
+        DefaultListModel resultList = new DefaultListModel();
+        for (Lote lote : ISA.loteList) {
+            resultList.addElement(lote.getNome());
+        }
+        jListModelos.setModel(resultList);
     }
 
     /**
@@ -29,10 +40,111 @@ public class VisualizarLotes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogPropriedades = new javax.swing.JDialog();
+        txtNome = new javax.swing.JTextField();
+        txtNumParcela = new javax.swing.JTextField();
+        txtContato = new javax.swing.JFormattedTextField();
+        paneCoordenadas = new javax.swing.JPanel();
+        lblLatitude = new javax.swing.JLabel();
+        lblLongitude = new javax.swing.JLabel();
+        txtCoordenadaX = new javax.swing.JFormattedTextField();
+        txtCoordenadaY = new javax.swing.JFormattedTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListModelos = new javax.swing.JList<>();
-        btnEditar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnVisualizar = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
+        btnPropriedades = new javax.swing.JButton();
+
+        dialogPropriedades.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        dialogPropriedades.setTitle("Propriedades do lote");
+
+        txtNome.setEditable(false);
+        txtNome.setBackground(new java.awt.Color(204, 255, 255));
+        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOME", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+
+        txtNumParcela.setEditable(false);
+        txtNumParcela.setBackground(new java.awt.Color(204, 255, 255));
+        txtNumParcela.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nº DA PARCELA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+
+        txtContato.setEditable(false);
+        txtContato.setBackground(new java.awt.Color(204, 255, 255));
+        txtContato.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONTATO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+        try {
+            txtContato.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        paneCoordenadas.setBackground(new java.awt.Color(204, 255, 255));
+        paneCoordenadas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COORDENADAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+
+        lblLatitude.setForeground(new java.awt.Color(0, 153, 153));
+        lblLatitude.setText("Latitude");
+
+        lblLongitude.setForeground(new java.awt.Color(0, 153, 153));
+        lblLongitude.setText("Longitude");
+
+        txtCoordenadaX.setEditable(false);
+        txtCoordenadaX.setBackground(new java.awt.Color(204, 255, 255));
+        txtCoordenadaX.setBorder(null);
+        txtCoordenadaX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
+        txtCoordenadaY.setBackground(new java.awt.Color(204, 255, 255));
+        txtCoordenadaY.setBorder(null);
+        txtCoordenadaY.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
+        javax.swing.GroupLayout paneCoordenadasLayout = new javax.swing.GroupLayout(paneCoordenadas);
+        paneCoordenadas.setLayout(paneCoordenadasLayout);
+        paneCoordenadasLayout.setHorizontalGroup(
+            paneCoordenadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneCoordenadasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblLatitude)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLongitude)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        paneCoordenadasLayout.setVerticalGroup(
+            paneCoordenadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneCoordenadasLayout.createSequentialGroup()
+                .addGroup(paneCoordenadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLatitude)
+                    .addComponent(lblLongitude)
+                    .addComponent(txtCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout dialogPropriedadesLayout = new javax.swing.GroupLayout(dialogPropriedades.getContentPane());
+        dialogPropriedades.getContentPane().setLayout(dialogPropriedadesLayout);
+        dialogPropriedadesLayout.setHorizontalGroup(
+            dialogPropriedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogPropriedadesLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(dialogPropriedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNumParcela, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(paneCoordenadas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtContato, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        dialogPropriedadesLayout.setVerticalGroup(
+            dialogPropriedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogPropriedadesLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtNumParcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(paneCoordenadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,18 +156,27 @@ public class VisualizarLotes extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jListModelos);
 
-        btnEditar.setBackground(new java.awt.Color(204, 255, 255));
-        btnEditar.setForeground(new java.awt.Color(0, 153, 153));
-        btnEditar.setText("Visualizar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnVisualizar.setBackground(new java.awt.Color(204, 255, 255));
+        btnVisualizar.setForeground(new java.awt.Color(0, 153, 153));
+        btnVisualizar.setText("Indice de Sustentabilidade");
+        btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                btnVisualizarActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Escolha um lote");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("Escolha um lote");
+
+        btnPropriedades.setBackground(new java.awt.Color(204, 255, 255));
+        btnPropriedades.setForeground(new java.awt.Color(0, 153, 153));
+        btnPropriedades.setText("Ver Propriedades");
+        btnPropriedades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPropriedadesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,30 +185,49 @@ public class VisualizarLotes extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPropriedades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnVisualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel1)
+                .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEditar)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addComponent(btnVisualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPropriedades)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
         new IndicadoresFrame(ISA.indicadoresList).setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }//GEN-LAST:event_btnVisualizarActionPerformed
+
+    private void btnPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropriedadesActionPerformed
+        int selected = jListModelos.getSelectedIndex();
+        Lote lote = ISA.loteList.get(selected);
+        
+        txtNome.setText(lote.getNome());
+        txtNumParcela.setText(lote.getNumParcela());
+        txtContato.setText(lote.getContato());
+        txtCoordenadaX.setText(String.valueOf(lote.getCoordenada()[0]));
+        txtCoordenadaY.setText(String.valueOf(lote.getCoordenada()[1]));
+        
+        dialogPropriedades.setSize(390, 350);
+        dialogPropriedades.setLocationRelativeTo(null);
+        dialogPropriedades.setVisible(true);
+    }//GEN-LAST:event_btnPropriedadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,9 +265,19 @@ public class VisualizarLotes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnPropriedades;
+    private javax.swing.JButton btnVisualizar;
+    private javax.swing.JDialog dialogPropriedades;
     private javax.swing.JList<String> jListModelos;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblLatitude;
+    private javax.swing.JLabel lblLongitude;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel paneCoordenadas;
+    private javax.swing.JFormattedTextField txtContato;
+    private javax.swing.JFormattedTextField txtCoordenadaX;
+    private javax.swing.JFormattedTextField txtCoordenadaY;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNumParcela;
     // End of variables declaration//GEN-END:variables
 }

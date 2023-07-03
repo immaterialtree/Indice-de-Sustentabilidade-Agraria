@@ -56,6 +56,15 @@ public class IndicadoresModelo {
         indicadoresMap.put(grupo, new ArrayList<>());
     }
     
+    public void addGrupo(String grupo, ArrayList itens) {
+        indicadoresMap.put(grupo, itens);
+    }
+    
+    public void replaceGrupo(String oldGrupo, String newGrupo) {
+        indicadoresMap.put(newGrupo, indicadoresMap.get(oldGrupo));
+        indicadoresMap.remove(oldGrupo);
+    }
+    
     public void removeGrupo(String grupo) {
         indicadoresMap.remove(grupo);
     }
@@ -79,6 +88,7 @@ public class IndicadoresModelo {
     public void addItem(String grupo, String item) {
         indicadoresMap.get(grupo).add(item);
     }
+    
     
     public void replaceItem(String grupo, String oldItem, String newItem) {
         indicadoresMap.get(grupo).remove(oldItem);
