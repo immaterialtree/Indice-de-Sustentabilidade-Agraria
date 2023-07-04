@@ -5,7 +5,7 @@
 package isa;
 
 import javax.swing.JFrame;
-import model.IndicadoresModelo;
+import model.ModeloIndicadores;
 import view.NovoModelo;
 
 /**
@@ -28,7 +28,7 @@ public class Teste {
         JFrame frame = new JFrame();
         frame.setBounds(0, 0, 800, 420);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new NovoModelo(new IndicadoresModelo("Indice de sustentbilidade", grupos, items)));
+        frame.add(new NovoModelo(new ModeloIndicadores("Indice de sustentbilidade", grupos, items)));
         frame.setVisible(true);
     }
 }

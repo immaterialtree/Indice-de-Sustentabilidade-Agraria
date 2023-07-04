@@ -5,14 +5,14 @@
 package view.indicadores;
 
 import java.util.List;
-import model.IndicadoresModelo;
+import model.ModeloIndicadores;
 
 /**
  *
  * @author naoki
  */
 public class IndicadorTabelaPanel extends javax.swing.JPanel {
-    IndicadoresModelo indicadores;
+    ModeloIndicadores indicadores;
     int rows = 0; // number of "grupos" received by gridLayout<-gruposPanel
     /**
      * Creates new form IndicadorTabelaPanel
@@ -21,7 +21,7 @@ public class IndicadorTabelaPanel extends javax.swing.JPanel {
         initComponents();
     }
     
-    public IndicadorTabelaPanel(IndicadoresModelo indicadores) {
+    public IndicadorTabelaPanel(ModeloIndicadores indicadores) {
         this.indicadores = indicadores;
         String[] gruposNome = indicadores.getGrupos().toArray(String[]::new);
         List<List<String>> items = indicadores.getAllItems();

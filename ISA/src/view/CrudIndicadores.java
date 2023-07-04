@@ -11,7 +11,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import model.IndicadoresModelo;
+import model.ModeloIndicadores;
 
 /**
  *
@@ -27,7 +27,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         initAll();
     }
     
-    public CrudIndicadores(List<IndicadoresModelo> indicadores) {
+    public CrudIndicadores(List<ModeloIndicadores> indicadores) {
         ISA.indicadoresList = indicadores;
         initAll();
         
@@ -53,7 +53,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
     
     void preencherLista() {
         DefaultListModel resultList = new DefaultListModel();
-        for (IndicadoresModelo i : ISA.indicadoresList) {
+        for (ModeloIndicadores i : ISA.indicadoresList) {
             resultList.addElement(i.getNome());
         }
         jListModelos.setModel(resultList);

@@ -16,14 +16,14 @@ import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.*;
-import model.IndicadoresModelo;
+import model.ModeloIndicadores;
 
 /**
  *
  * @author naoki
  */
 public class NovoModelo extends javax.swing.JPanel {
-    private IndicadoresModelo novoIndicador = new IndicadoresModelo();
+    private ModeloIndicadores novoIndicador = new ModeloIndicadores();
     boolean salvo = false;
     /**
      * Creates new form NovoModelo
@@ -32,7 +32,7 @@ public class NovoModelo extends javax.swing.JPanel {
         initAll();
     }
     
-    public NovoModelo(IndicadoresModelo modelo) {
+    public NovoModelo(ModeloIndicadores modelo) {
         initAll();
         novoIndicador = modelo;
         lblNome.setText(modelo.getNome());
@@ -400,7 +400,7 @@ public class NovoModelo extends javax.swing.JPanel {
                 !=0) 
             return;
         ISA.indicadoresList.add(novoIndicador);
-        novoIndicador = new IndicadoresModelo();
+        novoIndicador = new ModeloIndicadores();
         txtGrupo.setText("");
         txtItem.setText("");
         txtNome.setText("");
@@ -411,7 +411,7 @@ public class NovoModelo extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        novoIndicador = new IndicadoresModelo();
+        novoIndicador = new ModeloIndicadores();
         txtGrupo.setText("");
         txtItem.setText("");
         txtNome.setText("");

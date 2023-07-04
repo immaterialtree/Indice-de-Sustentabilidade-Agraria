@@ -43,7 +43,7 @@ public class CSV {
     
 
     public static ArrayList<String[]> readCSV(String path) throws FileNotFoundException {
-        Scanner scan = new Scanner(new File(path));
+        Scanner scan = new Scanner(path);
         ArrayList<String[]> records = new ArrayList<>();
         String[] record;
         while(scan.hasNext()) {

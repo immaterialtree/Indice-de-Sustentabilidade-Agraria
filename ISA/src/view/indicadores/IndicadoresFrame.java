@@ -6,14 +6,14 @@ package view.indicadores;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
-import model.IndicadoresModelo;
+import model.ModeloIndicadores;
 import java.util.List;
 /**
  *
  * @author Admin
  */
 public class IndicadoresFrame extends javax.swing.JFrame {
-    List<IndicadoresModelo> indicadores;
+    List<ModeloIndicadores> indicadores;
     CardLayout cl;
     int indice = 0;
     /**
@@ -22,7 +22,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     public IndicadoresFrame() {
         initComponents();
     }
-    public IndicadoresFrame(List<IndicadoresModelo> indicadores) {
+    public IndicadoresFrame(List<ModeloIndicadores> indicadores) {
         this.indicadores = indicadores;
         if (indicadores.isEmpty()) {
             indice = -1;
@@ -30,7 +30,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         }
         initComponents();
         cl = (CardLayout) cardPane.getLayout();
-        for (IndicadoresModelo i : indicadores) {
+        for (ModeloIndicadores i : indicadores) {
             cardPane.add(new IndicadorTabelaPanel(i), i.getNome());
         }
         cl.show(cardPane, indicadores.get(indice).getNome());

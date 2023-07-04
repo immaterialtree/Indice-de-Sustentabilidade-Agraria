@@ -6,7 +6,7 @@ package isa;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.IndicadoresModelo;
+import model.ModeloIndicadores;
 import model.Lote;
 import view.MainFrame;
 import view.indicadores.IndicadoresFrame;
@@ -17,7 +17,7 @@ import view.indicadores.IndicadoresFrame;
  */
 public class ISA {
     public static List<Lote> loteList = new ArrayList<>();
-    public static List<IndicadoresModelo> indicadoresList = new ArrayList<>();
+    public static List<ModeloIndicadores> indicadoresList = new ArrayList<>();
 
     /**
      * @param args the command line arguments
@@ -39,7 +39,7 @@ public class ISA {
         
         loteList.add(new Lote("Lote do Jose", "4834144", "(61) 99876-4444", new double[]{48d, -56d}));
          
-        IndicadoresModelo ambientalTabela = new IndicadoresModelo("Indicadores Ambientais", grupos, items);
+        ModeloIndicadores ambientalTabela = new ModeloIndicadores("Indicadores Ambientais", grupos, items);
         indicadoresList.add(ambientalTabela);
         MainFrame telaPrincipal = new MainFrame();
         telaPrincipal.setVisible(true);
