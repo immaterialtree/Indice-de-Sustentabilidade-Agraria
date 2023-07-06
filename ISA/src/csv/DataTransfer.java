@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 import model.Lote;
 import model.ModeloIndicadores;
 
@@ -24,34 +25,58 @@ public class DataTransfer {
     public static ArrayList<ModeloIndicadores> importAllModelos(){
         ArrayList<ModeloIndicadores> modelos = new ArrayList<>();
         String[] files = new File(pathModelos).list();
-        for (String f : files) {
-            try {
-                String nome = f.substring(0, f.indexOf('.'));
-                modelos.add(dataArrayToModelo(nome, CSV.readCSV(pathModelos+f)));
-            } catch (FileNotFoundException e) {
+        if (files!=null) {
+//            System.out.println(Arrays.toString(files));
+            for (String f : files) {
+                try {
+                    modelos.add(dataArrayToModelo(CSV.readCSV(pathModelos+f)));
+                } catch (FileNotFoundException e) {
+                }
             }
         }
         return modelos;
     }
     
-    private static ModeloIndicadores dataArrayToModelo(String nome, ArrayList<String[]> dataArray) {
+    private static ModeloIndicadores dataArrayToModelo(ArrayList<String[]> dataArray) {
+        String nome = dataArray.remove(0)[0];
         String[] grupos = dataArray.remove(0);
         String[][] itens = dataArray.toArray(String[][]::new);
         return new ModeloIndicadores(nome, grupos, itens);
     }
     
-    private static Lote importLineToLote(String[] dataArray) {
-        double[] coordenada = Arrays.stream(new String[] {dataArray[3], dataArray[4]}).mapToDouble(Double::parseDouble).toArray();
-        return new Lote(dataArray[0], dataArray[1], dataArray[2], coordenada);
+    public static ArrayList<String[]> modeloToDataArray(ModeloIndicadores modelo) {
+        // TODO
+        return null;
     }
     
-    public static String[] loteToLine(Lote lote) {
+    private static Lote dataArrayToLote(ArrayList<String[]> dataArray) {
+        String[] firstLine = dataArray.remove(0);
+        double[] coordenada = Arrays.stream(new String[] {firstLine[3], firstLine[4]}).mapToDouble(Double::parseDouble).toArray();
+        Lote lote;
+        if (dataArray.isEmpty()) {
+            lote = new Lote(firstLine[0], firstLine[1], firstLine[2], coordenada);
+        } else {
+            for (String[] line : dataArray) {
+                
+            }
+            }
+        return lote;
+    }
+    
+    public static ArrayList<String[]> loteToDataArray(Lote lote) {
+        ArrayList<String[]> dataArray = new ArrayList<>();
         String[] line = new String[5];
         line[0] = lote.getNome();
         line[1] = lote.getNumParcela();
         line[2] = lote.getContato();
         line[3] = String.valueOf(lote.getCoordenada()[0]);
-        line[4] = String.valueOf(lote.getCoordenada()[1]); 
-        return line;
+        line[4] = String.valueOf(lote.getCoordenada()[1]);
+        dataArray.add(line);
+        
+        for (Integer key : lote.getScores().keySet()) {
+            dataArray.add(new String[]{key.toString()});
+            Arrays.stream(lote.getScores().get(key)).map(String::valueOf).toArray(String[]::new);
+        }
+        return dataArray;
     }
 }

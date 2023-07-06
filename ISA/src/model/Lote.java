@@ -5,18 +5,20 @@
 package model;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
  * @author naoki
  */
 public class Lote {
-    private int id;
     private String nome;
     private String numParcela;
     private String contato;
     private double[] coordenada;
-
+    private Map<Integer, Double[]> scores; // Map<modelo.hashCode, scores>
+ 
     public Lote() {
     }
 
@@ -25,6 +27,18 @@ public class Lote {
         this.numParcela = numParcela;
         this.contato = numero;
         this.coordenada = coordenada;
+        scores = new LinkedHashMap<>();
+    }
+    
+    public Lote(String nome, String numParcela, String numero, double[] coordenada, Integer[] keys, Double[][] scoreSheet) {
+        this.nome = nome;
+        this.numParcela = numParcela;
+        this.contato = numero;
+        this.coordenada = coordenada;
+        this.scores = new LinkedHashMap<>();
+        for (int i = 0; i < scoreSheet.length; i++) {
+            scores.put(keys[i], scoreSheet[i]);
+        }
     }
 
     public String getNome() {
@@ -59,6 +73,11 @@ public class Lote {
         this.coordenada = coordenada;
     }
 
+    public Map<Integer, Double[]> getScores() {
+        return scores;
+    }
+
+    
     @Override
     public String toString() {
         return "Nome:" + nome + 
@@ -66,7 +85,4 @@ public class Lote {
                 "\nNumero=" + contato + 
                 "\nCoordenada=" + Arrays.toString(coordenada);
     }
-    
-    
-    
 }
