@@ -6,6 +6,7 @@ package model;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,7 +18,7 @@ public class Lote {
     private String numParcela;
     private String contato;
     private double[] coordenada;
-    private Map<Integer, Double[]> scores; // Map<modelo.hashCode, scores>
+    private Map<Integer, Double[]> scoresMap; // Map<modelo.hashCode, scores>
  
     public Lote() {
     }
@@ -27,17 +28,17 @@ public class Lote {
         this.numParcela = numParcela;
         this.contato = numero;
         this.coordenada = coordenada;
-        scores = new LinkedHashMap<>();
+        scoresMap = new LinkedHashMap<>();
     }
     
-    public Lote(String nome, String numParcela, String numero, double[] coordenada, Integer[] keys, Double[][] scoreSheet) {
+    public Lote(String nome, String numParcela, String numero, double[] coordenada, Integer[] keys, Double[][] scores) {
         this.nome = nome;
         this.numParcela = numParcela;
         this.contato = numero;
         this.coordenada = coordenada;
-        this.scores = new LinkedHashMap<>();
-        for (int i = 0; i < scoreSheet.length; i++) {
-            scores.put(keys[i], scoreSheet[i]);
+        this.scoresMap = new LinkedHashMap<>();
+        for (int i = 0; i < scores.length; i++) {
+            scoresMap.put(keys[i], scores[i]);
         }
     }
 
@@ -74,7 +75,44 @@ public class Lote {
     }
 
     public Map<Integer, Double[]> getScores() {
-        return scores;
+        return scoresMap;
+    }
+    
+    
+    public void addScores(Integer key, Double[] scores) {
+        scoresMap.put(key, scores);
+    }
+    
+    public void addScores(ModeloIndicadores modelo, Double[] scores) {
+        scoresMap.put(modelo.hashCode(), scores);
+    }
+    
+    public void initScoreSheet(ModeloIndicadores modelo) {
+        int size = 0;
+        for (List itemList : modelo.getAllItems()) {
+            size += itemList.size();
+        }
+        scoresMap.put(modelo.hashCode(), new Double[size]);
+    }
+    
+    public void setScore(Integer key, int pos, Double score) {
+        scoresMap.get(key)[pos] = score;
+    }
+    
+    public void setScore(ModeloIndicadores modelo, int pos, Double score) {
+        scoresMap.get(modelo.hashCode())[pos] = score;
+    }
+    
+    public Double getScore(Integer key, int pos) {
+        return scoresMap.get(key)[pos];
+    }
+    
+    public Double[] getScores(Integer key) {
+        return scoresMap.get(key);
+    }
+    
+    public Double[][] getAllScores() {
+        return scoresMap.values().toArray(Double[][]::new);
     }
 
     

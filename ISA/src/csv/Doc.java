@@ -15,11 +15,11 @@ import java.util.stream.Stream;
  *
  * @author naoki
  */
-public class CSV {
+public class Doc {
 
     private static String lineToCSV(String[] data) {
         return Stream.of(data)
-          .map(CSV::escapeSpecialCharacters)
+          .map(Doc::escapeSpecialCharacters)
           .collect(Collectors.joining(","));
     }
     
@@ -36,7 +36,7 @@ public class CSV {
         File csvOutputFile = new File(path);
         try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
             dataLines.stream()
-              .map(CSV::lineToCSV)
+              .map(Doc::lineToCSV)
               .forEach(pw::println);
         }
     }

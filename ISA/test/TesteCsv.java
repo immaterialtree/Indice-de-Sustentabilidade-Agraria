@@ -1,5 +1,6 @@
 
 import csv.DataTransfer;
+import java.util.Arrays;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -12,7 +13,7 @@ import csv.DataTransfer;
  */
 public class TesteCsv {
     public static void main(String[] args) {
-        String a = "as";
-        System.out.println(a.hashCode());
+        Double[] dArray = {24d, 2., 8d};
+        Arrays.stream(dArray).map(String::valueOf).toArray(String[]::new);
     }
 }

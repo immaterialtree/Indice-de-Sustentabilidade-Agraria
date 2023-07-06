@@ -4,6 +4,7 @@
  */
 package isa;
 
+import csv.DataTransfer;
 import java.util.ArrayList;
 import java.util.List;
 import model.ModeloIndicadores;
@@ -41,8 +42,10 @@ public class ISA {
          
         ModeloIndicadores ambientalTabela = new ModeloIndicadores("Indicadores Ambientais", grupos, items);
         indicadoresList.add(ambientalTabela);
-        MainFrame telaPrincipal = new MainFrame();
-        telaPrincipal.setVisible(true);
+        
+        DataTransfer.exportAllLotes(loteList);
+//        MainFrame telaPrincipal = new MainFrame();
+//        telaPrincipal.setVisible(true);
         
 //        IndicadoresFrame tela = new IndicadoresFrame(ambientalTabela);
 //        tela.setVisible(true);
