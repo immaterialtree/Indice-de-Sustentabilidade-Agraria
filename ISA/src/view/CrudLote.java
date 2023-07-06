@@ -26,35 +26,11 @@ public class CrudLote extends javax.swing.JFrame {
         atualizarBotoes();
         if (! ISA.loteList.isEmpty()) {
             preencherTabela();
-            mostrarDadosTela(indice);
             tabLote.changeSelection(indice, 1, false, false);
         }
     }
     
-    private void mostrarDadosTela(int i) {
-        if (ISA.loteList.isEmpty()) {
-            txtNome.setText("");
-            txtNumParcela.setText("");
-            txtContato.setText("");
-            txtCoordenadaX.setValue(0d);
-            txtCoordenadaY.setValue(0d);
-        } 
-        else {
-            txtNome.setText(ISA.loteList.get(i).getNome());
-            txtNumParcela.setText(ISA.loteList.get(i).getNumParcela());
-            txtContato.setText(ISA.loteList.get(i).getContato());
-            txtCoordenadaX.setValue(ISA.loteList.get(i).getCoordenada()[0]);
-            txtCoordenadaY.setValue(ISA.loteList.get(i).getCoordenada()[1]);
-        }
-    }
-    
-    private void atualizarBotoes() {
-        btnPrevious.setEnabled(indice>0);
-        btnFirst.setEnabled(indice>0);
-
-        btnNext.setEnabled(indice<ISA.loteList.size()-1);
-        btnLast.setEnabled(indice<ISA.loteList.size()-1);
-        
+    private void atualizarBotoes() {      
         btnRemover.setEnabled(indice!=-1);
         btnEditar.setEnabled(indice!=-1);
     }
@@ -109,10 +85,6 @@ public class CrudLote extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         lblErro = new javax.swing.JLabel();
         btnRemover = new javax.swing.JButton();
-        btnFirst = new javax.swing.JButton();
-        btnLast = new javax.swing.JButton();
-        btnPrevious = new javax.swing.JButton();
-        btnNext = new javax.swing.JButton();
         scrollTabela = new javax.swing.JScrollPane();
         tabLote = new javax.swing.JTable();
         txtNumParcela = new javax.swing.JTextField();
@@ -283,42 +255,6 @@ public class CrudLote extends javax.swing.JFrame {
             }
         });
 
-        btnFirst.setBackground(new java.awt.Color(204, 255, 255));
-        btnFirst.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        btnFirst.setText("|<");
-        btnFirst.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFirstActionPerformed(evt);
-            }
-        });
-
-        btnLast.setBackground(new java.awt.Color(204, 255, 255));
-        btnLast.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        btnLast.setText(">|");
-        btnLast.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLastActionPerformed(evt);
-            }
-        });
-
-        btnPrevious.setBackground(new java.awt.Color(204, 255, 255));
-        btnPrevious.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        btnPrevious.setText("<<");
-        btnPrevious.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPreviousActionPerformed(evt);
-            }
-        });
-
-        btnNext.setBackground(new java.awt.Color(204, 255, 255));
-        btnNext.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        btnNext.setText(">>");
-        btnNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextActionPerformed(evt);
-            }
-        });
-
         scrollTabela.setBackground(new java.awt.Color(255, 255, 204));
         scrollTabela.setForeground(new java.awt.Color(0, 204, 204));
         scrollTabela.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -424,30 +360,21 @@ public class CrudLote extends javax.swing.JFrame {
                         .addComponent(lblCadTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtNome)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnRemover, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
                             .addComponent(txtNumParcela)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(btnLimpar)
-                                .addGap(12, 12, 12)
-                                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtContato))
+                            .addComponent(txtContato)
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(98, 98, 98)
@@ -460,7 +387,7 @@ public class CrudLote extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(lblCadTitulo)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -469,20 +396,15 @@ public class CrudLote extends javax.swing.JFrame {
                         .addComponent(txtContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnFirst, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPrevious, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLimpar))
-                        .addGap(18, 18, 18)
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRemover)
                             .addComponent(btnSalvar)
-                            .addComponent(btnEditar)))
+                            .addComponent(btnEditar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLimpar))
                     .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(36, 36, 36))
+                .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(120, 120, 120)
@@ -530,10 +452,10 @@ public class CrudLote extends javax.swing.JFrame {
         ISA.loteList.add(lote);
 
         indice = ISA.loteList.size()-1;
-        mostrarDadosTela(indice);
         preencherTabela();
         tabLote.changeSelection(indice, 1, false, false);
         atualizarBotoes();
+        btnLimparActionPerformed(evt);
     }//GEN-LAST:event_btnSalvarActionPerformed
     
     int editing_row;
@@ -559,7 +481,6 @@ public class CrudLote extends javax.swing.JFrame {
         }
         ISA.loteList.remove(indice);
         indice += (indice>0 || ISA.loteList.isEmpty()) ? -1 : 0;
-        mostrarDadosTela(indice);
         preencherTabela();
         tabLote.changeSelection(indice, 1, false, false);
         atualizarBotoes();
@@ -568,13 +489,11 @@ public class CrudLote extends javax.swing.JFrame {
 
     private void tabLoteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabLoteMouseClicked
         indice = tabLote.getSelectedRow();
-        mostrarDadosTela(indice);
         atualizarBotoes();
     }//GEN-LAST:event_tabLoteMouseClicked
 
     private void tabLoteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabLoteKeyReleased
         indice = tabLote.getSelectedRow();
-        mostrarDadosTela(indice);
         atualizarBotoes();
     }//GEN-LAST:event_tabLoteKeyReleased
 
@@ -613,32 +532,6 @@ public class CrudLote extends javax.swing.JFrame {
     private void btnCancelar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar_editarActionPerformed
         dialogEditar.dispose();
     }//GEN-LAST:event_btnCancelar_editarActionPerformed
-
-    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-        indice = 0;
-        mostrarDadosTela(indice);
-        tabLote.changeSelection(indice, 1, false, false);
-        atualizarBotoes();
-    }//GEN-LAST:event_btnFirstActionPerformed
-
-    private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
-        mostrarDadosTela(--indice);
-        tabLote.changeSelection(indice, 1, false, false);
-        atualizarBotoes();
-    }//GEN-LAST:event_btnPreviousActionPerformed
-
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        mostrarDadosTela(++indice);
-        tabLote.changeSelection(indice, 1, false, false);
-        atualizarBotoes();
-    }//GEN-LAST:event_btnNextActionPerformed
-
-    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        indice = ISA.loteList.size()-1;
-        mostrarDadosTela(indice);
-        tabLote.changeSelection(indice, 1, false, false);
-        atualizarBotoes();
-    }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         txtNome.setText("");
@@ -687,25 +580,15 @@ public class CrudLote extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar_editar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnFirst;
-    private javax.swing.JButton btnLast;
     private javax.swing.JButton btnLimpar;
-    private javax.swing.JButton btnNext;
-    private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnSalvar_editar;
     private javax.swing.JDialog dialogEditar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblCadTitulo;
     private javax.swing.JLabel lblErro;
     private javax.swing.JLabel lblLatitude_editar;
@@ -716,12 +599,8 @@ public class CrudLote extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtContato;
     private javax.swing.JFormattedTextField txtContato_editar;
     private javax.swing.JFormattedTextField txtCoordenadaX;
-    private javax.swing.JFormattedTextField txtCoordenadaX1;
-    private javax.swing.JFormattedTextField txtCoordenadaX2;
     private javax.swing.JFormattedTextField txtCoordenadaX_editar;
     private javax.swing.JFormattedTextField txtCoordenadaY;
-    private javax.swing.JFormattedTextField txtCoordenadaY1;
-    private javax.swing.JFormattedTextField txtCoordenadaY2;
     private javax.swing.JFormattedTextField txtCoordenadaY_editar;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNome_editar;
