@@ -48,10 +48,11 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 3.0;
         add(lblNomeItem, gridBagConstraints);
 
         txtValorItem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtValorItem.setText("0,00");
         txtValorItem.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -64,6 +65,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
         add(txtValorItem, gridBagConstraints);
@@ -71,6 +73,12 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
 
     private void txtValorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorItemActionPerformed
         updateTxtColor();
+        Double valor = 0.0;
+        try {
+            valor = Double.valueOf(txtValorItem.getText().replace(",", "."));
+        } catch (NumberFormatException e) {
+        }
+        txtValorItem.setText(valor.toString());
     }//GEN-LAST:event_txtValorItemActionPerformed
 
     private void txtValorItemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorItemFocusLost

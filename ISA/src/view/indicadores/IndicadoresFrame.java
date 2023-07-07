@@ -15,6 +15,7 @@ import model.Lote;
  * @author Admin
  */
 public class IndicadoresFrame extends javax.swing.JFrame {
+    public static Lote lote;
     List<ModeloIndicadores> indicadores;
     CardLayout cl;
     int indice = 0;
@@ -26,6 +27,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     }
     public IndicadoresFrame(Lote lote) {
         initComponents();
+        IndicadoresFrame.lote = lote;
         lblLoteNome.setText(lote.getNome());
         indicadores = ISA.indicadoresList;
         if (indicadores.isEmpty()) {

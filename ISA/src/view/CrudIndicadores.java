@@ -152,8 +152,8 @@ public class CrudIndicadores extends javax.swing.JFrame {
         btnExcluir.setForeground(new java.awt.Color(0, 153, 153));
         btnExcluir.setText("Excluir");
 
-        btnNovo.setBackground(estilo.Estilo.BACKGROUND);
-        btnNovo.setForeground(estilo.Estilo.FOREGROUND);
+        btnNovo.setBackground(new java.awt.Color(204, 255, 255));
+        btnNovo.setForeground(new java.awt.Color(0, 153, 153));
         btnNovo.setText("Novo");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -27,9 +27,10 @@ public class IndicadorTabelaPanel extends javax.swing.JPanel {
     }
     
     private void initAll() {
+        initComponents();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(10);
         String[] gruposNome = indicadores.getGrupos().toArray(String[]::new);
         List<List<String>> items = indicadores.getAllItems();
-        initComponents();
         for (int i=0; i<gruposNome.length; i++) {
             String[] itemArr = items.get(i).toArray(String[]::new);
             IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(gruposNome[i],itemArr);

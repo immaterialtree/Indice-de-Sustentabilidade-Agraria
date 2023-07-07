@@ -4,7 +4,6 @@
  */
 package view.indicadores;
 
-import java.awt.Color;
 import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.JTextField;

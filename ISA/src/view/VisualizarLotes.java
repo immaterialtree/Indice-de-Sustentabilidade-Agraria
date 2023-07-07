@@ -21,9 +21,11 @@ public class VisualizarLotes extends javax.swing.JFrame {
     public VisualizarLotes() {
         initComponents();
         preencherLista();
-        if (!ISA.loteList.isEmpty()) {
+        if (ISA.loteList.isEmpty()) {
+            btnPropriedades.setEnabled(false);
+            btnVisualizar.setEnabled(false);
+        } else 
             jListModelos.setSelectedIndex(0);
-        }
     }
     
     private void preencherLista() {
@@ -164,10 +166,15 @@ public class VisualizarLotes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jListModelos.setBorder(null);
-        jListModelos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Lote do Jose" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jListModelos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListModelosMouseClicked(evt);
+            }
+        });
+        jListModelos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jListModelosKeyTyped(evt);
+            }
         });
         jScrollPane2.setViewportView(jListModelos);
 
@@ -247,6 +254,16 @@ public class VisualizarLotes extends javax.swing.JFrame {
         dialogPropriedades.setLocationRelativeTo(null);
         dialogPropriedades.setVisible(true);
     }//GEN-LAST:event_btnPropriedadesActionPerformed
+
+    private void jListModelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListModelosMouseClicked
+        btnPropriedades.setEnabled(jListModelos.getSelectedIndex() != -1);
+        btnVisualizar.setEnabled(jListModelos.getSelectedIndex() != -1);
+    }//GEN-LAST:event_jListModelosMouseClicked
+
+    private void jListModelosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jListModelosKeyTyped
+        btnPropriedades.setEnabled(jListModelos.getSelectedIndex() != -1);
+        btnVisualizar.setEnabled(jListModelos.getSelectedIndex() != -1);
+    }//GEN-LAST:event_jListModelosKeyTyped
 
     /**
      * @param args the command line arguments
