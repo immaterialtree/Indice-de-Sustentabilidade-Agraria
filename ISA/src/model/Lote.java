@@ -92,7 +92,9 @@ public class Lote {
         for (List itemList : modelo.getAllItems()) {
             size += itemList.size();
         }
-        scoresMap.put(modelo.hashCode(), new Double[size]);
+        Double[] values = new Double[size];
+        Arrays.fill(values, 0d);
+        scoresMap.putIfAbsent(modelo.hashCode(), values);
     }
     
     public void setScore(Integer key, int pos, Double score) {

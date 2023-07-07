@@ -108,13 +108,11 @@ public class DataTransfer {
         String[] firstLine = dataArray.remove(0);
         double[] coordenada = Arrays.stream(new String[] {firstLine[3], firstLine[4]}).mapToDouble(Double::parseDouble).toArray();
         Lote lote = new Lote(firstLine[0], firstLine[1], firstLine[2], coordenada);
-        if (!dataArray.isEmpty()) {
-            while (!dataArray.isEmpty()) {
-                Integer key = Integer.valueOf(dataArray.remove(0)[0]);
-                Double[] scores = Arrays.stream(dataArray.remove(0)).
-                        map(Double::valueOf).toArray(Double[]::new);
-                lote.addScores(key, scores);
-            }
+        while (!dataArray.isEmpty()) {
+            Integer key = Integer.valueOf(dataArray.remove(0)[0]);
+            Double[] scores = Arrays.stream(dataArray.remove(0)).
+                    map(Double::valueOf).toArray(Double[]::new);
+            lote.addScores(key, scores);
         }
         return lote;
     }

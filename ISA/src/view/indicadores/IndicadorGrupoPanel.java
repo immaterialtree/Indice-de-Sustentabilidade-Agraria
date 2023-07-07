@@ -4,6 +4,7 @@
  */
 package view.indicadores;
 
+import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -16,6 +17,8 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
 
     String grupoNome = "Sem Nome";
     int rows = 0;
+    int startRow;
+    int endRow;
     Double[] itensValor;
     /**
      * Creates new form IndicadorGrupoPanel
@@ -24,38 +27,40 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         initComponents();
     }
     
-    public IndicadorGrupoPanel(String nome, String[] items) {
+    public IndicadorGrupoPanel(int startRow, String nome, String[] items, int modeloHash) {
+        this.startRow = startRow;
         grupoNome = nome;
         rows = items.length;
-        itensValor = new Double[rows];
-        Arrays.fill(itensValor, 0.);
         initComponents();
         for (int i=0; i<items.length; i++) {
-            IndicadorItemPanel item = new IndicadorItemPanel(items[i]);
+            IndicadorItemPanel item = new IndicadorItemPanel(modeloHash, IndicadorTabelaPanel.currentRow++, items[i]);
             item.getTxtValorItem().setName(String.valueOf(i));
             item.getTxtValorItem().addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                JTextField txt = (JTextField) evt.getComponent();
-                try {
-                    int txtIndex = Integer.parseInt(txt.getName());
-                    itensValor[txtIndex] = Double.valueOf(txt.getText());
-                } catch (NumberFormatException e) {
-                }
-                calcularMedia();
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                JTextField txt = (JTextField) evt.getComponent();
-                try {
-                    int txtIndex = Integer.parseInt(txt.getName());
-                    itensValor[txtIndex] = Double.valueOf(txt.getText());
-                } catch (NumberFormatException e) {
-                }
-                calcularMedia();
+                JTextField txt = (JTextField) evt.getSource();
+                updateMedia(txt);
             }
         });
+            item.getTxtValorItem().addActionListener((ActionEvent evt) -> {
+                java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                JTextField txt = (JTextField) evt.getSource();
+                updateMedia(txt);
+            }
+        });
+            });
+            item.getTxtValorItem().addFocusListener(new java.awt.event.FocusAdapter() {
+                public void focusLost(java.awt.event.FocusEvent evt) {
+                    JTextField txt = (JTextField) evt.getComponent();
+                    updateMedia(txt);
+                }
+            });
             itemsPanel.add(item);
             item.setVisible(true);
         }
+        this.endRow = IndicadorTabelaPanel.currentRow;
+        itensValor = Arrays.copyOfRange(IndicadoresFrame.lote.getScores(modeloHash), startRow, endRow);
+        calcularMedia();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,6 +127,32 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         add(jPanel5, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void keyEvt(java.awt.event.KeyEvent evt) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                JTextField txt = (JTextField) evt.getComponent();
+                try {
+                    int txtIndex = Integer.parseInt(txt.getName());
+                    itensValor[txtIndex] = Double.valueOf(txt.getText());
+                } catch (NumberFormatException e) {
+                }
+                calcularMedia();
+            }
+        });
+    }
+    
+    private void updateMedia (JTextField txt) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    int txtIndex = Integer.parseInt(txt.getName());
+                    itensValor[txtIndex] = Double.valueOf(txt.getText());
+                } catch (NumberFormatException e) {
+                }
+                calcularMedia();
+            }
+        });
+    }
     private void calcularMedia() {
         Double media = Arrays.stream(itensValor).mapToDouble(Double::doubleValue).average().orElse(Double.NaN);
         lblNumGrupo.setText(String.format("%.2f", media));

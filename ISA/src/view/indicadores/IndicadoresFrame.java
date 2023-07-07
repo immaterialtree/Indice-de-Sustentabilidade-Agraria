@@ -4,6 +4,7 @@
  */
 package view.indicadores;
 
+import csv.DataTransfer;
 import isa.ISA;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -135,6 +136,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         getWindows()[0].setVisible(true);
+        DataTransfer.exportAllLotes(ISA.loteList);
     }//GEN-LAST:event_formWindowClosed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed

@@ -10,8 +10,6 @@ import java.awt.CardLayout;
 import java.util.*;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.ModeloIndicadores;
 
@@ -61,10 +59,13 @@ public class CrudIndicadores extends javax.swing.JFrame {
         jListModelos.setModel(resultList);
     }
     void preencherTabela(int indice) {
-        if (ISA.indicadoresList.size()<1) return;
+        DefaultTableModel tableModel = new DefaultTableModel();
+        if (ISA.indicadoresList.size()<1) {
+            lblNomeModelo.setText("");
+            tabModelo.setModel(tableModel);
+        };
         
         lblNomeModelo.setText(ISA.indicadoresList.get(indice).getNome());
-        DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.setNumRows(0);
         for (Map.Entry grupo: ISA.indicadoresList.get(indice).getIndicadores().entrySet()) {
             tableModel.addColumn(grupo.getKey(), ((List<String>) grupo.getValue()).toArray());
@@ -151,6 +152,11 @@ public class CrudIndicadores extends javax.swing.JFrame {
         btnExcluir.setBackground(new java.awt.Color(204, 255, 255));
         btnExcluir.setForeground(new java.awt.Color(0, 153, 153));
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnNovo.setBackground(new java.awt.Color(204, 255, 255));
         btnNovo.setForeground(new java.awt.Color(0, 153, 153));
@@ -248,6 +254,15 @@ public class CrudIndicadores extends javax.swing.JFrame {
         cl.show(cardPanel, "new");
         novoModeloPanel.salvo = false;
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if (0!=JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir?", "Confirmar exclusão", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION)) {
+            return;
+        }
+        ISA.indicadoresList.remove(jListModelos.getSelectedIndex());
+        preencherLista();
+        preencherTabela(-1);
+    }//GEN-LAST:event_btnExcluirActionPerformed
     
     
    

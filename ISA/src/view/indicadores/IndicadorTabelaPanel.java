@@ -14,6 +14,7 @@ import model.ModeloIndicadores;
 public class IndicadorTabelaPanel extends javax.swing.JPanel {
     ModeloIndicadores indicadores;
     int rows = 0; // number of "grupos" received by gridLayout<-gruposPanel
+    static int currentRow;
     /**
      * Creates new form IndicadorTabelaPanel
      */
@@ -27,13 +28,15 @@ public class IndicadorTabelaPanel extends javax.swing.JPanel {
     }
     
     private void initAll() {
+        currentRow = 0;
+        IndicadoresFrame.lote.initScoreSheet(indicadores);
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(10);
         String[] gruposNome = indicadores.getGrupos().toArray(String[]::new);
         List<List<String>> items = indicadores.getAllItems();
         for (int i=0; i<gruposNome.length; i++) {
             String[] itemArr = items.get(i).toArray(String[]::new);
-            IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(gruposNome[i],itemArr);
+            IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(currentRow, gruposNome[i],itemArr, indicadores.hashCode());
             gruposPanel.add(grupo);
             grupo.setVisible(true);
         } 
