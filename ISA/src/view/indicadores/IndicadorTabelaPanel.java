@@ -23,6 +23,10 @@ public class IndicadorTabelaPanel extends javax.swing.JPanel {
     
     public IndicadorTabelaPanel(ModeloIndicadores indicadores) {
         this.indicadores = indicadores;
+        initAll();
+    }
+    
+    private void initAll() {
         String[] gruposNome = indicadores.getGrupos().toArray(String[]::new);
         List<List<String>> items = indicadores.getAllItems();
         initComponents();
@@ -31,7 +35,7 @@ public class IndicadorTabelaPanel extends javax.swing.JPanel {
             IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(gruposNome[i],itemArr);
             gruposPanel.add(grupo);
             grupo.setVisible(true);
-        }
+        } 
     }
 
     /**
