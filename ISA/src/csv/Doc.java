@@ -33,8 +33,8 @@ public class Doc {
     }
     
     public static void dataArrayToCSV(List<String[]> dataLines, String path) throws IOException {
-        File csvOutputFile = new File(path);
-        try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
+        File outputFile = new File(path);
+        try (PrintWriter pw = new PrintWriter(outputFile)) {
             dataLines.stream()
               .map(Doc::lineToCSV)
               .forEach(pw::println);
@@ -43,7 +43,8 @@ public class Doc {
     
 
     public static ArrayList<String[]> readCSV(String path) throws FileNotFoundException {
-        Scanner scan = new Scanner(path);
+        File sourceFile = new File(path);
+        Scanner scan = new Scanner(sourceFile);
         ArrayList<String[]> records = new ArrayList<>();
         String[] record;
         while(scan.hasNext()) {

@@ -38,14 +38,13 @@ public class ISA {
         };
         
         
-        loteList.add(new Lote("Lote do Jose", "4834144", "(61) 99876-4444", new double[]{48d, -56d}));
+        loteList = DataTransfer.importAllLotes();
          
         ModeloIndicadores ambientalTabela = new ModeloIndicadores("Indicadores Ambientais", grupos, items);
         indicadoresList.add(ambientalTabela);
         
-        DataTransfer.exportAllLotes(loteList);
-//        MainFrame telaPrincipal = new MainFrame();
-//        telaPrincipal.setVisible(true);
+        MainFrame telaPrincipal = new MainFrame();
+        telaPrincipal.setVisible(true);
         
 //        IndicadoresFrame tela = new IndicadoresFrame(ambientalTabela);
 //        tela.setVisible(true);

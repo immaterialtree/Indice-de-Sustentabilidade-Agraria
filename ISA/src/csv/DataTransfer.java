@@ -21,19 +21,19 @@ import model.ModeloIndicadores;
  * @author naoki
  */
 public class DataTransfer {
-    final static String root = "csv"+File.separator;
-    final static String pathModelos = root+"modelos";
-    final static String pathLotes = root+"lotes";
+    final static String ROOT = "csv"+File.separator;
+    final static String PATH_MODELOS = ROOT+"modelos";
+    final static String PATH_LOTES = ROOT+"lotes";
     
     
     public static ArrayList<ModeloIndicadores> importAllModelos(){
         ArrayList<ModeloIndicadores> modelos = new ArrayList<>();
-        String[] files = new File(pathModelos).list();
+        String[] files = new File(PATH_MODELOS).list();
         if (files!=null) {
 //            System.out.println(Arrays.toString(files));
             for (String f : files) {
                 try {
-                    modelos.add(dataArrayToModelo(Doc.readCSV(pathModelos+f)));
+                    modelos.add(dataArrayToModelo(Doc.readCSV(PATH_MODELOS+f)));
                 } catch (FileNotFoundException e) {
                 }
             }
@@ -44,7 +44,7 @@ public class DataTransfer {
     public static void exportAllLotes(List<Lote> loteList)  {
         for (Lote lote : loteList) {
             try {
-                String file = pathLotes + lote.getNome();
+                String file = PATH_LOTES + File.separator + lote.getNome();
                 Doc.dataArrayToCSV(loteToDataArray(lote), file);
             } catch (IOException ex) {
                 Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,13 +54,13 @@ public class DataTransfer {
     
     public static ArrayList<Lote> importAllLotes() {
         ArrayList<Lote> lotes = new ArrayList<>();
-        String[] files = new File(pathLotes).list();
+        String[] files = new File(PATH_LOTES).list();
         if (files!=null) {
 //            System.out.println(Arrays.toString(files));
             for (String f : files) {
                 try {
-                    
-                    lotes.add(dataArrayToLote(Doc.readCSV(pathModelos+File.separator+f)));
+                    String filePath = PATH_LOTES+File.separator+f;
+                    lotes.add(dataArrayToLote(Doc.readCSV(filePath)));
                 } catch (FileNotFoundException e) {
                 }
             }
@@ -84,7 +84,9 @@ public class DataTransfer {
         return dataArray;
     }
     
-    private static Lote dataArrayToLote(ArrayList<String[]> dataArray) {;
+    private static Lote dataArrayToLote(ArrayList<String[]> dataArray) {
+        if (dataArray.isEmpty())
+            return null;
         String[] firstLine = dataArray.remove(0);
         double[] coordenada = Arrays.stream(new String[] {firstLine[3], firstLine[4]}).mapToDouble(Double::parseDouble).toArray();
         Lote lote = new Lote(firstLine[0], firstLine[1], firstLine[2], coordenada);
@@ -117,5 +119,28 @@ public class DataTransfer {
             );
         }
         return dataArray;
+    }
+    
+    public static boolean deleteLote(String nome) {
+        File lote = new File(PATH_LOTES, nome);
+        return lote.delete();
+    }
+    
+    public static boolean renameLote(String oldName, String newName) {
+        File oldFile = new File(PATH_LOTES, oldName);
+        File newFile = new File(PATH_LOTES, newName);
+        boolean success = false;
+        if (!newFile.exists()) {
+            success = oldFile.renameTo(newFile);
+        }
+        return success;
+    }
+    public static void deleteAll(File file) {
+        File[] contents = file.listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                f.delete();
+            }
+        }
     }
 }
