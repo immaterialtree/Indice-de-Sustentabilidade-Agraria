@@ -4,6 +4,7 @@
  */
 package view;
 
+import csv.DataTransfer;
 import isa.ISA;
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -498,7 +499,9 @@ public class CrudLote extends javax.swing.JFrame {
     }//GEN-LAST:event_tabLoteKeyReleased
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        DataTransfer.exportAllLotes(ISA.loteList);
         getWindows()[0].setVisible(true);
+        JOptionPane.showMessageDialog(getWindows()[0], "Dados salvos");
     }//GEN-LAST:event_formWindowClosed
 
     private void btnSalvar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar_editarActionPerformed

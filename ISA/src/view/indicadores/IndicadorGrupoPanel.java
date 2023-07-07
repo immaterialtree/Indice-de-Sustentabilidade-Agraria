@@ -37,7 +37,6 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
             item.getTxtValorItem().addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JTextField txt = (JTextField) evt.getComponent();
-                updateTxtColor(txt);
                 try {
                     int txtIndex = Integer.parseInt(txt.getName());
                     itensValor[txtIndex] = Double.valueOf(txt.getText());
@@ -47,7 +46,6 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 JTextField txt = (JTextField) evt.getComponent();
-                updateTxtColor(txt);
                 try {
                     int txtIndex = Integer.parseInt(txt.getName());
                     itensValor[txtIndex] = Double.valueOf(txt.getText());
@@ -130,30 +128,6 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         lblNumGrupo.setText(String.format("%.2f", media));
     }
     
-    private void updateTxtColor(JTextField txt) {
-        Double[] qualidade = {7., 3.5, 0.};
-        Color[] qCor = {Color.GREEN, Color.YELLOW, Color.RED};
-        Double valor;
-        try {
-            valor = Double.valueOf(txt.getText().replace(",", "."));
-        } catch (NumberFormatException e) {
-            txt.setBackground(Color.WHITE);
-            txt.setForeground(Color.RED);
-            return;
-        }
-        if (valor < 0 || valor > 10) {
-            txt.setBackground(Color.WHITE);
-            txt.setForeground(Color.RED);
-            return;
-        }
-        for (int i=0; i<qualidade.length; i++) {
-            if (valor >= qualidade[i]) {
-                txt.setBackground(qCor[i].brighter());
-                txt.setForeground(qCor[i].darker());
-                break;
-            }
-        }
-    }
     
     public JLabel getLblNumGrupo() {
         return lblNumGrupo;

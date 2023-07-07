@@ -42,8 +42,7 @@ public class Doc {
     }
     
 
-    public static ArrayList<String[]> readCSV(String path) throws FileNotFoundException {
-        File sourceFile = new File(path);
+    public static ArrayList<String[]> readCSV(File sourceFile) throws FileNotFoundException {
         Scanner scan = new Scanner(sourceFile);
         ArrayList<String[]> records = new ArrayList<>();
         String[] record;

@@ -4,10 +4,12 @@
  */
 package view.indicadores;
 
+import isa.ISA;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import model.ModeloIndicadores;
 import java.util.List;
+import model.Lote;
 /**
  *
  * @author Admin
@@ -22,23 +24,26 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     public IndicadoresFrame() {
         initComponents();
     }
-    public IndicadoresFrame(List<ModeloIndicadores> indicadores) {
-        this.indicadores = indicadores;
+    public IndicadoresFrame(Lote lote) {
+        initComponents();
+        lblLoteNome.setText(lote.getNome());
+        indicadores = ISA.indicadoresList;
         if (indicadores.isEmpty()) {
             indice = -1;
-            btnProximo.setEnabled(false);
         }
-        initComponents();
+        atualizarBotoes();
         cl = (CardLayout) cardPane.getLayout();
-        for (ModeloIndicadores i : indicadores) {
-            cardPane.add(new IndicadorTabelaPanel(i), i.getNome());
+        for (ModeloIndicadores indicador : indicadores) {
+            cardPane.add(new IndicadorTabelaPanel(indicador), indicador.getNome());
         }
         cl.show(cardPane, indicadores.get(indice).getNome());
     }
     
+    
+    
     private void atualizarBotoes() {
-        btnAnterior.setEnabled(true);
-        btnProximo.setEnabled(false);
+        btnAnterior.setEnabled(indice > 0);
+        btnProximo.setEnabled(indice < indicadores.size()-1);
     }
 
 
@@ -52,9 +57,9 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         cardPane = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         btnAnterior = new javax.swing.JButton();
         btnProximo = new javax.swing.JButton();
+        lblLoteNome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -65,19 +70,6 @@ public class IndicadoresFrame extends javax.swing.JFrame {
 
         cardPane.setPreferredSize(new java.awt.Dimension(600, 420));
         cardPane.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 443, Short.MAX_VALUE)
-        );
-
-        cardPane.add(jPanel1, "card2");
 
         btnAnterior.setBackground(new java.awt.Color(255, 252, 252));
         btnAnterior.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -98,31 +90,41 @@ public class IndicadoresFrame extends javax.swing.JFrame {
             }
         });
 
+        lblLoteNome.setText("LoteNome");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(btnAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cardPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(btnAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cardPane, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblLoteNome)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(203, 203, 203))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(195, 195, 195))))
+                .addComponent(btnProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(231, 231, 231))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblLoteNome)
+                .addGap(206, 206, 206)
+                .addComponent(btnAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 27, Short.MAX_VALUE)
+                .addComponent(cardPane, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -135,15 +137,16 @@ public class IndicadoresFrame extends javax.swing.JFrame {
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         indice += indice < indicadores.size()-1 ? 1 : 0;
-        cl.show(jPanel1, indicadores.get(indice).getNome());
+        cl.show(cardPane, indicadores.get(indice).getNome());
         btnAnterior.setEnabled(true);
         btnProximo.setEnabled(false);
+        atualizarBotoes();
     }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        indice -= (indice > 0 || 0 == indicadores.size()-1) ? 1 : 0;
-        cl.show(jPanel1, indicadores.get(indice).getNome());
-
+        indice -= (indice > 0) ? 1 : 0;
+        cl.show(cardPane, indicadores.get(indice).getNome());
+        atualizarBotoes();
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     /**
@@ -186,6 +189,6 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnProximo;
     private javax.swing.JPanel cardPane;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblLoteNome;
     // End of variables declaration//GEN-END:variables
 }

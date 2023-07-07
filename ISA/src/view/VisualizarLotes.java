@@ -210,12 +210,16 @@ public class VisualizarLotes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
-        new IndicadoresFrame(ISA.indicadoresList).setVisible(true);
+        int selected = jListModelos.getSelectedIndex();
+        if (selected==-1) return;
+        
+        new IndicadoresFrame(ISA.loteList.get(selected)).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
     private void btnPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropriedadesActionPerformed
         int selected = jListModelos.getSelectedIndex();
+        if (selected==-1) return;
         Lote lote = ISA.loteList.get(selected);
         
         txtNome.setText(lote.getNome());

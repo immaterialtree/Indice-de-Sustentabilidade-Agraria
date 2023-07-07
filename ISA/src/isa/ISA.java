@@ -25,29 +25,9 @@ public class ISA {
      */
     
     public static void main(String[] args) {
-        String[] grupos = {"Paisagem", "Qualidade Ambiental"};
-        String[][] items = {
-            {
-                "Conservação de habitats", 
-                "reserva legal",
-                "áreas de PP"
-            },
-            {
-                "Atmosfera", "Água", "Solo"
-            },
-        };
-        
-        
         loteList = DataTransfer.importAllLotes();
-        
-        ModeloIndicadores ambientalTabela = new ModeloIndicadores("Indicadores Ambientais", grupos, items);
-        indicadoresList.add(ambientalTabela);
-        DataTransfer.exportAllModelos(indicadoresList);
+        indicadoresList = DataTransfer.importAllModelos();
         MainFrame telaPrincipal = new MainFrame();
         telaPrincipal.setVisible(true);
-        
-//        IndicadoresFrame tela = new IndicadoresFrame(ambientalTabela);
-//        tela.setVisible(true);
     }
-    
 }

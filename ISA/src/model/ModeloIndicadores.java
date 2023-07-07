@@ -97,8 +97,8 @@ public class ModeloIndicadores {
         indicadoresMap.get(grupo).addAll(Arrays.asList(items));
     }
     
-    public void removeItem(String grupo, String items){
-        indicadoresMap.get(grupo).remove(items);
+    public void removeItem(String grupo, String item){
+        indicadoresMap.get(grupo).remove(item);
     }
     
     public void removeAllItems(String grupo, String... items) {

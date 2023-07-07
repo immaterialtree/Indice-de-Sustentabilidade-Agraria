@@ -31,9 +31,12 @@ public class DataTransfer {
         String[] files = new File(PATH_MODELOS).list();
         if (files!=null) {
             for (String f : files) {
+                    File sourceFile = new File(PATH_MODELOS, f) ;
                 try {
-                    modelos.add(dataArrayToModelo(Doc.readCSV(PATH_MODELOS+f)));
-                } catch (FileNotFoundException e) {
+                    modelos.add(dataArrayToModelo(Doc.readCSV(sourceFile)));
+                } catch (FileNotFoundException ex) {
+                    String msg = "Arquivo não encontrado: "+sourceFile.getPath();
+                    Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, msg, ex);
                 }
             }
         }
@@ -41,6 +44,7 @@ public class DataTransfer {
     }
     
     public static void exportAllModelos(List<ModeloIndicadores> modeloList)  {
+        deleteAllModelos();
         for (ModeloIndicadores modelo : modeloList) {
             try {
                 String filePath = PATH_MODELOS + File.separator + modelo.getNome();
@@ -52,6 +56,7 @@ public class DataTransfer {
     }
     
     public static void exportAllLotes(List<Lote> loteList)  {
+        deleteAllLotes();
         for (Lote lote : loteList) {
             try {
                 String filePath = PATH_LOTES + File.separator + lote.getNome();
@@ -66,12 +71,13 @@ public class DataTransfer {
         ArrayList<Lote> lotes = new ArrayList<>();
         String[] files = new File(PATH_LOTES).list();
         if (files!=null) {
-//            System.out.println(Arrays.toString(files));
             for (String f : files) {
+                File sourceFile = new File(PATH_LOTES, f) ;
                 try {
-                    String filePath = PATH_LOTES+File.separator+f;
-                    lotes.add(dataArrayToLote(Doc.readCSV(filePath)));
-                } catch (FileNotFoundException e) {
+                    lotes.add(dataArrayToLote(Doc.readCSV(sourceFile)));
+                } catch (FileNotFoundException ex) {
+                    String msg = "Arquivo não encontrado: "+sourceFile.getPath();
+                    Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, msg, ex);
                 }
             }
         }

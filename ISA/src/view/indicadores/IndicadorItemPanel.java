@@ -37,7 +37,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         lblNomeItem = new javax.swing.JLabel();
-        txtValorItem = new javax.swing.JTextField();
+        txtValorItem = new javax.swing.JFormattedTextField();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -51,29 +51,36 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         add(lblNomeItem, gridBagConstraints);
 
-        txtValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtValorItem.setText("0.0");
-        txtValorItem.setToolTipText("Digite a pontuação desta modalidade (número real)");
+        txtValorItem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtValorItem.setText("0,00");
+        txtValorItem.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtValorItemFocusLost(evt);
+            }
+        });
         txtValorItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtValorItemActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.ipadx = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
         add(txtValorItem, gridBagConstraints);
-        txtValorItem.getAccessibleContext().setAccessibleName("valorItem");
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtValorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorItemActionPerformed
-        
+        updateTxtColor();
     }//GEN-LAST:event_txtValorItemActionPerformed
+
+    private void txtValorItemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorItemFocusLost
+        updateTxtColor();
+    }//GEN-LAST:event_txtValorItemFocusLost
 
     public void updateTxtColor() {
         Double[] qualidade = {7., 3.5, 0.};
         Color[] qCor = {Color.GREEN, Color.YELLOW, Color.RED};
+        Color[] backCor = {new Color(100, 255, 100), new Color(255, 255, 100), new Color(255, 100, 100)};
         Double valor;
         try {
             valor = Double.valueOf(txtValorItem.getText().replace(",", "."));
@@ -89,7 +96,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         }
         for (int i=0; i<qualidade.length; i++) {
             if (valor >= qualidade[i]) {
-                txtValorItem.setBackground(qCor[i].brighter());
+                txtValorItem.setBackground(backCor[i]);
                 txtValorItem.setForeground(qCor[i].darker());
                 break;
             }
@@ -102,6 +109,6 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblNomeItem;
-    private javax.swing.JTextField txtValorItem;
+    private javax.swing.JFormattedTextField txtValorItem;
     // End of variables declaration//GEN-END:variables
 }
