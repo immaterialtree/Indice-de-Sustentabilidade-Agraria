@@ -39,10 +39,10 @@ public class ISA {
         
         
         loteList = DataTransfer.importAllLotes();
-         
+        
         ModeloIndicadores ambientalTabela = new ModeloIndicadores("Indicadores Ambientais", grupos, items);
         indicadoresList.add(ambientalTabela);
-        
+        DataTransfer.exportAllModelos(indicadoresList);
         MainFrame telaPrincipal = new MainFrame();
         telaPrincipal.setVisible(true);
         

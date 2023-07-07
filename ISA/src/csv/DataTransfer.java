@@ -30,7 +30,6 @@ public class DataTransfer {
         ArrayList<ModeloIndicadores> modelos = new ArrayList<>();
         String[] files = new File(PATH_MODELOS).list();
         if (files!=null) {
-//            System.out.println(Arrays.toString(files));
             for (String f : files) {
                 try {
                     modelos.add(dataArrayToModelo(Doc.readCSV(PATH_MODELOS+f)));
@@ -41,11 +40,22 @@ public class DataTransfer {
         return modelos;
     }
     
+    public static void exportAllModelos(List<ModeloIndicadores> modeloList)  {
+        for (ModeloIndicadores modelo : modeloList) {
+            try {
+                String filePath = PATH_MODELOS + File.separator + modelo.getNome();
+                Doc.dataArrayToCSV(modeloToDataArray(modelo), filePath);
+            } catch (IOException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     public static void exportAllLotes(List<Lote> loteList)  {
         for (Lote lote : loteList) {
             try {
-                String file = PATH_LOTES + File.separator + lote.getNome();
-                Doc.dataArrayToCSV(loteToDataArray(lote), file);
+                String filePath = PATH_LOTES + File.separator + lote.getNome();
+                Doc.dataArrayToCSV(loteToDataArray(lote), filePath);
             } catch (IOException ex) {
                 Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -80,7 +90,9 @@ public class DataTransfer {
     public static ArrayList<String[]> modeloToDataArray(ModeloIndicadores modelo) {
         ArrayList<String[]>  dataArray = new ArrayList<>();
         dataArray.add(new String[] {modelo.getNome()});
-        
+        dataArray.add(modelo.getGrupos().toArray(String[]::new));
+        for (String[] itemList : modelo.getAllItemsArr())
+            dataArray.add(itemList);
         return dataArray;
     }
     
@@ -135,7 +147,18 @@ public class DataTransfer {
         }
         return success;
     }
-    public static void deleteAll(File file) {
+    public static void deleteAllLotes() {
+        File file = new File(PATH_LOTES);
+        File[] contents = file.listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                f.delete();
+            }
+        }
+    }
+    
+    public static void deleteAllModelos() {
+        File file = new File(PATH_MODELOS);
         File[] contents = file.listFiles();
         if (contents != null) {
             for (File f : contents) {
