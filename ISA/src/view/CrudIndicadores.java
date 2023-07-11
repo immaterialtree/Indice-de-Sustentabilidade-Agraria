@@ -124,7 +124,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
 
         lblNomeModelo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNomeModelo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNomeModelo.setText("Nome do modelo");
+        lblNomeModelo.setText("Nome da Categoria");
         lblNomeModelo.setToolTipText("");
 
         scrollTabela1.setBackground(new java.awt.Color(255, 255, 204));
@@ -168,7 +168,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Modelos de tabela");
+        jLabel1.setText("Categorias");
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
@@ -189,7 +189,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
                         .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(102, 102, 102)))
+                        .addGap(123, 123, 123)))
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lblNomeModelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scrollTabela1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
