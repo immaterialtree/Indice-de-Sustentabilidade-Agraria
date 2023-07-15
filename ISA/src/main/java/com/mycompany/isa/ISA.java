@@ -4,15 +4,12 @@
  */
 package com.mycompany.isa;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mycompany.isa.model.Lote;
-import com.mycompany.isa.model.ModeloIndicadores;
+import com.mycompany.isa.model.IndicadorTabela;
 import com.mycompany.isa.view.MainFrame;
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.UIManager;
 
 /**
  *
@@ -20,14 +17,26 @@ import java.util.logging.Logger;
  */
 public class ISA {
     public static List<Lote> loteList = new ArrayList<>();
-    public static List<ModeloIndicadores> indicadoresList = new ArrayList<>();
+    public static List<IndicadorTabela> indicadoresList = new ArrayList<>();
 
     /**
      * @param args the command line arguments
      */
     
     public static void main(String[] args) {
-
+        // Setting look and feel
+        try {
+  
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            System.out.println(UIManager.getLookAndFeel().getName());
+        }
+        catch (Exception e) {
+            System.out.println("Look and Feel não configurado");
+        }
+        
+        
+        
+        // start aplication
         MainFrame telaPrincipal = new MainFrame();
         telaPrincipal.setVisible(true);
     }

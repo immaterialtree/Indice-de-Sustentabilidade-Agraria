@@ -163,7 +163,12 @@ public class VisualizarLotes extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jListModelos.setBorder(null);
         jListModelos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -264,6 +269,10 @@ public class VisualizarLotes extends javax.swing.JFrame {
         btnPropriedades.setEnabled(jListModelos.getSelectedIndex() != -1);
         btnVisualizar.setEnabled(jListModelos.getSelectedIndex() != -1);
     }//GEN-LAST:event_jListModelosKeyTyped
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        getWindows()[0].setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

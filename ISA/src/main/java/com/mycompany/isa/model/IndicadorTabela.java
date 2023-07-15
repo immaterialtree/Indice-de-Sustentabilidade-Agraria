@@ -14,16 +14,16 @@ import java.util.LinkedHashMap;
  *
  * @author naoki
  */
-public class ModeloIndicadores {
+public class IndicadorTabela {
     private String nome;
     private Map<String, List<String>> indicadoresMap; // map with <key, value> as <grupo, item>
     
     // Constructors
-    public ModeloIndicadores() {
+    public IndicadorTabela() {
         indicadoresMap = new LinkedHashMap<>();
     }
     
-    public ModeloIndicadores(String nome, String[] grupos, String[][] itens) {
+    public IndicadorTabela(String nome, String[] grupos, String[][] itens) {
         this.nome = nome;
         indicadoresMap = new LinkedHashMap<>();
         for (int i = 0; i < grupos.length; i++) {

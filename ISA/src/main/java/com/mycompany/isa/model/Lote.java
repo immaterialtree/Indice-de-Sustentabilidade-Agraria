@@ -83,11 +83,11 @@ public class Lote {
         scoresMap.put(key, scores);
     }
     
-    public void addScores(ModeloIndicadores modelo, Double[] scores) {
+    public void addScores(IndicadorTabela modelo, Double[] scores) {
         scoresMap.put(modelo.hashCode(), scores);
     }
     
-    public void initScoreSheet(ModeloIndicadores modelo) {
+    public void initScoreSheet(IndicadorTabela modelo) {
         int size = 0;
         for (List itemList : modelo.getAllItems()) {
             size += itemList.size();
@@ -101,7 +101,7 @@ public class Lote {
         scoresMap.get(key)[pos] = score;
     }
     
-    public void setScore(ModeloIndicadores modelo, int pos, Double score) {
+    public void setScore(IndicadorTabela modelo, int pos, Double score) {
         scoresMap.get(modelo.hashCode())[pos] = score;
     }
     

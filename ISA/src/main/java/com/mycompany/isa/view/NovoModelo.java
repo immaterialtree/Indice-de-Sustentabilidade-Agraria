@@ -5,7 +5,7 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.model.ModeloIndicadores;
+import com.mycompany.isa.model.IndicadorTabela;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -21,7 +21,7 @@ import javax.swing.table.*;
  * @author naoki
  */
 public class NovoModelo extends javax.swing.JPanel {
-    private ModeloIndicadores novoIndicador = new ModeloIndicadores();
+    private IndicadorTabela novoIndicador = new IndicadorTabela();
     boolean salvo = false;
     /**
      * Creates new form NovoModelo
@@ -30,7 +30,7 @@ public class NovoModelo extends javax.swing.JPanel {
         initAll();
     }
     
-    public NovoModelo(ModeloIndicadores modelo) {
+    public NovoModelo(IndicadorTabela modelo) {
         initAll();
         novoIndicador = modelo;
         lblNome.setText(modelo.getNome());
@@ -108,7 +108,7 @@ public class NovoModelo extends javax.swing.JPanel {
                 itemArr[i][j] = tabIndicadores.getValueAt(j, i).toString();
             }
         }
-        novoIndicador = new ModeloIndicadores(lblNome.getName(), columnArr, itemArr);
+        novoIndicador = new IndicadorTabela(lblNome.getName(), columnArr, itemArr);
     }
 
     /**
@@ -387,7 +387,7 @@ public class NovoModelo extends javax.swing.JPanel {
     }
     
     private void resetar() {
-        novoIndicador = new ModeloIndicadores();
+        novoIndicador = new IndicadorTabela();
         txtGrupo.setText("");
         txtItem.setText("");
         txtNome.setText("");

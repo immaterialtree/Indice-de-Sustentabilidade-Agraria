@@ -6,7 +6,7 @@ package com.mycompany.isa.view.indicadores;
 
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.Lote;
-import com.mycompany.isa.model.ModeloIndicadores;
+import com.mycompany.isa.model.IndicadorTabela;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class IndicadoresFrame extends javax.swing.JFrame {
     public static Lote lote;
-    List<ModeloIndicadores> indicadores;
+    List<IndicadorTabela> indicadores;
     CardLayout cl;
     int indice = 0;
     /**
@@ -35,7 +35,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         }
         atualizarBotoes();
         cl = (CardLayout) cardPane.getLayout();
-        for (ModeloIndicadores indicador : indicadores) {
+        for (IndicadorTabela indicador : indicadores) {
             cardPane.add(new IndicadorTabelaPanel(indicador), indicador.getNome());
         }
         cl.show(cardPane, indicadores.get(indice).getNome());
