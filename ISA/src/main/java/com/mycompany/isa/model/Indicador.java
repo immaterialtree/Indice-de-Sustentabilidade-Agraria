@@ -14,21 +14,21 @@ import java.util.LinkedHashMap;
  *
  * @author naoki
  */
-public class IndicadorTabela {
+public class Indicador {
     private String nome;
-    private Map<String, List<String>> indicadoresMap; // map with <key, value> as <grupo, item>
+    private Map<String, List<String>> itemMap; // map with <key, value> as <grupo, item>
     
     // Constructors
-    public IndicadorTabela() {
-        indicadoresMap = new LinkedHashMap<>();
+    public Indicador() {
+        itemMap = new LinkedHashMap<>();
     }
     
-    public IndicadorTabela(String nome, String[] grupos, String[][] itens) {
+    public Indicador(String nome, String[] grupos, String[][] itens) {
         this.nome = nome;
-        indicadoresMap = new LinkedHashMap<>();
+        itemMap = new LinkedHashMap<>();
         for (int i = 0; i < grupos.length; i++) {
             List<String> list = Arrays.asList(itens[i]);
-            indicadoresMap.put(grupos[i], list);
+            itemMap.put(grupos[i], list);
         }
     }
     
@@ -41,35 +41,35 @@ public class IndicadorTabela {
         this.nome = nome;
     }
     
-    // indicadores - getter
-    public Map<String, List<String>> getIndicadores() {
-        return indicadoresMap;
+    // item - getter
+    public Map<String, List<String>> getItemMap() {
+        return itemMap;
     }
     // grupos - get/add/remove
     public java.util.ArrayList<String> getGrupos() {
-        return new ArrayList<>(indicadoresMap.keySet());
+        return new ArrayList<>(itemMap.keySet());
     }
     
     public void addGrupo(String grupo) {
-        indicadoresMap.put(grupo, new ArrayList<>());
+        itemMap.put(grupo, new ArrayList<>());
     }
     
     public void addGrupo(String grupo, ArrayList itens) {
-        indicadoresMap.put(grupo, itens);
+        itemMap.put(grupo, itens);
     }
     
     public void replaceGrupo(String oldGrupo, String newGrupo) {
-        indicadoresMap.put(newGrupo, indicadoresMap.get(oldGrupo));
-        indicadoresMap.remove(oldGrupo);
+        itemMap.put(newGrupo, itemMap.get(oldGrupo));
+        itemMap.remove(oldGrupo);
     }
     
     public void removeGrupo(String grupo) {
-        indicadoresMap.remove(grupo);
+        itemMap.remove(grupo);
     }
     
     // itens - get/add/remove
     public List<List<String>> getAllItems() {
-        return List.copyOf(indicadoresMap.values());
+        return List.copyOf(itemMap.values());
     }
     public String[][] getAllItemsArr() {
         List<List<String>> itemList = getAllItems();
@@ -80,28 +80,28 @@ public class IndicadorTabela {
         return itemArr;
     }
     public List<String> getItens(String grupo) {
-        return indicadoresMap.get(grupo);
+        return itemMap.get(grupo);
     }
     
     public void addItem(String grupo, String item) {
-        indicadoresMap.get(grupo).add(item);
+        itemMap.get(grupo).add(item);
     }
     
     
     public void replaceItem(String grupo, String oldItem, String newItem) {
-        indicadoresMap.get(grupo).remove(oldItem);
-        indicadoresMap.get(grupo).add(newItem);
+        itemMap.get(grupo).remove(oldItem);
+        itemMap.get(grupo).add(newItem);
     }
     
     public void addAllItems(String grupo, String... items) {
-        indicadoresMap.get(grupo).addAll(Arrays.asList(items));
+        itemMap.get(grupo).addAll(Arrays.asList(items));
     }
     
     public void removeItem(String grupo, String item){
-        indicadoresMap.get(grupo).remove(item);
+        itemMap.get(grupo).remove(item);
     }
     
     public void removeAllItems(String grupo, String... items) {
-        indicadoresMap.get(grupo).removeAll(Arrays.asList(items));
+        itemMap.get(grupo).removeAll(Arrays.asList(items));
     }
 }

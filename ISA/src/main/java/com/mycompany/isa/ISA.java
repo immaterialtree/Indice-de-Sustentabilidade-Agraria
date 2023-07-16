@@ -5,7 +5,7 @@
 package com.mycompany.isa;
 
 import com.mycompany.isa.model.Lote;
-import com.mycompany.isa.model.IndicadorTabela;
+import com.mycompany.isa.model.Indicador;
 import com.mycompany.isa.view.MainFrame;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import javax.swing.UIManager;
  */
 public class ISA {
     public static List<Lote> loteList = new ArrayList<>();
-    public static List<IndicadorTabela> indicadoresList = new ArrayList<>();
+    public static List<Indicador> indicadoresList = new ArrayList<>();
 
     /**
      * @param args the command line arguments

@@ -5,7 +5,7 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.model.IndicadorTabela;
+import com.mycompany.isa.model.Indicador;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -21,7 +21,7 @@ import javax.swing.table.*;
  * @author naoki
  */
 public class NovoModelo extends javax.swing.JPanel {
-    private IndicadorTabela novoIndicador = new IndicadorTabela();
+    private Indicador novoIndicador = new Indicador();
     boolean salvo = false;
     /**
      * Creates new form NovoModelo
@@ -30,7 +30,7 @@ public class NovoModelo extends javax.swing.JPanel {
         initAll();
     }
     
-    public NovoModelo(IndicadorTabela modelo) {
+    public NovoModelo(Indicador modelo) {
         initAll();
         novoIndicador = modelo;
         lblNome.setText(modelo.getNome());
@@ -108,7 +108,7 @@ public class NovoModelo extends javax.swing.JPanel {
                 itemArr[i][j] = tabIndicadores.getValueAt(j, i).toString();
             }
         }
-        novoIndicador = new IndicadorTabela(lblNome.getName(), columnArr, itemArr);
+        novoIndicador = new Indicador(lblNome.getName(), columnArr, itemArr);
     }
 
     /**
@@ -387,7 +387,7 @@ public class NovoModelo extends javax.swing.JPanel {
     }
     
     private void resetar() {
-        novoIndicador = new IndicadorTabela();
+        novoIndicador = new Indicador();
         txtGrupo.setText("");
         txtItem.setText("");
         txtNome.setText("");
@@ -401,7 +401,7 @@ public class NovoModelo extends javax.swing.JPanel {
             return;
         }
         String grupo = txtGrupo.getText();
-        if (! novoIndicador.getIndicadores().containsKey(grupo)){
+        if (! novoIndicador.getItemMap().containsKey(grupo)){
             txtGrupo.setText("");
             novoIndicador.addGrupo(grupo);
             cboxGrupo.addItem(grupo);
@@ -413,7 +413,7 @@ public class NovoModelo extends javax.swing.JPanel {
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         String grupo = (String) cboxGrupo.getSelectedItem();
         String item = txtItem.getText();
-        if (novoIndicador.getIndicadores().containsKey(grupo)) {
+        if (novoIndicador.getItemMap().containsKey(grupo)) {
             if (! novoIndicador.getItens(grupo).contains(item)) {
                 novoIndicador.addItem(grupo, item);
             }

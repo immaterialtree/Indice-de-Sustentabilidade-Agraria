@@ -53,7 +53,7 @@ public class CrudLote extends javax.swing.JFrame {
                 lote.getNome(), 
                 lote.getNumParcela(), 
                 lote.getContato(), 
-                Arrays.toString(lote.getCoordenada())
+                lote.getCoordenada()
             });
         }
     }
@@ -71,13 +71,9 @@ public class CrudLote extends javax.swing.JFrame {
         txtNome_editar = new javax.swing.JTextField();
         txtNumParcela_editar = new javax.swing.JTextField();
         txtContato_editar = new javax.swing.JFormattedTextField();
-        paneCoordenadas_editar = new javax.swing.JPanel();
-        lblLatitude_editar = new javax.swing.JLabel();
-        lblLongitude_editar = new javax.swing.JLabel();
-        txtCoordenadaX_editar = new javax.swing.JFormattedTextField();
-        txtCoordenadaY_editar = new javax.swing.JFormattedTextField();
         btnSalvar_editar = new javax.swing.JButton();
         btnCancelar_editar = new javax.swing.JButton();
+        txtCoordenada_editar = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
         txtNome = new javax.swing.JTextField();
         lblCadTitulo = new javax.swing.JLabel();
@@ -88,13 +84,10 @@ public class CrudLote extends javax.swing.JFrame {
         scrollTabela = new javax.swing.JScrollPane();
         tabLote = new javax.swing.JTable();
         txtNumParcela = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtCoordenadaX = new javax.swing.JFormattedTextField();
-        txtCoordenadaY = new javax.swing.JFormattedTextField();
         txtContato = new javax.swing.JFormattedTextField();
         btnLimpar = new javax.swing.JButton();
+        txtCoordenada = new javax.swing.JFormattedTextField();
+        jButton1 = new javax.swing.JButton();
 
         dialogEditar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogEditar.setTitle("Editar");
@@ -112,45 +105,6 @@ public class CrudLote extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-
-        paneCoordenadas_editar.setBackground(new java.awt.Color(204, 255, 255));
-        paneCoordenadas_editar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COORDENADAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
-
-        lblLatitude_editar.setForeground(new java.awt.Color(0, 153, 153));
-        lblLatitude_editar.setText("Latitude");
-
-        lblLongitude_editar.setForeground(new java.awt.Color(0, 153, 153));
-        lblLongitude_editar.setText("Longitude");
-
-        txtCoordenadaX_editar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-
-        txtCoordenadaY_editar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-
-        javax.swing.GroupLayout paneCoordenadas_editarLayout = new javax.swing.GroupLayout(paneCoordenadas_editar);
-        paneCoordenadas_editar.setLayout(paneCoordenadas_editarLayout);
-        paneCoordenadas_editarLayout.setHorizontalGroup(
-            paneCoordenadas_editarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneCoordenadas_editarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblLatitude_editar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCoordenadaX_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblLongitude_editar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCoordenadaY_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        paneCoordenadas_editarLayout.setVerticalGroup(
-            paneCoordenadas_editarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneCoordenadas_editarLayout.createSequentialGroup()
-                .addGroup(paneCoordenadas_editarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblLatitude_editar)
-                    .addComponent(lblLongitude_editar)
-                    .addComponent(txtCoordenadaX_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCoordenadaY_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         btnSalvar_editar.setBackground(new java.awt.Color(204, 255, 255));
         btnSalvar_editar.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
@@ -172,21 +126,25 @@ public class CrudLote extends javax.swing.JFrame {
             }
         });
 
+        txtCoordenada_editar.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordenada"));
+
         javax.swing.GroupLayout dialogEditarLayout = new javax.swing.GroupLayout(dialogEditar.getContentPane());
         dialogEditar.getContentPane().setLayout(dialogEditarLayout);
         dialogEditarLayout.setHorizontalGroup(
             dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogEditarLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNome_editar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNumParcela_editar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(paneCoordenadas_editar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtContato_editar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(dialogEditarLayout.createSequentialGroup()
-                        .addComponent(btnSalvar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCoordenada_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtContato_editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNome_editar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNumParcela_editar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(dialogEditarLayout.createSequentialGroup()
+                                .addComponent(btnSalvar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                .addComponent(btnCancelar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         dialogEditarLayout.setVerticalGroup(
@@ -198,9 +156,9 @@ public class CrudLote extends javax.swing.JFrame {
                 .addComponent(txtNumParcela_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtContato_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(paneCoordenadas_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(txtCoordenada_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addGroup(dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar_editar)
                     .addComponent(btnCancelar_editar))
@@ -216,16 +174,13 @@ public class CrudLote extends javax.swing.JFrame {
             }
         });
 
-        txtNome.setBackground(new java.awt.Color(204, 255, 255));
-        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
 
         lblCadTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         lblCadTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCadTitulo.setText("Gerenciar Lotes");
 
-        btnSalvar.setBackground(new java.awt.Color(204, 255, 255));
         btnSalvar.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
-        btnSalvar.setForeground(new java.awt.Color(0, 153, 153));
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,9 +188,7 @@ public class CrudLote extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setBackground(new java.awt.Color(204, 255, 255));
         btnEditar.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(0, 153, 153));
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,9 +198,7 @@ public class CrudLote extends javax.swing.JFrame {
 
         lblErro.setForeground(new java.awt.Color(255, 0, 51));
 
-        btnRemover.setBackground(new java.awt.Color(204, 255, 255));
         btnRemover.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
-        btnRemover.setForeground(new java.awt.Color(0, 153, 153));
         btnRemover.setText("Remover");
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,7 +215,7 @@ public class CrudLote extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOME", "Nº DA PARCELA", "CONTATO", "COORDENADAS"
+                "Responsável", "Nº da parcela", "Contato", "Coordenada"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -289,65 +240,26 @@ public class CrudLote extends javax.swing.JFrame {
         });
         scrollTabela.setViewportView(tabLote);
 
-        txtNumParcela.setBackground(new java.awt.Color(204, 255, 255));
-        txtNumParcela.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "nº da Parcela", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+        txtNumParcela.setBorder(javax.swing.BorderFactory.createTitledBorder("nº da Parcela"));
 
-        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COORDENADAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
-
-        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel1.setText("Latitude");
-
-        jLabel2.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel2.setText("Longitude");
-
-        txtCoordenadaX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-
-        txtCoordenadaY.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(txtCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        txtContato.setBackground(new java.awt.Color(204, 255, 255));
-        txtContato.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONTATO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+        txtContato.setBorder(javax.swing.BorderFactory.createTitledBorder("Contato"));
         try {
             txtContato.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        btnLimpar.setBackground(new java.awt.Color(204, 255, 255));
         btnLimpar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnLimpar.setForeground(new java.awt.Color(0, 153, 153));
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
             }
         });
+
+        txtCoordenada.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordenada"));
+
+        jButton1.setText("Home");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -356,22 +268,24 @@ public class CrudLote extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(343, 343, 343)
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(262, 262, 262)
                         .addComponent(lblCadTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNome)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnRemover, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
-                            .addComponent(txtNumParcela)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtContato)
-                            .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtNumParcela, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtContato, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCoordenada))
                         .addGap(18, 18, 18)
                         .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(39, 39, 39))
@@ -384,8 +298,13 @@ public class CrudLote extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(lblCadTitulo)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(lblCadTitulo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -394,9 +313,9 @@ public class CrudLote extends javax.swing.JFrame {
                         .addComponent(txtNumParcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txtContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCoordenada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRemover)
                             .addComponent(btnSalvar)
@@ -404,7 +323,7 @@ public class CrudLote extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLimpar))
                     .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(120, 120, 120)
@@ -432,8 +351,7 @@ public class CrudLote extends javax.swing.JFrame {
         if (txtNome.getText().isBlank() ||
             txtNumParcela.getText().isBlank() ||
             txtContato.getText().isBlank() ||
-            txtCoordenadaX.getText().isBlank() ||
-            txtCoordenadaY.getText().isBlank()
+            txtCoordenada.getText().isBlank()
         ) {
             JOptionPane.showMessageDialog(
                 this, "Preencha todos os campos", 
@@ -446,9 +364,7 @@ public class CrudLote extends javax.swing.JFrame {
         lote.setNome(txtNome.getText());
         lote.setNumParcela(txtNumParcela.getText());
         lote.setContato(txtContato.getText());
-        double x = Double.parseDouble(txtCoordenadaX.getText().replace(',','.'));
-        double y = Double.parseDouble(txtCoordenadaY.getText().replace(',', '.'));
-        lote.setCoordenada(new double[] {x, y});
+        lote.setCoordenada(txtCoordenada.getText());
         ISA.loteList.add(lote);
 
         indice = ISA.loteList.size()-1;
@@ -466,8 +382,7 @@ public class CrudLote extends javax.swing.JFrame {
         txtNome_editar.setText(lote.getNome());
         txtNumParcela_editar.setText(lote.getNumParcela());
         txtContato_editar.setText(lote.getContato());
-        txtCoordenadaX_editar.setText(String.valueOf(lote.getCoordenada()[0]));
-        txtCoordenadaY_editar.setText(String.valueOf(lote.getCoordenada()[1]));
+        txtCoordenada_editar.setText(lote.getCoordenada());
         
         dialogEditar.setSize(390, 370);
         dialogEditar.setLocationRelativeTo(null);
@@ -508,8 +423,7 @@ public class CrudLote extends javax.swing.JFrame {
         if (txtNome_editar.getText().isBlank() ||
             txtNumParcela_editar.getText().isBlank() ||
             txtContato_editar.getText().isBlank() ||
-            txtCoordenadaX_editar.getText().isBlank() ||
-            txtCoordenadaY_editar.getText().isBlank()
+            txtCoordenada_editar.getText().isBlank()
         ) {
             JOptionPane.showMessageDialog(
                 this, "Preencha todos os campos", 
@@ -521,9 +435,7 @@ public class CrudLote extends javax.swing.JFrame {
         lote.setNome(txtNome_editar.getText());
         lote.setNumParcela(txtNumParcela_editar.getText());
         lote.setContato(txtContato_editar.getText());
-        double x = Double.parseDouble(txtCoordenadaX_editar.getText().replace(',','.'));
-        double y = Double.parseDouble(txtCoordenadaY_editar.getText().replace(',','.'));
-        lote.setCoordenada(new double[] {x, y});
+        lote.setCoordenada(txtCoordenada_editar.getText());
         
         ISA.loteList.remove(editing_row);
         ISA.loteList.add(editing_row, lote);
@@ -539,8 +451,7 @@ public class CrudLote extends javax.swing.JFrame {
         txtNome.setText("");
         txtNumParcela.setText("");
         txtContato.setText("");
-        txtCoordenadaX.setText("");
-        txtCoordenadaY.setText("");
+        txtCoordenada.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
 
     /**
@@ -589,23 +500,16 @@ public class CrudLote extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnSalvar_editar;
     private javax.swing.JDialog dialogEditar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCadTitulo;
     private javax.swing.JLabel lblErro;
-    private javax.swing.JLabel lblLatitude_editar;
-    private javax.swing.JLabel lblLongitude_editar;
-    private javax.swing.JPanel paneCoordenadas_editar;
     private javax.swing.JScrollPane scrollTabela;
     private javax.swing.JTable tabLote;
     private javax.swing.JFormattedTextField txtContato;
     private javax.swing.JFormattedTextField txtContato_editar;
-    private javax.swing.JFormattedTextField txtCoordenadaX;
-    private javax.swing.JFormattedTextField txtCoordenadaX_editar;
-    private javax.swing.JFormattedTextField txtCoordenadaY;
-    private javax.swing.JFormattedTextField txtCoordenadaY_editar;
+    private javax.swing.JFormattedTextField txtCoordenada;
+    private javax.swing.JFormattedTextField txtCoordenada_editar;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNome_editar;
     private javax.swing.JTextField txtNumParcela;

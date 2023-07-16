@@ -4,7 +4,7 @@
  */
 package com.mycompany.isa.view.indicadores;
 
-import com.mycompany.isa.model.IndicadorTabela;
+import com.mycompany.isa.model.Indicador;
 import java.util.List;
 
 /**
@@ -12,7 +12,7 @@ import java.util.List;
  * @author naoki
  */
 public class IndicadorTabelaPanel extends javax.swing.JPanel {
-    IndicadorTabela indicadores;
+    Indicador indicadores;
     int rows = 0; // number of "grupos" received by gridLayout<-gruposPanel
     static int currentRow;
     /**
@@ -22,7 +22,7 @@ public class IndicadorTabelaPanel extends javax.swing.JPanel {
         initComponents();
     }
     
-    public IndicadorTabelaPanel(IndicadorTabela indicadores) {
+    public IndicadorTabelaPanel(Indicador indicadores) {
         this.indicadores = indicadores;
         initAll();
     }

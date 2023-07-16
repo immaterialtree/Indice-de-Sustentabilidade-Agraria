@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class Test {
     public static void main(String[] args) {
-        Lote lote = new Lote("Marcos de Oliveira", "02", "123465", new double[]{15, 4});
+        Lote lote = new Lote("Marcos de Oliveira", "02", "123465", "");
         lote.addScores(513, new Double[]{2d, 4d,6d});
         lote.addScores(444, new Double[]{1d, 3d,5d});
         ObjectMapper mapper = new ObjectMapper();

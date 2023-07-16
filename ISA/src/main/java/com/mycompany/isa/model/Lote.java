@@ -17,13 +17,13 @@ public class Lote {
     private String nome;
     private String numParcela;
     private String contato;
-    private double[] coordenada;
+    private String coordenada;
     private Map<Integer, Double[]> scoresMap; // Map<modelo.hashCode, scores>
  
     public Lote() {
     }
 
-    public Lote(String nome, String numParcela, String numero, double[] coordenada) {
+    public Lote(String nome, String numParcela, String numero, String coordenada) {
         this.nome = nome;
         this.numParcela = numParcela;
         this.contato = numero;
@@ -31,7 +31,7 @@ public class Lote {
         scoresMap = new LinkedHashMap<>();
     }
     
-    public Lote(String nome, String numParcela, String numero, double[] coordenada, Integer[] keys, Double[][] scores) {
+    public Lote(String nome, String numParcela, String numero, String coordenada, Integer[] keys, Double[][] scores) {
         this.nome = nome;
         this.numParcela = numParcela;
         this.contato = numero;
@@ -66,11 +66,11 @@ public class Lote {
         this.contato = contato;
     }
 
-    public double[] getCoordenada() {
+    public String getCoordenada() {
         return coordenada;
     }
 
-    public void setCoordenada(double[] coordenada) {
+    public void setCoordenada(String coordenada) {
         this.coordenada = coordenada;
     }
 
@@ -83,11 +83,11 @@ public class Lote {
         scoresMap.put(key, scores);
     }
     
-    public void addScores(IndicadorTabela modelo, Double[] scores) {
+    public void addScores(Indicador modelo, Double[] scores) {
         scoresMap.put(modelo.hashCode(), scores);
     }
     
-    public void initScoreSheet(IndicadorTabela modelo) {
+    public void initScoreSheet(Indicador modelo) {
         int size = 0;
         for (List itemList : modelo.getAllItems()) {
             size += itemList.size();
@@ -101,7 +101,7 @@ public class Lote {
         scoresMap.get(key)[pos] = score;
     }
     
-    public void setScore(IndicadorTabela modelo, int pos, Double score) {
+    public void setScore(Indicador modelo, int pos, Double score) {
         scoresMap.get(modelo.hashCode())[pos] = score;
     }
     
@@ -123,6 +123,6 @@ public class Lote {
         return "Nome:" + nome + 
                 "\nN° de parcelas:" + numParcela + 
                 "\nNumero=" + contato + 
-                "\nCoordenada=" + Arrays.toString(coordenada);
+                "\nCoordenada=" + coordenada;
     }
 }

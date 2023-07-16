@@ -5,7 +5,7 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.model.IndicadorTabela;
+import com.mycompany.isa.model.Indicador;
 import java.awt.CardLayout;
 import java.util.*;
 import javax.swing.DefaultListModel;
@@ -26,7 +26,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         initAll();
     }
     
-    public CrudIndicadores(List<IndicadorTabela> indicadores) {
+    public CrudIndicadores(List<Indicador> indicadores) {
         ISA.indicadoresList = indicadores;
         initAll();
         
@@ -52,7 +52,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
     
     void preencherLista() {
         DefaultListModel resultList = new DefaultListModel();
-        for (IndicadorTabela i : ISA.indicadoresList) {
+        for (Indicador i : ISA.indicadoresList) {
             resultList.addElement(i.getNome());
         }
         jListModelos.setModel(resultList);
@@ -66,7 +66,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         
         lblNomeModelo.setText(ISA.indicadoresList.get(indice).getNome());
         tableModel.setNumRows(0);
-        for (Map.Entry grupo: ISA.indicadoresList.get(indice).getIndicadores().entrySet()) {
+        for (Map.Entry grupo: ISA.indicadoresList.get(indice).getItemMap().entrySet()) {
             tableModel.addColumn(grupo.getKey(), ((List<String>) grupo.getValue()).toArray());
         }
         tabModelo.setModel(tableModel);

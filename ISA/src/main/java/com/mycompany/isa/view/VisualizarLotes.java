@@ -49,12 +49,8 @@ public class VisualizarLotes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         txtContato = new javax.swing.JFormattedTextField();
         txtNome = new javax.swing.JTextField();
-        paneCoordenadas = new javax.swing.JPanel();
-        lblLatitude = new javax.swing.JLabel();
-        lblLongitude = new javax.swing.JLabel();
-        txtCoordenadaX = new javax.swing.JFormattedTextField();
-        txtCoordenadaY = new javax.swing.JFormattedTextField();
         txtNumParcela = new javax.swing.JTextField();
+        txtCoordenada = new javax.swing.JFormattedTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListModelos = new javax.swing.JList<>();
         btnVisualizar = new javax.swing.JButton();
@@ -77,53 +73,11 @@ public class VisualizarLotes extends javax.swing.JFrame {
         txtNome.setBackground(new java.awt.Color(204, 255, 255));
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOME", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
 
-        paneCoordenadas.setBackground(new java.awt.Color(204, 255, 255));
-        paneCoordenadas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COORDENADAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
-
-        lblLatitude.setForeground(new java.awt.Color(0, 153, 153));
-        lblLatitude.setText("Latitude");
-
-        lblLongitude.setForeground(new java.awt.Color(0, 153, 153));
-        lblLongitude.setText("Longitude");
-
-        txtCoordenadaX.setEditable(false);
-        txtCoordenadaX.setBackground(new java.awt.Color(204, 255, 255));
-        txtCoordenadaX.setBorder(null);
-        txtCoordenadaX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-
-        txtCoordenadaY.setBackground(new java.awt.Color(204, 255, 255));
-        txtCoordenadaY.setBorder(null);
-        txtCoordenadaY.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-
-        javax.swing.GroupLayout paneCoordenadasLayout = new javax.swing.GroupLayout(paneCoordenadas);
-        paneCoordenadas.setLayout(paneCoordenadasLayout);
-        paneCoordenadasLayout.setHorizontalGroup(
-            paneCoordenadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneCoordenadasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblLatitude)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(lblLongitude)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        paneCoordenadasLayout.setVerticalGroup(
-            paneCoordenadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneCoordenadasLayout.createSequentialGroup()
-                .addGroup(paneCoordenadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblLatitude)
-                    .addComponent(lblLongitude)
-                    .addComponent(txtCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         txtNumParcela.setEditable(false);
         txtNumParcela.setBackground(new java.awt.Color(204, 255, 255));
         txtNumParcela.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nº DA PARCELA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+
+        txtCoordenada.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordenada"));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,10 +86,10 @@ public class VisualizarLotes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                     .addComponent(txtNumParcela, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtContato)
-                    .addComponent(paneCoordenadas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtCoordenada))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,9 +101,9 @@ public class VisualizarLotes extends javax.swing.JFrame {
                 .addComponent(txtNumParcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(paneCoordenadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(txtCoordenada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dialogPropriedadesLayout = new javax.swing.GroupLayout(dialogPropriedades.getContentPane());
@@ -252,9 +206,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         txtNome.setText(lote.getNome());
         txtNumParcela.setText(lote.getNumParcela());
         txtContato.setText(lote.getContato());
-        txtCoordenadaX.setText(String.valueOf(lote.getCoordenada()[0]));
-        txtCoordenadaY.setText(String.valueOf(lote.getCoordenada()[1]));
-        
+        txtCoordenada.setText(lote.getCoordenada());        
         dialogPropriedades.setSize(390, 350);
         dialogPropriedades.setLocationRelativeTo(null);
         dialogPropriedades.setVisible(true);
@@ -317,13 +269,9 @@ public class VisualizarLotes extends javax.swing.JFrame {
     private javax.swing.JList<String> jListModelos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblLatitude;
-    private javax.swing.JLabel lblLongitude;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JPanel paneCoordenadas;
     private javax.swing.JFormattedTextField txtContato;
-    private javax.swing.JFormattedTextField txtCoordenadaX;
-    private javax.swing.JFormattedTextField txtCoordenadaY;
+    private javax.swing.JFormattedTextField txtCoordenada;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumParcela;
     // End of variables declaration//GEN-END:variables
