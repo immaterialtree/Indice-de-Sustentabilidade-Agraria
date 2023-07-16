@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,44 +25,79 @@ public class DataTransfer {
     private static final String PATH_LOTE = String.join(File.separator, ROOT, "lotes");
     
     
-    public static ArrayList<Lote> importLotes() throws IOException {
+    public static ArrayList<Lote> importLotes()  {
         ArrayList<Lote> lotes = new ArrayList<>();
         File loteDir = new File(PATH_LOTE);
         ObjectMapper mapper = new ObjectMapper();
         for (File f : loteDir.listFiles()) {
-            Lote l = mapper.readValue(f, new TypeReference<Lote>(){});
-            lotes.add(l);
+            try {
+                Lote l = mapper.readValue(f, new TypeReference<Lote>(){});
+                lotes.add(l);
+            } catch (IOException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return lotes;
     }
     
-    public static ArrayList<Indicador> importIndicadores() throws IOException {
+    public static ArrayList<Indicador> importIndicadores()  {
         ArrayList<Indicador> indicadores = new ArrayList<>();
         File indicadorDir = new File(PATH_INDICADOR);
         ObjectMapper mapper = new ObjectMapper();
         for (File f : indicadorDir.listFiles()) {
-            Indicador i = mapper.readValue(f, new TypeReference<Indicador>(){});
-            indicadores.add(i);
+            Indicador i;
+            try {
+                i = mapper.readValue(f, new TypeReference<Indicador>(){});
+                indicadores.add(i);
+            } catch (IOException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return indicadores;
     }
     
-    public static void exportLotes(List<Lote> loteList) throws IOException {
+    public static void exportLotes(List<Lote> loteList) {
         ObjectMapper mapper = new ObjectMapper();
         
         for (Lote lote : loteList) {
             File resultFile = new File(PATH_LOTE, lote.getNome());
-            mapper.writeValue(resultFile, lote);
+            try {
+                mapper.writeValue(resultFile, lote);
+            } catch (IOException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
     
-    public static void exportIndicadores(List<Indicador> indicadorList) throws IOException {
+    public static void exportIndicadores(List<Indicador> indicadorList) {
         ObjectMapper mapper = new ObjectMapper();
         
         for (Indicador indicador : indicadorList) {
             File resultFile = new File(PATH_INDICADOR, indicador.getNome());
-            mapper.writeValue(resultFile, indicador);
+            try {
+                mapper.writeValue(resultFile, indicador);
+            } catch (IOException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+    }
+    
+    
+    private static void deleteFileContent(File file) {
+        File[] contents = file.listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                f.delete();
+            }
+        }
+    }
+    
+    public static void deleteLotes() {
+        deleteFileContent(new File(PATH_LOTE));
+    }
+    
+    public static void deleteIndicadores() {
+        deleteFileContent(new File(PATH_INDICADOR));
     }
 }

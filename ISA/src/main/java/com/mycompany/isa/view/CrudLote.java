@@ -6,6 +6,7 @@ package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.Lote;
+import com.mycompany.isa.utility.DataTransfer;
 import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -421,7 +422,7 @@ public class CrudLote extends javax.swing.JFrame {
     }//GEN-LAST:event_tabLoteKeyReleased
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO export to JSON
+        DataTransfer.exportLotes(ISA.loteList);
         getWindows()[0].setVisible(true);
         JOptionPane.showMessageDialog(getWindows()[0], "Dados salvos");
     }//GEN-LAST:event_formWindowClosed

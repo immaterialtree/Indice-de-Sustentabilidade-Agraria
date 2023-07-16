@@ -6,6 +6,7 @@ package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.Indicador;
+import com.mycompany.isa.utility.DataTransfer;
 import java.awt.CardLayout;
 import java.util.*;
 import javax.swing.DefaultListModel;
@@ -62,7 +63,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         if (ISA.indicadoresList.size()<1) {
             lblNomeModelo.setText("");
             tabModelo.setModel(tableModel);
-        };
+        }
         
         lblNomeModelo.setText(ISA.indicadoresList.get(indice).getNome());
         tableModel.setNumRows(0);
@@ -228,7 +229,8 @@ public class CrudIndicadores extends javax.swing.JFrame {
   
     
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO export JSON
+        DataTransfer.deleteIndicadores();
+        DataTransfer.exportIndicadores(ISA.indicadoresList);
         getWindows()[0].setVisible(true);
 //        JOptionPane.showMessageDialog(getWindows()[0], "Dados salvos");
     }//GEN-LAST:event_formWindowClosed

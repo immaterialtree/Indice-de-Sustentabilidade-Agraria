@@ -199,11 +199,6 @@ public class NovoModelo extends javax.swing.JPanel {
         });
 
         cboxGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecionar grupo>" }));
-        cboxGrupo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxGrupoActionPerformed(evt);
-            }
-        });
 
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalvar.setText("Salvar");
@@ -464,10 +459,6 @@ public class NovoModelo extends javax.swing.JPanel {
             editCellAt(evt.getPoint());
         }
     }//GEN-LAST:event_tabIndicadoresMouseClicked
-
-    private void cboxGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxGrupoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboxGrupoActionPerformed
     private int cellColumn, cellRow;
     private javax.swing.JPopupMenu renameCellPopup;
     private javax.swing.JPopupMenu renameColumnPopup;
