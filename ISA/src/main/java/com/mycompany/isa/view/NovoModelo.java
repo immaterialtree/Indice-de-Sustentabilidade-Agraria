@@ -154,9 +154,7 @@ public class NovoModelo extends javax.swing.JPanel {
             }
         });
 
-        txtNome.setBackground(new java.awt.Color(204, 255, 255));
-        txtNome.setForeground(new java.awt.Color(0, 153, 153));
-        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome do modelo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome da Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNomeFocusLost(evt);
@@ -168,17 +166,13 @@ public class NovoModelo extends javax.swing.JPanel {
             }
         });
 
-        btnAddGrupo.setBackground(new java.awt.Color(204, 255, 255));
-        btnAddGrupo.setForeground(new java.awt.Color(0, 153, 153));
-        btnAddGrupo.setText("Adicionar Grupo ao modelo");
+        btnAddGrupo.setText("Adicionar grupo à categoria");
         btnAddGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddGrupoActionPerformed(evt);
             }
         });
 
-        txtGrupo.setBackground(new java.awt.Color(204, 255, 255));
-        txtGrupo.setForeground(new java.awt.Color(0, 153, 153));
         txtGrupo.setToolTipText("Escreva o nome do grupo");
         txtGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,14 +180,10 @@ public class NovoModelo extends javax.swing.JPanel {
             }
         });
 
-        lblNovoGrupo.setForeground(new java.awt.Color(0, 153, 153));
-        lblNovoGrupo.setText("Novo grupo");
+        lblNovoGrupo.setText("Novo Grupo");
 
-        lblNovoIndicador.setForeground(new java.awt.Color(0, 153, 153));
-        lblNovoIndicador.setText("Novo indicador");
+        lblNovoIndicador.setText("Novo Indicador");
 
-        txtItem.setBackground(new java.awt.Color(204, 255, 255));
-        txtItem.setForeground(new java.awt.Color(0, 153, 153));
         txtItem.setToolTipText("Escreva o nome do indicador");
         txtItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,8 +191,6 @@ public class NovoModelo extends javax.swing.JPanel {
             }
         });
 
-        btnAddItem.setBackground(new java.awt.Color(204, 255, 255));
-        btnAddItem.setForeground(new java.awt.Color(0, 153, 153));
         btnAddItem.setText("Adicionar indicador ao grupo");
         btnAddItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,13 +198,14 @@ public class NovoModelo extends javax.swing.JPanel {
             }
         });
 
-        cboxGrupo.setBackground(new java.awt.Color(204, 255, 255));
-        cboxGrupo.setForeground(new java.awt.Color(0, 153, 153));
-        cboxGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecionar Grupo>" }));
+        cboxGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecionar grupo>" }));
+        cboxGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxGrupoActionPerformed(evt);
+            }
+        });
 
-        btnSalvar.setBackground(new java.awt.Color(204, 255, 255));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSalvar.setForeground(new java.awt.Color(0, 153, 153));
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,15 +234,11 @@ public class NovoModelo extends javax.swing.JPanel {
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNome.setText("Nome do modelo");
+        lblNome.setText("Nome da Categoria");
         lblNome.setToolTipText("");
 
-        btnVoltar.setBackground(new java.awt.Color(204, 255, 255));
-        btnVoltar.setForeground(new java.awt.Color(0, 153, 153));
         btnVoltar.setText("Voltar");
 
-        btnResetar.setBackground(new java.awt.Color(204, 255, 255));
-        btnResetar.setForeground(new java.awt.Color(0, 153, 153));
         btnResetar.setText("Resetar");
         btnResetar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -479,6 +464,10 @@ public class NovoModelo extends javax.swing.JPanel {
             editCellAt(evt.getPoint());
         }
     }//GEN-LAST:event_tabIndicadoresMouseClicked
+
+    private void cboxGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxGrupoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboxGrupoActionPerformed
     private int cellColumn, cellRow;
     private javax.swing.JPopupMenu renameCellPopup;
     private javax.swing.JPopupMenu renameColumnPopup;
