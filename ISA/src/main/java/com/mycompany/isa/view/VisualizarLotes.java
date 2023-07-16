@@ -137,9 +137,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jListModelos);
 
-        btnVisualizar.setBackground(new java.awt.Color(204, 255, 255));
-        btnVisualizar.setForeground(new java.awt.Color(0, 153, 153));
-        btnVisualizar.setText("Indice de Sustentabilidade");
+        btnVisualizar.setText("Índice de sustentabilidade");
         btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisualizarActionPerformed(evt);
@@ -148,11 +146,9 @@ public class VisualizarLotes extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Escolha um lote");
+        lblTitulo.setText("Escolha um Lote");
 
-        btnPropriedades.setBackground(new java.awt.Color(204, 255, 255));
-        btnPropriedades.setForeground(new java.awt.Color(0, 153, 153));
-        btnPropriedades.setText("Ver Propriedades");
+        btnPropriedades.setText("Ver propriedades");
         btnPropriedades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPropriedadesActionPerformed(evt);
