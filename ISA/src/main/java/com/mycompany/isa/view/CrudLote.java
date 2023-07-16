@@ -206,8 +206,6 @@ public class CrudLote extends javax.swing.JFrame {
             }
         });
 
-        scrollTabela.setBackground(new java.awt.Color(255, 255, 204));
-        scrollTabela.setForeground(new java.awt.Color(0, 204, 204));
         scrollTabela.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         tabLote.setModel(new javax.swing.table.DefaultTableModel(
@@ -215,7 +213,7 @@ public class CrudLote extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Responsável", "Nº da parcela", "Contato", "Coordenada"
+                "Responsável", "Nº da Parcela", "Contato", "Coordenada"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -240,7 +238,12 @@ public class CrudLote extends javax.swing.JFrame {
         });
         scrollTabela.setViewportView(tabLote);
 
-        txtNumParcela.setBorder(javax.swing.BorderFactory.createTitledBorder("nº da Parcela"));
+        txtNumParcela.setBorder(javax.swing.BorderFactory.createTitledBorder("Nº da Parcela"));
+        txtNumParcela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumParcelaActionPerformed(evt);
+            }
+        });
 
         txtContato.setBorder(javax.swing.BorderFactory.createTitledBorder("Contato"));
         try {
@@ -258,6 +261,11 @@ public class CrudLote extends javax.swing.JFrame {
         });
 
         txtCoordenada.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordenada"));
+        txtCoordenada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCoordenadaActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Home");
 
@@ -453,6 +461,14 @@ public class CrudLote extends javax.swing.JFrame {
         txtContato.setText("");
         txtCoordenada.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void txtNumParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumParcelaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumParcelaActionPerformed
+
+    private void txtCoordenadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCoordenadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCoordenadaActionPerformed
 
     /**
      * @param args the command line arguments

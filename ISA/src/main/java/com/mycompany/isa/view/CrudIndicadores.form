@@ -180,23 +180,11 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnEditar">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="cc" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnExcluir">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="cc" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Excluir"/>
               </Properties>
               <Events>
@@ -205,12 +193,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnNovo">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="cc" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Novo"/>
               </Properties>
               <Events>

@@ -336,12 +336,6 @@
         </Component>
         <Container class="javax.swing.JScrollPane" name="scrollTabela">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="0" type="rgb"/>
-            </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>
@@ -354,7 +348,7 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="0">
                     <Column editable="false" title="Respons&#xe1;vel" type="java.lang.Object"/>
-                    <Column editable="false" title="N&#xba; da parcela" type="java.lang.Object"/>
+                    <Column editable="false" title="N&#xba; da Parcela" type="java.lang.Object"/>
                     <Column editable="false" title="Contato" type="java.lang.Object"/>
                     <Column editable="false" title="Coordenada" type="java.lang.Object"/>
                   </Table>
@@ -376,10 +370,13 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="n&#xba; da Parcela"/>
+                <TitledBorder title="N&#xba; da Parcela"/>
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumParcelaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtContato">
           <Properties>
@@ -412,6 +409,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCoordenadaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>

@@ -144,12 +144,8 @@ public class CrudIndicadores extends javax.swing.JFrame {
         tabModelo.setShowHorizontalLines(false);
         scrollTabela1.setViewportView(tabModelo);
 
-        btnEditar.setBackground(new java.awt.Color(204, 255, 255));
-        btnEditar.setForeground(new java.awt.Color(0, 153, 153));
         btnEditar.setText("Editar");
 
-        btnExcluir.setBackground(new java.awt.Color(204, 255, 255));
-        btnExcluir.setForeground(new java.awt.Color(0, 153, 153));
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,8 +153,6 @@ public class CrudIndicadores extends javax.swing.JFrame {
             }
         });
 
-        btnNovo.setBackground(new java.awt.Color(204, 255, 255));
-        btnNovo.setForeground(new java.awt.Color(0, 153, 153));
         btnNovo.setText("Novo");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
