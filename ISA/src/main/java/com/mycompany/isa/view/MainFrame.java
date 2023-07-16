@@ -5,6 +5,8 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
+import java.awt.CardLayout;
+import java.awt.Component;
 
 /**
  *
@@ -28,38 +30,37 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        menuGerenciar = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        menuVoltar = new javax.swing.JMenu();
         cardPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
         btnGerenciarLotes = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnGerenciarModelos = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblMainTitle = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        sobrePanel = new javax.swing.JPanel();
+        lblSobreTitle = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        ajudaPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        menuSobre = new javax.swing.JMenu();
+        menuAjuda = new javax.swing.JMenu();
 
-        menuGerenciar.setText("Gerenciar");
-
-        jMenuItem1.setText("Gerenciar lotes");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+        menuVoltar.setText("Voltar");
+        menuVoltar.setName("Voltar"); // NOI18N
+        menuVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuVoltarMouseClicked(evt);
             }
         });
-        menuGerenciar.add(jMenuItem1);
-
-        jMenuItem2.setText("Gerenciar modelos");
-        menuGerenciar.add(jMenuItem2);
-
-        jMenuBar1.add(menuGerenciar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cardPanel.setLayout(new java.awt.CardLayout());
-
-        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         btnGerenciarLotes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnGerenciarLotes.setText("Gerenciar lotes");
@@ -78,17 +79,18 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         btnGerenciarModelos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGerenciarModelos.setText("Gerenciar modelos");
+        btnGerenciarModelos.setText("Gerenciar indicadores");
         btnGerenciarModelos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGerenciarModelosActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ÍNDICE DE SUSTENTABILIDADE");
+        lblMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblMainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMainTitle.setText("ÍNDICE DE SUSTENTABILIDADE AGRÁRIA");
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setText("Calcular Índice");
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -97,36 +99,120 @@ public class MainFrame extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnGerenciarModelos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(90, 90, 90))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(lblMainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGerenciarModelos))
+                        .addGap(49, 49, 49))))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel1)
-                .addGap(58, 58, 58)
+                .addGap(33, 33, 33)
+                .addComponent(lblMainTitle)
+                .addGap(52, 52, 52)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGerenciarModelos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49))
+                    .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGerenciarModelos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
-        cardPanel.add(mainPanel, "card2");
+        cardPanel.add(mainPanel, "main");
+
+        lblSobreTitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblSobreTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSobreTitle.setText("Descrição do projeto");
+
+        jTextPane1.setText("Aqui é onde estará a descrição sobre o Índice de Sustentabilidade Agrária\n");
+        jScrollPane1.setViewportView(jTextPane1);
+
+        javax.swing.GroupLayout sobrePanelLayout = new javax.swing.GroupLayout(sobrePanel);
+        sobrePanel.setLayout(sobrePanelLayout);
+        sobrePanelLayout.setHorizontalGroup(
+            sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sobrePanelLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSobreTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(sobrePanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        sobrePanelLayout.setVerticalGroup(
+            sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sobrePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSobreTitle)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        cardPanel.add(sobrePanel, "sobre");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Ajuda");
+
+        jTextPane2.setText("Aqui é onde estará um guia sobre o aplicativo");
+        jScrollPane2.setViewportView(jTextPane2);
+
+        javax.swing.GroupLayout ajudaPanelLayout = new javax.swing.GroupLayout(ajudaPanel);
+        ajudaPanel.setLayout(ajudaPanelLayout);
+        ajudaPanelLayout.setHorizontalGroup(
+            ajudaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ajudaPanelLayout.createSequentialGroup()
+                .addGroup(ajudaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ajudaPanelLayout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(jLabel1))
+                    .addGroup(ajudaPanelLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+        ajudaPanelLayout.setVerticalGroup(
+            ajudaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ajudaPanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        cardPanel.add(ajudaPanel, "ajuda");
+
+        menuSobre.setText("Sobre");
+        menuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSobreMouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(menuSobre);
+
+        menuAjuda.setText("Ajuda");
+        menuAjuda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuAjudaMouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(menuAjuda);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,14 +239,35 @@ public class MainFrame extends javax.swing.JFrame {
         new CrudIndicadores(ISA.indicadoresList).setVisible(true);
     }//GEN-LAST:event_btnGerenciarModelosActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
         new VisualizarLotes().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void menuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSobreMouseClicked
+        CardLayout cl = (CardLayout) cardPanel.getLayout();
+        cl.show(cardPanel, "sobre");
+        if (jMenuBar2.getComponents().length < 3) {
+            jMenuBar2.add(menuVoltar);
+            jMenuBar2.repaint();
+        }
+    }//GEN-LAST:event_menuSobreMouseClicked
+
+    private void menuAjudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAjudaMouseClicked
+        CardLayout cl = (CardLayout) cardPanel.getLayout();
+        cl.show(cardPanel, "ajuda");
+        if (jMenuBar2.getComponents().length < 3) {
+            jMenuBar2.add(menuVoltar);
+            jMenuBar2.repaint();
+        }
+    }//GEN-LAST:event_menuAjudaMouseClicked
+
+    private void menuVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuVoltarMouseClicked
+        CardLayout cl = (CardLayout) cardPanel.getLayout();
+        cl.show(cardPanel, "main");
+        jMenuBar2.remove(menuVoltar);
+        jMenuBar2.repaint();
+    }//GEN-LAST:event_menuVoltarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -199,16 +306,24 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ajudaPanel;
     private javax.swing.JButton btnGerenciarLotes;
     private javax.swing.JButton btnGerenciarModelos;
     private javax.swing.JPanel cardPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JLabel lblMainTitle;
+    private javax.swing.JLabel lblSobreTitle;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JMenu menuGerenciar;
+    private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenu menuSobre;
+    private javax.swing.JMenu menuVoltar;
+    private javax.swing.JPanel sobrePanel;
     // End of variables declaration//GEN-END:variables
 }
