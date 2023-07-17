@@ -9,20 +9,41 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Generated;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated("org.jsonschema2pojo")
+@JsonPropertyOrder({
+"nome",
+"numParcela",
+"contato",
+"coordenada",
+"scoresMap"
+})
 /**
  *
  * @author naoki
  */
 public class Lote {
+    @JsonProperty("nome")
     private String nome;
+    @JsonProperty("numParcela")
     private String numParcela;
+    @JsonProperty("contato")
     private String contato;
+    @JsonProperty("coordenada")
     private String coordenada;
     private Map<Integer, Double[]> scoresMap; // Map<modelo.hashCode, scores>
  
     public Lote() {
+        scoresMap = new LinkedHashMap<>();
     }
-
+    
     public Lote(String nome, String numParcela, String numero, String coordenada) {
         this.nome = nome;
         this.numParcela = numParcela;
@@ -74,7 +95,7 @@ public class Lote {
         this.coordenada = coordenada;
     }
 
-    public Map<Integer, Double[]> getScores() {
+    public Map<Integer, Double[]> getScoresMap() {
         return scoresMap;
     }
     
@@ -105,14 +126,16 @@ public class Lote {
         scoresMap.get(modelo.hashCode())[pos] = score;
     }
     
+    @JsonIgnore
     public Double getScore(Integer key, int pos) {
         return scoresMap.get(key)[pos];
     }
-    
-    public Double[] getScores(Integer key) {
+    @JsonIgnore
+    public Double[] getScoresOf(Integer key) {
         return scoresMap.get(key);
     }
     
+    @JsonIgnore
     public Double[][] getAllScores() {
         return scoresMap.values().toArray(Double[][]::new);
     }

@@ -59,7 +59,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
             item.setVisible(true);
         }
         this.endRow = IndicadorTabelaPanel.currentRow;
-        itensValor = Arrays.copyOfRange(IndicadoresFrame.lote.getScores(modeloHash), startRow, endRow);
+        itensValor = Arrays.copyOfRange(IndicadoresFrame.lote.getScoresOf(modeloHash), startRow, endRow);
         calcularMedia();
     }
     /**

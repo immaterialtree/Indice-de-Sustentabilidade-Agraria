@@ -422,6 +422,7 @@ public class CrudLote extends javax.swing.JFrame {
     }//GEN-LAST:event_tabLoteKeyReleased
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        DataTransfer.deleteLotes();
         DataTransfer.exportLotes(ISA.loteList);
         getWindows()[0].setVisible(true);
         JOptionPane.showMessageDialog(getWindows()[0], "Dados salvos");

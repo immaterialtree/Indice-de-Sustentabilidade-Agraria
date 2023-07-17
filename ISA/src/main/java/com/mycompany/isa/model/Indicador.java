@@ -10,12 +10,28 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.LinkedHashMap;
 
+import javax.annotation.Generated;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Generated("org.jsonschema2pojo")
+@JsonPropertyOrder({
+"nome",
+"itemMap"
+})
+
 /**
  *
  * @author naoki
  */
 public class Indicador {
+    @JsonProperty("nome")
     private String nome;
+    @JsonProperty("itemMap")
     private Map<String, List<String>> itemMap; // map with <key, value> as <grupo, item>
     
     // Constructors
@@ -36,16 +52,19 @@ public class Indicador {
     public String getNome() {
         return nome;
     }
-
+    
     public void setNome(String nome) { 
         this.nome = nome;
     }
     
-    // item - getter
+    // itemMap - getter/setter
     public Map<String, List<String>> getItemMap() {
         return itemMap;
     }
+    
+    
     // grupos - get/add/remove
+    @JsonIgnore
     public java.util.ArrayList<String> getGrupos() {
         return new ArrayList<>(itemMap.keySet());
     }
@@ -68,9 +87,12 @@ public class Indicador {
     }
     
     // itens - get/add/remove
+    @JsonIgnore
     public List<List<String>> getAllItems() {
         return List.copyOf(itemMap.values());
     }
+    
+    @JsonIgnore
     public String[][] getAllItemsArr() {
         List<List<String>> itemList = getAllItems();
         String[][] itemArr = new String[itemList.size()][];
@@ -79,6 +101,8 @@ public class Indicador {
         }
         return itemArr;
     }
+    
+    @JsonIgnore
     public List<String> getItens(String grupo) {
         return itemMap.get(grupo);
     }

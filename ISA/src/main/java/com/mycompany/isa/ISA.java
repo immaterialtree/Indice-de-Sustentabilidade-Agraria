@@ -6,6 +6,7 @@ package com.mycompany.isa;
 
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.model.Indicador;
+import com.mycompany.isa.utility.DataTransfer;
 import com.mycompany.isa.view.MainFrame;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,9 @@ public class ISA {
             System.out.println("Look and Feel não configurado");
         }
         
-        
+        // load objects
+        loteList = DataTransfer.importLotes();
+        indicadoresList = DataTransfer.importIndicadores();
         
         // start aplication
         MainFrame telaPrincipal = new MainFrame();
