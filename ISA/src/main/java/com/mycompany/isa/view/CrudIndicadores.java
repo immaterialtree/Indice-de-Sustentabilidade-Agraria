@@ -5,7 +5,7 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.model.Indicador;
+import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.DataTransfer;
 import java.awt.CardLayout;
 import java.util.*;
@@ -19,15 +19,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CrudIndicadores extends javax.swing.JFrame {
 //    List<IndicadoresModelo> ISA.indicadoresList = new ArrayList<>();
-    NovoModelo novoModeloPanel;
+    NovaCategoriaPanel novoModeloPanel;
     CardLayout cl;
-    int indice = 0;
     
     public CrudIndicadores() {
         initAll();
     }
     
-    public CrudIndicadores(List<Indicador> indicadores) {
+    public CrudIndicadores(List<CategoriaIndicadores> indicadores) {
         ISA.indicadoresList = indicadores;
         initAll();
         
@@ -41,7 +40,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         tabModelo.changeSelection(0, 1, false, false);
         jListModelos.setSelectedIndex(0);
         
-        novoModeloPanel = new NovoModelo();
+        novoModeloPanel = new NovaCategoriaPanel();
         cardPanel.add(novoModeloPanel, "new");
         novoModeloPanel.getBtnVoltar().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,12 +52,17 @@ public class CrudIndicadores extends javax.swing.JFrame {
     
     void preencherLista() {
         DefaultListModel resultList = new DefaultListModel();
-        for (Indicador i : ISA.indicadoresList) {
+        for (CategoriaIndicadores i : ISA.indicadoresList) {
             resultList.addElement(i.getNome());
         }
         jListModelos.setModel(resultList);
+        if (jListModelos.getSelectedIndex()==-1 && jListModelos.getModel().getSize() > 0) {
+            jListModelos.setSelectedIndex(0);
+            preencherTabela(0);
+        }
     }
     void preencherTabela(int indice) {
+        if (indice < 0) return;
         DefaultTableModel tableModel = new DefaultTableModel();
         if (ISA.indicadoresList.isEmpty()) {
             lblNomeModelo.setText("");
@@ -67,7 +71,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         }
         
         lblNomeModelo.setText(ISA.indicadoresList.get(indice).getNome());
-        tableModel.setNumRows(0);
+        tableModel.setRowCount(0);
         for (Map.Entry grupo: ISA.indicadoresList.get(indice).getItemMap().entrySet()) {
             tableModel.addColumn(grupo.getKey(), ((List<String>) grupo.getValue()).toArray());
         }
@@ -92,12 +96,13 @@ public class CrudIndicadores extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jListModelos = new javax.swing.JList<>();
         lblNomeModelo = new javax.swing.JLabel();
-        scrollTabela1 = new javax.swing.JScrollPane();
-        tabModelo = new javax.swing.JTable();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnNovo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        scrollTabela1 = new javax.swing.JScrollPane();
+        tabModelo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerenciar Modelos");
@@ -111,14 +116,9 @@ public class CrudIndicadores extends javax.swing.JFrame {
         cardPanel.setLayout(new java.awt.CardLayout());
 
         jListModelos.setBorder(null);
-        jListModelos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListModelosMouseClicked(evt);
-            }
-        });
-        jListModelos.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jListModelosKeyPressed(evt);
+        jListModelos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListModelosValueChanged(evt);
             }
         });
         jScrollPane2.setViewportView(jListModelos);
@@ -127,6 +127,30 @@ public class CrudIndicadores extends javax.swing.JFrame {
         lblNomeModelo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNomeModelo.setText("Nome da Categoria");
         lblNomeModelo.setToolTipText("");
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Categorias");
 
         scrollTabela1.setBackground(new java.awt.Color(255, 255, 204));
         scrollTabela1.setForeground(new java.awt.Color(0, 204, 204));
@@ -146,24 +170,16 @@ public class CrudIndicadores extends javax.swing.JFrame {
         tabModelo.setShowHorizontalLines(false);
         scrollTabela1.setViewportView(tabModelo);
 
-        btnEditar.setText("Editar");
-
-        btnExcluir.setText("Excluir");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-
-        btnNovo.setText("Novo");
-        btnNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Categorias");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollTabela1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollTabela1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
@@ -187,7 +203,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
                         .addGap(123, 123, 123)))
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNomeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(scrollTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         homePanelLayout.setVerticalGroup(
@@ -206,8 +222,8 @@ public class CrudIndicadores extends javax.swing.JFrame {
                             .addComponent(btnExcluir)
                             .addComponent(btnEditar)
                             .addComponent(btnNovo)))
-                    .addComponent(scrollTabela1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         cardPanel.add(homePanel, "home");
@@ -236,19 +252,10 @@ public class CrudIndicadores extends javax.swing.JFrame {
 //        JOptionPane.showMessageDialog(getWindows()[0], "Dados salvos");
     }//GEN-LAST:event_formWindowClosed
 
-    private void jListModelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListModelosMouseClicked
-        indice = jListModelos.getSelectedIndex();
-        preencherTabela(indice);
-    }//GEN-LAST:event_jListModelosMouseClicked
-
-    private void jListModelosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jListModelosKeyPressed
-        indice = jListModelos.getSelectedIndex();
-        preencherTabela(indice);
-    }//GEN-LAST:event_jListModelosKeyPressed
-
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         cl.show(cardPanel, "new");
-        novoModeloPanel.salvo = false;
+        novoModeloPanel.resetar();
+        novoModeloPanel.editing = false;
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -259,6 +266,20 @@ public class CrudIndicadores extends javax.swing.JFrame {
         preencherLista();
         preencherTabela(-1);
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int selected = jListModelos.getSelectedIndex();
+        if (selected < 0) {
+            return;
+        }
+        novoModeloPanel.carregarCategoria(ISA.indicadoresList.get(selected), selected);
+        cl.show(cardPanel, "new");
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void jListModelosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListModelosValueChanged
+        preencherTabela(jListModelos.getSelectedIndex());
+    }//GEN-LAST:event_jListModelosValueChanged
     
     
    
@@ -312,6 +333,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
     private javax.swing.JPanel homePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jListModelos;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblNomeModelo;
     private javax.swing.JScrollPane scrollTabela1;

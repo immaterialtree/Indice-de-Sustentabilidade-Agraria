@@ -5,7 +5,7 @@
 package com.mycompany.isa;
 
 import com.mycompany.isa.model.Lote;
-import com.mycompany.isa.model.Indicador;
+import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.DataTransfer;
 import com.mycompany.isa.view.MainFrame;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import javax.swing.UIManager;
  */
 public class ISA {
     public static List<Lote> loteList = new ArrayList<>();
-    public static List<Indicador> indicadoresList = new ArrayList<>();
+    public static List<CategoriaIndicadores> indicadoresList = new ArrayList<>();
 
     /**
      * @param args the command line arguments
@@ -29,7 +29,6 @@ public class ISA {
         try {
   
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            System.out.println(UIManager.getLookAndFeel().getName());
         }
         catch (Exception e) {
             System.out.println("Look and Feel não configurado");

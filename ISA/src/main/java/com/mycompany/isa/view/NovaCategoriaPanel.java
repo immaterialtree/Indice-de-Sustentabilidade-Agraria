@@ -5,7 +5,7 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.model.Indicador;
+import com.mycompany.isa.model.CategoriaIndicadores;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -20,28 +20,20 @@ import javax.swing.table.*;
  *
  * @author naoki
  */
-public class NovoModelo extends javax.swing.JPanel {
-    private Indicador novoIndicador = new Indicador();
-    boolean salvo = false;
+public class NovaCategoriaPanel extends javax.swing.JPanel {
+    private CategoriaIndicadores novaCategoria = new CategoriaIndicadores();
+    protected boolean editing = false;
+    private int editingIndex = -1;
     /**
      * Creates new form NovoModelo
      */
-    public NovoModelo() {
+    public NovaCategoriaPanel() {
         initAll();
     }
     
-    public NovoModelo(Indicador modelo) {
-        initAll();
-        novoIndicador = modelo;
-        lblNome.setText(modelo.getNome());
-        atualizarTabela();
-    }
-    
-
     private void initAll() {
         initComponents();
         atualizarTabela();
-//        mostrarDadosTela();
         
         header = tabIndicadores.getTableHeader();
         header.addMouseListener(new MouseAdapter(){
@@ -62,42 +54,26 @@ public class NovoModelo extends javax.swing.JPanel {
         renameCellPopup.add(txtEditCell);
     }
 
-//    private void mostrarDadosTela() {
-//        int grupoSelecionado = tabIndicadores.getSelectedColumn();
-//        int itemSelecionado = tabIndicadores.getSelectedRow();
-//        txtNome.setText(novoIndicador.getNome());
-//        if (grupoSelecionado == -1) {
-//            txtGrupo.setText("");
-//            cboxGrupo.setSelectedIndex(0);
-//        } 
-//        else {
-//            txtGrupo.setText(novoIndicador.getGrupos().get(grupoSelecionado));
-//            cboxGrupo.setSelectedIndex(0);
-//        }
-//    }
     
     private void atualizarTabela() {
         DefaultTableModel tableModel = (DefaultTableModel) tabIndicadores.getModel();
         tableModel.setColumnCount(0);
-        String[][] valores = novoIndicador.getAllItemsArr();
-        Object[] grupo = novoIndicador.getGrupos().toArray();
+        tableModel.setRowCount(0);
+        String[][] valores = novaCategoria.getAllItemsArr();
+        Object[] grupo = novaCategoria.getGrupos().toArray();
         for (int i = 0; i < grupo.length; i++) {
             tableModel.addColumn(grupo[i], valores[i]);
         }
-        
-        DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
-	cellRender.setHorizontalAlignment(SwingConstants.CENTER);
-        for (int i=0; i<tabIndicadores.getColumnCount(); i++)
-            tabIndicadores.getColumnModel().getColumn(i).setCellRenderer(cellRender);
     }
     
-    public void atualizarCbox() {
+    private void atualizarCbox() {
         cboxGrupo.removeAllItems();
-        for (String grupo : novoIndicador.getGrupos())
+        cboxGrupo.addItem("<Selecionar Grupo>");
+        for (String grupo : novaCategoria.getGrupos())
             cboxGrupo.addItem(grupo);
     }
     
-    public void atualizarListaPelaTabela() {
+    public void atualizarCategoriaPelaTabela() {
         String[] columnArr = new String[tabIndicadores.getColumnCount()];
         for (int i = 0; i < tabIndicadores.getColumnCount(); i++) {
             columnArr[i] = tabIndicadores.getColumnName(i);
@@ -108,7 +84,7 @@ public class NovoModelo extends javax.swing.JPanel {
                 itemArr[i][j] = tabIndicadores.getValueAt(j, i).toString();
             }
         }
-        novoIndicador = new Indicador(lblNome.getName(), columnArr, itemArr);
+        novaCategoria = new CategoriaIndicadores(lblNome.getName(), columnArr, itemArr);
     }
 
     /**
@@ -122,20 +98,22 @@ public class NovoModelo extends javax.swing.JPanel {
 
         txtEditHeader = new javax.swing.JTextField();
         txtEditCell = new javax.swing.JTextField();
-        txtNome = new javax.swing.JTextField();
-        btnAddGrupo = new javax.swing.JButton();
-        txtGrupo = new javax.swing.JTextField();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        btnVoltar = new javax.swing.JButton();
         lblNovoGrupo = new javax.swing.JLabel();
+        txtGrupo = new javax.swing.JTextField();
+        btnAddGrupo = new javax.swing.JButton();
         lblNovoIndicador = new javax.swing.JLabel();
+        cboxGrupo = new javax.swing.JComboBox<>();
         txtItem = new javax.swing.JTextField();
         btnAddItem = new javax.swing.JButton();
-        cboxGrupo = new javax.swing.JComboBox<>();
+        btnResetar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         scrollTabela = new javax.swing.JScrollPane();
         tabIndicadores = new com.mycompany.isa.components.NotEditableJTable();
         lblNome = new javax.swing.JLabel();
-        btnVoltar = new javax.swing.JButton();
-        btnResetar = new javax.swing.JButton();
+        txtNome = new javax.swing.JTextField();
 
         txtEditHeader.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtEditHeader.setText("jTextField1");
@@ -154,15 +132,22 @@ public class NovoModelo extends javax.swing.JPanel {
             }
         });
 
-        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome da Categoria", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
-        txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNomeFocusLost(evt);
+        jMenuItem1.setText("Delete");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
+        jPopupMenu1.add(jMenuItem1);
+
+        btnVoltar.setText("Voltar");
+
+        lblNovoGrupo.setText("Novo Grupo");
+
+        txtGrupo.setToolTipText("Escreva o nome do grupo");
+        txtGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
+                txtGrupoActionPerformed(evt);
             }
         });
 
@@ -173,16 +158,9 @@ public class NovoModelo extends javax.swing.JPanel {
             }
         });
 
-        txtGrupo.setToolTipText("Escreva o nome do grupo");
-        txtGrupo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGrupoActionPerformed(evt);
-            }
-        });
-
-        lblNovoGrupo.setText("Novo Grupo");
-
         lblNovoIndicador.setText("Novo Indicador");
+
+        cboxGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecionar Grupo>" }));
 
         txtItem.setToolTipText("Escreva o nome do indicador");
         txtItem.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +176,12 @@ public class NovoModelo extends javax.swing.JPanel {
             }
         });
 
-        cboxGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecionar grupo>" }));
+        btnResetar.setText("Resetar");
+        btnResetar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetarActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalvar.setText("Salvar");
@@ -232,12 +215,15 @@ public class NovoModelo extends javax.swing.JPanel {
         lblNome.setText("Nome da Categoria");
         lblNome.setToolTipText("");
 
-        btnVoltar.setText("Voltar");
-
-        btnResetar.setText("Resetar");
-        btnResetar.addActionListener(new java.awt.event.ActionListener() {
+        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
+        txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNomeFocusLost(evt);
+            }
+        });
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetarActionPerformed(evt);
+                txtNomeActionPerformed(evt);
             }
         });
 
@@ -255,10 +241,10 @@ public class NovoModelo extends javax.swing.JPanel {
                     .addComponent(txtGrupo)
                     .addComponent(lblNovoGrupo)
                     .addComponent(lblNovoIndicador)
-                    .addComponent(txtNome)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                     .addComponent(btnVoltar)
-                    .addComponent(btnResetar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnResetar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNome))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -279,7 +265,7 @@ public class NovoModelo extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(lblNovoGrupo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,13 +291,20 @@ public class NovoModelo extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    public boolean isSalvo() {
-        return salvo;
-    }
-    
     public javax.swing.JButton getBtnVoltar() {
         return btnVoltar;
     }
+    
+    public void carregarCategoria(CategoriaIndicadores categoria, int indice) {
+        resetar();
+        editingIndex = indice;
+        novaCategoria = new CategoriaIndicadores(categoria.getNome(), categoria.getGrupos().toArray(String[]::new), categoria.getAllItemsArr());
+        lblNome.setText(novaCategoria.getNome());
+        txtNome.setText(novaCategoria.getNome());
+        atualizarCbox();
+        atualizarTabela();
+    }
+    
     private void editColumnAt(Point p) {
         int columnIndex = header.columnAtPoint(p);
 
@@ -350,7 +343,7 @@ public class NovoModelo extends javax.swing.JPanel {
         String oldKey = column.getHeaderValue().toString();
         String newKey = txtEditHeader.getText();
         if (oldKey.equals(newKey)) return;
-        novoIndicador.replaceGrupo(oldKey, newKey);
+        novaCategoria.replaceGrupo(oldKey, newKey);
         renameColumnPopup.setVisible(false);
         atualizarTabela();
         atualizarCbox();
@@ -360,14 +353,17 @@ public class NovoModelo extends javax.swing.JPanel {
         String oldValue = tabIndicadores.getValueAt(cellRow, cellColumn).toString();
         String newValue = txtEditCell.getText();
         String grupo = tabIndicadores.getColumnName(cellColumn);
-        novoIndicador.removeItem(grupo, oldValue);
-        novoIndicador.addItem(grupo, newValue);
+        if (newValue.isBlank()) {
+            novaCategoria.removeItem(grupo, oldValue);
+        } else {
+            novaCategoria.replaceItem(grupo, oldValue, newValue);
+        }
         renameCellPopup.setVisible(false);
         atualizarTabela();
     }
     
-    private void resetar() {
-        novoIndicador = new Indicador();
+    protected void resetar() {
+        novaCategoria = new CategoriaIndicadores();
         txtGrupo.setText("");
         txtItem.setText("");
         txtNome.setText("");
@@ -381,9 +377,9 @@ public class NovoModelo extends javax.swing.JPanel {
             return;
         }
         String grupo = txtGrupo.getText();
-        if (! novoIndicador.getItemMap().containsKey(grupo)){
+        if (! novaCategoria.getItemMap().containsKey(grupo)){
             txtGrupo.setText("");
-            novoIndicador.addGrupo(grupo);
+            novaCategoria.addGrupo(grupo);
             cboxGrupo.addItem(grupo);
             
         }
@@ -393,9 +389,9 @@ public class NovoModelo extends javax.swing.JPanel {
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         String grupo = (String) cboxGrupo.getSelectedItem();
         String item = txtItem.getText();
-        if (novoIndicador.getItemMap().containsKey(grupo)) {
-            if (! novoIndicador.getItens(grupo).contains(item)) {
-                novoIndicador.addItem(grupo, item);
+        if (novaCategoria.getItemMap().containsKey(grupo)) {
+            if (! novaCategoria.getItens(grupo).contains(item)) {
+                novaCategoria.addItem(grupo, item);
             }
         }
         txtItem.setText("");
@@ -405,15 +401,6 @@ public class NovoModelo extends javax.swing.JPanel {
     private void txtEditHeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditHeaderActionPerformed
         renameColumn();
     }//GEN-LAST:event_txtEditHeaderActionPerformed
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        lblNome.setText(txtNome.getText());
-        novoIndicador.setNome(txtNome.getText());
-    }//GEN-LAST:event_txtNomeActionPerformed
-
-    private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
-        txtNomeActionPerformed(null);
-    }//GEN-LAST:event_txtNomeFocusLost
 
     private void txtGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGrupoActionPerformed
         btnAddGrupoActionPerformed(evt);
@@ -430,12 +417,17 @@ public class NovoModelo extends javax.swing.JPanel {
                 JOptionPane.YES_NO_OPTION)
                 !=0) 
             return;
-        if (novoIndicador.getNome().isBlank() ||
-            novoIndicador.getGrupos().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Falha ao salvar. Existem campos em branco", 
+        if (novaCategoria.getNome().isBlank() ||
+            novaCategoria.getGrupos().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Falha ao salvar. Lembre-se de cadastrar pelo menos um grupo e preencher o nome", 
                     "Erro. Campo em branco", JOptionPane.ERROR_MESSAGE);
         } else {
-            ISA.indicadoresList.add(novoIndicador);
+            if (editing) {
+                ISA.indicadoresList.remove(editingIndex);
+                ISA.indicadoresList.add(editingIndex, novaCategoria);
+                editing = false;
+            } else 
+                ISA.indicadoresList.add(novaCategoria);
             resetar();
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -459,6 +451,21 @@ public class NovoModelo extends javax.swing.JPanel {
             editCellAt(evt.getPoint());
         }
     }//GEN-LAST:event_tabIndicadoresMouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        System.out.println("botao delete clicado");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        lblNome.setText(txtNome.getText());
+        novaCategoria.setNome(txtNome.getText());
+        txtGrupo.requestFocus();
+    }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
+        lblNome.setText(txtNome.getText());
+        novaCategoria.setNome(txtNome.getText());
+    }//GEN-LAST:event_txtNomeFocusLost
     private int cellColumn, cellRow;
     private javax.swing.JPopupMenu renameCellPopup;
     private javax.swing.JPopupMenu renameColumnPopup;
@@ -471,6 +478,8 @@ public class NovoModelo extends javax.swing.JPanel {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cboxGrupo;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNovoGrupo;
     private javax.swing.JLabel lblNovoIndicador;

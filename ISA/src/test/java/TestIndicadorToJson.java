@@ -2,7 +2,7 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.model.Indicador;
+import com.mycompany.isa.model.CategoriaIndicadores;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class TestIndicadorToJson {
     public static void main(String[] args) {
-        Indicador indicador = new Indicador("nome do indicador", new String[] {"grupo a", "grupo b"}, new String[][] {{"item1a", "item2a"},{"item1b"}});
+        CategoriaIndicadores indicador = new CategoriaIndicadores("nome do indicador", new String[] {"grupo a", "grupo b"}, new String[][] {{"item1a", "item2a"},{"item1b"}});
         ObjectMapper mapper = new ObjectMapper();
         String json = null;
         try {
@@ -28,7 +28,7 @@ public class TestIndicadorToJson {
             Logger.getLogger(ISA.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            Indicador i = mapper.readValue(json, Indicador.class);
+            CategoriaIndicadores i = mapper.readValue(json, CategoriaIndicadores.class);
             System.out.println("success converting json to object");
             System.out.println(i.getItens("grupo a"));
             System.out.println(i.getItens("grupo b"));

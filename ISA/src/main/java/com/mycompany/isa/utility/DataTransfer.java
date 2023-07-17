@@ -7,7 +7,7 @@ package com.mycompany.isa.utility;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycompany.isa.model.Lote;
-import com.mycompany.isa.model.Indicador;
+import com.mycompany.isa.model.CategoriaIndicadores;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,14 +40,14 @@ public class DataTransfer {
         return lotes;
     }
     
-    public static ArrayList<Indicador> importIndicadores()  {
-        ArrayList<Indicador> indicadores = new ArrayList<>();
+    public static ArrayList<CategoriaIndicadores> importIndicadores()  {
+        ArrayList<CategoriaIndicadores> indicadores = new ArrayList<>();
         File indicadorDir = new File(PATH_INDICADOR);
         ObjectMapper mapper = new ObjectMapper();
         for (File f : indicadorDir.listFiles()) {
-            Indicador i;
+            CategoriaIndicadores i;
             try {
-                i = mapper.readValue(f, new TypeReference<Indicador>(){});
+                i = mapper.readValue(f, new TypeReference<CategoriaIndicadores>(){});
                 indicadores.add(i);
             } catch (IOException ex) {
                 Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
@@ -70,10 +70,10 @@ public class DataTransfer {
         
     }
     
-    public static void exportIndicadores(List<Indicador> indicadorList) {
+    public static void exportIndicadores(List<CategoriaIndicadores> indicadorList) {
         ObjectMapper mapper = new ObjectMapper();
         
-        for (Indicador indicador : indicadorList) {
+        for (CategoriaIndicadores indicador : indicadorList) {
             File resultFile = new File(PATH_INDICADOR, indicador.getNome());
             try {
                 mapper.writeValue(resultFile, indicador);

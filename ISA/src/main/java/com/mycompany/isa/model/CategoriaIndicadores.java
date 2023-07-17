@@ -28,18 +28,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  *
  * @author naoki
  */
-public class Indicador {
+public class CategoriaIndicadores {
     @JsonProperty("nome")
     private String nome;
     @JsonProperty("itemMap")
     private Map<String, List<String>> itemMap; // map with <key, value> as <grupo, item>
     
     // Constructors
-    public Indicador() {
+    public CategoriaIndicadores() {
         itemMap = new LinkedHashMap<>();
     }
     
-    public Indicador(String nome, String[] grupos, String[][] itens) {
+    public CategoriaIndicadores(String nome, String[] grupos, String[][] itens) {
         this.nome = nome;
         itemMap = new LinkedHashMap<>();
         for (int i = 0; i < grupos.length; i++) {
@@ -113,8 +113,11 @@ public class Indicador {
     
     
     public void replaceItem(String grupo, String oldItem, String newItem) {
-        itemMap.get(grupo).remove(oldItem);
-        itemMap.get(grupo).add(newItem);
+        if (!newItem.isBlank()) {
+            int index = itemMap.get(grupo).indexOf(oldItem);
+            itemMap.get(grupo).remove(oldItem);
+            itemMap.get(grupo).add(index, newItem);
+        }
     }
     
     public void addAllItems(String grupo, String... items) {

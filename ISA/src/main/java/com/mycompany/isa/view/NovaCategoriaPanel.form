@@ -23,6 +23,22 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEditCellActionPerformed"/>
       </Events>
     </Component>
+    <Container class="javax.swing.JPopupMenu" name="jPopupMenu1">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Delete"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+          </Events>
+        </MenuItem>
+      </SubComponents>
+    </Container>
   </NonVisualComponents>
   <AccessibilityProperties>
     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="novoPanel"/>
@@ -52,10 +68,10 @@
                   <Component id="txtGrupo" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblNovoGrupo" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblNovoIndicador" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNome" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnSalvar" alignment="0" pref="275" max="32767" attributes="0"/>
                   <Component id="btnVoltar" min="-2" max="-2" attributes="0"/>
                   <Component id="btnResetar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtNome" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -83,7 +99,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="txtNome" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="lblNovoGrupo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtGrupo" min="-2" max="-2" attributes="0"/>
@@ -110,19 +126,22 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="txtNome">
+    <Component class="javax.swing.JButton" name="btnVoltar">
       <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Nome da Categoria">
-              <Font PropertyName="font" name="Segoe UI" size="12" style="1"/>
-            </TitledBorder>
-          </Border>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Voltar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNovoGrupo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Novo Grupo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtGrupo">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Escreva o nome do grupo"/>
       </Properties>
       <Events>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNomeFocusLost"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGrupoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAddGrupo">
@@ -133,23 +152,22 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddGrupoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtGrupo">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Escreva o nome do grupo"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGrupoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblNovoGrupo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Novo Grupo"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblNovoIndicador">
       <Properties>
         <Property name="text" type="java.lang.String" value="Novo Indicador"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cboxGrupo">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="&lt;Selecionar Grupo&gt;"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtItem">
       <Properties>
@@ -167,17 +185,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddItemActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cboxGrupo">
+    <Component class="javax.swing.JButton" name="btnResetar">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="&lt;Selecionar grupo&gt;"/>
-          </StringArray>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Resetar"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalvar">
       <Properties>
@@ -227,17 +241,17 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnVoltar">
+    <Component class="javax.swing.JTextField" name="txtNome">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Voltar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnResetar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Resetar"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Nome"/>
+          </Border>
+        </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetarActionPerformed"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNomeFocusLost"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
