@@ -6,6 +6,8 @@ package com.mycompany.isa.view.indicadores;
 
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -23,6 +25,24 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
     public IndicadorItemPanel() {
         indicadorNome = "Sem nome";
         initComponents();
+        DocumentListener dl = new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                checkValue();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                checkValue();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                checkValue();
+            }
+        };
+        txtValorItem.getDocument().addDocumentListener(dl);
     }
     String indicadorNome;
     public IndicadorItemPanel(int tab, int row, String indicadorNome) {
@@ -46,11 +66,12 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         lblNomeItem = new javax.swing.JLabel();
         txtValorItem = new javax.swing.JTextField();
 
+        setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
         setLayout(new java.awt.GridBagLayout());
 
         lblNomeItem.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         lblNomeItem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNomeItem.setText(indicadorNome);
+        lblNomeItem.setText("<html><p style=\"width:250px\">"+indicadorNome+"</p></html>");
         lblNomeItem.setIconTextGap(1);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -60,39 +81,12 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
 
         txtValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtValorItem.setText("0,00");
-        txtValorItem.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtValorItemFocusLost(evt);
-            }
-        });
-        txtValorItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorItemActionPerformed(evt);
-            }
-        });
-        txtValorItem.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtValorItemKeyReleased(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 2.0;
         add(txtValorItem, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtValorItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorItemActionPerformed
-        checkValue();
-    }//GEN-LAST:event_txtValorItemActionPerformed
-
-    private void txtValorItemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorItemFocusLost
-        checkValue();
-    }//GEN-LAST:event_txtValorItemFocusLost
-
-    private void txtValorItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorItemKeyReleased
-        updateTxtColor();
-    }//GEN-LAST:event_txtValorItemKeyReleased
 
     private void checkValue() {
         Double valor = 0.0;

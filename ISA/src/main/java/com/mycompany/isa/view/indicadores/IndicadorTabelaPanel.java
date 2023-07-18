@@ -5,6 +5,7 @@
 package com.mycompany.isa.view.indicadores;
 
 import com.mycompany.isa.model.CategoriaIndicadores;
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -38,6 +39,12 @@ public class IndicadorTabelaPanel extends javax.swing.JPanel {
             String[] itemArr = items.get(i).toArray(String[]::new);
             IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(currentRow, gruposNome[i],itemArr, indicadores.hashCode());
             gruposPanel.add(grupo);
+            GridBagLayout layout = (GridBagLayout) gruposPanel.getLayout();
+            GridBagConstraints c = layout.getConstraints(grupo);
+            c.insets = new Insets(0, 0, 0, 0);
+            c.gridy = i;
+            layout.setConstraints(grupo, c);
+            
             grupo.setVisible(true);
         } 
     }
@@ -101,7 +108,7 @@ public class IndicadorTabelaPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        gruposPanel.setLayout(new java.awt.GridLayout(rows, 1));
+        gruposPanel.setLayout(new java.awt.GridBagLayout());
         jScrollPane1.setViewportView(gruposPanel);
 
         jLabel2.setText("Média Geral:");
