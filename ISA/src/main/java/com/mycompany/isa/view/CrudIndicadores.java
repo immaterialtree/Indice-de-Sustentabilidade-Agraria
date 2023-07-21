@@ -27,7 +27,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
     }
     
     public CrudIndicadores(List<CategoriaIndicadores> indicadores) {
-        ISA.indicadoresList = indicadores;
+        ISA.categoriaList = indicadores;
         initAll();
         
     }
@@ -52,7 +52,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
     
     void preencherLista() {
         DefaultListModel resultList = new DefaultListModel();
-        for (CategoriaIndicadores i : ISA.indicadoresList) {
+        for (CategoriaIndicadores i : ISA.categoriaList) {
             resultList.addElement(i.getNome());
         }
         jListModelos.setModel(resultList);
@@ -64,15 +64,15 @@ public class CrudIndicadores extends javax.swing.JFrame {
     void preencherTabela(int indice) {
         if (indice < 0) return;
         DefaultTableModel tableModel = new DefaultTableModel();
-        if (ISA.indicadoresList.isEmpty()) {
+        if (ISA.categoriaList.isEmpty()) {
             lblNomeModelo.setText("");
             tabModelo.setModel(tableModel);
             return;
         }
         
-        lblNomeModelo.setText(ISA.indicadoresList.get(indice).getNome());
+        lblNomeModelo.setText(ISA.categoriaList.get(indice).getNome());
         tableModel.setRowCount(0);
-        for (Map.Entry grupo: ISA.indicadoresList.get(indice).getItemMap().entrySet()) {
+        for (Map.Entry grupo: ISA.categoriaList.get(indice).getItemMap().entrySet()) {
             tableModel.addColumn(grupo.getKey(), ((List<String>) grupo.getValue()).toArray());
         }
         tabModelo.setModel(tableModel);
@@ -247,7 +247,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
     
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         DataTransfer.deleteIndicadores();
-        DataTransfer.exportIndicadores(ISA.indicadoresList);
+        DataTransfer.exportIndicadores(ISA.categoriaList);
         getWindows()[0].setVisible(true);
 //        JOptionPane.showMessageDialog(getWindows()[0], "Dados salvos");
     }//GEN-LAST:event_formWindowClosed
@@ -262,7 +262,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         if (0!=JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir?", "Confirmar exclusão", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION)) {
             return;
         }
-        ISA.indicadoresList.remove(jListModelos.getSelectedIndex());
+        ISA.categoriaList.remove(jListModelos.getSelectedIndex());
         preencherLista();
         preencherTabela(-1);
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -272,7 +272,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         if (selected < 0) {
             return;
         }
-        novoModeloPanel.carregarCategoria(ISA.indicadoresList.get(selected), selected);
+        novoModeloPanel.carregarCategoria(ISA.categoriaList.get(selected), selected);
         cl.show(cardPanel, "new");
         
     }//GEN-LAST:event_btnEditarActionPerformed

@@ -423,11 +423,11 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
                     "Erro. Campo em branco", JOptionPane.ERROR_MESSAGE);
         } else {
             if (editing) {
-                ISA.indicadoresList.remove(editingIndex);
-                ISA.indicadoresList.add(editingIndex, novaCategoria);
+                ISA.categoriaList.remove(editingIndex);
+                ISA.categoriaList.add(editingIndex, novaCategoria);
                 editing = false;
             } else 
-                ISA.indicadoresList.add(novaCategoria);
+                ISA.categoriaList.add(novaCategoria);
             resetar();
         }
     }//GEN-LAST:event_btnSalvarActionPerformed

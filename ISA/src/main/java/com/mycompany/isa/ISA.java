@@ -18,7 +18,7 @@ import javax.swing.UIManager;
  */
 public class ISA {
     public static List<Lote> loteList = new ArrayList<>();
-    public static List<CategoriaIndicadores> indicadoresList = new ArrayList<>();
+    public static List<CategoriaIndicadores> categoriaList = new ArrayList<>();
 
     /**
      * @param args the command line arguments
@@ -36,7 +36,7 @@ public class ISA {
         
         // load objects
         loteList = DataTransfer.importLotes();
-        indicadoresList = DataTransfer.importIndicadores();
+        categoriaList = DataTransfer.importIndicadores();
         
         // start aplication
         MainFrame telaPrincipal = new MainFrame();

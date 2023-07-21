@@ -7,18 +7,19 @@ package com.mycompany.isa.view.indicadores;
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.model.CategoriaIndicadores;
+import com.mycompany.isa.utility.DataTransfer;
 import java.awt.CardLayout;
-import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Admin
  */
 public class IndicadoresFrame extends javax.swing.JFrame {
     public static Lote lote;
-    List<CategoriaIndicadores> indicadores;
+    List<CategoriaIndicadores> categorias;
     CardLayout cl;
-    int indice = 0;
+    int indice;
     /**
      * Creates new form Indicadores
      */
@@ -28,24 +29,28 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     public IndicadoresFrame(Lote lote) {
         initComponents();
         IndicadoresFrame.lote = lote;
+        cl = (CardLayout) cardPane.getLayout();
         lblLoteNome.setText(lote.getNome());
-        indicadores = ISA.indicadoresList;
-        if (indicadores.isEmpty()) {
+        categorias = ISA.categoriaList;
+        if (categorias.isEmpty()) {
             indice = -1;
+            JOptionPane.showMessageDialog(this, "Nenhuma categoria de indicadores cadastrada", "", JOptionPane.WARNING_MESSAGE);
+        } else {
+            indice = 0;
+            for (CategoriaIndicadores categoria : categorias) {
+                cardPane.add(new IndicadorCategoriaPanel(categoria), categoria.getNome());
+            }
+            cl.show(cardPane, categorias.get(indice).getNome());
         }
         atualizarBotoes();
-        cl = (CardLayout) cardPane.getLayout();
-        for (CategoriaIndicadores indicador : indicadores) {
-            cardPane.add(new IndicadorTabelaPanel(indicador), indicador.getNome());
-        }
-        cl.show(cardPane, indicadores.get(indice).getNome());
+        
     }
     
     
     
     private void atualizarBotoes() {
         btnAnterior.setEnabled(indice > 0);
-        btnProximo.setEnabled(indice < indicadores.size()-1);
+        btnProximo.setEnabled(indice < categorias.size()-1);
     }
 
 
@@ -135,12 +140,12 @@ public class IndicadoresFrame extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         getWindows()[0].setVisible(true);
-        // TODO export lotes
+        DataTransfer.exportLote(lote);
     }//GEN-LAST:event_formWindowClosed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
-        indice += indice < indicadores.size()-1 ? 1 : 0;
-        cl.show(cardPane, indicadores.get(indice).getNome());
+        indice += indice < categorias.size()-1 ? 1 : 0;
+        cl.show(cardPane, categorias.get(indice).getNome());
         btnAnterior.setEnabled(true);
         btnProximo.setEnabled(false);
         atualizarBotoes();
@@ -148,7 +153,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         indice -= (indice > 0) ? 1 : 0;
-        cl.show(cardPane, indicadores.get(indice).getNome());
+        cl.show(cardPane, categorias.get(indice).getNome());
         atualizarBotoes();
     }//GEN-LAST:event_btnAnteriorActionPerformed
 

@@ -15,11 +15,11 @@ import javax.swing.JTextField;
  */
 public class IndicadorGrupoPanel extends javax.swing.JPanel {
 
-    String grupoNome = "Sem Nome";
-    int rows = 0;
-    int startRow;
-    int endRow;
-    Double[] itensValor;
+    private String grupoNome = "Sem Nome";
+    private int rows; // defines the rows of gridLayout<-this.itemsPanel
+    private int startRow;
+    private int endRow;
+    private Double[] itensValor;
     /**
      * Creates new form IndicadorGrupoPanel
      */
@@ -33,7 +33,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         rows = items.length;
         initComponents();
         for (int i=0; i<items.length; i++) {
-            IndicadorItemPanel item = new IndicadorItemPanel(modeloHash, IndicadorTabelaPanel.currentRow++, items[i]);
+            IndicadorItemPanel item = new IndicadorItemPanel(modeloHash, IndicadorCategoriaPanel.currentRow++, items[i]);
             item.getTxtValorItem().setName(String.valueOf(i));
             item.getTxtValorItem().addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -58,7 +58,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
             itemsPanel.add(item);
             item.setVisible(true);
         }
-        this.endRow = IndicadorTabelaPanel.currentRow;
+        this.endRow = IndicadorCategoriaPanel.currentRow;
         itensValor = Arrays.copyOfRange(IndicadoresFrame.lote.getScoresOf(modeloHash), startRow, endRow);
         calcularMedia();
     }

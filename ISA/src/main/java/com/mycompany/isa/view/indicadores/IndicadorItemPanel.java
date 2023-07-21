@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
@@ -18,7 +18,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
     Color[] qCor = {Color.GREEN, Color.YELLOW, Color.RED};
     Color[] backCor = {new Color(150, 255, 150), new Color(255, 255, 150), new Color(255, 150, 150)};
     
-    int tab, row;
+    int tab, row; 
     /**
      * Creates new form IndicadoresPanel
      */
@@ -39,7 +39,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                checkValue();
+//                checkValue();
             }
         };
         txtValorItem.getDocument().addDocumentListener(dl);
@@ -52,6 +52,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         initComponents();
         double value = IndicadoresFrame.lote.getScore(tab, row);
         txtValorItem.setText(String.valueOf(value));
+        checkValue();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,6 +101,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         IndicadoresFrame.lote.setScore(tab, row, valor);
         txtValorItem.setText(String.format("%.2f", valor));
         updateTxtColor();
+        IndicadoresFrame.lote.setScore(tab, row, valor);
     }
     public void updateTxtColor() {
         Double valor;

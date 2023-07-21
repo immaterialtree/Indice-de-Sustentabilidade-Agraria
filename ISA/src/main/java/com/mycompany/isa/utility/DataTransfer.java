@@ -56,7 +56,7 @@ public class DataTransfer {
         return indicadores;
     }
     
-    public static void exportLotes(List<Lote> loteList) {
+    public static void exportAllLotes(List<Lote> loteList) {
         ObjectMapper mapper = new ObjectMapper();
         
         for (Lote lote : loteList) {
@@ -67,7 +67,16 @@ public class DataTransfer {
                 Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+    }
+    
+    public static void exportLote(Lote lote) {
+        ObjectMapper mapper = new ObjectMapper();
+        File resultFile = new File(PATH_LOTE, lote.getNome());
+        try {
+            mapper.writeValue(resultFile, lote);
+        } catch (IOException ex) {
+            Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static void exportIndicadores(List<CategoriaIndicadores> indicadorList) {

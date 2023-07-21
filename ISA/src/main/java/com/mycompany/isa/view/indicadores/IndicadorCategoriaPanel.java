@@ -12,32 +12,31 @@ import java.util.List;
  *
  * @author naoki
  */
-public class IndicadorTabelaPanel extends javax.swing.JPanel {
-    CategoriaIndicadores indicadores;
-    int rows = 0; // number of "grupos" received by gridLayout<-gruposPanel
+public class IndicadorCategoriaPanel extends javax.swing.JPanel {
+    CategoriaIndicadores categoria;
     static int currentRow;
     /**
      * Creates new form IndicadorTabelaPanel
      */
-    public IndicadorTabelaPanel() {
+    public IndicadorCategoriaPanel() {
         initComponents();
     }
     
-    public IndicadorTabelaPanel(CategoriaIndicadores indicadores) {
-        this.indicadores = indicadores;
+    public IndicadorCategoriaPanel(CategoriaIndicadores categoria) {
+        this.categoria = categoria;
         initAll();
     }
     
     private void initAll() {
         currentRow = 0;
-        IndicadoresFrame.lote.initScoreSheet(indicadores);
+        IndicadoresFrame.lote.initScoreSheet(categoria);
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(10);
-        String[] gruposNome = indicadores.getGrupos().toArray(String[]::new);
-        List<List<String>> items = indicadores.getAllItems();
+        String[] gruposNome = categoria.getGrupos().toArray(String[]::new);
+        List<List<String>> items = categoria.getAllItems();
         for (int i=0; i<gruposNome.length; i++) {
             String[] itemArr = items.get(i).toArray(String[]::new);
-            IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(currentRow, gruposNome[i],itemArr, indicadores.hashCode());
+            IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(currentRow, gruposNome[i],itemArr, categoria.hashCode());
             gruposPanel.add(grupo);
             GridBagLayout layout = (GridBagLayout) gruposPanel.getLayout();
             GridBagConstraints c = layout.getConstraints(grupo);
@@ -79,7 +78,7 @@ public class IndicadorTabelaPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText(indicadores.getNome());
+        jLabel1.setText(categoria.getNome());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
