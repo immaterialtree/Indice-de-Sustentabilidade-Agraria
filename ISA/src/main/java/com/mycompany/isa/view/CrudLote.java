@@ -88,7 +88,7 @@ public class CrudLote extends javax.swing.JFrame {
         txtContato = new javax.swing.JFormattedTextField();
         btnLimpar = new javax.swing.JButton();
         txtCoordenada = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
 
         dialogEditar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogEditar.setTitle("Editar");
@@ -166,7 +166,7 @@ public class CrudLote extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciar Lotes");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -268,7 +268,12 @@ public class CrudLote extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Home");
+        btnHome.setText("Home");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -278,7 +283,7 @@ public class CrudLote extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(btnHome)
                         .addGap(262, 262, 262)
                         .addComponent(lblCadTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -313,7 +318,7 @@ public class CrudLote extends javax.swing.JFrame {
                         .addComponent(lblCadTitulo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)))
+                        .addComponent(btnHome)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -472,6 +477,11 @@ public class CrudLote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCoordenadaActionPerformed
 
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        this.setVisible(false);
+        new MainFrame().setVisible(true);
+    }//GEN-LAST:event_btnHomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -513,12 +523,12 @@ public class CrudLote extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar_editar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnSalvar_editar;
     private javax.swing.JDialog dialogEditar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCadTitulo;
     private javax.swing.JLabel lblErro;

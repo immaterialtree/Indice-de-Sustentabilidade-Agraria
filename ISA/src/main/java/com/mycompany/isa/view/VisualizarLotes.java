@@ -56,6 +56,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         btnVisualizar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         btnPropriedades = new javax.swing.JButton();
+        btbVoltar = new javax.swing.JButton();
 
         dialogPropriedades.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogPropriedades.setTitle("Propriedades do lote");
@@ -155,6 +156,13 @@ public class VisualizarLotes extends javax.swing.JFrame {
             }
         });
 
+        btbVoltar.setText("Voltar");
+        btbVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btbVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,11 +175,16 @@ public class VisualizarLotes extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                     .addComponent(btnVisualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(66, 66, 66))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btbVoltar)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
+                .addComponent(btbVoltar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,7 +192,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
                 .addComponent(btnVisualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPropriedades)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -222,6 +235,11 @@ public class VisualizarLotes extends javax.swing.JFrame {
         getWindows()[0].setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
+    private void btbVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbVoltarActionPerformed
+        this.setVisible(false);
+        new MainFrame().setVisible(true);
+    }//GEN-LAST:event_btbVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -259,6 +277,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btbVoltar;
     private javax.swing.JButton btnPropriedades;
     private javax.swing.JButton btnVisualizar;
     private javax.swing.JDialog dialogPropriedades;
