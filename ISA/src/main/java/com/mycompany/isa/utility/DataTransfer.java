@@ -10,6 +10,7 @@ import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.model.CategoriaIndicadores;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,8 +22,9 @@ import java.util.logging.Logger;
  */
 public class DataTransfer {
     private static final String ROOT = "json";
-    private static final String PATH_INDICADOR = String.join(File.separator, ROOT, "indicadores");
     private static final String PATH_LOTE = String.join(File.separator, ROOT, "lotes");
+    private static final String PATH_INDICADOR = String.join(File.separator, ROOT, "indicadores");
+    private static final String PATH_DEFAULT_INDICADOR = String.join(File.separator, ROOT, "indicadores padrao");
     
     
     public static ArrayList<Lote> importLotes()  {
@@ -108,5 +110,20 @@ public class DataTransfer {
     
     public static void deleteIndicadores() {
         deleteFileContent(new File(PATH_INDICADOR));
+    }
+    
+    public static void resetIndicadores() {
+        deleteIndicadores();
+        File[] contents = new File(PATH_DEFAULT_INDICADOR).listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                try {
+                    File target = new File(PATH_INDICADOR, f.getName());
+                    Files.copy(f.toPath(), target.toPath());
+                } catch (IOException ex) {
+                    Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 }
