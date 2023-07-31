@@ -32,6 +32,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         this.row = row;
         initComponents();
         initAll();
+        txtValorItem.setSize(txtValorItem.getWidth(), HEIGHT);
     }
     
     private void initAll() {
@@ -62,7 +63,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 3.0;
+        gridBagConstraints.weightx = 1.0;
         add(lblNomeItem, gridBagConstraints);
 
         txtValorItem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.0"))));
@@ -73,21 +74,13 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
                 txtValorItemCaretUpdate(evt);
             }
         });
-        txtValorItem.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtValorItemKeyReleased(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.ipadx = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
         add(txtValorItem, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtValorItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorItemKeyReleased
-        checkValue();
-    }//GEN-LAST:event_txtValorItemKeyReleased
 
     private void txtValorItemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtValorItemCaretUpdate
         checkValue();
