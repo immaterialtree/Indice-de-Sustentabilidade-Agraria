@@ -60,7 +60,7 @@ public class DataTransfer {
         ObjectMapper mapper = new ObjectMapper();
         
         for (Lote lote : loteList) {
-            File resultFile = new File(PATH_LOTE, lote.getNome());
+            File resultFile = new File(PATH_LOTE, lote.getResponsavel());
             try {
                 mapper.writeValue(resultFile, lote);
             } catch (IOException ex) {
@@ -71,7 +71,7 @@ public class DataTransfer {
     
     public static void exportLote(Lote lote) {
         ObjectMapper mapper = new ObjectMapper();
-        File resultFile = new File(PATH_LOTE, lote.getNome());
+        File resultFile = new File(PATH_LOTE, lote.getResponsavel());
         try {
             mapper.writeValue(resultFile, lote);
         } catch (IOException ex) {

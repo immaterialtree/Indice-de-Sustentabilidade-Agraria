@@ -13,20 +13,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtCoordenada_editar" alignment="0" min="-2" pref="316" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="txtContato_editar" alignment="0" min="-2" pref="316" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtNome_editar" alignment="1" max="32767" attributes="0"/>
-                              <Component id="txtNumParcela_editar" alignment="1" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="btnSalvar_editar" min="-2" pref="133" max="-2" attributes="0"/>
-                                  <EmptySpace pref="50" max="32767" attributes="0"/>
-                                  <Component id="btnCancelar_editar" min="-2" pref="133" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="txtContato_editar" alignment="1" pref="316" max="32767" attributes="0"/>
+                      <Component id="txtNome_editar" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtNumParcela_editar" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnSalvar_editar" min="-2" pref="133" max="-2" attributes="0"/>
+                          <EmptySpace pref="50" max="32767" attributes="0"/>
+                          <Component id="btnCancelar_editar" min="-2" pref="133" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="panelCoordenada_editar" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="29" max="32767" attributes="0"/>
               </Group>
@@ -42,8 +38,8 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtContato_editar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtCoordenada_editar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="panelCoordenada_editar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnSalvar_editar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCancelar_editar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -56,45 +52,27 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="txtNome_editar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="cc" type="rgb"/>
-            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="NOME">
-                  <Font PropertyName="font" name="Segoe UI" size="12" style="1"/>
-                  <Color PropertyName="color" blue="99" green="99" red="0" type="rgb"/>
-                </TitledBorder>
+                <TitledBorder title="Responsavel"/>
               </Border>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNumParcela_editar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="cc" type="rgb"/>
-            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="N&#xba; DA PARCELA">
-                  <Font PropertyName="font" name="Segoe UI" size="12" style="1"/>
-                  <Color PropertyName="color" blue="99" green="99" red="0" type="rgb"/>
-                </TitledBorder>
+                <TitledBorder title="N&#xba; da parcela"/>
               </Border>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtContato_editar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="cc" type="rgb"/>
-            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="CONTATO">
-                  <Font PropertyName="font" name="Segoe UI" size="12" style="1"/>
-                  <Color PropertyName="color" blue="99" green="99" red="0" type="rgb"/>
-                </TitledBorder>
+                <TitledBorder title="Contato"/>
               </Border>
             </Property>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
@@ -104,14 +82,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSalvar_editar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="cc" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Quicksand Medium" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salvar"/>
           </Properties>
@@ -121,14 +93,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelar_editar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="cc" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Quicksand Medium" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
@@ -136,15 +102,75 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelar_editarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtCoordenada_editar">
+        <Container class="javax.swing.JPanel" name="panelCoordenada_editar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection component="txtNome" name="getBackground" type="method"/>
+            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Coordenada"/>
+                <TitledBorder title="Coordenadas"/>
               </Border>
             </Property>
           </Properties>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblCoordenadaX_editar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtCoordenadaX_editar" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblCoordenadaY_editar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtCoordenadaY_editar" min="-2" pref="88" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblCoordenadaX_editar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCoordenadaY_editar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCoordenadaX_editar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCoordenadaY_editar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblCoordenadaX_editar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Latitude"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCoordenadaY_editar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Longitude"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="txtCoordenadaX_editar">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="#0.00000" subtype="-1" type="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="txtCoordenadaY_editar">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="#0.00000" subtype="-1" type="0"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
@@ -247,7 +273,7 @@
                               <Component id="txtNumParcela" alignment="1" max="32767" attributes="0"/>
                               <Component id="txtContato" alignment="1" max="32767" attributes="0"/>
                               <Component id="btnLimpar" alignment="1" max="32767" attributes="0"/>
-                              <Component id="txtCoordenada" alignment="0" max="32767" attributes="0"/>
+                              <Component id="panelCoordenada" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="scrollTabela" min="-2" max="-2" attributes="0"/>
@@ -278,8 +304,8 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="txtContato" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtCoordenada" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                          <Component id="panelCoordenada" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnRemover" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -290,7 +316,7 @@
                       </Group>
                       <Component id="scrollTabela" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="41" max="32767" attributes="0"/>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -307,7 +333,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Nome"/>
+                <TitledBorder title="Respons&#xe1;vel"/>
               </Border>
             </Property>
           </Properties>
@@ -428,18 +454,75 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtCoordenada">
+        <Container class="javax.swing.JPanel" name="panelCoordenada">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection component="txtNome" name="getBackground" type="method"/>
+            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Coordenada"/>
+                <TitledBorder title="Coordenadas"/>
               </Border>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCoordenadaActionPerformed"/>
-          </Events>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblCoordenadaX" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtCoordenadaX" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblCoordenadaY" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtCoordenadaY" min="-2" pref="88" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblCoordenadaX" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCoordenadaY" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCoordenadaX" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCoordenadaY" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblCoordenadaX">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Latitude"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCoordenadaY">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Longitude"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="txtCoordenadaX">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="#0.00000" subtype="-1" type="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="txtCoordenadaY">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="#0.00000" subtype="-1" type="0"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

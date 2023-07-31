@@ -31,7 +31,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
     private void preencherLista() {
         DefaultListModel resultList = new DefaultListModel();
         for (Lote lote : ISA.loteList) {
-            resultList.addElement(lote.getNome());
+            resultList.addElement(lote.getResponsavel());
         }
         jListModelos.setModel(resultList);
     }
@@ -50,7 +50,11 @@ public class VisualizarLotes extends javax.swing.JFrame {
         txtContato = new javax.swing.JFormattedTextField();
         txtNome = new javax.swing.JTextField();
         txtNumParcela = new javax.swing.JTextField();
-        txtCoordenada = new javax.swing.JFormattedTextField();
+        panelCoordenada = new javax.swing.JPanel();
+        lblCoordenadaX = new javax.swing.JLabel();
+        lblCoordenadaY = new javax.swing.JLabel();
+        txtCoordenadaX = new javax.swing.JFormattedTextField();
+        txtCoordenadaY = new javax.swing.JFormattedTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListModelos = new javax.swing.JList<>();
         btnVisualizar = new javax.swing.JButton();
@@ -62,8 +66,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         dialogPropriedades.setTitle("Propriedades do lote");
 
         txtContato.setEditable(false);
-        txtContato.setBackground(new java.awt.Color(204, 255, 255));
-        txtContato.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONTATO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+        txtContato.setBorder(javax.swing.BorderFactory.createTitledBorder("Contato"));
         try {
             txtContato.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
@@ -71,14 +74,48 @@ public class VisualizarLotes extends javax.swing.JFrame {
         }
 
         txtNome.setEditable(false);
-        txtNome.setBackground(new java.awt.Color(204, 255, 255));
-        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOME", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Responsavel"));
 
         txtNumParcela.setEditable(false);
-        txtNumParcela.setBackground(new java.awt.Color(204, 255, 255));
-        txtNumParcela.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nº DA PARCELA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 153))); // NOI18N
+        txtNumParcela.setBorder(javax.swing.BorderFactory.createTitledBorder("N° da parcela"));
 
-        txtCoordenada.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordenada"));
+        panelCoordenada.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordenadas"));
+
+        lblCoordenadaX.setText("Latitude");
+
+        lblCoordenadaY.setText("Longitude");
+
+        txtCoordenadaX.setEditable(false);
+        txtCoordenadaX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
+        txtCoordenadaY.setEditable(false);
+        txtCoordenadaY.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
+        javax.swing.GroupLayout panelCoordenadaLayout = new javax.swing.GroupLayout(panelCoordenada);
+        panelCoordenada.setLayout(panelCoordenadaLayout);
+        panelCoordenadaLayout.setHorizontalGroup(
+            panelCoordenadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCoordenadaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCoordenadaX)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCoordenadaX)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCoordenadaY)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelCoordenadaLayout.setVerticalGroup(
+            panelCoordenadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCoordenadaLayout.createSequentialGroup()
+                .addGroup(panelCoordenadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCoordenadaX)
+                    .addComponent(lblCoordenadaY)
+                    .addComponent(txtCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,7 +127,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
                     .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                     .addComponent(txtNumParcela, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtContato)
-                    .addComponent(txtCoordenada))
+                    .addComponent(panelCoordenada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -103,8 +140,8 @@ public class VisualizarLotes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtCoordenada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(panelCoordenada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dialogPropriedadesLayout = new javax.swing.GroupLayout(dialogPropriedades.getContentPane());
@@ -115,7 +152,9 @@ public class VisualizarLotes extends javax.swing.JFrame {
         );
         dialogPropriedadesLayout.setVerticalGroup(
             dialogPropriedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(dialogPropriedadesLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -207,10 +246,11 @@ public class VisualizarLotes extends javax.swing.JFrame {
         if (selected==-1) return;
         Lote lote = ISA.loteList.get(selected);
         
-        txtNome.setText(lote.getNome());
+        txtNome.setText(lote.getResponsavel());
         txtNumParcela.setText(lote.getNumParcela());
         txtContato.setText(lote.getContato());
-        txtCoordenada.setText(lote.getCoordenada());        
+        txtCoordenadaX.setText(String.valueOf(lote.getCoordenada()[0]));
+        txtCoordenadaY.setText(String.valueOf(lote.getCoordenada()[1]));    
         dialogPropriedades.setSize(390, 350);
         dialogPropriedades.setLocationRelativeTo(null);
         dialogPropriedades.setVisible(true);
@@ -275,9 +315,13 @@ public class VisualizarLotes extends javax.swing.JFrame {
     private javax.swing.JList<String> jListModelos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCoordenadaX;
+    private javax.swing.JLabel lblCoordenadaY;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel panelCoordenada;
     private javax.swing.JFormattedTextField txtContato;
-    private javax.swing.JFormattedTextField txtCoordenada;
+    private javax.swing.JFormattedTextField txtCoordenadaX;
+    private javax.swing.JFormattedTextField txtCoordenadaY;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumParcela;
     // End of variables declaration//GEN-END:variables

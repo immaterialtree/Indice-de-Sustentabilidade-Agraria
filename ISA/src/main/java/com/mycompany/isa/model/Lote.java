@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-"nome",
+"responsavel",
 "numParcela",
 "contato",
 "coordenada",
@@ -30,30 +30,30 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @author naoki
  */
 public class Lote {
-    @JsonProperty("nome")
-    private String nome;
+    @JsonProperty("responsavel")
+    private String responsavel;
     @JsonProperty("numParcela")
     private String numParcela;
     @JsonProperty("contato")
     private String contato;
     @JsonProperty("coordenada")
-    private String coordenada;
+    private double[] coordenada;
     private Map<Integer, Double[]> scoresMap; // Map<modelo.hashCode, scores>
  
     public Lote() {
         scoresMap = new LinkedHashMap<>();
     }
     
-    public Lote(String nome, String numParcela, String numero, String coordenada) {
-        this.nome = nome;
+    public Lote(String responsavel, String numParcela, String numero, double[] coordenada) {
+        this.responsavel = responsavel;
         this.numParcela = numParcela;
         this.contato = numero;
         this.coordenada = coordenada;
         scoresMap = new LinkedHashMap<>();
     }
     
-    public Lote(String nome, String numParcela, String numero, String coordenada, Integer[] keys, Double[][] scores) {
-        this.nome = nome;
+    public Lote(String responsavel, String numParcela, String numero, double[] coordenada, Integer[] keys, Double[][] scores) {
+        this.responsavel = responsavel;
         this.numParcela = numParcela;
         this.contato = numero;
         this.coordenada = coordenada;
@@ -63,12 +63,12 @@ public class Lote {
         }
     }
 
-    public String getNome() {
-        return nome;
+    public String getResponsavel() {
+        return responsavel;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
     }
 
     public String getNumParcela() {
@@ -87,11 +87,11 @@ public class Lote {
         this.contato = contato;
     }
 
-    public String getCoordenada() {
+    public double[] getCoordenada() {
         return coordenada;
     }
 
-    public void setCoordenada(String coordenada) {
+    public void setCoordenada(double[] coordenada) {
         this.coordenada = coordenada;
     }
 
@@ -143,7 +143,7 @@ public class Lote {
     
     @Override
     public String toString() {
-        return "Nome:" + nome + 
+        return "Responsavel:" + responsavel + 
                 "\nN° de parcelas:" + numParcela + 
                 "\nNumero=" + contato + 
                 "\nCoordenada=" + coordenada;

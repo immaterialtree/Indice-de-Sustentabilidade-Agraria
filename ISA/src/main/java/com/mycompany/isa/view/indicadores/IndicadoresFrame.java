@@ -8,6 +8,9 @@ import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.DataTransfer;
+import com.mycompany.isa.view.CrudIndicadores;
+import com.mycompany.isa.view.CrudLote;
+import com.mycompany.isa.view.VisualizarLotes;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -30,7 +33,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         initComponents();
         IndicadoresFrame.lote = lote;
         cl = (CardLayout) cardPane.getLayout();
-        lblLoteNome.setText(lote.getNome());
+        lblLoteNome.setText("lote do " +lote.getResponsavel());
         categorias = ISA.categoriaList;
         if (categorias.isEmpty()) {
             indice = -1;
