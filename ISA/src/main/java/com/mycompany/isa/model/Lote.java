@@ -151,7 +151,18 @@ public class Lote {
     public Double[][] getAllScores() {
         return scoresMap.values().toArray(Double[][]::new);
     }
-
+    
+    public double calcularIndiceCategoria(int categoria) {
+        return Arrays.stream(scoresMap.get(categoria)).mapToDouble((d)->d).average().orElse(Double.NaN);
+    }
+    
+    public double calcularIndiceGeral() {
+        double sum=0;
+        for (Integer key : scoresMap.keySet()) {
+            sum += calcularIndiceCategoria(key);
+        }
+        return sum/scoresMap.size();
+    }
     
     @Override
     public String toString() {

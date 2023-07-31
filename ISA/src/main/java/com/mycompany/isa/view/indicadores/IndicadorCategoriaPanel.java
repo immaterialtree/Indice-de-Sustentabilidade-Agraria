@@ -44,8 +44,12 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
             c.gridy = i;
             layout.setConstraints(grupo, c);
             
+            grupo.getLblNumGrupo().addPropertyChangeListener("text", (evt) -> {
+                lblIndice.setText(String.valueOf(IndicadoresFrame.lote.calcularIndiceCategoria(categoria.hashCode())));
+            });
             grupo.setVisible(true);
-        } 
+        }
+        lblIndice.setText(String.valueOf(IndicadoresFrame.lote.calcularIndiceCategoria(categoria.hashCode())));
     }
 
     /**
@@ -66,7 +70,7 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
         gruposPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblIndice = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(600, 420));
 
@@ -112,7 +116,7 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Média Geral:");
 
-        jLabel3.setText("0.0");
+        lblIndice.setText("0.0");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -122,7 +126,7 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(lblIndice)
                 .addGap(17, 17, 17))
         );
         jPanel4Layout.setVerticalGroup(
@@ -131,7 +135,7 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
                 .addContainerGap(9, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(lblIndice))
                 .addContainerGap())
         );
 
@@ -162,11 +166,11 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
     private javax.swing.JPanel gruposPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblIndicadores;
+    private javax.swing.JLabel lblIndice;
     private javax.swing.JLabel lblNum;
     private javax.swing.JLabel lblParametros;
     // End of variables declaration//GEN-END:variables

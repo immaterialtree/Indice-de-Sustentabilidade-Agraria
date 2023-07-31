@@ -47,7 +47,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
             itemsPanel.add(item);
             item.setVisible(true);
         }
-        this.endRow = IndicadorCategoriaPanel.currentRow-1;
+        this.endRow = IndicadorCategoriaPanel.currentRow;
         itensValor = Arrays.copyOfRange(IndicadoresFrame.lote.getScoresOf(modeloHash), startRow, endRow);
         Arrays.toString(itensValor);
         calcularMedia();
@@ -109,7 +109,6 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         add(jPanel5, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
     
     private void updateMedia (JTextField txt) {
         java.awt.EventQueue.invokeLater(new Runnable() {
