@@ -30,6 +30,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @author naoki
  */
 public class Lote {
+    @JsonProperty("assentamento")
+    private String assentamento;
     @JsonProperty("responsavel")
     private String responsavel;
     @JsonProperty("numParcela")
@@ -43,16 +45,18 @@ public class Lote {
     public Lote() {
         scoresMap = new LinkedHashMap<>();
     }
-    
-    public Lote(String responsavel, String numParcela, String numero, double[] coordenada) {
+
+    public Lote(String assentamento, String responsavel, String numParcela, String contato, double[] coordenada) {
+        this.assentamento = assentamento;
         this.responsavel = responsavel;
         this.numParcela = numParcela;
-        this.contato = numero;
+        this.contato = contato;
         this.coordenada = coordenada;
         scoresMap = new LinkedHashMap<>();
     }
     
-    public Lote(String responsavel, String numParcela, String numero, double[] coordenada, Integer[] keys, Double[][] scores) {
+    public Lote(String assentamento, String responsavel, String numParcela, String numero, double[] coordenada, Integer[] keys, Double[][] scores) {
+        this.assentamento = assentamento;
         this.responsavel = responsavel;
         this.numParcela = numParcela;
         this.contato = numero;
@@ -61,6 +65,14 @@ public class Lote {
         for (int i = 0; i < scores.length; i++) {
             scoresMap.put(keys[i], scores[i]);
         }
+    }
+
+    public String getAssentamento() {
+        return assentamento;
+    }
+
+    public void setAssentamento(String assentamento) {
+        this.assentamento = assentamento;
     }
 
     public String getResponsavel() {

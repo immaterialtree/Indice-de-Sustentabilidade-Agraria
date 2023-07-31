@@ -154,7 +154,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Categorias");
 
         scrollTabela1.setBackground(new java.awt.Color(255, 255, 204));
