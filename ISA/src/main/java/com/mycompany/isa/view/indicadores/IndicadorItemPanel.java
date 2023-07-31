@@ -6,8 +6,6 @@ package com.mycompany.isa.view.indicadores;
 
 import java.awt.Color;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -55,31 +53,46 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         txtValorItem = new javax.swing.JFormattedTextField();
 
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+        setLayout(new java.awt.GridBagLayout());
 
         lblNomeItem.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         lblNomeItem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNomeItem.setText("<html><p style=\"width:250px\">"+indicadorNome+"</p></html>");
         lblNomeItem.setIconTextGap(1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 3.0;
+        add(lblNomeItem, gridBagConstraints);
 
         txtValorItem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.0"))));
         txtValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtValorItem.setToolTipText("");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(lblNomeItem, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                .addComponent(txtValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(lblNomeItem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        txtValorItem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtValorItemCaretUpdate(evt);
+            }
+        });
+        txtValorItem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtValorItemKeyReleased(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        add(txtValorItem, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtValorItemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorItemKeyReleased
+        checkValue();
+    }//GEN-LAST:event_txtValorItemKeyReleased
+
+    private void txtValorItemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtValorItemCaretUpdate
+        checkValue();
+//        txtValorItem.setSize(30, txtValorItem.getHeight());
+    }//GEN-LAST:event_txtValorItemCaretUpdate
 
     private void checkValue() {
         Double valor = 0.0;
@@ -91,7 +104,6 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         } catch (NumberFormatException e) {
         }
         IndicadoresFrame.lote.setScore(tab, row, valor);
-        txtValorItem.setText(String.format("%.2f", valor));
         updateTxtColor();
         IndicadoresFrame.lote.setScore(tab, row, valor);
     }
