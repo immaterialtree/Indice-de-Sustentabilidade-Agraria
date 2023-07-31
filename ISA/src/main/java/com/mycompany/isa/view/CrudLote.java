@@ -169,11 +169,6 @@ public class CrudLote extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciar Lotes");
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
 
@@ -425,13 +420,6 @@ public class CrudLote extends javax.swing.JFrame {
         indice = tabLote.getSelectedRow();
         atualizarBotoes();
     }//GEN-LAST:event_tabLoteKeyReleased
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        DataTransfer.deleteLotes();
-        DataTransfer.exportAllLotes(ISA.loteList);
-        getWindows()[0].setVisible(true);
-        JOptionPane.showMessageDialog(getWindows()[0], "Dados salvos");
-    }//GEN-LAST:event_formWindowClosed
 
     private void btnSalvar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar_editarActionPerformed
         // check null fields

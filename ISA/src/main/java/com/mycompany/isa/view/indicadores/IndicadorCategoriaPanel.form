@@ -53,11 +53,11 @@
                   <Component id="lblIndicadores" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                   <Component id="lblParametros" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="240" max="32767" attributes="0"/>
+                  <EmptySpace pref="249" max="32767" attributes="0"/>
                   <Component id="lblNum" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
-              <Component id="jLabel1" alignment="1" pref="604" max="32767" attributes="0"/>
+              <Component id="jLabel1" alignment="1" pref="613" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

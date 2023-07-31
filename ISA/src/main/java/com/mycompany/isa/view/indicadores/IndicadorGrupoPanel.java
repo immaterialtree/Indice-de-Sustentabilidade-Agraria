@@ -35,26 +35,26 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         for (int i=0; i<items.length; i++) {
             IndicadorItemPanel item = new IndicadorItemPanel(modeloHash, IndicadorCategoriaPanel.currentRow++, items[i]);
             item.getTxtValorItem().setName(String.valueOf(i));
-            item.getTxtValorItem().addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                JTextField txt = (JTextField) evt.getSource();
-                updateMedia(txt);
-            }
-        });
-            item.getTxtValorItem().addActionListener((ActionEvent evt) -> {
-                java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JTextField txt = (JTextField) evt.getSource();
-                updateMedia(txt);
-            }
-        });
-            });
-            item.getTxtValorItem().addFocusListener(new java.awt.event.FocusAdapter() {
-                public void focusLost(java.awt.event.FocusEvent evt) {
-                    JTextField txt = (JTextField) evt.getComponent();
-                    updateMedia(txt);
-                }
-            });
+//            item.getTxtValorItem().addKeyListener(new java.awt.event.KeyAdapter() {
+//                public void keyReleased(java.awt.event.KeyEvent evt) {
+//                    java.awt.EventQueue.invokeLater(new Runnable() {
+//                        public void run() {
+//                            JTextField txt = (JTextField) evt.getSource();
+//                            updateMedia(txt);
+//                        }
+//                    });
+//                }
+//            });
+//            item.getTxtValorItem().addFocusListener(new java.awt.event.FocusAdapter() {
+//                public void focusLost(java.awt.event.FocusEvent evt) {
+//                    java.awt.EventQueue.invokeLater(new Runnable() {
+//                        public void run() {
+//                            JTextField txt = (JTextField) evt.getSource();
+//                            updateMedia(txt);
+//                        }
+//                    });
+//                }
+//            });
             itemsPanel.add(item);
             item.setVisible(true);
         }
@@ -120,19 +120,6 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         add(jPanel5, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void keyEvt(java.awt.event.KeyEvent evt) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JTextField txt = (JTextField) evt.getComponent();
-                try {
-                    int txtIndex = Integer.parseInt(txt.getName());
-                    itensValor[txtIndex] = Double.valueOf(txt.getText());
-                } catch (NumberFormatException e) {
-                }
-                calcularMedia();
-            }
-        });
-    }
     
     private void updateMedia (JTextField txt) {
         java.awt.EventQueue.invokeLater(new Runnable() {
