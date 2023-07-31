@@ -88,7 +88,11 @@ public class CrudLote extends javax.swing.JFrame {
         txtContato = new javax.swing.JFormattedTextField();
         btnLimpar = new javax.swing.JButton();
         txtCoordenada = new javax.swing.JFormattedTextField();
-        btnHome = new javax.swing.JButton();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        menuCalcularIndice = new javax.swing.JMenu();
+        menuVisualizarLotes = new javax.swing.JMenu();
+        menuGerenciarLotes = new javax.swing.JMenu();
+        menuGerenciarIndicadores = new javax.swing.JMenu();
 
         dialogEditar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogEditar.setTitle("Editar");
@@ -263,13 +267,6 @@ public class CrudLote extends javax.swing.JFrame {
             }
         });
 
-        btnHome.setText("Home");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -277,9 +274,7 @@ public class CrudLote extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnHome)
-                        .addGap(262, 262, 262)
+                        .addGap(340, 340, 340)
                         .addComponent(lblCadTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
@@ -307,13 +302,8 @@ public class CrudLote extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(lblCadTitulo))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnHome)))
+                .addGap(28, 28, 28)
+                .addComponent(lblCadTitulo)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -332,13 +322,62 @@ public class CrudLote extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLimpar))
                     .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(120, 120, 120)
                     .addComponent(lblErro)
                     .addContainerGap(351, Short.MAX_VALUE)))
         );
+
+        menuCalcularIndice.setText("Calcular Índice");
+        menuCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCalcularIndiceActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuCalcularIndice);
+
+        menuVisualizarLotes.setText("Visualizar lotes");
+        menuVisualizarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuVisualizarLotesMousePressed(evt);
+            }
+        });
+        menuVisualizarLotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVisualizarLotesActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuVisualizarLotes);
+
+        menuGerenciarLotes.setText("Gerenciar lotes");
+        menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuGerenciarLotesMousePressed(evt);
+            }
+        });
+        menuGerenciarLotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGerenciarLotesActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuGerenciarLotes);
+
+        menuGerenciarIndicadores.setText("Gerenciar indicadores");
+        menuGerenciarIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuGerenciarIndicadoresMousePressed(evt);
+            }
+        });
+        menuGerenciarIndicadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGerenciarIndicadoresActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuGerenciarIndicadores);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -465,10 +504,39 @@ public class CrudLote extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCoordenadaActionPerformed
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuCalcularIndiceActionPerformed
+
+    private void menuVisualizarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuVisualizarLotesMousePressed
         this.setVisible(false);
-        new MainFrame().setVisible(true);
-    }//GEN-LAST:event_btnHomeActionPerformed
+        new VisualizarLotes().setVisible(true);
+    }//GEN-LAST:event_menuVisualizarLotesMousePressed
+
+    private void menuVisualizarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVisualizarLotesActionPerformed
+        this.setVisible(false);
+        new VisualizarLotes().setVisible(true);
+    }//GEN-LAST:event_menuVisualizarLotesActionPerformed
+
+    private void menuGerenciarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarLotesMousePressed
+        this.setVisible(false);
+        new CrudLote().setVisible(true);
+    }//GEN-LAST:event_menuGerenciarLotesMousePressed
+
+    private void menuGerenciarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarLotesActionPerformed
+        this.setVisible(false);
+        new CrudLote().setVisible(true);
+    }//GEN-LAST:event_menuGerenciarLotesActionPerformed
+
+    private void menuGerenciarIndicadoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresMousePressed
+        this.setVisible(false);
+        new CrudIndicadores(ISA.categoriaList).setVisible(true);
+    }//GEN-LAST:event_menuGerenciarIndicadoresMousePressed
+
+    private void menuGerenciarIndicadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresActionPerformed
+        this.setVisible(false);
+        new CrudIndicadores(ISA.categoriaList).setVisible(true);
+    }//GEN-LAST:event_menuGerenciarIndicadoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -511,15 +579,19 @@ public class CrudLote extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar_editar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnSalvar_editar;
     private javax.swing.JDialog dialogEditar;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCadTitulo;
     private javax.swing.JLabel lblErro;
+    private javax.swing.JMenu menuCalcularIndice;
+    private javax.swing.JMenu menuGerenciarIndicadores;
+    private javax.swing.JMenu menuGerenciarLotes;
+    private javax.swing.JMenu menuVisualizarLotes;
     private javax.swing.JScrollPane scrollTabela;
     private javax.swing.JTable tabLote;
     private javax.swing.JFormattedTextField txtContato;

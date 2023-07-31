@@ -103,9 +103,14 @@ public class CrudIndicadores extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         scrollTabela1 = new javax.swing.JScrollPane();
         tabModelo = new javax.swing.JTable();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        menuCalcularIndice = new javax.swing.JMenu();
+        menuVisualizarLotes = new javax.swing.JMenu();
+        menuGerenciarLotes = new javax.swing.JMenu();
+        menuGerenciarIndicadores = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Gerenciar Modelos");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gerenciar Indicadores");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -186,7 +191,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         homePanelLayout.setHorizontalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
                         .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -197,7 +202,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
                                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnExcluir)))
-                        .addGap(28, 28, 28))
+                        .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(123, 123, 123)))
@@ -209,7 +214,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         homePanelLayout.setVerticalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homePanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNomeModelo)
                     .addComponent(jLabel1))
@@ -223,11 +228,60 @@ public class CrudIndicadores extends javax.swing.JFrame {
                             .addComponent(btnEditar)
                             .addComponent(btnNovo)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         cardPanel.add(homePanel, "home");
         homePanel.getAccessibleContext().setAccessibleName("homePanel");
+
+        menuCalcularIndice.setText("Calcular Índice");
+        menuCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCalcularIndiceActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuCalcularIndice);
+
+        menuVisualizarLotes.setText("Visualizar lotes");
+        menuVisualizarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuVisualizarLotesMousePressed(evt);
+            }
+        });
+        menuVisualizarLotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVisualizarLotesActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuVisualizarLotes);
+
+        menuGerenciarLotes.setText("Gerenciar lotes");
+        menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuGerenciarLotesMousePressed(evt);
+            }
+        });
+        menuGerenciarLotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGerenciarLotesActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuGerenciarLotes);
+
+        menuGerenciarIndicadores.setText("Gerenciar indicadores");
+        menuGerenciarIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuGerenciarIndicadoresMousePressed(evt);
+            }
+        });
+        menuGerenciarIndicadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGerenciarIndicadoresActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuGerenciarIndicadores);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -280,6 +334,40 @@ public class CrudIndicadores extends javax.swing.JFrame {
     private void jListModelosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListModelosValueChanged
         preencherTabela(jListModelos.getSelectedIndex());
     }//GEN-LAST:event_jListModelosValueChanged
+
+    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuCalcularIndiceActionPerformed
+
+    private void menuVisualizarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuVisualizarLotesMousePressed
+        this.setVisible(false);
+        new VisualizarLotes().setVisible(true);
+    }//GEN-LAST:event_menuVisualizarLotesMousePressed
+
+    private void menuVisualizarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVisualizarLotesActionPerformed
+        this.setVisible(false);
+        new VisualizarLotes().setVisible(true);
+    }//GEN-LAST:event_menuVisualizarLotesActionPerformed
+
+    private void menuGerenciarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarLotesMousePressed
+        this.setVisible(false);
+        new CrudLote().setVisible(true);
+    }//GEN-LAST:event_menuGerenciarLotesMousePressed
+
+    private void menuGerenciarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarLotesActionPerformed
+        this.setVisible(false);
+        new CrudLote().setVisible(true);
+    }//GEN-LAST:event_menuGerenciarLotesActionPerformed
+
+    private void menuGerenciarIndicadoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresMousePressed
+        this.setVisible(false);
+        new CrudIndicadores(ISA.categoriaList).setVisible(true);
+    }//GEN-LAST:event_menuGerenciarIndicadoresMousePressed
+
+    private void menuGerenciarIndicadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresActionPerformed
+        this.setVisible(false);
+        new CrudIndicadores(ISA.categoriaList).setVisible(true);
+    }//GEN-LAST:event_menuGerenciarIndicadoresActionPerformed
     
     
    
@@ -333,9 +421,14 @@ public class CrudIndicadores extends javax.swing.JFrame {
     private javax.swing.JPanel homePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jListModelos;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblNomeModelo;
+    private javax.swing.JMenu menuCalcularIndice;
+    private javax.swing.JMenu menuGerenciarIndicadores;
+    private javax.swing.JMenu menuGerenciarLotes;
+    private javax.swing.JMenu menuVisualizarLotes;
     private javax.swing.JScrollPane scrollTabela1;
     private javax.swing.JTable tabModelo;
     // End of variables declaration//GEN-END:variables

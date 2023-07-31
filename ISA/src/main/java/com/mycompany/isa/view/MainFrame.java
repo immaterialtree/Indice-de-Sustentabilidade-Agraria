@@ -34,10 +34,10 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
         btnGerenciarLotes = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        btnGerenciarModelos = new javax.swing.JButton();
+        btnVisualizarLotes = new javax.swing.JButton();
+        btnGerenciarIndicadores = new javax.swing.JButton();
         lblMainTitle = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCalcularIndice = new javax.swing.JButton();
         sobrePanel = new javax.swing.JPanel();
         lblSobreTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -47,6 +47,10 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
         jMenuBar2 = new javax.swing.JMenuBar();
+        menuCalcularIndice = new javax.swing.JMenu();
+        menuVisualizarLotes = new javax.swing.JMenu();
+        menuGerenciarLotes = new javax.swing.JMenu();
+        menuGerenciarIndicadores = new javax.swing.JMenu();
         menuSobre = new javax.swing.JMenu();
         menuAjuda = new javax.swing.JMenu();
 
@@ -70,19 +74,19 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setText("Visualizar lotes");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVisualizarLotes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnVisualizarLotes.setText("Visualizar lotes");
+        btnVisualizarLotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVisualizarLotesActionPerformed(evt);
             }
         });
 
-        btnGerenciarModelos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGerenciarModelos.setText("Gerenciar indicadores");
-        btnGerenciarModelos.addActionListener(new java.awt.event.ActionListener() {
+        btnGerenciarIndicadores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGerenciarIndicadores.setText("Gerenciar indicadores");
+        btnGerenciarIndicadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGerenciarModelosActionPerformed(evt);
+                btnGerenciarIndicadoresActionPerformed(evt);
             }
         });
 
@@ -90,29 +94,34 @@ public class MainFrame extends javax.swing.JFrame {
         lblMainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainTitle.setText("ÍNDICE DE SUSTENTABILIDADE AGRÁRIA");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Calcular Índice");
+        btnCalcularIndice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCalcularIndice.setText("Calcular Índice");
+        btnCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularIndiceActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainPanelLayout.createSequentialGroup()
-                        .addComponent(lblMainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
-                        .addContainerGap())
+                .addGap(113, 113, 113)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGerenciarModelos))
-                        .addGap(49, 49, 49))))
+                        .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                        .addGap(61, 61, 61)
+                        .addComponent(btnGerenciarIndicadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(btnCalcularIndice, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                        .addGap(61, 61, 61)
+                        .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
+                .addGap(103, 103, 103))
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(lblMainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,14 +129,16 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(lblMainTitle)
                 .addGap(52, 52, 52)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGerenciarModelos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(btnCalcularIndice, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                        .addGap(39, 39, 39)
+                        .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                        .addGap(39, 39, 39)
+                        .addComponent(btnGerenciarIndicadores, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)))
+                .addGap(59, 59, 59))
         );
 
         cardPanel.add(mainPanel, "main");
@@ -148,8 +159,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSobreTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(sobrePanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+                        .addGap(170, 170, 170)))
                 .addContainerGap())
         );
         sobrePanelLayout.setVerticalGroup(
@@ -158,8 +169,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblSobreTitle)
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                .addGap(56, 56, 56))
         );
 
         cardPanel.add(sobrePanel, "sobre");
@@ -181,8 +192,8 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(ajudaPanelLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)))
+                .addGap(179, 179, 179))
         );
         ajudaPanelLayout.setVerticalGroup(
             ajudaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,11 +201,58 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                .addGap(61, 61, 61))
         );
 
         cardPanel.add(ajudaPanel, "ajuda");
+
+        menuCalcularIndice.setText("Calcular Índice");
+        menuCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCalcularIndiceActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuCalcularIndice);
+
+        menuVisualizarLotes.setText("Visualizar lotes");
+        menuVisualizarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuVisualizarLotesMousePressed(evt);
+            }
+        });
+        menuVisualizarLotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVisualizarLotesActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuVisualizarLotes);
+
+        menuGerenciarLotes.setText("Gerenciar lotes");
+        menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuGerenciarLotesMousePressed(evt);
+            }
+        });
+        menuGerenciarLotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGerenciarLotesActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuGerenciarLotes);
+
+        menuGerenciarIndicadores.setText("Gerenciar indicadores");
+        menuGerenciarIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuGerenciarIndicadoresMousePressed(evt);
+            }
+        });
+        menuGerenciarIndicadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGerenciarIndicadoresActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuGerenciarIndicadores);
 
         menuSobre.setText("Sobre");
         menuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -234,15 +292,15 @@ public class MainFrame extends javax.swing.JFrame {
         new CrudLote().setVisible(true);
     }//GEN-LAST:event_btnGerenciarLotesActionPerformed
 
-    private void btnGerenciarModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarModelosActionPerformed
+    private void btnGerenciarIndicadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarIndicadoresActionPerformed
         this.setVisible(false);
         new CrudIndicadores(ISA.categoriaList).setVisible(true);
-    }//GEN-LAST:event_btnGerenciarModelosActionPerformed
+    }//GEN-LAST:event_btnGerenciarIndicadoresActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnVisualizarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarLotesActionPerformed
         this.setVisible(false);
         new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnVisualizarLotesActionPerformed
 
     private void menuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSobreMouseClicked
         CardLayout cl = (CardLayout) cardPanel.getLayout();
@@ -268,6 +326,44 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar2.remove(menuVoltar);
         jMenuBar2.repaint();
     }//GEN-LAST:event_menuVoltarMouseClicked
+
+    private void btnCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularIndiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCalcularIndiceActionPerformed
+
+    private void menuVisualizarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVisualizarLotesActionPerformed
+        this.setVisible(false);
+        new VisualizarLotes().setVisible(true);
+    }//GEN-LAST:event_menuVisualizarLotesActionPerformed
+
+    private void menuGerenciarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarLotesActionPerformed
+        this.setVisible(false);
+        new CrudLote().setVisible(true);
+    }//GEN-LAST:event_menuGerenciarLotesActionPerformed
+
+    private void menuGerenciarIndicadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresActionPerformed
+        this.setVisible(false);
+        new CrudIndicadores(ISA.categoriaList).setVisible(true);
+    }//GEN-LAST:event_menuGerenciarIndicadoresActionPerformed
+
+    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuCalcularIndiceActionPerformed
+
+    private void menuGerenciarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarLotesMousePressed
+        this.setVisible(false);
+        new CrudLote().setVisible(true);
+    }//GEN-LAST:event_menuGerenciarLotesMousePressed
+
+    private void menuGerenciarIndicadoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresMousePressed
+        this.setVisible(false);
+        new CrudIndicadores(ISA.categoriaList).setVisible(true);
+    }//GEN-LAST:event_menuGerenciarIndicadoresMousePressed
+
+    private void menuVisualizarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuVisualizarLotesMousePressed
+        this.setVisible(false);
+        new VisualizarLotes().setVisible(true);
+    }//GEN-LAST:event_menuVisualizarLotesMousePressed
 
     /**
      * @param args the command line arguments
@@ -307,11 +403,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ajudaPanel;
+    private javax.swing.JButton btnCalcularIndice;
+    private javax.swing.JButton btnGerenciarIndicadores;
     private javax.swing.JButton btnGerenciarLotes;
-    private javax.swing.JButton btnGerenciarModelos;
+    private javax.swing.JButton btnVisualizarLotes;
     private javax.swing.JPanel cardPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -322,7 +418,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblSobreTitle;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenu menuCalcularIndice;
+    private javax.swing.JMenu menuGerenciarIndicadores;
+    private javax.swing.JMenu menuGerenciarLotes;
     private javax.swing.JMenu menuSobre;
+    private javax.swing.JMenu menuVisualizarLotes;
     private javax.swing.JMenu menuVoltar;
     private javax.swing.JPanel sobrePanel;
     // End of variables declaration//GEN-END:variables
