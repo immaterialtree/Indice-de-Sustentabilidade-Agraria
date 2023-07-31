@@ -4,10 +4,10 @@
  */
 package com.mycompany.isa.view.indicadores;
 
-import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.event.CaretEvent;
 
 /**
  *
@@ -35,31 +35,21 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         for (int i=0; i<items.length; i++) {
             IndicadorItemPanel item = new IndicadorItemPanel(modeloHash, IndicadorCategoriaPanel.currentRow++, items[i]);
             item.getTxtValorItem().setName(String.valueOf(i));
-//            item.getTxtValorItem().addKeyListener(new java.awt.event.KeyAdapter() {
-//                public void keyReleased(java.awt.event.KeyEvent evt) {
-//                    java.awt.EventQueue.invokeLater(new Runnable() {
-//                        public void run() {
-//                            JTextField txt = (JTextField) evt.getSource();
-//                            updateMedia(txt);
-//                        }
-//                    });
-//                }
-//            });
-//            item.getTxtValorItem().addFocusListener(new java.awt.event.FocusAdapter() {
-//                public void focusLost(java.awt.event.FocusEvent evt) {
-//                    java.awt.EventQueue.invokeLater(new Runnable() {
-//                        public void run() {
-//                            JTextField txt = (JTextField) evt.getSource();
-//                            updateMedia(txt);
-//                        }
-//                    });
-//                }
-//            });
+            item.getTxtValorItem().addCaretListener((CaretEvent evt) -> {
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        JTextField txt = (JTextField) evt.getSource();
+                        updateMedia(txt);
+                    }
+                });
+            });
+            
             itemsPanel.add(item);
             item.setVisible(true);
         }
-        this.endRow = IndicadorCategoriaPanel.currentRow;
+        this.endRow = IndicadorCategoriaPanel.currentRow-1;
         itensValor = Arrays.copyOfRange(IndicadoresFrame.lote.getScoresOf(modeloHash), startRow, endRow);
+        Arrays.toString(itensValor);
         calcularMedia();
     }
     /**
