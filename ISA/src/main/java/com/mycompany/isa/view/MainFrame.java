@@ -76,6 +76,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         btnVisualizarLotes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnVisualizarLotes.setText("Calcular Índice");
+        btnVisualizarLotes.setToolTipText("");
         btnVisualizarLotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisualizarLotesActionPerformed(evt);
@@ -142,10 +143,10 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(sobrePanelLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSobreTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSobreTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addGroup(sobrePanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
-                        .addGap(170, 170, 170)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         sobrePanelLayout.setVerticalGroup(
@@ -171,14 +172,13 @@ public class MainFrame extends javax.swing.JFrame {
         ajudaPanelLayout.setHorizontalGroup(
             ajudaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ajudaPanelLayout.createSequentialGroup()
-                .addGroup(ajudaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ajudaPanelLayout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(jLabel1))
-                    .addGroup(ajudaPanelLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)))
-                .addGap(179, 179, 179))
+                .addGap(212, 212, 212)
+                .addComponent(jLabel1)
+                .addContainerGap(402, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajudaPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
         ajudaPanelLayout.setVerticalGroup(
             ajudaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,6 +193,7 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel.add(ajudaPanel, "ajuda");
 
         menuInicio.setText("Início");
+        menuInicio.setToolTipText("");
         menuInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuInicioActionPerformed(evt);
@@ -201,6 +202,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar2.add(menuInicio);
 
         menuCalcularIndice.setText("Calcular índice");
+        menuCalcularIndice.setToolTipText("");
         menuCalcularIndice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 menuCalcularIndiceMousePressed(evt);
@@ -214,6 +216,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar2.add(menuCalcularIndice);
 
         menuGerenciarLotes.setText("Gerenciar lotes");
+        menuGerenciarLotes.setToolTipText("");
         menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 menuGerenciarLotesMousePressed(evt);

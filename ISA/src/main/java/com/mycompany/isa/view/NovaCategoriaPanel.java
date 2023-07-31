@@ -99,7 +99,7 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         txtEditHeader = new javax.swing.JTextField();
         txtEditCell = new javax.swing.JTextField();
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuDelete = new javax.swing.JMenuItem();
         btnVoltar = new javax.swing.JButton();
         lblNovoGrupo = new javax.swing.JLabel();
         txtGrupo = new javax.swing.JTextField();
@@ -132,19 +132,19 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
             }
         });
 
-        jMenuItem1.setText("Delete");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuDelete.setText("Delete");
+        menuDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuDeleteActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(jMenuItem1);
+        jPopupMenu1.add(menuDelete);
 
         btnVoltar.setText("Voltar");
 
         lblNovoGrupo.setText("Novo Grupo");
 
-        txtGrupo.setToolTipText("Escreva o nome do grupo");
+        txtGrupo.setToolTipText("Adicione um grupo. Tecle enter ou pressione o botão 'Adicionar grupo à categoria'. Para deletar, clique duas vezes em um grupo ");
         txtGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtGrupoActionPerformed(evt);
@@ -203,6 +203,7 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
 
             }
         ));
+        tabIndicadores.setToolTipText("Clique duas vezes para editar");
         tabIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabIndicadoresMouseClicked(evt);
@@ -215,6 +216,7 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         lblNome.setText("Nome da Categoria");
         lblNome.setToolTipText("");
 
+        txtNome.setToolTipText("Nome da categoria. Tecle enter para confirmar");
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
         txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -446,15 +448,22 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         renameCell();
     }//GEN-LAST:event_txtEditCellActionPerformed
 
+    int clickedRow;
+    int clickedColumn;
     private void tabIndicadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabIndicadoresMouseClicked
+        /*if (evt.getButton()==3) {
+            jPopupMenu1.show(tabIndicadores, evt.getX(), evt.getY());
+            clickedRow = tabIndicadores.rowAtPoint(evt.getPoint());
+            clickedColumn = tabIndicadores.columnAtPoint(evt.getPoint());
+        } else */
         if (evt.getClickCount()>1) {
             editCellAt(evt.getPoint());
         }
     }//GEN-LAST:event_tabIndicadoresMouseClicked
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        System.out.println("botao delete clicado");
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void menuDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDeleteActionPerformed
+        novaCategoria.removeItem(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
+    }//GEN-LAST:event_menuDeleteActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         lblNome.setText(txtNome.getText());
@@ -478,11 +487,11 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cboxGrupo;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNovoGrupo;
     private javax.swing.JLabel lblNovoIndicador;
+    private javax.swing.JMenuItem menuDelete;
     private javax.swing.JScrollPane scrollTabela;
     private com.mycompany.isa.components.NotEditableJTable tabIndicadores;
     private javax.swing.JTextField txtEditCell;
