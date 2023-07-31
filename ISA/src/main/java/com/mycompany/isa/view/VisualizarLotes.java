@@ -158,6 +158,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Índice de Sustentabilidade Agrária");
 
         jListModelos.setBorder(null);
         jListModelos.addMouseListener(new java.awt.event.MouseAdapter() {

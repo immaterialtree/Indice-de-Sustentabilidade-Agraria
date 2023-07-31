@@ -312,11 +312,6 @@ public class CrudLote extends javax.swing.JFrame {
         scrollTabela.setViewportView(tabLote);
 
         txtNumParcela.setBorder(javax.swing.BorderFactory.createTitledBorder("Nº da Parcela"));
-        txtNumParcela.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumParcelaActionPerformed(evt);
-            }
-        });
 
         txtContato.setBorder(javax.swing.BorderFactory.createTitledBorder("Contato"));
         try {
@@ -625,10 +620,6 @@ public class CrudLote extends javax.swing.JFrame {
         txtCoordenadaX.setText("");
         txtCoordenadaY.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
-
-    private void txtNumParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumParcelaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumParcelaActionPerformed
 
     private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
         // TODO add your handling code here:
