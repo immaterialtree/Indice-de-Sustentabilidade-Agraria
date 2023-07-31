@@ -17,21 +17,21 @@
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="menuCalcularIndice">
+        <Menu class="javax.swing.JMenu" name="menuInicio">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Calcular &#xcd;ndice"/>
+            <Property name="text" type="java.lang.String" value="In&#xed;cio"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCalcularIndiceActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuInicioActionPerformed"/>
           </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuVisualizarLotes">
+        <Menu class="javax.swing.JMenu" name="menuCalcularIndice">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Visualizar lotes"/>
+            <Property name="text" type="java.lang.String" value="Calcular &#xed;ndice"/>
           </Properties>
           <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuVisualizarLotesMousePressed"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuVisualizarLotesActionPerformed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuCalcularIndiceMousePressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCalcularIndiceActionPerformed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuGerenciarLotes">
@@ -120,25 +120,22 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Group type="102" alignment="2" attributes="0">
-                              <Component id="btnGerenciarLotes" pref="165" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                              <Component id="btnGerenciarIndicadores" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="lblMainTitle" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="2" attributes="0">
-                              <Component id="btnCalcularIndice" pref="165" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                              <Component id="btnVisualizarLotes" pref="165" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="btnGerenciarLotes" alignment="2" pref="186" max="32767" attributes="0"/>
+                                  <Component id="btnGerenciarIndicadores" alignment="2" pref="186" max="32767" attributes="0"/>
+                                  <Component id="btnVisualizarLotes" alignment="2" pref="186" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="lblMainTitle" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -147,20 +144,13 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="lblMainTitle" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Group type="102" alignment="2" attributes="0">
-                              <Component id="btnCalcularIndice" pref="63" max="32767" attributes="0"/>
-                              <EmptySpace min="39" pref="39" max="39" attributes="0"/>
-                              <Component id="btnGerenciarLotes" pref="63" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="2" attributes="0">
-                              <Component id="btnVisualizarLotes" pref="63" max="32767" attributes="0"/>
-                              <EmptySpace min="39" pref="39" max="39" attributes="0"/>
-                              <Component id="btnGerenciarIndicadores" pref="63" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnVisualizarLotes" pref="63" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="btnGerenciarIndicadores" pref="63" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="btnGerenciarLotes" pref="63" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -182,7 +172,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Visualizar lotes"/>
+                <Property name="text" type="java.lang.String" value="Calcular &#xcd;ndice"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarLotesActionPerformed"/>
@@ -208,17 +198,6 @@
                 <Property name="text" type="java.lang.String" value="&#xcd;NDICE DE SUSTENTABILIDADE AGR&#xc1;RIA"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCalcularIndice">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Calcular &#xcd;ndice"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcularIndiceActionPerformed"/>
-              </Events>
-            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="sobrePanel">
@@ -236,7 +215,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblSobreTitle" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jScrollPane1" pref="394" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="436" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -300,7 +279,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" pref="397" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" pref="439" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>

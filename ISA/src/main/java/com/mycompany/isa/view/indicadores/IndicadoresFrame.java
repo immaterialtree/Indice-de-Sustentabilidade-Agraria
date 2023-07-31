@@ -10,6 +10,7 @@ import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.DataTransfer;
 import com.mycompany.isa.view.CrudIndicadores;
 import com.mycompany.isa.view.CrudLote;
+import com.mycompany.isa.view.MainFrame;
 import com.mycompany.isa.view.VisualizarLotes;
 import java.awt.CardLayout;
 import java.util.List;
@@ -71,8 +72,8 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         btnProximo = new javax.swing.JButton();
         lblLoteNome = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
+        menuInicio = new javax.swing.JMenu();
         menuCalcularIndice = new javax.swing.JMenu();
-        menuVisualizarLotes = new javax.swing.JMenu();
         menuGerenciarLotes = new javax.swing.JMenu();
         menuGerenciarIndicadores = new javax.swing.JMenu();
 
@@ -108,26 +109,31 @@ public class IndicadoresFrame extends javax.swing.JFrame {
 
         lblLoteNome.setText("LoteNome");
 
-        menuCalcularIndice.setText("Calcular Índice");
+        menuInicio.setText("Início");
+        menuInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuInicioMousePressed(evt);
+            }
+        });
+        menuInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInicioActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuInicio);
+
+        menuCalcularIndice.setText("Calcular índice");
+        menuCalcularIndice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuCalcularIndiceMousePressed(evt);
+            }
+        });
         menuCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuCalcularIndiceActionPerformed(evt);
             }
         });
         jMenuBar2.add(menuCalcularIndice);
-
-        menuVisualizarLotes.setText("Visualizar lotes");
-        menuVisualizarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuVisualizarLotesMousePressed(evt);
-            }
-        });
-        menuVisualizarLotes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuVisualizarLotesActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuVisualizarLotes);
 
         menuGerenciarLotes.setText("Gerenciar lotes");
         menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -215,19 +221,19 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         atualizarBotoes();
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
-    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
+    private void menuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicioActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_menuInicioActionPerformed
+
+    private void menuCalcularIndiceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCalcularIndiceMousePressed
+        this.setVisible(false);
+        new VisualizarLotes().setVisible(true);
+    }//GEN-LAST:event_menuCalcularIndiceMousePressed
+
+    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
+        this.setVisible(false);
+        new VisualizarLotes().setVisible(true);
     }//GEN-LAST:event_menuCalcularIndiceActionPerformed
-
-    private void menuVisualizarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuVisualizarLotesMousePressed
-        this.setVisible(false);
-        new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuVisualizarLotesMousePressed
-
-    private void menuVisualizarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVisualizarLotesActionPerformed
-        this.setVisible(false);
-        new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuVisualizarLotesActionPerformed
 
     private void menuGerenciarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarLotesMousePressed
         this.setVisible(false);
@@ -248,6 +254,11 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         this.setVisible(false);
         new CrudIndicadores(ISA.categoriaList).setVisible(true);
     }//GEN-LAST:event_menuGerenciarIndicadoresActionPerformed
+
+    private void menuInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuInicioMousePressed
+        this.setVisible(false);
+        new MainFrame().setVisible(true);
+    }//GEN-LAST:event_menuInicioMousePressed
 
     /**
      * @param args the command line arguments
@@ -296,6 +307,6 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     private javax.swing.JMenu menuCalcularIndice;
     private javax.swing.JMenu menuGerenciarIndicadores;
     private javax.swing.JMenu menuGerenciarLotes;
-    private javax.swing.JMenu menuVisualizarLotes;
+    private javax.swing.JMenu menuInicio;
     // End of variables declaration//GEN-END:variables
 }

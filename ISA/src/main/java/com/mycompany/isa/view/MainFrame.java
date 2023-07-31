@@ -37,7 +37,6 @@ public class MainFrame extends javax.swing.JFrame {
         btnVisualizarLotes = new javax.swing.JButton();
         btnGerenciarIndicadores = new javax.swing.JButton();
         lblMainTitle = new javax.swing.JLabel();
-        btnCalcularIndice = new javax.swing.JButton();
         sobrePanel = new javax.swing.JPanel();
         lblSobreTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -47,8 +46,8 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
         jMenuBar2 = new javax.swing.JMenuBar();
+        menuInicio = new javax.swing.JMenu();
         menuCalcularIndice = new javax.swing.JMenu();
-        menuVisualizarLotes = new javax.swing.JMenu();
         menuGerenciarLotes = new javax.swing.JMenu();
         menuGerenciarIndicadores = new javax.swing.JMenu();
         menuSobre = new javax.swing.JMenu();
@@ -76,7 +75,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         btnVisualizarLotes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnVisualizarLotes.setText("Visualizar lotes");
+        btnVisualizarLotes.setText("Calcular Índice");
         btnVisualizarLotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisualizarLotesActionPerformed(evt);
@@ -95,33 +94,22 @@ public class MainFrame extends javax.swing.JFrame {
         lblMainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainTitle.setText("ÍNDICE DE SUSTENTABILIDADE AGRÁRIA");
 
-        btnCalcularIndice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCalcularIndice.setText("Calcular Índice");
-        btnCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalcularIndiceActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                        .addGap(61, 61, 61)
-                        .addComponent(btnGerenciarIndicadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addComponent(lblMainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(btnCalcularIndice, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                        .addGap(61, 61, 61)
-                        .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
-                .addGap(103, 103, 103))
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(lblMainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(232, 232, 232)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(btnGerenciarIndicadores, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                        .addGap(225, 225, 225)))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -129,17 +117,13 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(lblMainTitle)
-                .addGap(52, 52, 52)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(btnCalcularIndice, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                        .addGap(39, 39, 39)
-                        .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                        .addGap(39, 39, 39)
-                        .addComponent(btnGerenciarIndicadores, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)))
-                .addGap(59, 59, 59))
+                .addGap(18, 18, 18)
+                .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGerenciarIndicadores, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addGap(57, 57, 57))
         );
 
         cardPanel.add(mainPanel, "main");
@@ -160,7 +144,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSobreTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(sobrePanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                         .addGap(170, 170, 170)))
                 .addContainerGap())
         );
@@ -193,7 +177,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(ajudaPanelLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)))
                 .addGap(179, 179, 179))
         );
         ajudaPanelLayout.setVerticalGroup(
@@ -208,26 +192,26 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel.add(ajudaPanel, "ajuda");
 
-        menuCalcularIndice.setText("Calcular Índice");
+        menuInicio.setText("Início");
+        menuInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInicioActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuInicio);
+
+        menuCalcularIndice.setText("Calcular índice");
+        menuCalcularIndice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuCalcularIndiceMousePressed(evt);
+            }
+        });
         menuCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuCalcularIndiceActionPerformed(evt);
             }
         });
         jMenuBar2.add(menuCalcularIndice);
-
-        menuVisualizarLotes.setText("Visualizar lotes");
-        menuVisualizarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuVisualizarLotesMousePressed(evt);
-            }
-        });
-        menuVisualizarLotes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuVisualizarLotesActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuVisualizarLotes);
 
         menuGerenciarLotes.setText("Gerenciar lotes");
         menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -328,14 +312,10 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar2.repaint();
     }//GEN-LAST:event_menuVoltarMouseClicked
 
-    private void btnCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularIndiceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCalcularIndiceActionPerformed
-
-    private void menuVisualizarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVisualizarLotesActionPerformed
+    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
         this.setVisible(false);
         new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuVisualizarLotesActionPerformed
+    }//GEN-LAST:event_menuCalcularIndiceActionPerformed
 
     private void menuGerenciarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarLotesActionPerformed
         this.setVisible(false);
@@ -347,9 +327,9 @@ public class MainFrame extends javax.swing.JFrame {
         new CrudIndicadores(ISA.categoriaList).setVisible(true);
     }//GEN-LAST:event_menuGerenciarIndicadoresActionPerformed
 
-    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
+    private void menuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menuCalcularIndiceActionPerformed
+    }//GEN-LAST:event_menuInicioActionPerformed
 
     private void menuGerenciarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarLotesMousePressed
         this.setVisible(false);
@@ -361,10 +341,10 @@ public class MainFrame extends javax.swing.JFrame {
         new CrudIndicadores(ISA.categoriaList).setVisible(true);
     }//GEN-LAST:event_menuGerenciarIndicadoresMousePressed
 
-    private void menuVisualizarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuVisualizarLotesMousePressed
+    private void menuCalcularIndiceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCalcularIndiceMousePressed
         this.setVisible(false);
         new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuVisualizarLotesMousePressed
+    }//GEN-LAST:event_menuCalcularIndiceMousePressed
 
     /**
      * @param args the command line arguments
@@ -404,7 +384,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ajudaPanel;
-    private javax.swing.JButton btnCalcularIndice;
     private javax.swing.JButton btnGerenciarIndicadores;
     private javax.swing.JButton btnGerenciarLotes;
     private javax.swing.JButton btnVisualizarLotes;
@@ -422,8 +401,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu menuCalcularIndice;
     private javax.swing.JMenu menuGerenciarIndicadores;
     private javax.swing.JMenu menuGerenciarLotes;
+    private javax.swing.JMenu menuInicio;
     private javax.swing.JMenu menuSobre;
-    private javax.swing.JMenu menuVisualizarLotes;
     private javax.swing.JMenu menuVoltar;
     private javax.swing.JPanel sobrePanel;
     // End of variables declaration//GEN-END:variables

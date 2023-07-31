@@ -201,21 +201,22 @@
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="menuCalcularIndice">
+        <Menu class="javax.swing.JMenu" name="menuInicio">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Calcular &#xcd;ndice"/>
+            <Property name="text" type="java.lang.String" value="In&#xed;cio"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCalcularIndiceActionPerformed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuInicioMousePressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuInicioActionPerformed"/>
           </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuVisualizarLotes">
+        <Menu class="javax.swing.JMenu" name="menuCalcularIndice">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Visualizar lotes"/>
+            <Property name="text" type="java.lang.String" value="Calcular &#xed;ndice"/>
           </Properties>
           <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuVisualizarLotesMousePressed"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuVisualizarLotesActionPerformed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuCalcularIndiceMousePressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCalcularIndiceActionPerformed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuGerenciarLotes">

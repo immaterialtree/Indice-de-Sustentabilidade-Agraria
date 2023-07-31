@@ -121,8 +121,8 @@ public class CrudLote extends javax.swing.JFrame {
         cboxAssentamento = new javax.swing.JComboBox<>();
         btnAddAssentamento = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
+        menuInicio = new javax.swing.JMenu();
         menuCalcularIndice = new javax.swing.JMenu();
-        menuVisualizarLotes = new javax.swing.JMenu();
         menuGerenciarLotes = new javax.swing.JMenu();
         menuGerenciarIndicadores = new javax.swing.JMenu();
 
@@ -439,26 +439,31 @@ public class CrudLote extends javax.swing.JFrame {
                     .addContainerGap(351, Short.MAX_VALUE)))
         );
 
-        menuCalcularIndice.setText("Calcular Índice");
+        menuInicio.setText("Início");
+        menuInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuInicioMousePressed(evt);
+            }
+        });
+        menuInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInicioActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuInicio);
+
+        menuCalcularIndice.setText("Calcular índice");
+        menuCalcularIndice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuCalcularIndiceMousePressed(evt);
+            }
+        });
         menuCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuCalcularIndiceActionPerformed(evt);
             }
         });
         jMenuBar2.add(menuCalcularIndice);
-
-        menuVisualizarLotes.setText("Visualizar lotes");
-        menuVisualizarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuVisualizarLotesMousePressed(evt);
-            }
-        });
-        menuVisualizarLotes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuVisualizarLotesActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuVisualizarLotes);
 
         menuGerenciarLotes.setText("Gerenciar lotes");
         menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -621,19 +626,19 @@ public class CrudLote extends javax.swing.JFrame {
         txtCoordenadaY.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
 
-    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
+    private void menuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicioActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_menuInicioActionPerformed
+
+    private void menuCalcularIndiceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCalcularIndiceMousePressed
+        this.setVisible(false);
+        new VisualizarLotes().setVisible(true);
+    }//GEN-LAST:event_menuCalcularIndiceMousePressed
+
+    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
+        this.setVisible(false);
+        new VisualizarLotes().setVisible(true);
     }//GEN-LAST:event_menuCalcularIndiceActionPerformed
-
-    private void menuVisualizarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuVisualizarLotesMousePressed
-        this.setVisible(false);
-        new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuVisualizarLotesMousePressed
-
-    private void menuVisualizarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVisualizarLotesActionPerformed
-        this.setVisible(false);
-        new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuVisualizarLotesActionPerformed
 
     private void menuGerenciarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarLotesMousePressed
         this.setVisible(false);
@@ -684,6 +689,11 @@ public class CrudLote extends javax.swing.JFrame {
             cboxAssentamento_editar.addItem(assentamento);
         }
     }//GEN-LAST:event_btnAddAssentamento_editarActionPerformed
+
+    private void menuInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuInicioMousePressed
+        this.setVisible(false);
+        new MainFrame().setVisible(true);
+    }//GEN-LAST:event_menuInicioMousePressed
 
     /**
      * @param args the command line arguments
@@ -737,22 +747,16 @@ public class CrudLote extends javax.swing.JFrame {
     private javax.swing.JDialog dialogEditar;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblCadTitulo;
     private javax.swing.JLabel lblCoordenadaX;
-    private javax.swing.JLabel lblCoordenadaX1;
-    private javax.swing.JLabel lblCoordenadaX2;
     private javax.swing.JLabel lblCoordenadaX_editar;
     private javax.swing.JLabel lblCoordenadaY;
-    private javax.swing.JLabel lblCoordenadaY1;
-    private javax.swing.JLabel lblCoordenadaY2;
     private javax.swing.JLabel lblCoordenadaY_editar;
     private javax.swing.JLabel lblErro;
     private javax.swing.JMenu menuCalcularIndice;
     private javax.swing.JMenu menuGerenciarIndicadores;
     private javax.swing.JMenu menuGerenciarLotes;
-    private javax.swing.JMenu menuVisualizarLotes;
+    private javax.swing.JMenu menuInicio;
     private javax.swing.JPanel panelCoordenada;
     private javax.swing.JPanel panelCoordenada_editar;
     private javax.swing.JScrollPane scrollTabela;
@@ -760,12 +764,8 @@ public class CrudLote extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtContato;
     private javax.swing.JFormattedTextField txtContato_editar;
     private javax.swing.JFormattedTextField txtCoordenadaX;
-    private javax.swing.JFormattedTextField txtCoordenadaX1;
-    private javax.swing.JFormattedTextField txtCoordenadaX2;
     private javax.swing.JFormattedTextField txtCoordenadaX_editar;
     private javax.swing.JFormattedTextField txtCoordenadaY;
-    private javax.swing.JFormattedTextField txtCoordenadaY1;
-    private javax.swing.JFormattedTextField txtCoordenadaY2;
     private javax.swing.JFormattedTextField txtCoordenadaY_editar;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNome_editar;
