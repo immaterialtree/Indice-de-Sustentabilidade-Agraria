@@ -67,6 +67,11 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         btnAnterior = new javax.swing.JButton();
         btnProximo = new javax.swing.JButton();
         lblLoteNome = new javax.swing.JLabel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        menuCalcularIndice = new javax.swing.JMenu();
+        menuVisualizarLotes = new javax.swing.JMenu();
+        menuGerenciarLotes = new javax.swing.JMenu();
+        menuGerenciarIndicadores = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -99,6 +104,55 @@ public class IndicadoresFrame extends javax.swing.JFrame {
 
         lblLoteNome.setText("LoteNome");
 
+        menuCalcularIndice.setText("Calcular Índice");
+        menuCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCalcularIndiceActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuCalcularIndice);
+
+        menuVisualizarLotes.setText("Visualizar lotes");
+        menuVisualizarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuVisualizarLotesMousePressed(evt);
+            }
+        });
+        menuVisualizarLotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVisualizarLotesActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuVisualizarLotes);
+
+        menuGerenciarLotes.setText("Gerenciar lotes");
+        menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuGerenciarLotesMousePressed(evt);
+            }
+        });
+        menuGerenciarLotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGerenciarLotesActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuGerenciarLotes);
+
+        menuGerenciarIndicadores.setText("Gerenciar indicadores");
+        menuGerenciarIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuGerenciarIndicadoresMousePressed(evt);
+            }
+        });
+        menuGerenciarIndicadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGerenciarIndicadoresActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuGerenciarIndicadores);
+
+        setJMenuBar(jMenuBar2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,7 +184,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
                 .addComponent(btnAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 27, Short.MAX_VALUE)
+                .addGap(0, 4, Short.MAX_VALUE)
                 .addComponent(cardPane, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -156,6 +210,40 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         cl.show(cardPane, categorias.get(indice).getNome());
         atualizarBotoes();
     }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuCalcularIndiceActionPerformed
+
+    private void menuVisualizarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuVisualizarLotesMousePressed
+        this.setVisible(false);
+        new VisualizarLotes().setVisible(true);
+    }//GEN-LAST:event_menuVisualizarLotesMousePressed
+
+    private void menuVisualizarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVisualizarLotesActionPerformed
+        this.setVisible(false);
+        new VisualizarLotes().setVisible(true);
+    }//GEN-LAST:event_menuVisualizarLotesActionPerformed
+
+    private void menuGerenciarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarLotesMousePressed
+        this.setVisible(false);
+        new CrudLote().setVisible(true);
+    }//GEN-LAST:event_menuGerenciarLotesMousePressed
+
+    private void menuGerenciarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarLotesActionPerformed
+        this.setVisible(false);
+        new CrudLote().setVisible(true);
+    }//GEN-LAST:event_menuGerenciarLotesActionPerformed
+
+    private void menuGerenciarIndicadoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresMousePressed
+        this.setVisible(false);
+        new CrudIndicadores(ISA.categoriaList).setVisible(true);
+    }//GEN-LAST:event_menuGerenciarIndicadoresMousePressed
+
+    private void menuGerenciarIndicadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresActionPerformed
+        this.setVisible(false);
+        new CrudIndicadores(ISA.categoriaList).setVisible(true);
+    }//GEN-LAST:event_menuGerenciarIndicadoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,6 +287,11 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnProximo;
     private javax.swing.JPanel cardPane;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JLabel lblLoteNome;
+    private javax.swing.JMenu menuCalcularIndice;
+    private javax.swing.JMenu menuGerenciarIndicadores;
+    private javax.swing.JMenu menuGerenciarLotes;
+    private javax.swing.JMenu menuVisualizarLotes;
     // End of variables declaration//GEN-END:variables
 }
