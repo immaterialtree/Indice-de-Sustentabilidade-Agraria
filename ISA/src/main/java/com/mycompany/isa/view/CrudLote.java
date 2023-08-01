@@ -562,7 +562,7 @@ public class CrudLote extends javax.swing.JFrame {
         txtCoordenadaX_editar.setText(String.valueOf(lote.getCoordenada()[0]));
         txtCoordenadaY_editar.setText(String.valueOf(lote.getCoordenada()[1]));
         
-        dialogEditar.setSize(390, 370);
+        dialogEditar.setSize(390, 415);
         dialogEditar.setLocationRelativeTo(null);
         dialogEditar.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
