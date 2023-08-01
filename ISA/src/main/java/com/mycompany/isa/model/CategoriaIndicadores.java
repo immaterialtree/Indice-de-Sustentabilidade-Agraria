@@ -39,6 +39,17 @@ public class CategoriaIndicadores {
     public CategoriaIndicadores() {
         itemMap = new LinkedHashMap<>();
     }
+
+    public CategoriaIndicadores(CategoriaIndicadores copy) {
+        this.nome = copy.nome;
+        this.itemMap = new LinkedHashMap<>();
+        for (String key : copy.itemMap.keySet()) {
+            this.addGrupo(key);
+            for (String item : copy.itemMap.get(key)) {
+                this.addItem(key, item);
+            }
+        }
+    }
     
     public CategoriaIndicadores(String nome, String[] grupos, String[][] itens) {
         this.nome = nome;
@@ -66,7 +77,7 @@ public class CategoriaIndicadores {
     
     // grupos - get/add/remove
     @JsonIgnore
-    public java.util.ArrayList<String> getGrupos() {
+    public ArrayList<String> getGrupos() {
         return new ArrayList<>(itemMap.keySet());
     }
     

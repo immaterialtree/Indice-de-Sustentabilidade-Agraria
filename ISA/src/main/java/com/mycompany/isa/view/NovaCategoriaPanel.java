@@ -6,6 +6,7 @@ package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.CategoriaIndicadores;
+import com.mycompany.isa.utility.DataTransfer;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -299,8 +300,10 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     
     public void carregarCategoria(CategoriaIndicadores categoria, int indice) {
         resetar();
+        editing = true;
         editingIndex = indice;
-        novaCategoria = new CategoriaIndicadores(categoria.getNome(), categoria.getGrupos().toArray(String[]::new), categoria.getAllItemsArr());
+        novaCategoria = new CategoriaIndicadores(categoria);
+//        novaCategoria = categoria;
         lblNome.setText(novaCategoria.getNome());
         txtNome.setText(novaCategoria.getNome());
         atualizarCbox();
@@ -369,7 +372,7 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         txtGrupo.setText("");
         txtItem.setText("");
         txtNome.setText("");
-        lblNome.setText("Nome do modelo");
+        lblNome.setText("Nome da categoria");
         cboxGrupo.removeAllItems();
         cboxGrupo.addItem("<Selecionar Grupo>");
         atualizarTabela();
@@ -423,15 +426,17 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
             novaCategoria.getGrupos().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Falha ao salvar. Lembre-se de cadastrar pelo menos um grupo e preencher o nome", 
                     "Erro. Campo em branco", JOptionPane.ERROR_MESSAGE);
+        } else 
+        if (editing) {
+            ISA.categoriaList.remove(editingIndex);
+            ISA.categoriaList.add(editingIndex, novaCategoria);
+            editing = false;
         } else {
-            if (editing) {
-                ISA.categoriaList.remove(editingIndex);
-                ISA.categoriaList.add(editingIndex, novaCategoria);
-                editing = false;
-            } else 
-                ISA.categoriaList.add(novaCategoria);
-            resetar();
+            ISA.categoriaList.add(novaCategoria);
         }
+        resetar();
+        DataTransfer.deleteIndicadores();
+        DataTransfer.exportIndicadores(ISA.categoriaList);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnResetarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetarActionPerformed
