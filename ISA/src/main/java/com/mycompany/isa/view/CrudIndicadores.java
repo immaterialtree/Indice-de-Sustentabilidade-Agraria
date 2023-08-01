@@ -40,6 +40,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
     
     private void initAll() {
         initComponents();
+        scrollTablePanel.getVerticalScrollBar().setUnitIncrement(5);
         cl = (CardLayout) cardPanel.getLayout();
         preencherLista();
         preencherTabela(0);
@@ -77,22 +78,17 @@ public class CrudIndicadores extends javax.swing.JFrame {
         int i=0;
         for (Map.Entry grupo: ISA.categoriaList.get(indice).getItemMap().entrySet()) {
             JLabel lblTable = new JLabel();
-            String htmlHeader = """
-                                <html>
-                                    <table>
-                                        <tr>
-                                           <th>%s</th>
-                                        </tr>
-                               """;
+            String htmlHeader = "<html> <table> <tr> <th>%s</th> </tr>";
             htmlHeader = String.format(htmlHeader, grupo.getKey());
             String htmlItem = "<tr> <td>%s</td> </tr>";
             StringBuilder htmlTable= new StringBuilder(htmlHeader);
             for (String item : (List<String>) grupo.getValue()) {
                 htmlTable.append(String.format(htmlItem, item));
             }
-            htmlTable.append("</table> </html>");
+            htmlTable.append("</table></html>");
             lblTable.setText(htmlTable.toString());
-            
+            System.out.println(htmlTable);
+//            lblTable.setText("<html><li> item </li> </html>");
             tablePanel.add(lblTable);
             GridBagLayout layout = (GridBagLayout) tablePanel.getLayout();
             GridBagConstraints c = layout.getConstraints(lblTable);
@@ -125,7 +121,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         btnNovo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnResetDefault = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollTablePanel = new javax.swing.JScrollPane();
         tablePanel = new javax.swing.JPanel();
         jMenuBar2 = new javax.swing.JMenuBar();
         menuInicio = new javax.swing.JMenu();
@@ -190,7 +186,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         });
 
         tablePanel.setLayout(new java.awt.GridBagLayout());
-        jScrollPane1.setViewportView(tablePanel);
+        scrollTablePanel.setViewportView(tablePanel);
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
@@ -214,8 +210,8 @@ public class CrudIndicadores extends javax.swing.JFrame {
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNomeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(homePanelLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(scrollTablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17))
         );
         homePanelLayout.setVerticalGroup(
@@ -225,19 +221,18 @@ public class CrudIndicadores extends javax.swing.JFrame {
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNomeModelo)
                     .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrollTablePanel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(homePanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnExcluir)
-                            .addComponent(btnEditar)
-                            .addComponent(btnNovo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnResetDefault))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnEditar)
+                    .addComponent(btnNovo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnResetDefault)
+                .addGap(46, 46, 46))
         );
 
         cardPanel.add(homePanel, "home");
@@ -454,13 +449,13 @@ public class CrudIndicadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jListModelos;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblNomeModelo;
     private javax.swing.JMenu menuCalcularIndices;
     private javax.swing.JMenu menuGerenciarIndicadores;
     private javax.swing.JMenu menuGerenciarLotes;
     private javax.swing.JMenu menuInicio;
+    private javax.swing.JScrollPane scrollTablePanel;
     private javax.swing.JPanel tablePanel;
     // End of variables declaration//GEN-END:variables
 }
