@@ -31,7 +31,12 @@ public class VisualizarLotes extends javax.swing.JFrame {
     private void preencherLista() {
         DefaultListModel resultList = new DefaultListModel();
         for (Lote lote : ISA.loteList) {
-            resultList.addElement(lote.getResponsavel());
+            String loteString = String.format("<html>"
+                    + "<b>Assentamento:</b>%s <br>"
+                    + "<b>Responsável:</b> \t%s <br>"
+                    + "<b>Parcela:</b>     \t%s</html>",
+                    lote.getAssentamento(), lote.getResponsavel(), lote.getNumParcela());
+            resultList.addElement(loteString);
         }
         jListModelos.setModel(resultList);
     }
@@ -75,7 +80,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         }
 
         txtNome.setEditable(false);
-        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Responsavel"));
+        txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Responsável"));
 
         txtNumParcela.setEditable(false);
         txtNumParcela.setBorder(javax.swing.BorderFactory.createTitledBorder("N° da parcela"));
@@ -138,7 +143,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(txtAssentamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,6 +171,8 @@ public class VisualizarLotes extends javax.swing.JFrame {
         setTitle("Índice de Sustentabilidade Agrária");
 
         jListModelos.setBorder(null);
+        jListModelos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jListModelos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListModelos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jListModelosMouseClicked(evt);
@@ -178,6 +185,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jListModelos);
 
+        btnVisualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnVisualizar.setText("Índice de sustentabilidade");
         btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,10 +193,11 @@ public class VisualizarLotes extends javax.swing.JFrame {
             }
         });
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Escolha um Lote");
 
+        btnPropriedades.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPropriedades.setText("Ver propriedades");
         btnPropriedades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,6 +205,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
             }
         });
 
+        btbVoltar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btbVoltar.setText("Voltar");
         btbVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,7 +222,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnPropriedades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                     .addComponent(btnVisualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(66, 66, 66))
             .addGroup(layout.createSequentialGroup()
@@ -227,13 +237,13 @@ public class VisualizarLotes extends javax.swing.JFrame {
                 .addComponent(btbVoltar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnVisualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPropriedades)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPropriedades, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();

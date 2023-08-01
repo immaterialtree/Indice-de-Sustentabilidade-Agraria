@@ -73,6 +73,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
+        lblGrupoNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblGrupoNome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGrupoNome.setText("<html><p style=\"width:100px; align=\"center\"\">"+grupoNome+"</p></html>");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -97,15 +98,29 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         add(itemsPanel, gridBagConstraints);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.setLayout(new java.awt.GridBagLayout());
 
+        lblNumGrupo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNumGrupo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumGrupo.setText("0.00");
-        jPanel5.add(lblNumGrupo, new java.awt.GridBagConstraints());
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblNumGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(lblNumGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.ipadx = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         add(jPanel5, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
@@ -115,7 +130,9 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
             public void run() {
                 try {
                     int txtIndex = Integer.parseInt(txt.getName());
-                    itensValor[txtIndex] = Double.valueOf(txt.getText());
+                    double valor = Double.parseDouble(txt.getText());
+                    if (valor >= 0 && valor <= 10) 
+                        itensValor[txtIndex] = valor;
                 } catch (NumberFormatException e) {
                 }
                 calcularMedia();

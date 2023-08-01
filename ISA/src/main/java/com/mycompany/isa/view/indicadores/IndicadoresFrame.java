@@ -24,6 +24,10 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     List<CategoriaIndicadores> categorias;
     CardLayout cl;
     int indice;
+    String loteString = "<html>"
+                    + "<b>Assentamento:</b> %s<br>"
+                    + "<b>Responsável:</b>  %s<br>"
+                    + "<b>Parcela:</b>      %s</html>";
     /**
      * Creates new form Indicadores
      */
@@ -34,7 +38,8 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         initComponents();
         IndicadoresFrame.lote = lote;
         cl = (CardLayout) cardPane.getLayout();
-        lblLoteNome.setText("Responsável pelo lote: " +lote.getResponsavel());
+        loteString = String.format(loteString, lote.getAssentamento(), lote.getResponsavel(), lote.getNumParcela());
+        lblLoteNome.setText(loteString);
         categorias = ISA.categoriaList;
         if (categorias.isEmpty()) {
             indice = -1;
@@ -77,8 +82,9 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         menuGerenciarLotes = new javax.swing.JMenu();
         menuGerenciarIndicadores = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Índice de Sustentabilidade Agrária");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -172,13 +178,14 @@ public class IndicadoresFrame extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblLoteNome)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblLoteNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(lblLoteNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(lblLoteNome, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -189,7 +196,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
                         .addComponent(btnProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(231, 231, 231))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cardPane, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                        .addComponent(cardPane, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 

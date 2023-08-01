@@ -55,7 +55,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
 
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
 
-        lblNomeItem.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+        lblNomeItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNomeItem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNomeItem.setText("<html><p style=\"width:250px\">"+indicadorNome+"</p></html>");
         lblNomeItem.setIconTextGap(1);
@@ -64,10 +64,16 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         txtValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtValorItem.setText("0,0");
         txtValorItem.setToolTipText("");
+        txtValorItem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtValorItem.setName(""); // NOI18N
         txtValorItem.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtValorItemCaretUpdate(evt);
+            }
+        });
+        txtValorItem.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtValorItemFocusLost(evt);
             }
         });
 
@@ -76,15 +82,17 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(lblNomeItem, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
+                .addContainerGap()
+                .addComponent(lblNomeItem, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(lblNomeItem, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(txtValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 1, Short.MAX_VALUE))
+            .addComponent(txtValorItem)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -92,6 +100,20 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         checkValue();
 //        txtValorItem.setSize(30, txtValorItem.getHeight());
     }//GEN-LAST:event_txtValorItemCaretUpdate
+
+    private void txtValorItemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorItemFocusLost
+        Double valor = 0.0;
+        try {
+            valor = Double.valueOf(txtValorItem.getText().replace(",", "."));
+            if (valor > 10 || valor < 0) {
+                valor = 0d;
+            }
+        } catch (NumberFormatException e) {
+        }
+        txtValorItem.setText(String.valueOf(valor));
+        IndicadoresFrame.lote.setScore(tab, row, valor);
+        DataTransfer.exportLote(IndicadoresFrame.lote);        
+    }//GEN-LAST:event_txtValorItemFocusLost
 
     private void checkValue() {
         Double valor = 0.0;
