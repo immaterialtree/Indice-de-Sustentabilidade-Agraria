@@ -28,7 +28,7 @@ public class ISA {
         // Setting look and feel
         try {
   
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         }
         catch (Exception e) {
             System.out.println("Look and Feel não configurado");

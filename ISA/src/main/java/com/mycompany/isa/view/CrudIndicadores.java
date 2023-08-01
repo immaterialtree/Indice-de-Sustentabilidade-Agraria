@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  * @author naoki
  */
 public class CrudIndicadores extends javax.swing.JFrame {
-//    List<IndicadoresModelo> ISA.indicadoresList = new ArrayList<>();
+//    List<IndicadoresModelo> ISA.categoriaList = new ArrayList<>();
     NovaCategoriaPanel novoModeloPanel;
     CardLayout cl;
     
@@ -67,21 +67,21 @@ public class CrudIndicadores extends javax.swing.JFrame {
     }
     void preencherTabela(int indice) {
         tablePanel.removeAll();
-        if (indice < 0) return;
-        if (ISA.categoriaList.isEmpty()) {
+        if (ISA.categoriaList.size()<1) {
             lblNomeModelo.setText("");
-            return;
+            tablePanel.removeAll();
+            tablePanel.repaint();
         }
+        
         int i=0;
-        lblNomeModelo.setText(ISA.categoriaList.get(indice).getNome());
         for (Map.Entry grupo: ISA.categoriaList.get(indice).getItemMap().entrySet()) {
             DefaultTableModel tableModel = new DefaultTableModel();
             tableModel.addColumn(grupo.getKey(), ((List<String>) grupo.getValue()).toArray());
-            JTable table = new JTable(tableModel);
+            JTable table = new JTable();
+            table.setModel(tableModel);
             table.setEnabled(false);
-            JScrollPane scroll = new JScrollPane();
-//            scroll.setSize(tablePanel.getWidth(), table.getRowHeight()*table.getRowCount()+table.getTableHeader().getHeight());
-            scroll.setSize(tablePanel.getWidth(), 100);
+            JScrollPane scroll = new javax.swing.JScrollPane(table);
+            scroll.setSize(tablePanel.getWidth(), table.getRowHeight()*table.getRowCount()+table.getTableHeader().getHeight());
             tablePanel.add(scroll);
             
             GridBagLayout layout = (GridBagLayout) tablePanel.getLayout();
@@ -90,6 +90,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
             c.gridy = i++;
             layout.setConstraints(scroll, c);
         }
+        lblNomeModelo.setText(ISA.categoriaList.get(indice).getNome());
     }
     
     /**
@@ -179,6 +180,8 @@ public class CrudIndicadores extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         tablePanel.setLayout(new java.awt.GridBagLayout());
         jScrollPane1.setViewportView(tablePanel);
 
@@ -227,7 +230,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnResetDefault))
                     .addComponent(jScrollPane1))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         cardPanel.add(homePanel, "home");
