@@ -129,11 +129,6 @@ public class VisualizarLotes extends javax.swing.JFrame {
 
         txtIndiceDeSustentabilidade.setEditable(false);
         txtIndiceDeSustentabilidade.setBorder(javax.swing.BorderFactory.createTitledBorder("Índice de Sustentabilidade"));
-        txtIndiceDeSustentabilidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIndiceDeSustentabilidadeActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -281,7 +276,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         txtContato.setText(lote.getContato());
         txtCoordenadaX.setText(String.valueOf(lote.getCoordenada()[0]));
         txtCoordenadaY.setText(String.valueOf(lote.getCoordenada()[1])); 
-        txtIndiceDeSustentabilidade.setText(String.valueOf(lote.calcularIndiceGeral()));
+        txtIndiceDeSustentabilidade.setText(String.valueOf(String.format("%.3f",lote.calcularIndiceGeral())));
         dialogPropriedades.setSize(390, 350);
         dialogPropriedades.setLocationRelativeTo(null);
         dialogPropriedades.setVisible(true);
@@ -301,10 +296,6 @@ public class VisualizarLotes extends javax.swing.JFrame {
         this.setVisible(false);
         new MainFrame().setVisible(true);
     }//GEN-LAST:event_btbVoltarActionPerformed
-
-    private void txtIndiceDeSustentabilidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIndiceDeSustentabilidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIndiceDeSustentabilidadeActionPerformed
 
     /**
      * @param args the command line arguments
