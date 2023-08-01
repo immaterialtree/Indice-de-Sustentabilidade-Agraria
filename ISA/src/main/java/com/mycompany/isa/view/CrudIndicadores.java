@@ -8,9 +8,14 @@ import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.DataTransfer;
 import java.awt.CardLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.*;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,7 +42,6 @@ public class CrudIndicadores extends javax.swing.JFrame {
         cl = (CardLayout) cardPanel.getLayout();
         preencherLista();
         preencherTabela(0);
-        tabModelo.changeSelection(0, 1, false, false);
         jListModelos.setSelectedIndex(0);
         
         novoModeloPanel = new NovaCategoriaPanel();
@@ -62,20 +66,30 @@ public class CrudIndicadores extends javax.swing.JFrame {
         }
     }
     void preencherTabela(int indice) {
+        tablePanel.removeAll();
         if (indice < 0) return;
-        DefaultTableModel tableModel = new DefaultTableModel();
         if (ISA.categoriaList.isEmpty()) {
             lblNomeModelo.setText("");
-            tabModelo.setModel(tableModel);
             return;
         }
-        
+        int i=0;
         lblNomeModelo.setText(ISA.categoriaList.get(indice).getNome());
-        tableModel.setRowCount(0);
         for (Map.Entry grupo: ISA.categoriaList.get(indice).getItemMap().entrySet()) {
+            DefaultTableModel tableModel = new DefaultTableModel();
             tableModel.addColumn(grupo.getKey(), ((List<String>) grupo.getValue()).toArray());
+            JTable table = new JTable(tableModel);
+            table.setEnabled(false);
+            JScrollPane scroll = new JScrollPane();
+//            scroll.setSize(tablePanel.getWidth(), table.getRowHeight()*table.getRowCount()+table.getTableHeader().getHeight());
+            scroll.setSize(tablePanel.getWidth(), 100);
+            tablePanel.add(scroll);
+            
+            GridBagLayout layout = (GridBagLayout) tablePanel.getLayout();
+            GridBagConstraints c = layout.getConstraints(scroll);
+            c.insets = new Insets(0, 0, 0, 0);
+            c.gridy = i++;
+            layout.setConstraints(scroll, c);
         }
-        tabModelo.setModel(tableModel);
     }
     
     /**
@@ -100,10 +114,9 @@ public class CrudIndicadores extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         btnNovo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        tablePanel = new javax.swing.JPanel();
-        scrollTabela1 = new javax.swing.JScrollPane();
-        tabModelo = new javax.swing.JTable();
         btnResetDefault = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablePanel = new javax.swing.JPanel();
         jMenuBar2 = new javax.swing.JMenuBar();
         menuInicio = new javax.swing.JMenu();
         menuCalcularIndices = new javax.swing.JMenu();
@@ -159,43 +172,15 @@ public class CrudIndicadores extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Categorias");
 
-        scrollTabela1.setBackground(new java.awt.Color(255, 255, 204));
-        scrollTabela1.setForeground(new java.awt.Color(0, 204, 204));
-        scrollTabela1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        tabModelo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tabModelo.setEnabled(false);
-        tabModelo.setRowSelectionAllowed(false);
-        tabModelo.setShowGrid(true);
-        tabModelo.setShowHorizontalLines(false);
-        scrollTabela1.setViewportView(tabModelo);
-
-        javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
-        tablePanel.setLayout(tablePanelLayout);
-        tablePanelLayout.setHorizontalGroup(
-            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tablePanelLayout.createSequentialGroup()
-                .addComponent(scrollTabela1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        tablePanelLayout.setVerticalGroup(
-            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollTabela1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
         btnResetDefault.setText("Restaurar padrão");
         btnResetDefault.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetDefaultActionPerformed(evt);
             }
         });
+
+        tablePanel.setLayout(new java.awt.GridBagLayout());
+        jScrollPane1.setViewportView(tablePanel);
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
@@ -208,20 +193,20 @@ public class CrudIndicadores extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(99, 99, 99))
                     .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane2)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                         .addGroup(homePanelLayout.createSequentialGroup()
                             .addComponent(btnNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(18, 18, 18)
                             .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(18, 18, 18)
                             .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(btnResetDefault, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnResetDefault, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNomeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(homePanelLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14))
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17))
         );
         homePanelLayout.setVerticalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +226,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
                             .addComponent(btnNovo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnResetDefault))
-                    .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -306,9 +291,9 @@ public class CrudIndicadores extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 866, Short.MAX_VALUE)
+            .addGap(0, 868, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(cardPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE))
+                .addComponent(cardPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,14 +444,13 @@ public class CrudIndicadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jListModelos;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblNomeModelo;
     private javax.swing.JMenu menuCalcularIndices;
     private javax.swing.JMenu menuGerenciarIndicadores;
     private javax.swing.JMenu menuGerenciarLotes;
     private javax.swing.JMenu menuInicio;
-    private javax.swing.JScrollPane scrollTabela1;
-    private javax.swing.JTable tabModelo;
     private javax.swing.JPanel tablePanel;
     // End of variables declaration//GEN-END:variables
 }

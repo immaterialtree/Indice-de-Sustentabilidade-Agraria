@@ -681,7 +681,9 @@ public class CrudLote extends javax.swing.JFrame {
         }
         if (!isReapeted) {
             cboxAssentamento.addItem(assentamento);
+            cboxAssentamento.setSelectedItem(assentamento);
             cboxAssentamento_editar.addItem(assentamento);
+            cboxAssentamento_editar.setSelectedItem(assentamento);
         }
     }//GEN-LAST:event_btnAddAssentamentoActionPerformed
 
@@ -698,6 +700,7 @@ public class CrudLote extends javax.swing.JFrame {
             cboxAssentamento.addItem(assentamento);
             cboxAssentamento_editar.addItem(assentamento);
         }
+        
     }//GEN-LAST:event_btnAddAssentamento_editarActionPerformed
 
     private void menuInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuInicioMousePressed

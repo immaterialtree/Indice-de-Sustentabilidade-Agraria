@@ -303,7 +303,6 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         editing = true;
         editingIndex = indice;
         novaCategoria = new CategoriaIndicadores(categoria);
-//        novaCategoria = categoria;
         lblNome.setText(novaCategoria.getNome());
         txtNome.setText(novaCategoria.getNome());
         atualizarCbox();
