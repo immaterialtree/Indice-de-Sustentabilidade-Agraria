@@ -34,7 +34,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         initComponents();
         IndicadoresFrame.lote = lote;
         cl = (CardLayout) cardPane.getLayout();
-        lblLoteNome.setText("Responsável do lote: " +lote.getResponsavel());
+        lblLoteNome.setText("Responsável pelo lote: " +lote.getResponsavel());
         categorias = ISA.categoriaList;
         if (categorias.isEmpty()) {
             indice = -1;
@@ -113,11 +113,6 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         menuInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 menuInicioMousePressed(evt);
-            }
-        });
-        menuInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuInicioActionPerformed(evt);
             }
         });
         jMenuBar2.add(menuInicio);
@@ -220,10 +215,6 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         cl.show(cardPane, categorias.get(indice).getNome());
         atualizarBotoes();
     }//GEN-LAST:event_btnAnteriorActionPerformed
-
-    private void menuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuInicioActionPerformed
 
     private void menuCalcularIndiceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCalcularIndiceMousePressed
         this.setVisible(false);

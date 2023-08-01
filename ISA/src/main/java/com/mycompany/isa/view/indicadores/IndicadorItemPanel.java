@@ -4,6 +4,8 @@
  */
 package com.mycompany.isa.view.indicadores;
 
+import com.mycompany.isa.ISA;
+import com.mycompany.isa.utility.DataTransfer;
 import java.awt.Color;
 import javax.swing.JTextField;
 
@@ -16,6 +18,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
     Color[] qCor = {Color.GREEN, Color.YELLOW, Color.RED};
     Color[] backCor = {new Color(150, 255, 150), new Color(255, 255, 150), new Color(255, 150, 150)};
     
+    String indicadorNome;
     int tab, row;
     /**
      * Creates new form IndicadoresPanel
@@ -23,16 +26,14 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
     public IndicadorItemPanel() {
         indicadorNome = "Sem nome";
         initComponents();
-        System.out.println("hello");
     }
-    String indicadorNome;
+    
     public IndicadorItemPanel(int tab, int row, String indicadorNome) {
         this.indicadorNome = indicadorNome;
         this.tab = tab;
         this.row = row;
         initComponents();
         initAll();
-        txtValorItem.setSize(txtValorItem.getWidth(), HEIGHT);
     }
     
     private void initAll() {
@@ -48,38 +49,43 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         lblNomeItem = new javax.swing.JLabel();
         txtValorItem = new javax.swing.JFormattedTextField();
 
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        setLayout(new java.awt.GridBagLayout());
 
         lblNomeItem.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         lblNomeItem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNomeItem.setText("<html><p style=\"width:250px\">"+indicadorNome+"</p></html>");
         lblNomeItem.setIconTextGap(1);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 1.0;
-        add(lblNomeItem, gridBagConstraints);
 
         txtValorItem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("0.0"))));
         txtValorItem.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtValorItem.setText("0,0");
         txtValorItem.setToolTipText("");
+        txtValorItem.setName(""); // NOI18N
         txtValorItem.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtValorItemCaretUpdate(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 1.0;
-        add(txtValorItem, gridBagConstraints);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblNomeItem, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(txtValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(lblNomeItem, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtValorItemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtValorItemCaretUpdate
@@ -97,8 +103,8 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         } catch (NumberFormatException e) {
         }
         IndicadoresFrame.lote.setScore(tab, row, valor);
+        DataTransfer.exportLote(IndicadoresFrame.lote);
         updateTxtColor();
-        IndicadoresFrame.lote.setScore(tab, row, valor);
     }
     public void updateTxtColor() {
         Double valor;

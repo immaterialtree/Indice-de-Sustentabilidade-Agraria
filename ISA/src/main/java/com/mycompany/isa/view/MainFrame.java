@@ -50,8 +50,8 @@ public class MainFrame extends javax.swing.JFrame {
         menuCalcularIndice = new javax.swing.JMenu();
         menuGerenciarLotes = new javax.swing.JMenu();
         menuGerenciarIndicadores = new javax.swing.JMenu();
-        menuSobre = new javax.swing.JMenu();
         menuAjuda = new javax.swing.JMenu();
+        menuSobre = new javax.swing.JMenu();
 
         menuVoltar.setText("Voltar");
         menuVoltar.setName("Voltar"); // NOI18N
@@ -68,6 +68,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         btnGerenciarLotes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnGerenciarLotes.setText("Gerenciar lotes");
+        btnGerenciarLotes.setMaximumSize(new java.awt.Dimension(118, 27));
+        btnGerenciarLotes.setMinimumSize(new java.awt.Dimension(118, 27));
         btnGerenciarLotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGerenciarLotesActionPerformed(evt);
@@ -75,8 +77,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         btnVisualizarLotes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnVisualizarLotes.setText("Calcular Índice");
-        btnVisualizarLotes.setToolTipText("");
+        btnVisualizarLotes.setText("Calcular índice");
         btnVisualizarLotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisualizarLotesActionPerformed(evt);
@@ -85,6 +86,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         btnGerenciarIndicadores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnGerenciarIndicadores.setText("Gerenciar indicadores");
+        btnGerenciarIndicadores.setMaximumSize(new java.awt.Dimension(118, 27));
+        btnGerenciarIndicadores.setMinimumSize(new java.awt.Dimension(118, 27));
         btnGerenciarIndicadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGerenciarIndicadoresActionPerformed(evt);
@@ -107,9 +110,9 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(232, 232, 232)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addComponent(btnGerenciarIndicadores, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                            .addComponent(btnGerenciarIndicadores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(225, 225, 225)))
                 .addContainerGap())
         );
@@ -120,11 +123,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(lblMainTitle)
                 .addGap(18, 18, 18)
                 .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
                 .addComponent(btnGerenciarIndicadores, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addGap(57, 57, 57))
+                .addGap(46, 46, 46))
         );
 
         cardPanel.add(mainPanel, "main");
@@ -143,7 +146,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(sobrePanelLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSobreTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                    .addComponent(lblSobreTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
                     .addGroup(sobrePanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -155,7 +158,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblSobreTitle)
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                 .addGap(56, 56, 56))
         );
 
@@ -174,7 +177,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(ajudaPanelLayout.createSequentialGroup()
                 .addGap(212, 212, 212)
                 .addComponent(jLabel1)
-                .addContainerGap(402, Short.MAX_VALUE))
+                .addContainerGap(401, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajudaPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,7 +189,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
                 .addGap(61, 61, 61))
         );
 
@@ -242,14 +245,6 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenuBar2.add(menuGerenciarIndicadores);
 
-        menuSobre.setText("Sobre");
-        menuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuSobreMouseClicked(evt);
-            }
-        });
-        jMenuBar2.add(menuSobre);
-
         menuAjuda.setText("Ajuda");
         menuAjuda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -257,6 +252,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         jMenuBar2.add(menuAjuda);
+
+        menuSobre.setText("Sobre");
+        menuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSobreMouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(menuSobre);
 
         setJMenuBar(jMenuBar2);
 

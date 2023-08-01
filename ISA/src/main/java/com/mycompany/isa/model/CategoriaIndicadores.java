@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  *
  * @author naoki
  */
+
 public class CategoriaIndicadores {
     @JsonProperty("nome")
     private String nome;

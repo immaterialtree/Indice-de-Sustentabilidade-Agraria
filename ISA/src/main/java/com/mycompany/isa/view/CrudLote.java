@@ -40,7 +40,6 @@ public class CrudLote extends javax.swing.JFrame {
     private void preencherTabela() {
         
         DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
-	cellRender.setHorizontalAlignment(SwingConstants.CENTER);
         tabLote.getColumnModel().getColumn(0).setPreferredWidth(100);  //Preferencia de largura medidad em pixels
         tabLote.getColumnModel().getColumn(1).setPreferredWidth(100);  
         tabLote.getColumnModel().getColumn(2).setPreferredWidth(75);  
@@ -90,6 +89,7 @@ public class CrudLote extends javax.swing.JFrame {
 
         dialogEditar = new javax.swing.JDialog();
         txtNome_editar = new javax.swing.JTextField();
+        btnAddAssentamento_editar = new javax.swing.JButton();
         txtNumParcela_editar = new javax.swing.JTextField();
         txtContato_editar = new javax.swing.JFormattedTextField();
         btnSalvar_editar = new javax.swing.JButton();
@@ -99,7 +99,6 @@ public class CrudLote extends javax.swing.JFrame {
         lblCoordenadaY_editar = new javax.swing.JLabel();
         txtCoordenadaX_editar = new javax.swing.JFormattedTextField();
         txtCoordenadaY_editar = new javax.swing.JFormattedTextField();
-        btnAddAssentamento_editar = new javax.swing.JButton();
         cboxAssentamento_editar = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         txtNome = new javax.swing.JTextField();
@@ -130,6 +129,13 @@ public class CrudLote extends javax.swing.JFrame {
         dialogEditar.setTitle("Editar");
 
         txtNome_editar.setBorder(javax.swing.BorderFactory.createTitledBorder("Responsavel"));
+
+        btnAddAssentamento_editar.setText("Adicionar assentamento");
+        btnAddAssentamento_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddAssentamento_editarActionPerformed(evt);
+            }
+        });
 
         txtNumParcela_editar.setBorder(javax.swing.BorderFactory.createTitledBorder("Nº da parcela"));
 
@@ -193,13 +199,6 @@ public class CrudLote extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnAddAssentamento_editar.setText("Adicionar assentamento");
-        btnAddAssentamento_editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddAssentamento_editarActionPerformed(evt);
-            }
-        });
-
         cboxAssentamento_editar.setBorder(javax.swing.BorderFactory.createTitledBorder("Assentamento"));
 
         javax.swing.GroupLayout dialogEditarLayout = new javax.swing.GroupLayout(dialogEditar.getContentPane());
@@ -216,18 +215,18 @@ public class CrudLote extends javax.swing.JFrame {
                         .addComponent(btnSalvar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelCoordenada_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelCoordenada_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cboxAssentamento_editar, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddAssentamento_editar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAddAssentamento_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         dialogEditarLayout.setVerticalGroup(
             dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogEditarLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(btnAddAssentamento_editar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(23, 23, 23)
                 .addComponent(cboxAssentamento_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAddAssentamento_editar)
                 .addGap(18, 18, 18)
                 .addComponent(txtNome_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -412,10 +411,10 @@ public class CrudLote extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAddAssentamento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cboxAssentamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAddAssentamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNumParcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

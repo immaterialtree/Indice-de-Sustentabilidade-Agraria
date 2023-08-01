@@ -36,7 +36,7 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
         List<List<String>> items = categoria.getAllItems();
         for (int i=0; i<gruposNome.length; i++) {
             String[] itemArr = items.get(i).toArray(String[]::new);
-            IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(currentRow, gruposNome[i],itemArr, categoria.hashCode());
+            IndicadorGrupoPanel grupo = new IndicadorGrupoPanel(currentRow, gruposNome[i],itemArr, categoria.getNome().hashCode());
             gruposPanel.add(grupo);
             GridBagLayout layout = (GridBagLayout) gruposPanel.getLayout();
             GridBagConstraints c = layout.getConstraints(grupo);
@@ -45,11 +45,11 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
             layout.setConstraints(grupo, c);
             
             grupo.getLblNumGrupo().addPropertyChangeListener("text", (evt) -> {
-                lblIndice.setText(String.valueOf(IndicadoresFrame.lote.calcularIndiceCategoria(categoria.hashCode())));
+                lblIndice.setText(String.format("%.3f", IndicadoresFrame.lote.calcularIndiceCategoria(categoria.getNome().hashCode())));
             });
             grupo.setVisible(true);
         }
-        lblIndice.setText(String.valueOf(IndicadoresFrame.lote.calcularIndiceCategoria(categoria.hashCode())));
+        lblIndice.setText(String.format("%.3f", IndicadoresFrame.lote.calcularIndiceCategoria(categoria.getNome().hashCode())));
     }
 
     /**
@@ -74,10 +74,13 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(600, 420));
 
+        lblIndicadores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblIndicadores.setText("Indicadores");
 
-        lblParametros.setText("Parametros");
+        lblParametros.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblParametros.setText("Parâmetros");
 
+        lblNum.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNum.setText("Nº");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -89,11 +92,11 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(39, 39, 39)
                 .addComponent(lblIndicadores)
-                .addGap(156, 156, 156)
+                .addGap(153, 153, 153)
                 .addComponent(lblParametros)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
                 .addComponent(lblNum)
                 .addGap(15, 15, 15))
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
@@ -114,8 +117,10 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
         gruposPanel.setLayout(new java.awt.GridBagLayout());
         jScrollPane1.setViewportView(gruposPanel);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Média Geral:");
 
+        lblIndice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblIndice.setText("0.0");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -132,7 +137,7 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lblIndice))

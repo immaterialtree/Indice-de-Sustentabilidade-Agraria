@@ -54,6 +54,16 @@ public class Lote {
         this.coordenada = coordenada;
         scoresMap = new LinkedHashMap<>();
     }
+
+    public Lote(String assentamento, String responsavel, String numParcela, String contato, double[] coordenada, Map<Integer, Double[]> scoresMap) {
+        this.assentamento = assentamento;
+        this.responsavel = responsavel;
+        this.numParcela = numParcela;
+        this.contato = contato;
+        this.coordenada = coordenada;
+        this.scoresMap = scoresMap;
+    }
+    
     
     public Lote(String assentamento, String responsavel, String numParcela, String numero, double[] coordenada, Integer[] keys, Double[][] scores) {
         this.assentamento = assentamento;
@@ -117,7 +127,7 @@ public class Lote {
     }
     
     public void addScores(CategoriaIndicadores modelo, Double[] scores) {
-        scoresMap.put(modelo.hashCode(), scores);
+        scoresMap.put(modelo.getNome().hashCode(), scores);
     }
     
     public void initScoreSheet(CategoriaIndicadores modelo) {
@@ -127,7 +137,7 @@ public class Lote {
         }
         Double[] values = new Double[size];
         Arrays.fill(values, 0d);
-        scoresMap.putIfAbsent(modelo.hashCode(), values);
+        scoresMap.putIfAbsent(modelo.getNome().hashCode(), values);
     }
     
     public void setScore(Integer key, int pos, Double score) {
@@ -135,7 +145,7 @@ public class Lote {
     }
     
     public void setScore(CategoriaIndicadores modelo, int pos, Double score) {
-        scoresMap.get(modelo.hashCode())[pos] = score;
+        scoresMap.get(modelo.getNome().hashCode())[pos] = score;
     }
     
     @JsonIgnore

@@ -10,7 +10,6 @@
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuInicioMousePressed"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuInicioActionPerformed"/>
           </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuCalcularIndice">
