@@ -13,6 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.*;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -72,23 +73,32 @@ public class CrudIndicadores extends javax.swing.JFrame {
             lblNomeModelo.setText("");
             return;
         }
-        int i=0;
         lblNomeModelo.setText(ISA.categoriaList.get(indice).getNome());
+        int i=0;
         for (Map.Entry grupo: ISA.categoriaList.get(indice).getItemMap().entrySet()) {
-            DefaultTableModel tableModel = new DefaultTableModel();
-            tableModel.addColumn(grupo.getKey(), ((List<String>) grupo.getValue()).toArray());
-            JTable table = new JTable(tableModel);
-            table.setEnabled(false);
-            JScrollPane scroll = new JScrollPane();
-//            scroll.setSize(tablePanel.getWidth(), table.getRowHeight()*table.getRowCount()+table.getTableHeader().getHeight());
-            scroll.setSize(tablePanel.getWidth(), 100);
-            tablePanel.add(scroll);
+            JLabel lblTable = new JLabel();
+            String htmlHeader = """
+                                <html>
+                                    <table>
+                                        <tr>
+                                           <th>%s</th>
+                                        </tr>
+                               """;
+            htmlHeader = String.format(htmlHeader, grupo.getKey());
+            String htmlItem = "<tr> <td>%s</td> </tr>";
+            StringBuilder htmlTable= new StringBuilder(htmlHeader);
+            for (String item : (List<String>) grupo.getValue()) {
+                htmlTable.append(String.format(htmlItem, item));
+            }
+            htmlTable.append("</table> </html>");
+            lblTable.setText(htmlTable.toString());
             
+            tablePanel.add(lblTable);
             GridBagLayout layout = (GridBagLayout) tablePanel.getLayout();
-            GridBagConstraints c = layout.getConstraints(scroll);
+            GridBagConstraints c = layout.getConstraints(lblTable);
             c.insets = new Insets(0, 0, 0, 0);
             c.gridy = i++;
-            layout.setConstraints(scroll, c);
+            layout.setConstraints(lblTable, c);
         }
     }
     
