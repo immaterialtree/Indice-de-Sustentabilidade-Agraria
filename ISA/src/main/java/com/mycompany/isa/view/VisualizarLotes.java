@@ -61,6 +61,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         txtCoordenadaX = new javax.swing.JFormattedTextField();
         txtCoordenadaY = new javax.swing.JFormattedTextField();
         txtAssentamento = new javax.swing.JTextField();
+        txtIndiceDeSustentabilidade = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListModelos = new javax.swing.JList<>();
         btnVisualizar = new javax.swing.JButton();
@@ -126,6 +127,9 @@ public class VisualizarLotes extends javax.swing.JFrame {
         txtAssentamento.setEditable(false);
         txtAssentamento.setBorder(javax.swing.BorderFactory.createTitledBorder("Assentamento"));
 
+        txtIndiceDeSustentabilidade.setEditable(false);
+        txtIndiceDeSustentabilidade.setBorder(javax.swing.BorderFactory.createTitledBorder("Índice de Sustentabilidade"));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -137,13 +141,14 @@ public class VisualizarLotes extends javax.swing.JFrame {
                     .addComponent(txtNumParcela, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtContato)
                     .addComponent(panelCoordenada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAssentamento, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(txtAssentamento, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtIndiceDeSustentabilidade))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addComponent(txtAssentamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,7 +158,9 @@ public class VisualizarLotes extends javax.swing.JFrame {
                 .addComponent(txtContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panelCoordenada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtIndiceDeSustentabilidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout dialogPropriedadesLayout = new javax.swing.GroupLayout(dialogPropriedades.getContentPane());
@@ -268,7 +275,8 @@ public class VisualizarLotes extends javax.swing.JFrame {
         txtNumParcela.setText(lote.getNumParcela());
         txtContato.setText(lote.getContato());
         txtCoordenadaX.setText(String.valueOf(lote.getCoordenada()[0]));
-        txtCoordenadaY.setText(String.valueOf(lote.getCoordenada()[1]));    
+        txtCoordenadaY.setText(String.valueOf(lote.getCoordenada()[1])); 
+        txtIndiceDeSustentabilidade.setText(String.valueOf(String.format("%.3f",lote.calcularIndiceGeral())));
         dialogPropriedades.setSize(390, 350);
         dialogPropriedades.setLocationRelativeTo(null);
         dialogPropriedades.setVisible(true);
@@ -341,6 +349,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtContato;
     private javax.swing.JFormattedTextField txtCoordenadaX;
     private javax.swing.JFormattedTextField txtCoordenadaY;
+    private javax.swing.JTextField txtIndiceDeSustentabilidade;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumParcela;
     // End of variables declaration//GEN-END:variables
