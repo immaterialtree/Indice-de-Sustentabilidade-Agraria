@@ -594,7 +594,8 @@ public class CrudLote extends javax.swing.JFrame {
 
     private void btnSalvar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar_editarActionPerformed
         // check null fields
-        if (txtNome_editar.getText().isBlank() ||
+        if (cboxAssentamento_editar.getSelectedItem().toString().isBlank() ||
+            txtNome_editar.getText().isBlank() ||
             txtNumParcela_editar.getText().isBlank() ||
             txtContato_editar.getText().isBlank() ||
             txtCoordenadaX_editar.getText().isBlank() ||
@@ -607,6 +608,7 @@ public class CrudLote extends javax.swing.JFrame {
         }
         
         Lote lote = new Lote();
+        lote.setAssentamento(cboxAssentamento_editar.getSelectedItem().toString());
         lote.setResponsavel(txtNome_editar.getText());
         lote.setNumParcela(txtNumParcela_editar.getText());
         lote.setContato(txtContato_editar.getText());
