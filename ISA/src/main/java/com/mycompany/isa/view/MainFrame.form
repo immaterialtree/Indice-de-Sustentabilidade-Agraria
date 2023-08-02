@@ -127,7 +127,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="btnGerenciarIndicadores" alignment="0" pref="184" max="32767" attributes="0"/>
+                          <Component id="btnGerenciarIndicadores" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnGerenciarLotes" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnVisualizarLotes" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -174,7 +174,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Calcular &#xed;ndice"/>
+                <Property name="text" type="java.lang.String" value="&#xcd;ndice de sustentabilidade"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarLotesActionPerformed"/>
@@ -224,7 +224,7 @@
                           <Component id="jScrollPane1" pref="484" max="32767" attributes="0"/>
                           <Component id="lblSobreTitle" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace pref="43" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -277,7 +277,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel1" min="-2" pref="426" max="-2" attributes="0"/>

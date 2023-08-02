@@ -110,7 +110,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
             }
         } catch (NumberFormatException e) {
         }
-        txtValorItem.setText(String.valueOf(valor));
+        txtValorItem.setText(String.format("%.2f", valor));
         IndicadoresFrame.lote.setScore(tab, row, valor);
         DataTransfer.exportLote(IndicadoresFrame.lote);        
     }//GEN-LAST:event_txtValorItemFocusLost
