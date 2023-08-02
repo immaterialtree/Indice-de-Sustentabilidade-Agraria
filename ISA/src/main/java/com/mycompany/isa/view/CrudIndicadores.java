@@ -39,6 +39,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
     
     private void initAll() {
         initComponents();
+        scrollTablePane.getVerticalScrollBar().setUnitIncrement(5);
         cl = (CardLayout) cardPanel.getLayout();
         preencherLista();
         preencherTabela(0);
@@ -67,10 +68,9 @@ public class CrudIndicadores extends javax.swing.JFrame {
     }
     void preencherTabela(int indice) {
         tablePanel.removeAll();
+        repaint();
         if (ISA.categoriaList.size()<1) {
             lblNomeModelo.setText("");
-            tablePanel.removeAll();
-            tablePanel.repaint();
         }
         
         int i=0;
@@ -80,6 +80,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
             JTable table = new JTable();
             table.setModel(tableModel);
             table.setEnabled(false);
+            table.setSize(tablePanel.getWidth(), 150);
             JScrollPane scroll = new javax.swing.JScrollPane(table);
             scroll.setSize(tablePanel.getWidth(), table.getRowHeight()*table.getRowCount()+table.getTableHeader().getHeight());
             tablePanel.add(scroll);
@@ -116,7 +117,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         btnNovo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnResetDefault = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollTablePane = new javax.swing.JScrollPane();
         tablePanel = new javax.swing.JPanel();
         jMenuBar2 = new javax.swing.JMenuBar();
         menuInicio = new javax.swing.JMenu();
@@ -180,10 +181,10 @@ public class CrudIndicadores extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollTablePane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         tablePanel.setLayout(new java.awt.GridBagLayout());
-        jScrollPane1.setViewportView(tablePanel);
+        scrollTablePane.setViewportView(tablePanel);
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
@@ -196,7 +197,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(99, 99, 99))
                     .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                         .addGroup(homePanelLayout.createSequentialGroup()
                             .addComponent(btnNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(18, 18, 18)
@@ -207,8 +208,8 @@ public class CrudIndicadores extends javax.swing.JFrame {
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNomeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(homePanelLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(scrollTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17))
         );
         homePanelLayout.setVerticalGroup(
@@ -218,19 +219,18 @@ public class CrudIndicadores extends javax.swing.JFrame {
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNomeModelo)
                     .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrollTablePane))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(homePanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnExcluir)
-                            .addComponent(btnEditar)
-                            .addComponent(btnNovo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnResetDefault))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnEditar)
+                    .addComponent(btnNovo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnResetDefault)
+                .addGap(46, 46, 46))
         );
 
         cardPanel.add(homePanel, "home");
@@ -294,9 +294,9 @@ public class CrudIndicadores extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 868, Short.MAX_VALUE)
+            .addGap(0, 867, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(cardPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE))
+                .addComponent(cardPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,13 +447,13 @@ public class CrudIndicadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jListModelos;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblNomeModelo;
     private javax.swing.JMenu menuCalcularIndices;
     private javax.swing.JMenu menuGerenciarIndicadores;
     private javax.swing.JMenu menuGerenciarLotes;
     private javax.swing.JMenu menuInicio;
+    private javax.swing.JScrollPane scrollTablePane;
     private javax.swing.JPanel tablePanel;
     // End of variables declaration//GEN-END:variables
 }
