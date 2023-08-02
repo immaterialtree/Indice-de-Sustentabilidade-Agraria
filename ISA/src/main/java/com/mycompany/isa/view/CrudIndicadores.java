@@ -40,7 +40,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
     
     private void initAll() {
         initComponents();
-        scrollTablePanel.getVerticalScrollBar().setUnitIncrement(5);
+        scrollTablePanel.getVerticalScrollBar().setUnitIncrement(10);
         cl = (CardLayout) cardPanel.getLayout();
         preencherLista();
         preencherTabela(0);
@@ -69,6 +69,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
     }
     void preencherTabela(int indice) {
         tablePanel.removeAll();
+        scrollTablePanel.getVerticalScrollBar().setValue(0);
         if (indice < 0) return;
         if (ISA.categoriaList.isEmpty()) {
             lblNomeModelo.setText("");
@@ -78,10 +79,37 @@ public class CrudIndicadores extends javax.swing.JFrame {
         int i=0;
         for (Map.Entry grupo: ISA.categoriaList.get(indice).getItemMap().entrySet()) {
             JLabel lblTable = new JLabel();
-            String htmlHeader = "<html> <table> <tr> <th>%s</th> </tr>";
+            String htmlStyle = """
+                               <style>
+                               table {
+                                 width: 350px;
+                                 font-family: segoe, sans-serif;
+                                 font-size:10px;
+                                 border-collapse: collapse;
+                                 border-spacing: 0px;
+                               }
+                               
+                               td, th {
+                                 border: 1px solid black;
+                                 padding: 8px;
+                               }
+                               
+                               td {border-top: 0px;}
+                               
+                               th {
+                                 font-size: 12px;
+                                 text-align: center;
+                               }
+                               
+                               tr:nth-child(even) {
+                                 background-color: #dddddd;
+                               }
+                               </style>
+                               """;
+            String htmlHeader = "<table> <tr> <th>%s</th> </tr>";
             htmlHeader = String.format(htmlHeader, grupo.getKey());
             String htmlItem = "<tr> <td>%s</td> </tr>";
-            StringBuilder htmlTable= new StringBuilder(htmlHeader);
+            StringBuilder htmlTable= new StringBuilder("<html>"+htmlStyle+htmlHeader);
             for (String item : (List<String>) grupo.getValue()) {
                 htmlTable.append(String.format(htmlItem, item));
             }
@@ -92,7 +120,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
             tablePanel.add(lblTable);
             GridBagLayout layout = (GridBagLayout) tablePanel.getLayout();
             GridBagConstraints c = layout.getConstraints(lblTable);
-            c.insets = new Insets(0, 0, 0, 0);
+            c.insets = new Insets(0, 0, 10, 0);
             c.gridy = i++;
             layout.setConstraints(lblTable, c);
         }
