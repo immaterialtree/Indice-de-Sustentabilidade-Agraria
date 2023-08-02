@@ -51,7 +51,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
     private void initComponents() {
 
         dialogPropriedades = new javax.swing.JDialog();
-        jPanel1 = new javax.swing.JPanel();
+        panelPropriedades = new javax.swing.JPanel();
         txtContato = new javax.swing.JFormattedTextField();
         txtNome = new javax.swing.JTextField();
         txtNumParcela = new javax.swing.JTextField();
@@ -67,7 +67,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         btnVisualizar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         btnPropriedades = new javax.swing.JButton();
-        btbVoltar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         dialogPropriedades.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogPropriedades.setTitle("Propriedades do lote");
@@ -130,13 +130,13 @@ public class VisualizarLotes extends javax.swing.JFrame {
         txtIndiceDeSustentabilidade.setEditable(false);
         txtIndiceDeSustentabilidade.setBorder(javax.swing.BorderFactory.createTitledBorder("Índice de Sustentabilidade"));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelPropriedadesLayout = new javax.swing.GroupLayout(panelPropriedades);
+        panelPropriedades.setLayout(panelPropriedadesLayout);
+        panelPropriedadesLayout.setHorizontalGroup(
+            panelPropriedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPropriedadesLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelPropriedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNumParcela, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtContato)
@@ -145,10 +145,10 @@ public class VisualizarLotes extends javax.swing.JFrame {
                     .addComponent(txtIndiceDeSustentabilidade))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+        panelPropriedadesLayout.setVerticalGroup(
+            panelPropriedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPropriedadesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtAssentamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,11 +167,11 @@ public class VisualizarLotes extends javax.swing.JFrame {
         dialogPropriedades.getContentPane().setLayout(dialogPropriedadesLayout);
         dialogPropriedadesLayout.setHorizontalGroup(
             dialogPropriedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelPropriedades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         dialogPropriedadesLayout.setVerticalGroup(
             dialogPropriedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPropriedades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -188,6 +188,11 @@ public class VisualizarLotes extends javax.swing.JFrame {
         jListModelos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jListModelosKeyTyped(evt);
+            }
+        });
+        jListModelos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListModelosValueChanged(evt);
             }
         });
         jScrollPane2.setViewportView(jListModelos);
@@ -212,11 +217,11 @@ public class VisualizarLotes extends javax.swing.JFrame {
             }
         });
 
-        btbVoltar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btbVoltar.setText("Voltar");
-        btbVoltar.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btbVoltarActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
 
@@ -229,19 +234,19 @@ public class VisualizarLotes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnPropriedades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                     .addComponent(btnVisualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(66, 66, 66))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btbVoltar)
+                .addComponent(btnVoltar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btbVoltar)
+                .addComponent(btnVoltar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -250,7 +255,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
                 .addComponent(btnVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPropriedades, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -277,25 +282,34 @@ public class VisualizarLotes extends javax.swing.JFrame {
         txtCoordenadaX.setText(String.valueOf(lote.getCoordenada()[0]));
         txtCoordenadaY.setText(String.valueOf(lote.getCoordenada()[1])); 
         txtIndiceDeSustentabilidade.setText(String.valueOf(String.format("%.3f",lote.calcularIndiceGeral())));
-        dialogPropriedades.setSize(390, 350);
+        dialogPropriedades.setSize(390, 370);
         dialogPropriedades.setLocationRelativeTo(null);
         dialogPropriedades.setVisible(true);
     }//GEN-LAST:event_btnPropriedadesActionPerformed
 
     private void jListModelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListModelosMouseClicked
-        btnPropriedades.setEnabled(jListModelos.getSelectedIndex() != -1);
-        btnVisualizar.setEnabled(jListModelos.getSelectedIndex() != -1);
+        if (evt.getClickCount()>1) {
+            int selected = jListModelos.getSelectedIndex();
+            if (selected==-1) return;
+
+            new IndicadoresFrame(ISA.loteList.get(selected)).setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_jListModelosMouseClicked
 
     private void jListModelosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jListModelosKeyTyped
-        btnPropriedades.setEnabled(jListModelos.getSelectedIndex() != -1);
-        btnVisualizar.setEnabled(jListModelos.getSelectedIndex() != -1);
+        
     }//GEN-LAST:event_jListModelosKeyTyped
 
-    private void btbVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbVoltarActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
         new MainFrame().setVisible(true);
-    }//GEN-LAST:event_btbVoltarActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void jListModelosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListModelosValueChanged
+        btnPropriedades.setEnabled(jListModelos.getSelectedIndex() != -1);
+        btnVisualizar.setEnabled(jListModelos.getSelectedIndex() != -1);
+    }//GEN-LAST:event_jListModelosValueChanged
 
     /**
      * @param args the command line arguments
@@ -334,17 +348,17 @@ public class VisualizarLotes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btbVoltar;
     private javax.swing.JButton btnPropriedades;
     private javax.swing.JButton btnVisualizar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JDialog dialogPropriedades;
     private javax.swing.JList<String> jListModelos;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCoordenadaX;
     private javax.swing.JLabel lblCoordenadaY;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelCoordenada;
+    private javax.swing.JPanel panelPropriedades;
     private javax.swing.JTextField txtAssentamento;
     private javax.swing.JFormattedTextField txtContato;
     private javax.swing.JFormattedTextField txtCoordenadaX;

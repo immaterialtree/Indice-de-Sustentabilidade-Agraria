@@ -124,7 +124,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
             c.gridy = i++;
             layout.setConstraints(lblTable, c);
         }
-    }
+     }
     
     /**
      * Creates new form CadastrarModelo
