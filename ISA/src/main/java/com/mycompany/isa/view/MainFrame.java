@@ -63,6 +63,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Índice de Sustentabilidade Agrária");
+        setResizable(false);
 
         cardPanel.setLayout(new java.awt.CardLayout());
 

@@ -32,7 +32,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         DefaultListModel resultList = new DefaultListModel();
         for (Lote lote : ISA.loteList) {
             String loteString = String.format("<html>"
-                    + "<b>Assentamento:</b>%s <br>"
+                    + "<b>Assentamento:</b> %s <br>"
                     + "<b>Responsável:</b> \t%s <br>"
                     + "<b>Parcela:</b>     \t%s</html>",
                     lote.getAssentamento(), lote.getResponsavel(), lote.getNumParcela());
@@ -71,6 +71,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
 
         dialogPropriedades.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogPropriedades.setTitle("Propriedades do lote");
+        dialogPropriedades.setResizable(false);
 
         txtContato.setEditable(false);
         txtContato.setBorder(javax.swing.BorderFactory.createTitledBorder("Contato"));
@@ -176,6 +177,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Índice de Sustentabilidade Agrária");
+        setResizable(false);
 
         jListModelos.setBorder(null);
         jListModelos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

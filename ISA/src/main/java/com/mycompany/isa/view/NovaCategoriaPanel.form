@@ -73,12 +73,12 @@
                   <Component id="btnResetar" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtNome" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblNome" max="32767" attributes="0"/>
-                  <Component id="scrollTabela" min="-2" pref="472" max="-2" attributes="0"/>
+                  <Component id="scrollTabela" pref="472" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
