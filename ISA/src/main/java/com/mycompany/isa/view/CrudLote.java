@@ -120,11 +120,7 @@ public class CrudLote extends javax.swing.JFrame {
         cboxAssentamento = new javax.swing.JComboBox<>();
         btnAddAssentamento = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        menuInicio = new javax.swing.JMenu();
-        menuCalcularIndice = new javax.swing.JMenu();
-        menuGerenciarLotes = new javax.swing.JMenu();
-        menuGerenciarIndicadores = new javax.swing.JMenu();
+        standartMenuBar1 = new com.mycompany.isa.components.StandartMenuBar();
 
         dialogEditar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogEditar.setTitle("Editar");
@@ -450,7 +446,7 @@ public class CrudLote extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRemover)
                     .addComponent(btnEditar))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(120, 120, 120)
@@ -458,59 +454,7 @@ public class CrudLote extends javax.swing.JFrame {
                     .addContainerGap(351, Short.MAX_VALUE)))
         );
 
-        menuInicio.setText("Início");
-        menuInicio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuInicioMousePressed(evt);
-            }
-        });
-        menuInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuInicioActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuInicio);
-
-        menuCalcularIndice.setText("Calcular índice");
-        menuCalcularIndice.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuCalcularIndiceMousePressed(evt);
-            }
-        });
-        menuCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCalcularIndiceActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuCalcularIndice);
-
-        menuGerenciarLotes.setText("Gerenciar lotes");
-        menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuGerenciarLotesMousePressed(evt);
-            }
-        });
-        menuGerenciarLotes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuGerenciarLotesActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuGerenciarLotes);
-
-        menuGerenciarIndicadores.setText("Gerenciar indicadores");
-        menuGerenciarIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuGerenciarIndicadoresMousePressed(evt);
-            }
-        });
-        menuGerenciarIndicadores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuGerenciarIndicadoresActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuGerenciarIndicadores);
-
-        setJMenuBar(jMenuBar2);
+        setJMenuBar(standartMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -647,40 +591,6 @@ public class CrudLote extends javax.swing.JFrame {
         txtCoordenadaY.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
 
-    private void menuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuInicioActionPerformed
-
-    private void menuCalcularIndiceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCalcularIndiceMousePressed
-        this.setVisible(false);
-        new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuCalcularIndiceMousePressed
-
-    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
-        this.setVisible(false);
-        new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuCalcularIndiceActionPerformed
-
-    private void menuGerenciarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarLotesMousePressed
-        this.setVisible(false);
-        new CrudLote().setVisible(true);
-    }//GEN-LAST:event_menuGerenciarLotesMousePressed
-
-    private void menuGerenciarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarLotesActionPerformed
-        this.setVisible(false);
-        new CrudLote().setVisible(true);
-    }//GEN-LAST:event_menuGerenciarLotesActionPerformed
-
-    private void menuGerenciarIndicadoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresMousePressed
-        this.setVisible(false);
-        new CrudIndicadores(ISA.categoriaList).setVisible(true);
-    }//GEN-LAST:event_menuGerenciarIndicadoresMousePressed
-
-    private void menuGerenciarIndicadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresActionPerformed
-        this.setVisible(false);
-        new CrudIndicadores(ISA.categoriaList).setVisible(true);
-    }//GEN-LAST:event_menuGerenciarIndicadoresActionPerformed
-
     private void btnAddAssentamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAssentamentoActionPerformed
         String assentamento = JOptionPane.showInputDialog(this, "Digite o nome do assentamento", "Novo Assentamento", JOptionPane.PLAIN_MESSAGE);
         boolean isReapeted = false;
@@ -713,11 +623,6 @@ public class CrudLote extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnAddAssentamento_editarActionPerformed
-
-    private void menuInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuInicioMousePressed
-        this.setVisible(false);
-        new MainFrame().setVisible(true);
-    }//GEN-LAST:event_menuInicioMousePressed
 
     /**
      * @param args the command line arguments
@@ -770,7 +675,6 @@ public class CrudLote extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboxAssentamento_editar;
     private javax.swing.JDialog dialogEditar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCadTitulo;
     private javax.swing.JLabel lblCoordenadaX;
@@ -778,13 +682,10 @@ public class CrudLote extends javax.swing.JFrame {
     private javax.swing.JLabel lblCoordenadaY;
     private javax.swing.JLabel lblCoordenadaY_editar;
     private javax.swing.JLabel lblErro;
-    private javax.swing.JMenu menuCalcularIndice;
-    private javax.swing.JMenu menuGerenciarIndicadores;
-    private javax.swing.JMenu menuGerenciarLotes;
-    private javax.swing.JMenu menuInicio;
     private javax.swing.JPanel panelCoordenada;
     private javax.swing.JPanel panelCoordenada_editar;
     private javax.swing.JScrollPane scrollTabela;
+    private com.mycompany.isa.components.StandartMenuBar standartMenuBar1;
     private javax.swing.JTable tabLote;
     private javax.swing.JFormattedTextField txtContato;
     private javax.swing.JFormattedTextField txtContato_editar;

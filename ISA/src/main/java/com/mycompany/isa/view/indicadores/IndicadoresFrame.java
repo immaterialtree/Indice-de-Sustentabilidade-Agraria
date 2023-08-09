@@ -76,14 +76,10 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         btnAnterior = new javax.swing.JButton();
         btnProximo = new javax.swing.JButton();
         lblLoteNome = new javax.swing.JLabel();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        menuInicio = new javax.swing.JMenu();
-        menuCalcularIndice = new javax.swing.JMenu();
-        menuGerenciarLotes = new javax.swing.JMenu();
-        menuGerenciarIndicadores = new javax.swing.JMenu();
+        standartMenuBar1 = new com.mycompany.isa.components.StandartMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Índice de Sustentabilidade Agrária");
+        setTitle("ISA-RURAL");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -113,56 +109,8 @@ public class IndicadoresFrame extends javax.swing.JFrame {
             }
         });
 
-        lblLoteNome.setText("LoteNome");
-
-        menuInicio.setText("Início");
-        menuInicio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuInicioMousePressed(evt);
-            }
-        });
-        jMenuBar2.add(menuInicio);
-
-        menuCalcularIndice.setText("Calcular índice");
-        menuCalcularIndice.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuCalcularIndiceMousePressed(evt);
-            }
-        });
-        menuCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCalcularIndiceActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuCalcularIndice);
-
-        menuGerenciarLotes.setText("Gerenciar lotes");
-        menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuGerenciarLotesMousePressed(evt);
-            }
-        });
-        menuGerenciarLotes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuGerenciarLotesActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuGerenciarLotes);
-
-        menuGerenciarIndicadores.setText("Gerenciar indicadores");
-        menuGerenciarIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuGerenciarIndicadoresMousePressed(evt);
-            }
-        });
-        menuGerenciarIndicadores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuGerenciarIndicadoresActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuGerenciarIndicadores);
-
-        setJMenuBar(jMenuBar2);
+        lblLoteNome.setText("Lote");
+        setJMenuBar(standartMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,41 +171,6 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         atualizarBotoes();
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
-    private void menuCalcularIndiceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCalcularIndiceMousePressed
-        this.setVisible(false);
-        new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuCalcularIndiceMousePressed
-
-    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
-        this.setVisible(false);
-        new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuCalcularIndiceActionPerformed
-
-    private void menuGerenciarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarLotesMousePressed
-        this.setVisible(false);
-        new CrudLote().setVisible(true);
-    }//GEN-LAST:event_menuGerenciarLotesMousePressed
-
-    private void menuGerenciarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarLotesActionPerformed
-        this.setVisible(false);
-        new CrudLote().setVisible(true);
-    }//GEN-LAST:event_menuGerenciarLotesActionPerformed
-
-    private void menuGerenciarIndicadoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresMousePressed
-        this.setVisible(false);
-        new CrudIndicadores(ISA.categoriaList).setVisible(true);
-    }//GEN-LAST:event_menuGerenciarIndicadoresMousePressed
-
-    private void menuGerenciarIndicadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresActionPerformed
-        this.setVisible(false);
-        new CrudIndicadores(ISA.categoriaList).setVisible(true);
-    }//GEN-LAST:event_menuGerenciarIndicadoresActionPerformed
-
-    private void menuInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuInicioMousePressed
-        this.setVisible(false);
-        new MainFrame().setVisible(true);
-    }//GEN-LAST:event_menuInicioMousePressed
-
     /**
      * @param args the command line arguments
      */
@@ -300,11 +213,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnProximo;
     private javax.swing.JPanel cardPane;
-    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JLabel lblLoteNome;
-    private javax.swing.JMenu menuCalcularIndice;
-    private javax.swing.JMenu menuGerenciarIndicadores;
-    private javax.swing.JMenu menuGerenciarLotes;
-    private javax.swing.JMenu menuInicio;
+    private com.mycompany.isa.components.StandartMenuBar standartMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

@@ -54,6 +54,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         dialogPropriedades = new javax.swing.JDialog();
         panelPropriedades = new javax.swing.JPanel();
@@ -188,7 +189,10 @@ public class VisualizarLotes extends javax.swing.JFrame {
         panelAssentamentos.setLayout(new java.awt.GridBagLayout());
 
         lblAssentamentosTable.setText("tabela de assentamentos");
-        panelAssentamentos.add(lblAssentamentosTable, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
+        panelAssentamentos.add(lblAssentamentosTable, gridBagConstraints);
 
         scrollAssentamento.setViewportView(panelAssentamentos);
 
@@ -196,15 +200,15 @@ public class VisualizarLotes extends javax.swing.JFrame {
         dialogAssentamentos.getContentPane().setLayout(dialogAssentamentosLayout);
         dialogAssentamentosLayout.setHorizontalGroup(
             dialogAssentamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollAssentamento, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(scrollAssentamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
         );
         dialogAssentamentosLayout.setVerticalGroup(
             dialogAssentamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollAssentamento, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(scrollAssentamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Índice de Sustentabilidade Agrária");
+        setTitle("ISA-RURAL");
         setResizable(false);
 
         jListModelos.setBorder(null);
@@ -299,7 +303,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
                 .addComponent(btnPropriedades, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();

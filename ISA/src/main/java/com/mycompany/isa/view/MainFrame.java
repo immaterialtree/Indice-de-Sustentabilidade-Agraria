@@ -30,7 +30,6 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menuVoltar = new javax.swing.JMenu();
         cardPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
         btnGerenciarLotes = new javax.swing.JButton();
@@ -45,24 +44,12 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        menuInicio = new javax.swing.JMenu();
-        menuCalcularIndice = new javax.swing.JMenu();
-        menuGerenciarLotes = new javax.swing.JMenu();
-        menuGerenciarIndicadores = new javax.swing.JMenu();
+        standartMenuBar1 = new com.mycompany.isa.components.StandartMenuBar();
         menuAjuda = new javax.swing.JMenu();
         menuSobre = new javax.swing.JMenu();
 
-        menuVoltar.setText("Voltar");
-        menuVoltar.setName("Voltar"); // NOI18N
-        menuVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuVoltarMouseClicked(evt);
-            }
-        });
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Índice de Sustentabilidade Agrária");
+        setTitle("ISA-RURAL");
         setResizable(false);
 
         cardPanel.setLayout(new java.awt.CardLayout());
@@ -97,7 +84,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         lblMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblMainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMainTitle.setText("ÍNDICE DE SUSTENTABILIDADE AGRÁRIA");
+        lblMainTitle.setText("ÍNDICE DE SUSTENTABILIDADE DE ASSENTAMENTO");
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -191,63 +178,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel.add(ajudaPanel, "ajuda");
 
-        menuInicio.setText("Início");
-        menuInicio.setToolTipText("");
-        menuInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuInicioActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuInicio);
-
-        menuCalcularIndice.setText("Calcular índice");
-        menuCalcularIndice.setToolTipText("");
-        menuCalcularIndice.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuCalcularIndiceMousePressed(evt);
-            }
-        });
-        menuCalcularIndice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCalcularIndiceActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuCalcularIndice);
-
-        menuGerenciarLotes.setText("Gerenciar lotes");
-        menuGerenciarLotes.setToolTipText("");
-        menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuGerenciarLotesMousePressed(evt);
-            }
-        });
-        menuGerenciarLotes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuGerenciarLotesActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuGerenciarLotes);
-
-        menuGerenciarIndicadores.setText("Gerenciar indicadores");
-        menuGerenciarIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                menuGerenciarIndicadoresMousePressed(evt);
-            }
-        });
-        menuGerenciarIndicadores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuGerenciarIndicadoresActionPerformed(evt);
-            }
-        });
-        jMenuBar2.add(menuGerenciarIndicadores);
-
         menuAjuda.setText("Ajuda");
         menuAjuda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuAjudaMouseClicked(evt);
             }
         });
-        jMenuBar2.add(menuAjuda);
+        standartMenuBar1.add(menuAjuda);
 
         menuSobre.setText("Sobre");
         menuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -255,9 +192,9 @@ public class MainFrame extends javax.swing.JFrame {
                 menuSobreMouseClicked(evt);
             }
         });
-        jMenuBar2.add(menuSobre);
+        standartMenuBar1.add(menuSobre);
 
-        setJMenuBar(jMenuBar2);
+        setJMenuBar(standartMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -292,61 +229,12 @@ public class MainFrame extends javax.swing.JFrame {
     private void menuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSobreMouseClicked
         CardLayout cl = (CardLayout) cardPanel.getLayout();
         cl.show(cardPanel, "sobre");
-        if (jMenuBar2.getComponents().length < 3) {
-            jMenuBar2.add(menuVoltar);
-            jMenuBar2.repaint();
-        }
     }//GEN-LAST:event_menuSobreMouseClicked
 
     private void menuAjudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAjudaMouseClicked
         CardLayout cl = (CardLayout) cardPanel.getLayout();
         cl.show(cardPanel, "ajuda");
-        if (jMenuBar2.getComponents().length < 3) {
-            jMenuBar2.add(menuVoltar);
-            jMenuBar2.repaint();
-        }
     }//GEN-LAST:event_menuAjudaMouseClicked
-
-    private void menuVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuVoltarMouseClicked
-        CardLayout cl = (CardLayout) cardPanel.getLayout();
-        cl.show(cardPanel, "main");
-        jMenuBar2.remove(menuVoltar);
-        jMenuBar2.repaint();
-    }//GEN-LAST:event_menuVoltarMouseClicked
-
-    private void menuCalcularIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCalcularIndiceActionPerformed
-        this.setVisible(false);
-        new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuCalcularIndiceActionPerformed
-
-    private void menuGerenciarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarLotesActionPerformed
-        this.setVisible(false);
-        new CrudLote().setVisible(true);
-    }//GEN-LAST:event_menuGerenciarLotesActionPerformed
-
-    private void menuGerenciarIndicadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresActionPerformed
-        this.setVisible(false);
-        new CrudIndicadores(ISA.categoriaList).setVisible(true);
-    }//GEN-LAST:event_menuGerenciarIndicadoresActionPerformed
-
-    private void menuInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuInicioActionPerformed
-
-    private void menuGerenciarLotesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarLotesMousePressed
-        this.setVisible(false);
-        new CrudLote().setVisible(true);
-    }//GEN-LAST:event_menuGerenciarLotesMousePressed
-
-    private void menuGerenciarIndicadoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuGerenciarIndicadoresMousePressed
-        this.setVisible(false);
-        new CrudIndicadores(ISA.categoriaList).setVisible(true);
-    }//GEN-LAST:event_menuGerenciarIndicadoresMousePressed
-
-    private void menuCalcularIndiceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCalcularIndiceMousePressed
-        this.setVisible(false);
-        new VisualizarLotes().setVisible(true);
-    }//GEN-LAST:event_menuCalcularIndiceMousePressed
 
     /**
      * @param args the command line arguments
@@ -391,7 +279,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnVisualizarLotes;
     private javax.swing.JPanel cardPanel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
@@ -400,12 +287,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblSobreTitle;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenu menuAjuda;
-    private javax.swing.JMenu menuCalcularIndice;
-    private javax.swing.JMenu menuGerenciarIndicadores;
-    private javax.swing.JMenu menuGerenciarLotes;
-    private javax.swing.JMenu menuInicio;
     private javax.swing.JMenu menuSobre;
-    private javax.swing.JMenu menuVoltar;
     private javax.swing.JPanel sobrePanel;
+    private com.mycompany.isa.components.StandartMenuBar standartMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

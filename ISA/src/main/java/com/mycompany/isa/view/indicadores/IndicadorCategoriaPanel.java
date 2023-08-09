@@ -82,7 +82,7 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
         lblParametros.setText("Parâmetros");
 
         lblNum.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNum.setText("Nº");
+        lblNum.setText("Índice");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,7 +118,7 @@ public class IndicadorCategoriaPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(gruposPanel);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Média Geral:");
+        jLabel2.setText("Média da categoria:");
 
         lblIndice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblIndice.setText("0.0");
