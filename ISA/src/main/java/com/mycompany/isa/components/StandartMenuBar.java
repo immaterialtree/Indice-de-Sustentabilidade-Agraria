@@ -33,7 +33,7 @@ public class StandartMenuBar extends JMenuBar{
         });
         this.add(menuInicio);
 
-        menuCalcularIndice.setText("Calcular índice");
+        menuCalcularIndice.setText("Índice de Sustentabilidade");
         menuCalcularIndice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 menuCalcularIndiceMousePressed(evt);

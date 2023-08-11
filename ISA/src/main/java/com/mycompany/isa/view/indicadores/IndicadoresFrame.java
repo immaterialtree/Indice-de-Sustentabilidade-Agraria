@@ -81,11 +81,6 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ISA-RURAL");
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         cardPane.setPreferredSize(new java.awt.Dimension(600, 420));
         cardPane.setLayout(new java.awt.CardLayout());
@@ -151,11 +146,6 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        getWindows()[0].setVisible(true);
-        DataTransfer.exportLote(lote);
-    }//GEN-LAST:event_formWindowClosed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         indice += indice < categorias.size()-1 ? 1 : 0;

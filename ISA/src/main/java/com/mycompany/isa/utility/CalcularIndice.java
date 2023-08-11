@@ -4,13 +4,17 @@
  */
 package com.mycompany.isa.utility;
 
+import com.mycompany.isa.model.Lote;
+import java.util.ArrayList;
+
 /**
  *
  * @author naoki
  */
 public class CalcularIndice {
-    public static double assentamentoIndice() {
+    public static double assentamentoIndice(ArrayList<Lote> lotes) {
         // TODO
         return 0;
     }
+    
 }
