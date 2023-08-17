@@ -382,7 +382,7 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         if (txtGrupo.getText().isBlank()) {
             return;
         }
-        String grupo = txtGrupo.getText();
+        String grupo = txtGrupo.getText().trim();
         if (! novaCategoria.getItemMap().containsKey(grupo)){
             txtGrupo.setText("");
             novaCategoria.addGrupo(grupo);
@@ -394,7 +394,7 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         String grupo = (String) cboxGrupo.getSelectedItem();
-        String item = txtItem.getText();
+        String item = txtItem.getText().trim();
         if (novaCategoria.getItemMap().containsKey(grupo)) {
             if (! novaCategoria.getItens(grupo).contains(item)) {
                 novaCategoria.addItem(grupo, item);
@@ -472,12 +472,14 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_menuDeleteActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        txtNome.setText(txtNome.getText().trim());
         lblNome.setText(txtNome.getText());
         novaCategoria.setNome(txtNome.getText());
         txtGrupo.requestFocus();
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
+        txtNome.setText(txtNome.getText().trim());
         lblNome.setText(txtNome.getText());
         novaCategoria.setNome(txtNome.getText());
     }//GEN-LAST:event_txtNomeFocusLost

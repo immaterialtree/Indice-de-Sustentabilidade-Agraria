@@ -25,7 +25,6 @@
                       </Group>
                       <Component id="panelCoordenada_editar" max="32767" attributes="0"/>
                       <Component id="cboxAssentamento_editar" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnAddAssentamento_editar" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="27" max="32767" attributes="0"/>
               </Group>
@@ -36,8 +35,6 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="cboxAssentamento_editar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnAddAssentamento_editar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtNome_editar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -51,7 +48,7 @@
                       <Component id="btnSalvar_editar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCancelar_editar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -65,14 +62,6 @@
               </Border>
             </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnAddAssentamento_editar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Adicionar assentamento"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddAssentamento_editarActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNumParcela_editar">
           <Properties>
@@ -200,6 +189,14 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="btnAddAssentamento_editar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Adicionar assentamento"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddAssentamento_editarActionPerformed"/>
+      </Events>
+    </Component>
     <Menu class="com.mycompany.isa.components.StandartMenuBar" name="standartMenuBar1">
     </Menu>
   </NonVisualComponents>
@@ -341,6 +338,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCadTitulo">
           <Properties>
@@ -441,6 +441,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumParcelaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtContato">
           <Properties>
@@ -453,6 +456,9 @@
               <Format format="(##) #####-####" subtype="-1" type="5"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtContatoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnLimpar">
           <Properties>
@@ -527,6 +533,9 @@
                   <Format format="#0.00000" subtype="-1" type="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCoordenadaXActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtCoordenadaY">
               <Properties>

@@ -89,7 +89,6 @@ public class CrudLote extends javax.swing.JFrame {
 
         dialogEditar = new javax.swing.JDialog();
         txtNome_editar = new javax.swing.JTextField();
-        btnAddAssentamento_editar = new javax.swing.JButton();
         txtNumParcela_editar = new javax.swing.JTextField();
         txtContato_editar = new javax.swing.JFormattedTextField();
         btnSalvar_editar = new javax.swing.JButton();
@@ -100,6 +99,7 @@ public class CrudLote extends javax.swing.JFrame {
         txtCoordenadaX_editar = new javax.swing.JFormattedTextField();
         txtCoordenadaY_editar = new javax.swing.JFormattedTextField();
         cboxAssentamento_editar = new javax.swing.JComboBox<>();
+        btnAddAssentamento_editar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtNome = new javax.swing.JTextField();
         lblCadTitulo = new javax.swing.JLabel();
@@ -127,13 +127,6 @@ public class CrudLote extends javax.swing.JFrame {
         dialogEditar.setResizable(false);
 
         txtNome_editar.setBorder(javax.swing.BorderFactory.createTitledBorder("Responsavel"));
-
-        btnAddAssentamento_editar.setText("Adicionar assentamento");
-        btnAddAssentamento_editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddAssentamento_editarActionPerformed(evt);
-            }
-        });
 
         txtNumParcela_editar.setBorder(javax.swing.BorderFactory.createTitledBorder("Nº da parcela"));
 
@@ -214,8 +207,7 @@ public class CrudLote extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelCoordenada_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboxAssentamento_editar, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddAssentamento_editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cboxAssentamento_editar, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         dialogEditarLayout.setVerticalGroup(
@@ -223,8 +215,6 @@ public class CrudLote extends javax.swing.JFrame {
             .addGroup(dialogEditarLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(cboxAssentamento_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAddAssentamento_editar)
                 .addGap(18, 18, 18)
                 .addComponent(txtNome_editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -237,14 +227,26 @@ public class CrudLote extends javax.swing.JFrame {
                 .addGroup(dialogEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar_editar)
                     .addComponent(btnCancelar_editar))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
+
+        btnAddAssentamento_editar.setText("Adicionar assentamento");
+        btnAddAssentamento_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddAssentamento_editarActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciar Lotes");
         setResizable(false);
 
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Responsável"));
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
 
         lblCadTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblCadTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -312,6 +314,11 @@ public class CrudLote extends javax.swing.JFrame {
         scrollTabela.setViewportView(tabLote);
 
         txtNumParcela.setBorder(javax.swing.BorderFactory.createTitledBorder("Nº da Parcela"));
+        txtNumParcela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumParcelaActionPerformed(evt);
+            }
+        });
 
         txtContato.setBorder(javax.swing.BorderFactory.createTitledBorder("Contato"));
         try {
@@ -319,6 +326,11 @@ public class CrudLote extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtContato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContatoActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-erase-16.png"))); // NOI18N
@@ -337,6 +349,11 @@ public class CrudLote extends javax.swing.JFrame {
         lblCoordenadaY.setText("Longitude");
 
         txtCoordenadaX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00000"))));
+        txtCoordenadaX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCoordenadaXActionPerformed(evt);
+            }
+        });
 
         txtCoordenadaY.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00000"))));
 
@@ -493,8 +510,8 @@ public class CrudLote extends javax.swing.JFrame {
         Lote lote = new Lote();
         
         lote.setAssentamento((String) cboxAssentamento.getSelectedItem());
-        lote.setResponsavel(txtNome.getText());
-        lote.setNumParcela(txtNumParcela.getText());
+        lote.setResponsavel(txtNome.getText().trim());
+        lote.setNumParcela(txtNumParcela.getText().trim());
         lote.setContato(txtContato.getText());
         double x = Double.parseDouble(txtCoordenadaX.getText().replace(',','.'));
         double y = Double.parseDouble(txtCoordenadaY.getText().replace(',', '.'));
@@ -631,6 +648,22 @@ public class CrudLote extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnAddAssentamento_editarActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        txtNumParcela.requestFocus();
+    }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void txtNumParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumParcelaActionPerformed
+        txtContato.requestFocus();
+    }//GEN-LAST:event_txtNumParcelaActionPerformed
+
+    private void txtContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContatoActionPerformed
+        txtCoordenadaX.requestFocus();
+    }//GEN-LAST:event_txtContatoActionPerformed
+
+    private void txtCoordenadaXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCoordenadaXActionPerformed
+        txtCoordenadaY.requestFocus();
+    }//GEN-LAST:event_txtCoordenadaXActionPerformed
 
     /**
      * @param args the command line arguments
