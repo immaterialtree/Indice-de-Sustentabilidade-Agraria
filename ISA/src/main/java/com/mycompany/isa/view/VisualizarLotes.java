@@ -18,14 +18,17 @@ import javax.swing.DefaultListModel;
  * @author naoki
  */
 public class VisualizarLotes extends javax.swing.JFrame {
-
+    private Map<String, List<Lote>> assentamentosMap;
     /**
      * Creates new form VisualizarLotes
      */
     public VisualizarLotes() {
+        gerarMapAssentamento();
         initComponents();
+        lblIndice.setVisible(false);
         scrollAssentamento.getVerticalScrollBar().setUnitIncrement(10);
-        preencherLista();
+        preencherLista(null);
+        atualizarCbox();
         if (ISA.loteList.isEmpty()) {
             btnPropriedades.setEnabled(false);
             btnVisualizar.setEnabled(false);
@@ -33,9 +36,22 @@ public class VisualizarLotes extends javax.swing.JFrame {
             jListModelos.setSelectedIndex(0);
     }
     
-    private void preencherLista() {
-        DefaultListModel resultList = new DefaultListModel();
+    private void gerarMapAssentamento() {
+         assentamentosMap = new HashMap<>();
         for (Lote lote : ISA.loteList) {
+            if (!assentamentosMap.keySet().contains(lote.getAssentamento())) {
+                assentamentosMap.put(lote.getAssentamento(), new ArrayList<>());
+            }
+            assentamentosMap.get(lote.getAssentamento()).add(lote);
+        }
+    }
+    
+    private void preencherLista(String assentamento) {
+        DefaultListModel resultList = new DefaultListModel();
+        List<Lote> lotes = assentamentosMap.containsKey(assentamento) ? 
+                            assentamentosMap.get(assentamento) : 
+                            ISA.loteList;
+        for (Lote lote : lotes) {
             String loteString = String.format("<html>"
                     + "<b>Assentamento:</b> %s <br>"
                     + "<b>Responsável:</b> \t%s <br>"
@@ -44,6 +60,13 @@ public class VisualizarLotes extends javax.swing.JFrame {
             resultList.addElement(loteString);
         }
         jListModelos.setModel(resultList);
+    }
+    
+    private void atualizarCbox() {
+        cboxAssentamento.removeAllItems();
+        cboxAssentamento.addItem(" - Mostrar todos - ");
+        for (String assentamento : assentamentosMap.keySet())
+            cboxAssentamento.addItem(assentamento);
     }
 
     /**
@@ -78,7 +101,10 @@ public class VisualizarLotes extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         btnPropriedades = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnIndiceAssentamentos = new javax.swing.JToggleButton();
+        cboxAssentamento = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        lblIndice = new javax.swing.JLabel();
 
         dialogPropriedades.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogPropriedades.setTitle("Propriedades do lote");
@@ -259,16 +285,29 @@ public class VisualizarLotes extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jToggleButton1.setText("Índice dos assentamentos");
-        jToggleButton1.setMaximumSize(new java.awt.Dimension(111, 27));
-        jToggleButton1.setMinimumSize(new java.awt.Dimension(111, 27));
-        jToggleButton1.setPreferredSize(new java.awt.Dimension(111, 27));
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnIndiceAssentamentos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnIndiceAssentamentos.setText("Índice dos assentamentos");
+        btnIndiceAssentamentos.setMaximumSize(new java.awt.Dimension(111, 27));
+        btnIndiceAssentamentos.setMinimumSize(new java.awt.Dimension(111, 27));
+        btnIndiceAssentamentos.setPreferredSize(new java.awt.Dimension(111, 27));
+        btnIndiceAssentamentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                btnIndiceAssentamentosActionPerformed(evt);
             }
         });
+
+        cboxAssentamento.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboxAssentamentoItemStateChanged(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Filtrar assentamento");
+
+        lblIndice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblIndice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIndice.setText("Índice do assentamento: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -281,10 +320,15 @@ public class VisualizarLotes extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblIndice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cboxAssentamento, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnIndiceAssentamentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPropriedades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                     .addComponent(btnVisualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(66, 66, 66))
         );
@@ -295,15 +339,21 @@ public class VisualizarLotes extends javax.swing.JFrame {
                 .addComponent(btnVoltar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboxAssentamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPropriedades, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(btnIndiceAssentamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIndice)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -359,7 +409,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         btnVisualizar.setEnabled(jListModelos.getSelectedIndex() != -1);
     }//GEN-LAST:event_jListModelosValueChanged
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void btnIndiceAssentamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndiceAssentamentosActionPerformed
         String htmlTable = """
                            <html>
                                 <style>
@@ -382,21 +432,15 @@ public class VisualizarLotes extends javax.swing.JFrame {
                            </html>
                            """;
         String htmlItem = "<tr> <td>%s</td> <td>%.3f</td></tr>";
-        Map<String, List<Lote>> assentamentos = new HashMap<>();
-        for (Lote lote : ISA.loteList) {
-            if (!assentamentos.keySet().contains(lote.getAssentamento())) {
-                assentamentos.put(lote.getAssentamento(), new ArrayList<>());
-            }
-            assentamentos.get(lote.getAssentamento()).add(lote);
-        }
+        
         StringBuilder htmlItens = new StringBuilder();
-        for (String key : assentamentos.keySet()) {
-            if (assentamentos.get(key).isEmpty()) continue;
+        for (String key : assentamentosMap.keySet()) {
+            if (assentamentosMap.get(key).isEmpty()) continue;
             double indice = 0;
-            for (Lote l : assentamentos.get(key)) {
+            for (Lote l : assentamentosMap.get(key)) {
                 indice += l.calcularIndiceGeral();
             }
-            indice /= assentamentos.get(key).size();
+            indice /= assentamentosMap.get(key).size();
             htmlItens.append(String.format(htmlItem, key, indice));
         }
         lblAssentamentosTable.setText(String.format(htmlTable, htmlItens.toString()));
@@ -404,7 +448,22 @@ public class VisualizarLotes extends javax.swing.JFrame {
         dialogAssentamentos.setSize(390, 370);
         dialogAssentamentos.setLocationRelativeTo(null);
         dialogAssentamentos.setVisible(true);
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_btnIndiceAssentamentosActionPerformed
+
+    private void cboxAssentamentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboxAssentamentoItemStateChanged
+        if (cboxAssentamento.getSelectedIndex()==0) {
+            preencherLista(null);
+            lblIndice.setVisible(false);
+            btnIndiceAssentamentos.setVisible(true);
+        } else {
+            preencherLista(cboxAssentamento.getSelectedItem().toString());
+            lblIndice.setVisible(true);
+            btnIndiceAssentamentos.setVisible(false);
+        }
+        if (cboxAssentamento.getItemCount()>0){
+            jListModelos.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_cboxAssentamentoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -443,17 +502,20 @@ public class VisualizarLotes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnIndiceAssentamentos;
     private javax.swing.JButton btnPropriedades;
     private javax.swing.JButton btnVisualizar;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JComboBox<String> cboxAssentamento;
     private javax.swing.JDialog dialogAssentamentos;
     private javax.swing.JDialog dialogPropriedades;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jListModelos;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblAssentamentosTable;
     private javax.swing.JLabel lblCoordenadaX;
     private javax.swing.JLabel lblCoordenadaY;
+    private javax.swing.JLabel lblIndice;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelAssentamentos;
     private javax.swing.JPanel panelCoordenada;
