@@ -260,15 +260,15 @@
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="lblIndice" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel1" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="cboxAssentamento" min="-2" pref="182" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="cboxAssentamento" max="32767" attributes="0"/>
                   </Group>
                   <Component id="btnIndiceAssentamentos" max="32767" attributes="0"/>
                   <Component id="btnPropriedades" max="32767" attributes="0"/>
                   <Component id="lblTitulo" max="32767" attributes="0"/>
-                  <Component id="jScrollPane2" alignment="0" pref="345" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="0" pref="344" max="32767" attributes="0"/>
                   <Component id="btnVisualizar" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
@@ -409,7 +409,13 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
+        <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/icons8-filter-16.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Filtrar assentamento"/>
+        <Property name="horizontalTextPosition" type="int" value="2"/>
+        <Property name="iconTextGap" type="int" value="15"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblIndice">

@@ -177,6 +177,7 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
             }
         });
 
+        btnResetar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-erase-16.png"))); // NOI18N
         btnResetar.setText("Resetar");
         btnResetar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +186,7 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         });
 
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-save-windows-10-16.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

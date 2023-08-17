@@ -251,6 +251,7 @@ public class CrudLote extends javax.swing.JFrame {
         lblCadTitulo.setText("Gerenciar Lotes");
 
         btnSalvar.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-save-windows-10-16.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,6 +260,7 @@ public class CrudLote extends javax.swing.JFrame {
         });
 
         btnEditar.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-edit-16.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +271,7 @@ public class CrudLote extends javax.swing.JFrame {
         lblErro.setForeground(new java.awt.Color(255, 0, 51));
 
         btnRemover.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
+        btnRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-trash-16.png"))); // NOI18N
         btnRemover.setText("Remover");
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,6 +321,7 @@ public class CrudLote extends javax.swing.JFrame {
         }
 
         btnLimpar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-erase-16.png"))); // NOI18N
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
