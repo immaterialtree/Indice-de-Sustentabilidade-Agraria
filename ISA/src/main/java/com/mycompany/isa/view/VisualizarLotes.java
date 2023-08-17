@@ -6,6 +6,7 @@ package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.Lote;
+import com.mycompany.isa.utility.CalcularIndice;
 import com.mycompany.isa.view.indicadores.IndicadoresFrame;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -418,7 +419,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
                            <html>
                                 <style>
                                 table {
-                                    width: 250px;
+                                    width: 300px;
                                     font-family: segoe, sans-serif;
                                     font-size:10px;
                                     border-collapse: collapse;
@@ -430,26 +431,23 @@ public class VisualizarLotes extends javax.swing.JFrame {
                                     }
                                 </style>
                            <table>
-                           <tr> <th>Assentamento</th> <th>Índice</th></tr>
+                           <tr> <th>ASSENTAMENTO</th> <th>ÍNDICE</th> <th>DESVIO PADRÃO</th></tr>
                            %s
                            </table>
                            </html>
                            """;
-        String htmlItem = "<tr> <td>%s</td> <td>%.3f</td></tr>";
+        String htmlItem = "<tr> <td>%s</td> <td>%.3f</td> <td>%.3f</td></tr>";
         
         StringBuilder htmlItens = new StringBuilder();
         for (String key : assentamentosMap.keySet()) {
             if (assentamentosMap.get(key).isEmpty()) continue;
-            double indice = 0;
-            for (Lote l : assentamentosMap.get(key)) {
-                indice += l.calcularIndiceGeral();
-            }
-            indice /= assentamentosMap.get(key).size();
-            htmlItens.append(String.format(htmlItem, key, indice));
+            double indice = CalcularIndice.averageAssentamento(assentamentosMap.get(key));
+            double dp = CalcularIndice.desvioPadraoAssentamento(assentamentosMap.get(key));
+            htmlItens.append(String.format(htmlItem, key, indice, dp));
         }
         lblAssentamentosTable.setText(String.format(htmlTable, htmlItens.toString()));
         
-        dialogAssentamentos.setSize(390, 370);
+        dialogAssentamentos.setSize(420, 400);
         dialogAssentamentos.setLocationRelativeTo(null);
         dialogAssentamentos.setVisible(true);
     }//GEN-LAST:event_btnIndiceAssentamentosActionPerformed
@@ -460,9 +458,13 @@ public class VisualizarLotes extends javax.swing.JFrame {
             lblIndice.setVisible(false);
             btnIndiceAssentamentos.setVisible(true);
         } else {
-            preencherLista(cboxAssentamento.getSelectedItem().toString());
+            String assentamento = cboxAssentamento.getSelectedItem().toString();
+            preencherLista(assentamento);
             lblIndice.setVisible(true);
             btnIndiceAssentamentos.setVisible(false);
+            double indice = CalcularIndice.averageAssentamento(assentamentosMap.get(assentamento));
+            double dp = CalcularIndice.desvioPadraoAssentamento(assentamentosMap.get(assentamento));
+            lblIndice.setText(String.format("Índice do assentamento: %.3f ± %.3f", indice, dp));
         }
         if (cboxAssentamento.getItemCount()>0){
             jListModelos.setSelectedIndex(0);

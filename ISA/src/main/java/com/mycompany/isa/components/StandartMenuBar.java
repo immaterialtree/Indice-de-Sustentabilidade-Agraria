@@ -43,6 +43,8 @@ public class StandartMenuBar extends JMenuBar{
         });
         this.add(menuCalcularIndice);
         
+        menuGerenciar.setText("Gerenciar");
+        
         menuGerenciarLotes.setText("Gerenciar lotes");
         menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -58,6 +60,7 @@ public class StandartMenuBar extends JMenuBar{
             }
         });
         menuGerenciar.add(menuGerenciarIndicadores);
+        
         this.add(menuGerenciar);
     }
     private void disposeAllWindows() {
