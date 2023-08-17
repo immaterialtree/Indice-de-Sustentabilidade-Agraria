@@ -19,7 +19,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
     private int rows; // defines the rows of gridLayout<-this.itemsPanel
     private int startRow;
     private int endRow;
-    private Double[] itensValor;
+    private double[] itensValor;
     /**
      * Creates new form IndicadorGrupoPanel
      */
@@ -140,7 +140,7 @@ public class IndicadorGrupoPanel extends javax.swing.JPanel {
         });
     }
     private void calcularMedia() {
-        Double media = Arrays.stream(itensValor).mapToDouble(Double::doubleValue).average().orElse(Double.NaN);
+        Double media = Arrays.stream(itensValor).average().orElse(Double.NaN);
         lblNumGrupo.setText(String.format("%.2f", media));
     }
     

@@ -40,7 +40,7 @@ public class Lote {
     private String contato;
     @JsonProperty("coordenada")
     private double[] coordenada;
-    private Map<Integer, Double[]> scoresMap; // Map<modelo.hashCode, scores>
+    private Map<Integer, double[]> scoresMap; // Map<modelo.hashCode, scores>
  
     public Lote() {
         scoresMap = new LinkedHashMap<>();
@@ -55,7 +55,7 @@ public class Lote {
         scoresMap = new LinkedHashMap<>();
     }
 
-    public Lote(String assentamento, String responsavel, String numParcela, String contato, double[] coordenada, Map<Integer, Double[]> scoresMap) {
+    public Lote(String assentamento, String responsavel, String numParcela, String contato, double[] coordenada, Map<Integer, double[]> scoresMap) {
         this.assentamento = assentamento;
         this.responsavel = responsavel;
         this.numParcela = numParcela;
@@ -65,7 +65,7 @@ public class Lote {
     }
     
     
-    public Lote(String assentamento, String responsavel, String numParcela, String numero, double[] coordenada, Integer[] keys, Double[][] scores) {
+    public Lote(String assentamento, String responsavel, String numParcela, String numero, double[] coordenada, Integer[] keys, double[][] scores) {
         this.assentamento = assentamento;
         this.responsavel = responsavel;
         this.numParcela = numParcela;
@@ -117,16 +117,16 @@ public class Lote {
         this.coordenada = coordenada;
     }
 
-    public Map<Integer, Double[]> getScoresMap() {
+    public Map<Integer, double[]> getScoresMap() {
         return scoresMap;
     }
     
     
-    public void addScores(Integer key, Double[] scores) {
+    public void addScores(Integer key, double[] scores) {
         scoresMap.put(key, scores);
     }
     
-    public void addScores(CategoriaIndicadores modelo, Double[] scores) {
+    public void addScores(CategoriaIndicadores modelo, double[] scores) {
         scoresMap.put(modelo.getNome().hashCode(), scores);
     }
     
@@ -135,8 +135,7 @@ public class Lote {
         for (List itemList : modelo.getAllItems()) {
             size += itemList.size();
         }
-        Double[] values = new Double[size];
-        Arrays.fill(values, 0d);
+        double[] values = new double[size];
         scoresMap.putIfAbsent(modelo.getNome().hashCode(), values);
     }
     
@@ -149,21 +148,21 @@ public class Lote {
     }
     
     @JsonIgnore
-    public Double getScore(Integer key, int pos) {
+    public double getScore(Integer key, int pos) {
         return scoresMap.get(key)[pos];
     }
     @JsonIgnore
-    public Double[] getScoresOf(Integer key) {
+    public double[] getScoresOf(Integer key) {
         return scoresMap.get(key);
     }
     
     @JsonIgnore
-    public Double[][] getAllScores() {
-        return scoresMap.values().toArray(Double[][]::new);
+    public double[][] getAllScores() {
+        return scoresMap.values().toArray(double[][]::new);
     }
     
     public double calcularIndiceCategoria(int categoria) {
-        return Arrays.stream(scoresMap.get(categoria)).mapToDouble((d)->d).average().orElse(Double.NaN);
+        return Arrays.stream(scoresMap.get(categoria)).average().orElse(Double.NaN);
     }
     
     public double calcularIndiceGeral() {
