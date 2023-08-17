@@ -12,6 +12,7 @@ import com.mycompany.isa.view.VisualizarLotes;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 /**
  *
@@ -20,8 +21,9 @@ import javax.swing.JMenuBar;
 public class StandartMenuBar extends JMenuBar{
     private JMenu menuInicio = new JMenu();
     private JMenu menuCalcularIndice = new JMenu();
-    private JMenu menuGerenciarLotes = new JMenu();
-    private JMenu menuGerenciarIndicadores = new JMenu();
+    private JMenu menuGerenciar = new JMenu();
+    private JMenuItem menuGerenciarLotes = new JMenuItem();
+    private JMenuItem menuGerenciarIndicadores = new JMenuItem();
     public StandartMenuBar() {
         
         
@@ -47,7 +49,7 @@ public class StandartMenuBar extends JMenuBar{
                 menuGerenciarLotesMousePressed(evt);
             }
         });
-        this.add(menuGerenciarLotes);
+        menuGerenciar.add(menuGerenciarLotes);
         
         menuGerenciarIndicadores.setText("Gerenciar indicadores");
         menuGerenciarIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -55,7 +57,8 @@ public class StandartMenuBar extends JMenuBar{
                 menuGerenciarIndicadoresMousePressed(evt);
             }
         });
-        this.add(menuGerenciarIndicadores);
+        menuGerenciar.add(menuGerenciarIndicadores);
+        this.add(menuGerenciar);
     }
     private void disposeAllWindows() {
         for (var frame : java.awt.Frame.getFrames()) {

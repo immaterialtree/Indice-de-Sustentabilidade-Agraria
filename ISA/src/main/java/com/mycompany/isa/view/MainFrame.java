@@ -29,24 +29,96 @@ public class MainFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        dialogSobre = new javax.swing.JDialog();
+        sobrePanel = new javax.swing.JPanel();
+        lblSobreTitle = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         cardPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
         btnGerenciarLotes = new javax.swing.JButton();
         btnVisualizarLotes = new javax.swing.JButton();
         btnGerenciarIndicadores = new javax.swing.JButton();
         lblMainTitle = new javax.swing.JLabel();
-        sobrePanel = new javax.swing.JPanel();
-        lblSobreTitle = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         ajudaPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
         standartMenuBar1 = new com.mycompany.isa.components.StandartMenuBar();
         menuAjuda = new javax.swing.JMenu();
-        menuSobre = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+
+        lblSobreTitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblSobreTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSobreTitle.setText("Descrição do projeto");
+
+        jTextPane1.setText("Aqui é onde estará a descrição sobre o Índice de Sustentabilidade Agrária\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquam nunc sit amet turpis efficitur, id elementum quam lacinia. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi placerat nibh sit amet arcu lobortis, pulvinar vehicula lacus tincidunt. Sed eget gravida lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam posuere, velit sit amet consequat hendrerit, turpis sapien tristique nibh, placerat vulputate est lorem in ante. Phasellus tempor blandit dui, ac dictum arcu placerat ut. Quisque ultricies mollis vehicula. Nulla a ipsum vitae nulla fermentum tempus.\n");
+        jTextPane1.setOpaque(false);
+        jScrollPane1.setViewportView(jTextPane1);
+
+        jButton1.setText("jButton1");
+
+        jButton2.setText("jButton2");
+
+        jButton3.setText("jButton3");
+
+        javax.swing.GroupLayout sobrePanelLayout = new javax.swing.GroupLayout(sobrePanel);
+        sobrePanel.setLayout(sobrePanelLayout);
+        sobrePanelLayout.setHorizontalGroup(
+            sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblSobreTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(sobrePanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(sobrePanelLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(43, 43, 43)
+                        .addComponent(jButton2)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton3)))
+                .addGap(25, 25, 25))
+        );
+        sobrePanelLayout.setVerticalGroup(
+            sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sobrePanelLayout.createSequentialGroup()
+                .addComponent(lblSobreTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout dialogSobreLayout = new javax.swing.GroupLayout(dialogSobre.getContentPane());
+        dialogSobre.getContentPane().setLayout(dialogSobreLayout);
+        dialogSobreLayout.setHorizontalGroup(
+            dialogSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 568, Short.MAX_VALUE)
+            .addGroup(dialogSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogSobreLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sobrePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+        dialogSobreLayout.setVerticalGroup(
+            dialogSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 347, Short.MAX_VALUE)
+            .addGroup(dialogSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogSobreLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sobrePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ISA-RURAL");
@@ -115,36 +187,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel.add(mainPanel, "main");
 
-        lblSobreTitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblSobreTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSobreTitle.setText("Descrição do projeto");
-
-        jTextPane1.setText("Aqui é onde estará a descrição sobre o Índice de Sustentabilidade Agrária\n");
-        jScrollPane1.setViewportView(jTextPane1);
-
-        javax.swing.GroupLayout sobrePanelLayout = new javax.swing.GroupLayout(sobrePanel);
-        sobrePanel.setLayout(sobrePanelLayout);
-        sobrePanelLayout.setHorizontalGroup(
-            sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sobrePanelLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
-                    .addComponent(lblSobreTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
-        sobrePanelLayout.setVerticalGroup(
-            sobrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sobrePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblSobreTitle)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-
-        cardPanel.add(sobrePanel, "sobre");
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Ajuda");
@@ -179,20 +221,24 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel.add(ajudaPanel, "ajuda");
 
         menuAjuda.setText("Ajuda");
-        menuAjuda.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuAjudaMouseClicked(evt);
-            }
-        });
-        standartMenuBar1.add(menuAjuda);
 
-        menuSobre.setText("Sobre");
-        menuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuSobreMouseClicked(evt);
+        jMenuItem1.setText("Ajuda");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        standartMenuBar1.add(menuSobre);
+        menuAjuda.add(jMenuItem1);
+
+        jMenuItem2.setText("Sobre");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        menuAjuda.add(jMenuItem2);
+
+        standartMenuBar1.add(menuAjuda);
 
         setJMenuBar(standartMenuBar1);
 
@@ -226,15 +272,16 @@ public class MainFrame extends javax.swing.JFrame {
         new VisualizarLotes().setVisible(true);
     }//GEN-LAST:event_btnVisualizarLotesActionPerformed
 
-    private void menuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSobreMouseClicked
-        CardLayout cl = (CardLayout) cardPanel.getLayout();
-        cl.show(cardPanel, "sobre");
-    }//GEN-LAST:event_menuSobreMouseClicked
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        dialogSobre.setVisible(true);
+        dialogSobre.setLocationRelativeTo(menuAjuda);
+        dialogSobre.setSize(380, 400);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void menuAjudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAjudaMouseClicked
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         CardLayout cl = (CardLayout) cardPanel.getLayout();
         cl.show(cardPanel, "ajuda");
-    }//GEN-LAST:event_menuAjudaMouseClicked
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,7 +325,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnGerenciarLotes;
     private javax.swing.JButton btnVisualizarLotes;
     private javax.swing.JPanel cardPanel;
+    private javax.swing.JDialog dialogSobre;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
@@ -287,7 +340,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblSobreTitle;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenu menuAjuda;
-    private javax.swing.JMenu menuSobre;
     private javax.swing.JPanel sobrePanel;
     private com.mycompany.isa.components.StandartMenuBar standartMenuBar1;
     // End of variables declaration//GEN-END:variables
