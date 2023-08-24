@@ -4,16 +4,28 @@
  */
 package com.mycompany.isa.view;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author naoki
  */
 public class AjudaFrame extends javax.swing.JFrame {
 
+    String htmlAjudaLote;
     /**
      * Creates new form AjudaFrame
      */
     public AjudaFrame() {
+        try {
+            this.htmlAjudaLote = Files.readString(Path.of("src/main/resources/html/ajudaLote.html"));
+        } catch (IOException ex) {
+            Logger.getLogger(AjudaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
     }
 
@@ -31,6 +43,7 @@ public class AjudaFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,16 +55,10 @@ public class AjudaFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Indice de Sustentabilidade", jPanel2);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 439, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 323, Short.MAX_VALUE)
-        );
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        jLabel2.setText(htmlAjudaLote);
+        jPanel3.add(jLabel2, new java.awt.GridBagConstraints());
 
         jTabbedPane1.addTab("Lotes", jPanel3);
 
@@ -130,6 +137,7 @@ public class AjudaFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
