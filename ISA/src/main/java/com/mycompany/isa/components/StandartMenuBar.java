@@ -5,9 +5,11 @@
 package com.mycompany.isa.components;
 
 import com.mycompany.isa.ISA;
+import com.mycompany.isa.view.AjudaFrame;
 import com.mycompany.isa.view.CrudIndicadores;
 import com.mycompany.isa.view.CrudLote;
 import com.mycompany.isa.view.MainFrame;
+import com.mycompany.isa.view.SobreDialog;
 import com.mycompany.isa.view.VisualizarLotes;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -19,11 +21,14 @@ import javax.swing.JMenuItem;
  * @author naoki
  */
 public class StandartMenuBar extends JMenuBar{
-    private JMenu menuInicio = new JMenu();
-    private JMenu menuCalcularIndice = new JMenu();
-    private JMenu menuGerenciar = new JMenu();
-    private JMenuItem menuGerenciarLotes = new JMenuItem();
-    private JMenuItem menuGerenciarIndicadores = new JMenuItem();
+    final private JMenu menuInicio = new JMenu();
+    final private JMenu menuCalcularIndice = new JMenu();
+    final private JMenu menuGerenciar = new JMenu();
+    final private JMenu menuAjuda = new JMenu();
+    final private JMenuItem itemGerenciarLotes = new JMenuItem();
+    final private JMenuItem itemGerenciarIndicadores = new JMenuItem();
+    final private JMenuItem itemManual = new JMenuItem();
+    final private JMenuItem itemSobre = new JMenuItem();
     public StandartMenuBar() {
         
         
@@ -42,27 +47,57 @@ public class StandartMenuBar extends JMenuBar{
             }
         });
         this.add(menuCalcularIndice);
-        
         menuGerenciar.setText("Gerenciar");
         
-        menuGerenciarLotes.setText("Gerenciar lotes");
-        menuGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
+        itemGerenciarLotes.setText("Gerenciar lotes");
+        itemGerenciarLotes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 menuGerenciarLotesMousePressed(evt);
             }
         });
-        menuGerenciar.add(menuGerenciarLotes);
+        menuGerenciar.add(itemGerenciarLotes);
         
-        menuGerenciarIndicadores.setText("Gerenciar indicadores");
-        menuGerenciarIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
+        itemGerenciarIndicadores.setText("Gerenciar indicadores");
+        itemGerenciarIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 menuGerenciarIndicadoresMousePressed(evt);
             }
         });
-        menuGerenciar.add(menuGerenciarIndicadores);
+        menuGerenciar.add(itemGerenciarIndicadores);
         
         this.add(menuGerenciar);
+        
+        menuAjuda.setText("Ajuda");
+        
+        itemManual.setText("Manual do usuário");
+        itemManual.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                for (var frame : java.awt.Frame.getFrames()) {
+                    if (frame.getName().equals("ajuda")){
+                        frame.requestFocus();
+                        return;
+                    }
+                }                
+                AjudaFrame ajuda = new AjudaFrame();
+                ajuda.setLocationRelativeTo(menuAjuda);                
+                ajuda.setVisible(true);
+            }
+        });
+        menuAjuda.add(itemManual);
+        
+        itemSobre.setText("Sobre");
+        itemSobre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {  
+                SobreDialog dialog = new SobreDialog();
+                dialog.setVisible(true);
+            }
+        });
+        menuAjuda.add(itemSobre);
+        
+        this.add(menuAjuda);
+        
     }
+    
     private void disposeAllWindows() {
         for (var frame : java.awt.Frame.getFrames()) {
             frame.dispose();

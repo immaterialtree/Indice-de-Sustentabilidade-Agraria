@@ -28,6 +28,31 @@
             <artifactId>javax.annotation-api</artifactId>
             <version>1.3.2</version>
         </dependency>
+        <dependency> 
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId> 
+            <version>5.2.0</version> 
+        </dependency> 
+        <dependency> 
+            <groupId>org.apache.poi</groupId> 
+            <artifactId>poi-ooxml</artifactId> 
+            <version>5.2.0</version> 
+        </dependency>
+        <dependency>
+            <groupId>org.jxls</groupId>
+            <artifactId>jxls-jexcel</artifactId>
+            <version>1.0.9</version>
+        </dependency>
+        <dependency>
+              <groupId>org.dhatim</groupId>
+              <artifactId>fastexcel-reader</artifactId>
+              <version>0.15.3</version>
+        </dependency>
+        <dependency>
+              <groupId>org.dhatim</groupId>
+              <artifactId>fastexcel</artifactId>
+              <version>0.15.3</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

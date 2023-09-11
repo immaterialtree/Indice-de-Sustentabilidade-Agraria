@@ -46,7 +46,10 @@ public class AjudaFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("ISA-RURAL - Guia do Usuário");
+        setName("ajuda"); // NOI18N
+        setType(java.awt.Window.Type.POPUP);
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 

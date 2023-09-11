@@ -29,7 +29,6 @@ public class MainFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         dialogSobre = new javax.swing.JDialog();
         sobrePanel = new javax.swing.JPanel();
@@ -50,9 +49,8 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
         standartMenuBar1 = new com.mycompany.isa.components.StandartMenuBar();
-        menuAjuda = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+
+        dialogSobre.setType(java.awt.Window.Type.POPUP);
 
         lblSobreTitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblSobreTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -220,26 +218,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel.add(ajudaPanel, "ajuda");
 
-        menuAjuda.setText("Ajuda");
-
-        jMenuItem1.setText("Ajuda");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        menuAjuda.add(jMenuItem1);
-
-        jMenuItem2.setText("Sobre");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        menuAjuda.add(jMenuItem2);
-
-        standartMenuBar1.add(menuAjuda);
-
         setJMenuBar(standartMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -271,17 +249,6 @@ public class MainFrame extends javax.swing.JFrame {
         this.setVisible(false);
         new VisualizarLotes().setVisible(true);
     }//GEN-LAST:event_btnVisualizarLotesActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        dialogSobre.setVisible(true);
-        dialogSobre.setLocationRelativeTo(menuAjuda);
-        dialogSobre.setSize(380, 400);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        CardLayout cl = (CardLayout) cardPanel.getLayout();
-        cl.show(cardPanel, "ajuda");
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,8 +297,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
@@ -339,7 +304,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblMainTitle;
     private javax.swing.JLabel lblSobreTitle;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JMenu menuAjuda;
     private javax.swing.JPanel sobrePanel;
     private com.mycompany.isa.components.StandartMenuBar standartMenuBar1;
     // End of variables declaration//GEN-END:variables
