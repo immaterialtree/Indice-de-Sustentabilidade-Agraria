@@ -62,7 +62,7 @@ public class DataTransfer {
         ObjectMapper mapper = new ObjectMapper();
         
         for (Lote lote : loteList) {
-            File resultFile = new File(PATH_LOTE, lote.getResponsavel());
+            File resultFile = new File(PATH_LOTE, lote.getResponsavel()+"-"+lote.getNumParcela());
             try {
                 mapper.writeValue(resultFile, lote);
             } catch (IOException ex) {
