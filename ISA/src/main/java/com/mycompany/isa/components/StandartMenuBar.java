@@ -75,6 +75,7 @@ public class StandartMenuBar extends JMenuBar{
                 for (var frame : java.awt.Frame.getFrames()) {
                     if (frame.getName().equals("ajuda")){
                         frame.requestFocus();
+                        frame.setVisible(true);
                         return;
                     }
                 }                
@@ -88,7 +89,7 @@ public class StandartMenuBar extends JMenuBar{
         itemSobre.setText("Sobre");
         itemSobre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {  
-                SobreDialog dialog = new SobreDialog();
+                SobreDialog dialog = new SobreDialog(JFrame.getFrames()[0]);
                 dialog.setVisible(true);
             }
         });

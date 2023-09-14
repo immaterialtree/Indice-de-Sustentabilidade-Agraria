@@ -23,7 +23,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 "numParcela",
 "contato",
 "coordenada",
-"scoresMap"
+"scoresMap",
+"assentamento"
 })
 /**
  *
