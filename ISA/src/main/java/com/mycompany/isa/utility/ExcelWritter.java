@@ -4,6 +4,7 @@
  */
 package com.mycompany.isa.utility;
 
+import com.mycompany.isa.ISA;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -12,16 +13,17 @@ import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.model.Lote;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.apache.poi.ss.util.RegionUtil;
 
 /**
@@ -29,71 +31,40 @@ import org.apache.poi.ss.util.RegionUtil;
  * @author naoki
  */
 public class ExcelWritter {
-    private Lote lote; 
-    private Workbook workbook;
+    private final Workbook workbook = new XSSFWorkbook();
+    private Lote lote;
     private CellStyle styleBody;
     private CellStyle styleHeader;
 
-    public ExcelWritter(Lote lote) {
-        this.lote = lote;        
+    public ExcelWritter() {
+        initStyle();
     }
-
-    public Lote getLote() {
-        return lote;
-    }
-
-    public void setLote(Lote lote) {
+    
+    public void createLoteWorkbook(Lote lote) {
+        clearWorkbook();
         this.lote = lote;
-    }
-    
-    public void newWorkbook() {
-        workbook = new XSSFWorkbook();
-        initStyle();
-    }
-    
-    public void createLoteWorkbook() {
-        workbook = new XSSFWorkbook();
-        initStyle();
         loteInfoSheet();
         DataTransfer.importIndicadores().forEach(cat->categoriaToSheet(cat));
-        saveToFile();
+        saveToFile(lote.getResponsavel()+"-"+lote.getNumParcela());
     }
     
     public void createAssentamentoWorkbook(String assentamento) {
-        workbook = new XSSFWorkbook();
-        initStyle();
+        clearWorkbook();
+        List<Lote> lotes = new ArrayList<>();
+        for (Lote l : ISA.loteList) {
+            if (l.getAssentamento().equals(assentamento)) {
+                lotes.add(l);
+            }
+        }
         
+        assentamentoToSheet(assentamento, lotes);
+        saveToFile(assentamento);
     }
     
-    private void assentamentoToSheet(String assentamento, List<Lote> lotes) {        
-        workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet();
-        Row row = sheet.createRow(0);
-        String[] values = new String[]{"Assentamento", "Indice de Sustentabilidade"};
-        Cell cell;
-        for (int i = 0; i < values.length; i++) {
-            cell = row.createCell(i);
-            cell.setCellValue(values[i]);
-            cell.setCellStyle(styleHeader);
+    private void clearWorkbook() {
+        while (workbook.getNumberOfSheets() > 0) {
+            workbook.removeSheetAt(0);
         }
-        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 1));
-        sheet.addMergedRegion(new CellRangeAddress(1, 2, 0, 0));
-        
-        row = sheet.createRow(1);
-        values = new String[]{"Índice", "Desvio Padrão"};
-        for (int i = 0; i < values.length; i++) {
-            cell = row.createCell(i+1);
-            cell.setCellValue(values[i]);
-            cell.setCellStyle(styleHeader);
-        }
-        
-        row = sheet.createRow(2);
-        values = new String[]{assentamento, String.valueOf(CalcularIndice.averageAssentamento(lotes)), String.valueOf(CalcularIndice.desvioPadraoAssentamento(lotes))};
-        for (int i = 0; i < values.length; i++) {
-            cell = row.createCell(i);
-            cell.setCellValue(values[i]);
-            cell.setCellStyle(styleBody);
-        } 
     }
     
     private void initStyle() {
@@ -157,6 +128,50 @@ public class ExcelWritter {
         cell.setCellValue(lote.calcularIndiceGeral());
         cell.setCellStyle(styleBody);
     }
+    
+    private void assentamentoToSheet(String assentamento, List<Lote> lotes) {        
+        Sheet sheet = workbook.createSheet();
+        Row row = sheet.createRow(0);
+        String[] values = new String[]{"Assentamento", "Indice de Sustentabilidade"};
+        for (int i = 0; i < values.length; i++) {
+            createCellStr(row, i, values[i], styleHeader);
+        }
+        sheet.addMergedRegion(new CellRangeAddress(0, 1, 0, 0));
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 1, 2));
+        
+        row = sheet.createRow(1);
+        values = new String[]{"Índice", "Desvio Padrão"};
+        for (int i = 0; i < values.length; i++) {
+            createCellStr(row, i+1, values[i], styleHeader);
+        }
+        
+        row = sheet.createRow(2);
+        Object[] objs = new Object[]{assentamento, CalcularIndice.averageAssentamento(lotes), CalcularIndice.desvioPadraoAssentamento(lotes)};
+        for (int i = 0; i < values.length; i++) {
+            if (i==0) {
+                createCellStr(row, i, (String) objs[i], styleBody);
+            } else {
+                createCellDouble(row, i, (double) objs[i], styleBody);
+            }
+        }
+        for (int i = 0; i <= 2; i++) {
+            sheet.autoSizeColumn(i);
+        }
+    }
+    
+    private Cell createCellStr(Row row, int i, String value, CellStyle style) {
+        Cell cell = row.createCell(i);
+        cell.setCellValue(value);
+        cell.setCellStyle(style);
+        return cell;        
+    }
+    private Cell createCellDouble(Row row, int i, double value, CellStyle style) {
+        Cell cell = row.createCell(i);
+        cell.setCellValue(value);
+        cell.setCellStyle(style);
+        return cell;        
+    }
+    
     private void categoriaToSheet(CategoriaIndicadores categoria) {
         // Dicionário com os dados
         Map<String, List<String>> dados = categoria.getItemMap();
@@ -228,11 +243,14 @@ public class ExcelWritter {
             regionSetAllBorders(BorderStyle.MEDIUM, new CellRangeAddress(rowNum-valores.size(), rowNum-1, 0, 3) , sheet);
 
         }
+        sheet.autoSizeColumn(0);
+        sheet.autoSizeColumn(1);
+        
         // Estilizar tabela
         for (int i = 0; i < 3; i++) {
             sheet.autoSizeColumn(i);
-            if (sheet.getColumnWidth(i)>256*60) { // 60 chars
-                sheet.setColumnWidth(i, 256*60);
+            if (sheet.getColumnWidth(i)>256*50) { // char length = 1/256
+                sheet.setColumnWidth(i, 256*50);
             }
         }
         regionSetAllBorders(BorderStyle.MEDIUM, new CellRangeAddress(0, scores.length+1, 0, 3) , sheet);
@@ -245,21 +263,19 @@ public class ExcelWritter {
         RegionUtil.setBorderRight(border, region, sheet);
     }
     
-    public void saveToFile() {
+    public void saveToFile(String name) {
          // Salve o arquivo Excel
         try (FileOutputStream outputStream = new FileOutputStream(new File("spreadsheet", 
-                lote.getResponsavel()+"-"+lote.getNumParcela()+".xlsx"))) {
+                name+".xlsx"))) {
             workbook.write(outputStream);
             outputStream.close();
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, 
+                    String.format("O arquivo \"%s\" está sendo usado em outro processo. Feche o aplicativo e tente novamente", name+"xlsx"), 
+                    "Erro ao salvar arquivo", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(ExcelWritter.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(ExcelWritter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }  
-     
-    public static void main(String[] args) throws IOException{
-        Lote lote = DataTransfer.importLotes().get(0);
-        var categoria = DataTransfer.importIndicadores().get(0);
-        ExcelWritter excel = new ExcelWritter(lote);
-        excel.createLoteWorkbook();
-    }
 }

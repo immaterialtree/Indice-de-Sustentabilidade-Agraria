@@ -72,6 +72,9 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
             }
         });
         txtValorItem.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtValorItemFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtValorItemFocusLost(evt);
             }
@@ -114,6 +117,10 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         IndicadoresFrame.lote.setScore(tab, row, valor);
         DataTransfer.exportLote(IndicadoresFrame.lote);        
     }//GEN-LAST:event_txtValorItemFocusLost
+
+    private void txtValorItemFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorItemFocusGained
+        txtValorItem.selectAll();
+    }//GEN-LAST:event_txtValorItemFocusGained
 
     private void checkValue() {
         Double valor = 0.0;

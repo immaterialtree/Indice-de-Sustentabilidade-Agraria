@@ -259,7 +259,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jListModelos);
 
         btnVisualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnVisualizar.setText("Calcular índice de sustentabilidade");
+        btnVisualizar.setText("Preencher pontuação de sustentabilidade do lote");
         btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisualizarActionPerformed(evt);
@@ -271,7 +271,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         lblTitulo.setText("Escolha um Lote");
 
         btnPropriedades.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnPropriedades.setText("Ver propriedades do lote");
+        btnPropriedades.setText("Ver informações do lote");
         btnPropriedades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPropriedadesActionPerformed(evt);
@@ -287,7 +287,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
         });
 
         btnIndiceAssentamentos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnIndiceAssentamentos.setText("Índice dos assentamentos");
+        btnIndiceAssentamentos.setText("Visualizar índice dos assentamentos");
         btnIndiceAssentamentos.setMaximumSize(new java.awt.Dimension(111, 27));
         btnIndiceAssentamentos.setMinimumSize(new java.awt.Dimension(111, 27));
         btnIndiceAssentamentos.setPreferredSize(new java.awt.Dimension(111, 27));
@@ -456,12 +456,12 @@ public class VisualizarLotes extends javax.swing.JFrame {
         if (cboxAssentamento.getSelectedIndex()==0) {
             preencherLista(null);
             lblIndice.setVisible(false);
-            btnIndiceAssentamentos.setVisible(true);
+            //btnIndiceAssentamentos.setVisible(true);
         } else {
             String assentamento = cboxAssentamento.getSelectedItem().toString();
             preencherLista(assentamento);
             lblIndice.setVisible(true);
-            btnIndiceAssentamentos.setVisible(false);
+            //btnIndiceAssentamentos.setVisible(false);
             double indice = CalcularIndice.averageAssentamento(assentamentosMap.get(assentamento));
             double dp = CalcularIndice.desvioPadraoAssentamento(assentamentosMap.get(assentamento));
             lblIndice.setText(String.format("Índice do assentamento: %.3f ± %.3f", indice, dp));

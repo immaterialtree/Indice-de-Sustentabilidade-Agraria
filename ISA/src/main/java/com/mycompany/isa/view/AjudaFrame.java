@@ -17,16 +17,23 @@ import java.util.logging.Logger;
 public class AjudaFrame extends javax.swing.JFrame {
 
     String htmlAjudaLote;
+    String htmlAjudaCategoria;
+    String htmlAjudaIndice;
     /**
      * Creates new form AjudaFrame
      */
     public AjudaFrame() {
         try {
-            this.htmlAjudaLote = Files.readString(Path.of("src/main/resources/html/ajudaLote.html"));
+            this.htmlAjudaLote = Files.readString(Path.of("src/main/resources/html/ajuda_gerenciar-lotes.html"));
+            this.htmlAjudaCategoria = Files.readString(Path.of("src/main/resources/html/ajuda_gerenciar-categorias.html"));
+            this.htmlAjudaIndice = Files.readString(Path.of("src/main/resources/html/ajuda_indice-de-sustentabilidade.html"));
         } catch (IOException ex) {
             Logger.getLogger(AjudaFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+        lblIndice.setText(htmlAjudaIndice);
+        lblLotes.setText(htmlAjudaLote);
+        lblCategoria.setText(htmlAjudaCategoria);
     }
 
     /**
@@ -37,14 +44,18 @@ public class AjudaFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblIndice = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblLotes = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
+        lblCategoria = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ISA-RURAL - Guia do Usuário");
@@ -53,51 +64,51 @@ public class AjudaFrame extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("<html>\n\n</html>");
-        jPanel2.add(jLabel1, new java.awt.GridBagConstraints());
+        lblIndice.setText("label");
+        lblIndice.setToolTipText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        jPanel2.add(lblIndice, gridBagConstraints);
 
-        jTabbedPane1.addTab("Indice de Sustentabilidade", jPanel2);
+        jScrollPane2.setViewportView(jPanel2);
+
+        jTabbedPane1.addTab("Índice de Sustentabilidade", jScrollPane2);
 
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText(htmlAjudaLote);
-        jPanel3.add(jLabel2, new java.awt.GridBagConstraints());
+        lblLotes.setText(htmlAjudaLote);
+        lblLotes.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        jPanel3.add(lblLotes, gridBagConstraints);
 
-        jTabbedPane1.addTab("Lotes", jPanel3);
+        jScrollPane3.setViewportView(jPanel3);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 439, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 323, Short.MAX_VALUE)
-        );
+        jTabbedPane1.addTab("Gerenciar Lotes", jScrollPane3);
 
-        jTabbedPane1.addTab("Modelo", jPanel4);
+        jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
-        );
+        lblCategoria.setText("jLabel1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        jPanel4.add(lblCategoria, gridBagConstraints);
+
+        jScrollPane4.setViewportView(jPanel4);
+
+        jTabbedPane1.addTab("Gerenciar Categorias", jScrollPane4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
         );
 
         pack();
@@ -139,12 +150,15 @@ public class AjudaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblIndice;
+    private javax.swing.JLabel lblLotes;
     // End of variables declaration//GEN-END:variables
 }

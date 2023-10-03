@@ -170,15 +170,17 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         atualizarBotoes();
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        System.out.println("janela fechando");
-    }//GEN-LAST:event_formWindowClosing
-
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        ExcelWritter excel = new ExcelWritter(lote);
-        excel.createLoteWorkbook();
-        System.out.println("indicadores frame fechou");
+        ExcelWritter excel = new ExcelWritter();
+        excel.createLoteWorkbook(lote);
+        excel.createAssentamentoWorkbook(lote.getAssentamento());
     }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        ExcelWritter excel = new ExcelWritter();
+        excel.createLoteWorkbook(lote);
+        excel.createAssentamentoWorkbook(lote.getAssentamento());
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
