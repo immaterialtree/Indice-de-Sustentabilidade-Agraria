@@ -1,1 +1,31 @@
-{"nome":"Indicadores Ambientais","itemMap":{"Paisagem":["Fisionomia e conservação de habitats naturais","Cumprimento com requerimento da reserva legal","Cumprimento com requerimento de áreas de PP","Corredores de fauna","Diversidade da paisagem","Diversidade produtiva"],"Qualidade Ambiental":["Atmosfera","Água","Solo"],"Saneamento":["Descarte adequado de esgoto","Descarte adequado de resíduos","Uso de agrotóxicos"],"Cerrado":["Abate de animais silvestres","Conhecimento sobre espécies ameaçadas","Conhecimento sobre espécies nativas","Introdução de espécies exóticas","Desmatamento de planta nativa protegida","Incidência de incêncios criminosos"]}}
+{
+    "nome":"Indicadores Ambientais",
+    "itemMap":{
+        "Paisagem": [
+            "Fisionomia e conservação de habitats naturais",
+            "Cumprimento com requerimento da reserva legal",
+            "Cumprimento com requerimento de áreas de PP",
+            "Corredores de fauna",
+            "Diversidade da paisagem",
+            "Diversidade produtiva"
+        ],
+        "Qualidade Ambiental": [
+            "Atmosfera",
+            "Água",
+            "Solo"
+        ],
+        "Sanemaento": [
+            "Descarte do esgoto",
+            "Descarte  de resíduos",
+            "Uso de agrotóxicos"
+        ],
+        "Cerrado": [	
+            "Preservação de animais silvestres quando aparecem",
+            "Conhecimento sobre espécies ameaçadas",
+            "Conhecimento sobre espécies nativas",
+            "Introdução de espécies invasoras",
+            "Desmatamento área protegida",
+            "Incidência de incêndios criminosos"
+        ]
+    }
+}
