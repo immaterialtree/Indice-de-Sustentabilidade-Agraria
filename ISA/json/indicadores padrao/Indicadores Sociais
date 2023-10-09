@@ -1,1 +1,26 @@
-{"nome":"Indicadores Sociais","itemMap":{"Educação":["Acesso à educação","Média de escolaridade membros","Acesso a capacitação profissional"],"Tecnologia":["Acesso à teconologias","Acesso à internet","Qualidade e uso da internet"],"Qualidade de vida":["Padrão de consumo","Esporte e lazer","Oportunidade de emprego local","Acesso a alimentos","Refeições por dia","Qualidade da moradia","Acesso à cultura","Acesso à atividades coletivas","Acesso à organizações religiosas"]}}
+{
+    "nome":"Indicadores Sociais",
+    "itemMap":{
+        "Educação": [	
+            "Acesso à educação ",
+            " Escolaridade dos Membros",
+            "Acesso a capacitação profissional "
+        ],
+        "Tecnologia": [	
+            "Acesso a tecnologias ",
+            "Acesso à internet ",
+            "Qualidade e uso de internet "
+        ],
+        "Qualidade de vida ": [	
+            "Padrão de consumo ",
+            "Acesso a esporte e Lazer ",
+            "Oportunidade de emprego local ",
+            "Acesso a alimentos ",
+            "Refeições por dia ",
+            "Qualidade da moradia",
+            "Acesso á cultura ",
+            "Acesso a atividades coletivas ",
+            "Acesso a organizações religiosas"
+        ]
+    }
+}
