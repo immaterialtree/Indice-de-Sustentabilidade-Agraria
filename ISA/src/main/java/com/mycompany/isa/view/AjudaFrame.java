@@ -31,9 +31,11 @@ public class AjudaFrame extends javax.swing.JFrame {
             Logger.getLogger(AjudaFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+        //jPanel2.setSize(jScrollPane2.getViewport().getWidth(), jPanel2.getHeight());;
+        //jPanel3.setSize(getWidth(), jPanel3.getHeight());
+        lblCategoria.setText(htmlAjudaCategoria);
         lblIndice.setText(htmlAjudaIndice);
         lblLotes.setText(htmlAjudaLote);
-        lblCategoria.setText(htmlAjudaCategoria);
     }
 
     /**
@@ -62,6 +64,11 @@ public class AjudaFrame extends javax.swing.JFrame {
         setName("ajuda"); // NOI18N
         setType(java.awt.Window.Type.POPUP);
 
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setHorizontalScrollBar(null);
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(500, 400));
+        jScrollPane2.setRowHeaderView(null);
+
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         lblIndice.setText("label");
@@ -74,6 +81,8 @@ public class AjudaFrame extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jPanel2);
 
         jTabbedPane1.addTab("Índice de Sustentabilidade", jScrollPane2);
+
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
@@ -88,6 +97,9 @@ public class AjudaFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Gerenciar Lotes", jScrollPane3);
 
+        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jTabbedPane1.addTab("Gerenciar Categorias", jScrollPane4);
+
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         lblCategoria.setText("jLabel1");
@@ -96,9 +108,7 @@ public class AjudaFrame extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         jPanel4.add(lblCategoria, gridBagConstraints);
 
-        jScrollPane4.setViewportView(jPanel4);
-
-        jTabbedPane1.addTab("Gerenciar Categorias", jScrollPane4);
+        jTabbedPane1.addTab("tab4", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
