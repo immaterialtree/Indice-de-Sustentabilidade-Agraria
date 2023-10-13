@@ -45,15 +45,7 @@ public class ExcelWritter {
         this.lote = lote;
         loteInfoSheet();
         DataTransfer.importIndicadores().forEach(cat->categoriaToSheet(cat));
-        saveToFile("spreadsheet"+File.separator+lote.getResponsavel()+"-"+lote.getNumParcela());
-    }
-    
-    public void createLoteWorkbook(Lote lote, File file) {
-        clearWorkbook();
-        this.lote = lote;
-        loteInfoSheet();
-        DataTransfer.importIndicadores().forEach(cat->categoriaToSheet(cat));
-        saveToFile(file.getAbsolutePath());
+        saveToFile(lote.getResponsavel()+"-"+lote.getNumParcela());
     }
     
     public void createAssentamentoWorkbook(String assentamento) {
@@ -66,20 +58,7 @@ public class ExcelWritter {
         }
         
         assentamentoToSheet(assentamento, lotes);
-        saveToFile("spreadsheet"+File.separator+assentamento);
-    }
-    
-    public void createAssentamentoWorkbook(String assentamento, File file) {
-        clearWorkbook();
-        List<Lote> lotes = new ArrayList<>();
-        for (Lote l : ISA.loteList) {
-            if (l.getAssentamento().equals(assentamento)) {
-                lotes.add(l);
-            }
-        }
-        
-        assentamentoToSheet(assentamento, lotes);
-        saveToFile(file.getAbsolutePath());
+        saveToFile(assentamento);
     }
     
     private void clearWorkbook() {
@@ -198,10 +177,7 @@ public class ExcelWritter {
         Map<String, List<String>> dados = categoria.getItemMap();
         // Lista com scores
         double[] scores = lote.getScoresOf(categoria.getNome().hashCode());
-        if (scores==null) {
-            scores = new double[lote.getScoresMap().size()];
-            Arrays.fill(scores, 0);
-        }
+
         // Crie uma nova planilha
         Sheet sheet = workbook.createSheet(categoria.getNome());
         
@@ -287,18 +263,15 @@ public class ExcelWritter {
         RegionUtil.setBorderRight(border, region, sheet);
     }
     
-    private void saveToFile(String path) {
+    public void saveToFile(String name) {
          // Salve o arquivo Excel
-        if (!path.contains(".xlsx")) {
-            path+=".xlsx";
-        }
-        try (FileOutputStream outputStream = new FileOutputStream(new File(
-                path))) {
+        try (FileOutputStream outputStream = new FileOutputStream(new File("spreadsheet", 
+                name+".xlsx"))) {
             workbook.write(outputStream);
             outputStream.close();
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, 
-                    String.format("O arquivo \"%s\" está sendo usado em outro processo. Feche o aplicativo e tente novamente", path+"xlsx"), 
+                    String.format("O arquivo \"%s\" está sendo usado em outro processo. Feche o aplicativo e tente novamente", name+"xlsx"), 
                     "Erro ao salvar arquivo", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(ExcelWritter.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

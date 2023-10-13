@@ -7,21 +7,12 @@ package com.mycompany.isa.view;
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.utility.CalcularIndice;
-import com.mycompany.isa.utility.ExcelWritter;
 import com.mycompany.isa.view.indicadores.IndicadoresFrame;
-import java.awt.Dialog;
-import java.io.File;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.swing.DefaultListModel;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -29,8 +20,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class VisualizarLotes extends javax.swing.JFrame {
     private Map<String, List<Lote>> assentamentosMap;
-    private JDialog diag = new JDialog(this, Dialog.ModalityType.APPLICATION_MODAL);
-
     /**
      * Creates new form VisualizarLotes
      */
@@ -45,7 +34,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
             btnPropriedades.setEnabled(false);
             btnVisualizar.setEnabled(false);
         } else 
-            jListLotes.setSelectedIndex(0);
+            jListModelos.setSelectedIndex(0);
     }
     
     private void gerarMapAssentamento() {
@@ -71,7 +60,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
                     lote.getAssentamento(), lote.getResponsavel(), lote.getNumParcela());
             resultList.addElement(loteString);
         }
-        jListLotes.setModel(resultList);
+        jListModelos.setModel(resultList);
     }
     
     private void atualizarCbox() {
@@ -107,13 +96,8 @@ public class VisualizarLotes extends javax.swing.JFrame {
         scrollAssentamento = new javax.swing.JScrollPane();
         panelAssentamentos = new javax.swing.JPanel();
         lblAssentamentosTable = new javax.swing.JLabel();
-        jOptionPane1 = new javax.swing.JOptionPane();
-        panelExportar = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jListLotes = new javax.swing.JList<>();
+        jListModelos = new javax.swing.JList<>();
         btnVisualizar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         btnPropriedades = new javax.swing.JButton();
@@ -122,7 +106,6 @@ public class VisualizarLotes extends javax.swing.JFrame {
         cboxAssentamento = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         lblIndice = new javax.swing.JLabel();
-        btnExportar = new javax.swing.JButton();
 
         dialogPropriedades.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogPropriedades.setTitle("Propriedades do lote");
@@ -251,66 +234,29 @@ public class VisualizarLotes extends javax.swing.JFrame {
             .addComponent(scrollAssentamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
         );
 
-        jOptionPane1.setWantsInput(true);
-
-        jLabel2.setText("<html>\n<p>\nExporte o lote selecionado, ou selecione um assentamento para ser exportado\n</p>");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Exportar um assentamento", "Exportar lotes de um assentamento" }));
-
-        jButton2.setText("Exportar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelExportarLayout = new javax.swing.GroupLayout(panelExportar);
-        panelExportar.setLayout(panelExportarLayout);
-        panelExportarLayout.setHorizontalGroup(
-            panelExportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelExportarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelExportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        panelExportarLayout.setVerticalGroup(
-            panelExportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelExportarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ISA-RURAL");
         setResizable(false);
 
-        jListLotes.setBorder(null);
-        jListLotes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jListLotes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jListLotes.addMouseListener(new java.awt.event.MouseAdapter() {
+        jListModelos.setBorder(null);
+        jListModelos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jListModelos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListModelos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListLotesMouseClicked(evt);
+                jListModelosMouseClicked(evt);
             }
         });
-        jListLotes.addKeyListener(new java.awt.event.KeyAdapter() {
+        jListModelos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jListLotesKeyTyped(evt);
+                jListModelosKeyTyped(evt);
             }
         });
-        jListLotes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        jListModelos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jListLotesValueChanged(evt);
+                jListModelosValueChanged(evt);
             }
         });
-        jScrollPane2.setViewportView(jListLotes);
+        jScrollPane2.setViewportView(jListModelos);
 
         btnVisualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnVisualizar.setText("Preencher pontuação de sustentabilidade do lote");
@@ -368,13 +314,6 @@ public class VisualizarLotes extends javax.swing.JFrame {
         lblIndice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIndice.setText("Índice do assentamento: ");
 
-        btnExportar.setText("Exportar");
-        btnExportar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -382,9 +321,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnVoltar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExportar)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -404,9 +341,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVoltar)
-                    .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnVoltar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo)
                 .addGap(12, 12, 12)
@@ -429,50 +364,9 @@ public class VisualizarLotes extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void exportarAssentamento(String assentamento) {
-        JFileChooser fileChooser = new JFileChooser(); 
-        fileChooser.setSelectedFile(new File(assentamento+".xlsx"));
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Planilha excel","xlsx"));
-        int result = fileChooser.showSaveDialog(null);
 
-        if (result == JFileChooser.APPROVE_OPTION) {
-            ExcelWritter ew = new ExcelWritter();
-            ew.createAssentamentoWorkbook(assentamento, fileChooser.getSelectedFile());
-        }
-    }
-    private void exportarLote(Lote lote) {
-        String name = name = lote.getResponsavel()+"-"+lote.getNumParcela();
-        
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Planilha excel","xlsx"));
-        fileChooser.setSelectedFile(new File(name+".xlsx"));
-        
-        int result = fileChooser.showSaveDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            ExcelWritter ew = new ExcelWritter();
-            ew.createLoteWorkbook(lote, fileChooser.getSelectedFile());
-        }
-    }
-    
-    private void exportarLotes(Lote[]  lotes) {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int result = fileChooser.showSaveDialog(null);
-        String name;
-        
-        if (result == JFileChooser.APPROVE_OPTION) {
-            ExcelWritter ew = new ExcelWritter();
-            for (Lote lote : lotes) {
-                name = lote.getResponsavel()+"-"+lote.getNumParcela();
-                ew.createLoteWorkbook(lote, new File(fileChooser.getCurrentDirectory().getAbsolutePath(), name));
-            }
-        }
-    }
-    
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
-        int selected = jListLotes.getSelectedIndex();
+        int selected = jListModelos.getSelectedIndex();
         if (selected==-1) return;
         
         new IndicadoresFrame(ISA.loteList.get(selected)).setVisible(true);
@@ -480,7 +374,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
     private void btnPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropriedadesActionPerformed
-        int selected = jListLotes.getSelectedIndex();
+        int selected = jListModelos.getSelectedIndex();
         if (selected==-1) return;
         Lote lote = ISA.loteList.get(selected);
         
@@ -496,29 +390,29 @@ public class VisualizarLotes extends javax.swing.JFrame {
         dialogPropriedades.setVisible(true);
     }//GEN-LAST:event_btnPropriedadesActionPerformed
 
-    private void jListLotesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListLotesMouseClicked
+    private void jListModelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListModelosMouseClicked
         if (evt.getClickCount()>1) {
-            int selected = jListLotes.getSelectedIndex();
+            int selected = jListModelos.getSelectedIndex();
             if (selected==-1) return;
 
             new IndicadoresFrame(ISA.loteList.get(selected)).setVisible(true);
             this.dispose();
         }
-    }//GEN-LAST:event_jListLotesMouseClicked
+    }//GEN-LAST:event_jListModelosMouseClicked
 
-    private void jListLotesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jListLotesKeyTyped
+    private void jListModelosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jListModelosKeyTyped
         
-    }//GEN-LAST:event_jListLotesKeyTyped
+    }//GEN-LAST:event_jListModelosKeyTyped
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
         new MainFrame().setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void jListLotesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListLotesValueChanged
-        btnPropriedades.setEnabled(jListLotes.getSelectedIndex() != -1);
-        btnVisualizar.setEnabled(jListLotes.getSelectedIndex() != -1);
-    }//GEN-LAST:event_jListLotesValueChanged
+    private void jListModelosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListModelosValueChanged
+        btnPropriedades.setEnabled(jListModelos.getSelectedIndex() != -1);
+        btnVisualizar.setEnabled(jListModelos.getSelectedIndex() != -1);
+    }//GEN-LAST:event_jListModelosValueChanged
 
     private void btnIndiceAssentamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndiceAssentamentosActionPerformed
         String htmlTable = """
@@ -573,49 +467,9 @@ public class VisualizarLotes extends javax.swing.JFrame {
             lblIndice.setText(String.format("Índice do assentamento: %.3f ± %.3f", indice, dp));
         }
         if (cboxAssentamento.getItemCount()>0){
-            jListLotes.setSelectedIndex(0);
+            jListModelos.setSelectedIndex(0);
         }
     }//GEN-LAST:event_cboxAssentamentoItemStateChanged
-
-    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        String selection = jListLotes.getSelectedValue();
-        if (selection!=null) {
-            jComboBox1.addItem(selection);
-            jComboBox1.setSelectedItem(selection);
-        }
-        diag.setTitle("Exportar");
-        diag.getContentPane().add(panelExportar);
-        diag.pack();
-        diag.setLocationRelativeTo(null);
-        diag.setVisible(true);
-    }//GEN-LAST:event_btnExportarActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        diag.dispose();
-        int op = jComboBox1.getSelectedIndex();
-        switch (op) {
-            case 0 -> {
-                Object[] selectionValues = assentamentosMap.keySet().toArray();
-                String assentamento = (String) JOptionPane.showInputDialog(this, "Escolha o assentamento que deseja exportar", 
-                        "Exportar assentamento", JOptionPane.PLAIN_MESSAGE, null,
-                        selectionValues, DISPOSE_ON_CLOSE);
-                exportarAssentamento(assentamento);
-            }
-            case 1 -> {
-                Object[] selectionValues = assentamentosMap.keySet().toArray();
-                String assentamento = (String) JOptionPane.showInputDialog(this, "Escolha o assentamento cujos lotes deseja exportar",
-                        "Exportar lotes do assentamento", JOptionPane.PLAIN_MESSAGE, null,
-                        selectionValues, DISPOSE_ON_CLOSE);
-                exportarLotes(assentamentosMap.get(assentamento).toArray(Lote[]::new));
-            }
-            case 2 -> {
-                Lote lote = ISA.loteList.get(jListLotes.getSelectedIndex());
-                exportarLote(lote);
-            }
-            default -> {}
-        }
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -654,7 +508,6 @@ public class VisualizarLotes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExportar;
     private javax.swing.JToggleButton btnIndiceAssentamentos;
     private javax.swing.JButton btnPropriedades;
     private javax.swing.JButton btnVisualizar;
@@ -662,12 +515,8 @@ public class VisualizarLotes extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboxAssentamento;
     private javax.swing.JDialog dialogAssentamentos;
     private javax.swing.JDialog dialogPropriedades;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jListLotes;
-    private javax.swing.JOptionPane jOptionPane1;
+    private javax.swing.JList<String> jListModelos;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAssentamentosTable;
     private javax.swing.JLabel lblCoordenadaX;
@@ -676,7 +525,6 @@ public class VisualizarLotes extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelAssentamentos;
     private javax.swing.JPanel panelCoordenada;
-    private javax.swing.JPanel panelExportar;
     private javax.swing.JPanel panelPropriedades;
     private javax.swing.JScrollPane scrollAssentamento;
     private javax.swing.JTextField txtAssentamento;
