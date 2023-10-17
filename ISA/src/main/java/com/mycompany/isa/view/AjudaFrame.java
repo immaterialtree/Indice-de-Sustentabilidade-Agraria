@@ -4,7 +4,6 @@
  */
 package com.mycompany.isa.view;
 
-import java.awt.Dimension;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,18 +31,9 @@ public class AjudaFrame extends javax.swing.JFrame {
             Logger.getLogger(AjudaFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+        lblIndice.setText(htmlAjudaIndice);
         lblLotes.setText(htmlAjudaLote);
         lblCategoria.setText(htmlAjudaCategoria);
-        lblIndice.setText(htmlAjudaIndice);
-        
-//        var lbl = new javax.swing.JLabel[]{lblIndice, lblLotes, lblCategoria};
-//        for (var l : lbl) {
-//            l.setPreferredSize(new Dimension(getWidth(), 1000));
-//        }
-        System.out.println("indice "+lblIndice.getSize());
-        System.out.println("lotes "+lblLotes.getSize());
-        System.out.println("categoria "+lblCategoria.getSize());
-        
     }
 
     /**
@@ -54,126 +44,75 @@ public class AjudaFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        scrollIndice = new javax.swing.JScrollPane();
-        scrollablePanel1 = new com.mycompany.isa.components.ScrollablePanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         lblIndice = new javax.swing.JLabel();
-        scrollLotes = new javax.swing.JScrollPane();
-        scrollablePanel2 = new com.mycompany.isa.components.ScrollablePanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
         lblLotes = new javax.swing.JLabel();
-        scrollCategoria = new javax.swing.JScrollPane();
-        scrollablePanel3 = new com.mycompany.isa.components.ScrollablePanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
         lblCategoria = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ISA-RURAL - Guia do Usuário");
         setName("ajuda"); // NOI18N
         setType(java.awt.Window.Type.POPUP);
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
-        });
 
-        jTabbedPane1.setPreferredSize(new java.awt.Dimension(520, 400));
+        jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        scrollIndice.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollIndice.setPreferredSize(new java.awt.Dimension(520, 400));
-
-        scrollablePanel1.setScrollableWidth(com.mycompany.isa.components.ScrollablePanel.ScrollableSizeHint.FIT);
-
-        lblIndice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIndice.setText("label");
         lblIndice.setToolTipText("");
-        lblIndice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        jPanel2.add(lblIndice, gridBagConstraints);
 
-        javax.swing.GroupLayout scrollablePanel1Layout = new javax.swing.GroupLayout(scrollablePanel1);
-        scrollablePanel1.setLayout(scrollablePanel1Layout);
-        scrollablePanel1Layout.setHorizontalGroup(
-            scrollablePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblIndice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        scrollablePanel1Layout.setVerticalGroup(
-            scrollablePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblIndice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jScrollPane2.setViewportView(jPanel2);
 
-        scrollIndice.setViewportView(scrollablePanel1);
+        jTabbedPane1.addTab("Índice de Sustentabilidade", jScrollPane2);
 
-        jTabbedPane1.addTab("Índice de Sustentabilidade", scrollIndice);
+        jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        scrollLotes.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        scrollablePanel2.setScrollableWidth(com.mycompany.isa.components.ScrollablePanel.ScrollableSizeHint.FIT);
-
-        lblLotes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLotes.setText(htmlAjudaLote);
         lblLotes.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        jPanel3.add(lblLotes, gridBagConstraints);
 
-        javax.swing.GroupLayout scrollablePanel2Layout = new javax.swing.GroupLayout(scrollablePanel2);
-        scrollablePanel2.setLayout(scrollablePanel2Layout);
-        scrollablePanel2Layout.setHorizontalGroup(
-            scrollablePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblLotes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        scrollablePanel2Layout.setVerticalGroup(
-            scrollablePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scrollablePanel2Layout.createSequentialGroup()
-                .addComponent(lblLotes)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jScrollPane3.setViewportView(jPanel3);
 
-        scrollLotes.setViewportView(scrollablePanel2);
+        jTabbedPane1.addTab("Gerenciar Lotes", jScrollPane3);
 
-        jTabbedPane1.addTab("Gerenciar Lotes", scrollLotes);
+        jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        scrollCategoria.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        scrollablePanel3.setScrollableWidth(com.mycompany.isa.components.ScrollablePanel.ScrollableSizeHint.FIT);
-
-        lblCategoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCategoria.setText("jLabel1");
-        lblCategoria.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        jPanel4.add(lblCategoria, gridBagConstraints);
 
-        javax.swing.GroupLayout scrollablePanel3Layout = new javax.swing.GroupLayout(scrollablePanel3);
-        scrollablePanel3.setLayout(scrollablePanel3Layout);
-        scrollablePanel3Layout.setHorizontalGroup(
-            scrollablePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scrollablePanel3Layout.createSequentialGroup()
-                .addComponent(lblCategoria)
-                .addGap(0, 481, Short.MAX_VALUE))
-        );
-        scrollablePanel3Layout.setVerticalGroup(
-            scrollablePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scrollablePanel3Layout.createSequentialGroup()
-                .addComponent(lblCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 49, Short.MAX_VALUE))
-        );
+        jScrollPane4.setViewportView(jPanel4);
 
-        scrollCategoria.setViewportView(scrollablePanel3);
-
-        jTabbedPane1.addTab("Gerenciar Categorias", scrollCategoria);
+        jTabbedPane1.addTab("Gerenciar Categorias", jScrollPane4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        System.out.println(lblCategoria.getSize());
-    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments
@@ -211,15 +150,15 @@ public class AjudaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblIndice;
     private javax.swing.JLabel lblLotes;
-    private javax.swing.JScrollPane scrollCategoria;
-    private javax.swing.JScrollPane scrollIndice;
-    private javax.swing.JScrollPane scrollLotes;
-    private com.mycompany.isa.components.ScrollablePanel scrollablePanel1;
-    private com.mycompany.isa.components.ScrollablePanel scrollablePanel2;
-    private com.mycompany.isa.components.ScrollablePanel scrollablePanel3;
     // End of variables declaration//GEN-END:variables
 }
