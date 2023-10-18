@@ -109,6 +109,7 @@ public class ExcelWritter {
         fontBody.setFontHeightInPoints((short) 13);
         fontBody.setBold(false);
         styleBody.setFont(fontBody);
+        styleBody.setAlignment(HorizontalAlignment.CENTER);
         styleBody.setVerticalAlignment(VerticalAlignment.CENTER);
         styleBody.setWrapText(true);
         
@@ -126,62 +127,62 @@ public class ExcelWritter {
             "Assentamento", "Responsavel", "Número da Parcela",
             "Contato", "Coordenadas"};
         Sheet sheet = workbook.createSheet("Informações do lote");
-        Row row = sheet.createRow(0);
+        Row row = sheet.createRow(1);
         Cell cell;
         for (int i = 0; i < headerValues.length; i++) {
-            cell = row.createCell(i);
+            cell = row.createCell(i+1);
             cell.setCellValue(headerValues[i]);
             cell.setCellStyle(styleHeader);
         }
         
-        row = sheet.createRow(1);
+        row = sheet.createRow(2);
         String[] data = new String[] {
             lote.getAssentamento(), lote.getResponsavel(),
             lote.getNumParcela(), lote.getContato(), Arrays.toString(lote.getCoordenada())
         };
         for (int i = 0; i < data.length; i++) {
-            cell = row.createCell(i);
+            cell = row.createCell(i+1);
             cell.setCellValue(data[i]);
             cell.setCellStyle(styleBody);
-            sheet.autoSizeColumn(i);
+            sheet.autoSizeColumn(i+1);
         }
         
-        row = sheet.createRow(3);
-        cell = row.createCell(0);
+        row = sheet.createRow(4);
+        cell = row.createCell(1);
         cell.setCellValue("Índice do Lote:");
         cell.setCellStyle(styleHeader);
-        cell = row.createCell(1);
+        cell = row.createCell(2);
         cell.setCellValue(lote.calcularIndiceGeral());
         cell.setCellStyle(styleBody);
     }
     
     private void assentamentoToSheet(String assentamento, List<Lote> lotes) {        
         Sheet sheet = workbook.createSheet();
-        Row row = sheet.createRow(0);
-        String[] values = new String[]{"Assentamento", "Indice de Sustentabilidade"};
-        for (int i = 0; i < values.length; i++) {
-            createCellStr(row, i, values[i], styleHeader);
-        }
-        sheet.addMergedRegion(new CellRangeAddress(0, 1, 0, 0));
-        sheet.addMergedRegion(new CellRangeAddress(0, 0, 1, 2));
-        
-        row = sheet.createRow(1);
-        values = new String[]{"Índice", "Desvio Padrão"};
+        Row row = sheet.createRow(1);
+        String[] values = new String[]{"Assentamento", "Índice de Sustentabilidade"};
         for (int i = 0; i < values.length; i++) {
             createCellStr(row, i+1, values[i], styleHeader);
         }
+        sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 1));
+        sheet.addMergedRegion(new CellRangeAddress(1, 1, 2, 3));
         
         row = sheet.createRow(2);
+        values = new String[]{"Índice", "Desvio Padrão"};
+        for (int i = 0; i < values.length; i++) {
+            createCellStr(row, i+2, values[i], styleHeader);
+        }
+        
+        row = sheet.createRow(3);
         Object[] objs = new Object[]{assentamento, CalcularIndice.averageAssentamento(lotes), CalcularIndice.desvioPadraoAssentamento(lotes)};
         for (int i = 0; i < values.length; i++) {
             if (i==0) {
-                createCellStr(row, i, (String) objs[i], styleBody);
+                createCellStr(row, i+1, (String) objs[i], styleBody);
             } else {
-                createCellDouble(row, i, (double) objs[i], styleBody);
+                createCellDouble(row, i+1, (double) objs[i], styleBody);
             }
         }
-        for (int i = 0; i <= 2; i++) {
-            sheet.autoSizeColumn(i);
+        for (int i = 1; i <= 3; i++) {
+            sheet.autoSizeColumn(i+1);
         }
     }
     
@@ -207,25 +208,21 @@ public class ExcelWritter {
         // Crie uma nova planilha
         Sheet sheet = workbook.createSheet(categoria.getNome());
         
-        int rowNum = 0;
+        int rowNum = 1;
         Row row = sheet.createRow(rowNum++);
-        Cell cell = row.createCell(0);
-        cell.setCellValue(categoria.getNome());
-        cell.setCellStyle(styleHeader);
+        createCellStr(row, 1, categoria.getNome(), styleHeader);
         
-        CellRangeAddress mergedCell = new CellRangeAddress(rowNum-1, rowNum-1, 0, 3);
+        CellRangeAddress mergedCell = new CellRangeAddress(rowNum, rowNum, 1, 4);
         sheet.addMergedRegion(mergedCell);
         regionSetAllBorders(BorderStyle.MEDIUM, mergedCell, sheet);
         
         row = sheet.createRow(rowNum++);
         String[] headers = new String[]{"Indicadores", null, "Parâmetros", "Índice"};
         for (int i = 0; i < headers.length; i++) {
-            cell = row.createCell(i);
-            cell.setCellValue(headers[i]);
-            cell.setCellStyle(styleHeader);
+            createCellStr(row, i+1, headers[i], styleHeader);
         }
         
-        mergedCell = new CellRangeAddress(rowNum-1, rowNum-1, 0, 1);
+        mergedCell = new CellRangeAddress(rowNum, rowNum, 1, 2);
         sheet.addMergedRegion(mergedCell);
         
         // Itere sobre as entradas do dicionário
@@ -235,45 +232,33 @@ public class ExcelWritter {
             List<String> valores = entry.getValue();
 
             // Defina o valor da célula na coluna 1 (mesclando n linhas)
-            cell = row.createCell(0);
-            cell.setCellValue(chave);
-            cell.setCellStyle(styleBody);
-
-            mergedCell = new CellRangeAddress(rowNum, rowNum+valores.size()-1, 0, 0);
+            createCellStr(row, 1, chave, styleBody);
+            mergedCell = new CellRangeAddress(rowNum+1, rowNum+valores.size(), 1, 1);
 //            regionSetAllBorders(BorderStyle.THIN, mergedCell, sheet);
             sheet.addMergedRegion(mergedCell);
             
             // Valor da célula na coluna 4 (mesclando n linhas)
-            cell = row.createCell(3);
+            Cell cell = row.createCell(4);
             cell.setCellStyle(styleBody);
             mergedCell = new CellRangeAddress(rowNum, rowNum+valores.size()-1, 3, 3);
             sheet.addMergedRegion(mergedCell);
-            cell.setCellFormula(String.format("AVERAGE(C%d:C%d)", mergedCell.getFirstRow()+1, mergedCell.getLastRow()+1));
+            cell.setCellFormula(String.format("AVERAGE(D%d:D%d)", mergedCell.getFirstRow()+2, mergedCell.getLastRow()+2));
             
             // Borda dos grupos
             
             // Preencha os valores da coluna 2            
             int scorePos = 0;
             for (int i=0; i<valores.size(); i++) {
-                
-                cell = row.createCell(1);
-                cell.setCellValue(valores.get(i));
-                cell.setCellStyle(styleBody);
-                
-                cell = row.createCell(2);
-                cell.setCellValue(scores[scorePos++]);
-                cell.setCellStyle(styleBody);
-                
+                createCellStr(row, 2, valores.get(i), styleBody);
+                createCellDouble(row, 3, scores[scorePos++], styleBody);
                 row = sheet.createRow(++rowNum);
             }
             regionSetAllBorders(BorderStyle.MEDIUM, new CellRangeAddress(rowNum-valores.size(), rowNum-1, 0, 3) , sheet);
 
         }
-        sheet.autoSizeColumn(0);
-        sheet.autoSizeColumn(1);
         
         // Estilizar tabela
-        for (int i = 0; i < 3; i++) {
+        for (int i = 1; i < 4; i++) {
             sheet.autoSizeColumn(i);
             if (sheet.getColumnWidth(i)>256*50) { // char length = 1/256
                 sheet.setColumnWidth(i, 256*50);

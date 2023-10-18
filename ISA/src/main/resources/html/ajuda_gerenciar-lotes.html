@@ -3,14 +3,16 @@
         /* Estilos CSS */
         body {
             font-family: 'Segoe Ui', sans-serif;
-            width: 100%;
         }
-
+        div {
+            margin: 20px;
+        }
         h1 {
             text-align: center;
             background-color: #007bff;
             color: #fff;
             padding: 10px;
+            margin: 0;
         }
 
         h2 {
@@ -22,35 +24,24 @@
         }
 
         p {
-            margin: 10px 0;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
+            margin-bottom: 10px;
         }
     </style>
 <body>
     <h1>GERENCIAR LOTES</h1>
 
-    <nav>
-        <ul>
-            <li><a href="#cadastro-lotes">Cadastrando Lotes</a></li>
-            <li><a href="#editando-lotes">Editando Lotes</a></li>
-            <li><a href="#excluindo-lotes">Excluindo Lotes</a></li>
-        </ul>
-    </nav>
+    <div>
+        <h2 id="cadastro-lotes">CADASTRANDO LOTES</h2>
+        <p>Na barra de menu, selecione "Gerenciar" e em seguida "Gerenciar Lotes" ou no menu inicial, selecione "Gerenciar Lotes". Aqui é possível cadastrar novos lotes e visualizar, editar e excluir os que estão cadastrados. Essa aba gerencia apenas as informações de identificação dos lotes. Para visualizar e editar a pontuação dos lotes, vá para "Índice de Sustentabilidade".</p>
 
-    <h2 id="cadastro-lotes">CADASTRANDO LOTES</h2>
-    <p>Na barra de menu, selecione "Gerenciar" e em seguida "Gerenciar Lotes" ou no menu inicial, selecione "Gerenciar Lotes". Aqui é possível cadastrar novos lotes e visualizar, editar e excluir os que estão cadastrados. Essa aba gerencia apenas as informações de identificação dos lotes. Para visualizar e editar a pontuação dos lotes, vá para "Índice de Sustentabilidade".</p>
+        <h3>Criando assentamento</h3>
+        <p>Se for a primeira vez escolhendo um assentamento, primeiro crie o assentamento pelo botão "Criar assentamento" e depois selecione o assentamento criado na combobox. Se o assentamento criado não for utilizado em nenhum lote, ele é automaticamente removido da lista na próxima vez que a aba "Gerenciar Lotes" for aberta.</p>
 
-    <h3>Criando assentamento</h3>
-    <p>Se for a primeira vez escolhendo um assentamento, primeiro crie o assentamento pelo botão "Criar assentamento" e depois selecione o assentamento criado na combobox. Se o assentamento criado não for utilizado em nenhum lote, ele é automaticamente removido da lista na próxima vez que a aba "Gerenciar Lotes" for aberta.</p>
+        <h2 id="editando-lotes">EDITANDO LOTES</h2>
+        <p>Para alterar as informações de um lote, selecione o lote desejado na tabela e clique em "Editar". Altere as informações dos campos desejados e clique em "Salvar".</p>
 
-    <h2 id="editando-lotes">EDITANDO LOTES</h2>
-    <p>Para alterar as informações de um lote, selecione o lote desejado na tabela e clique em "Editar". Altere as informações dos campos desejados e clique em "Salvar".</p>
-
-    <h2 id="excluindo-lotes">EXCLUINDO LOTES</h2>
-    <p>Para excluir um lote, selecione o lote desejado na tabela e clique em "Excluir".</p>
+        <h2 id="excluindo-lotes">EXCLUINDO LOTES</h2>
+        <p>Para excluir um lote, selecione o lote desejado na tabela e clique em "Excluir".</p>
+    </div>
 </body>
 </html>

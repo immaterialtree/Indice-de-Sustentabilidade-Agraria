@@ -17,12 +17,12 @@ import java.nio.file.Path;
  * @author naoki
  */
 public class SobreDialog extends javax.swing.JDialog {
-    
     /**
      * Creates new form SobreDialog
      */
     
     public SobreDialog() {
+        super();
         initConfig();
     }
 
@@ -38,15 +38,21 @@ public class SobreDialog extends javax.swing.JDialog {
     
     private void initConfig() {
         initComponents();
-        setMinimumSize(new Dimension(380, 450));
+        lblSobre.setText(readHtmlAsString());
+        pack();
         setLocationRelativeTo(null);
         
+        
+    }
+    
+    private String readHtmlAsString() {
+        String htmlSobre = null;
         try {
-            String htmlSobre = Files.readString(Path.of("src/main/resources/html/sobre.html"));
-            jLabel1.setText(htmlSobre);
+            htmlSobre = Files.readString(Path.of("src/main/resources/html/sobre.html"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         } 
+        return htmlSobre;
     }
 
     /**
@@ -59,9 +65,10 @@ public class SobreDialog extends javax.swing.JDialog {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollablePanel1 = new com.mycompany.isa.components.ScrollablePanel();
+        lblSobre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ISA-RURAL - Sobre");
@@ -69,28 +76,48 @@ public class SobreDialog extends javax.swing.JDialog {
         setName("sobre"); // NOI18N
         setSize(new java.awt.Dimension(400, 300));
 
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jLabel1.setText("SOBRE");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jLabel1, gridBagConstraints);
+        scrollablePanel1.setScrollableWidth(com.mycompany.isa.components.ScrollablePanel.ScrollableSizeHint.FIT);
 
-        jScrollPane1.setViewportView(jPanel1);
+        lblSobre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSobre.setText("label");
+        lblSobre.setToolTipText("");
+        lblSobre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        javax.swing.GroupLayout scrollablePanel1Layout = new javax.swing.GroupLayout(scrollablePanel1);
+        scrollablePanel1.setLayout(scrollablePanel1Layout);
+        scrollablePanel1Layout.setHorizontalGroup(
+            scrollablePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblSobre, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+        );
+        scrollablePanel1Layout.setVerticalGroup(
+            scrollablePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblSobre, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(scrollablePanel1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -140,8 +167,9 @@ public class SobreDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblSobre;
+    private com.mycompany.isa.components.ScrollablePanel scrollablePanel1;
     // End of variables declaration//GEN-END:variables
 }
