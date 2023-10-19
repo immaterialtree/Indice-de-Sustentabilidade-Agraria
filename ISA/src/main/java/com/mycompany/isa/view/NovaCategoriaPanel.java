@@ -7,15 +7,14 @@ package com.mycompany.isa.view;
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.DataTransfer;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+
+import java.util.List;
 import javax.swing.*;
-import javax.swing.border.MatteBorder;
-import javax.swing.table.*;
 
 /**
  *
@@ -23,6 +22,7 @@ import javax.swing.table.*;
  */
 public class NovaCategoriaPanel extends javax.swing.JPanel {
     private CategoriaIndicadores novaCategoria = new CategoriaIndicadores();
+    private List<List<JTextField>> table = new ArrayList<>();
     protected boolean editing = false;
     private int editingIndex = -1;
     /**
@@ -35,37 +35,37 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     private void initAll() {
         initComponents();
         atualizarTabela();
-        
-        header = tabIndicadores.getTableHeader();
-        header.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent event) {
-                if (event.getClickCount() > 1)
-                    editColumnAt(event.getPoint());
-            }
-        });
-        txtEditHeader.setBorder(null);
-        
-        renameColumnPopup = new JPopupMenu();
-        renameColumnPopup.setBorder(new MatteBorder(0, 1, 1, 1, Color.DARK_GRAY));
-        renameColumnPopup.add(txtEditHeader);
-        
-        renameCellPopup = new JPopupMenu();
-        renameCellPopup.setBorder(new MatteBorder(0, 1, 1, 1, Color.DARK_GRAY));
-        renameCellPopup.add(txtEditCell);
     }
 
     
     private void atualizarTabela() {
-        DefaultTableModel tableModel = (DefaultTableModel) tabIndicadores.getModel();
-        tableModel.setColumnCount(0);
-        tableModel.setRowCount(0);
+        table.clear();
+        GridBagLayout layout = (GridBagLayout) paneTable.getLayout();
+        GridBagConstraints c;
+        int layoutRows = 0;
+        
         String[][] valores = novaCategoria.getAllItemsArr();
-        Object[] grupo = novaCategoria.getGrupos().toArray();
+        String[] grupo = novaCategoria.getGrupos().toArray(String[]::new);
         for (int i = 0; i < grupo.length; i++) {
-            tableModel.addColumn(grupo[i], valores[i]);
+            var list = new ArrayList<JTextField>();
+            list.add(new JTextField(grupo[i]));
+            table.add(list);
+            paneTable.add(list.get(i));
+            c = layout.getConstraints(list.get(0));
+            c.fill = GridBagConstraints.HORIZONTAL;
+            c.gridy = layoutRows++;
+            for (int j = 1; j < valores[i].length; j++) {
+                list.add(new JTextField(valores[i][j]));
+                paneTable.add(list.get(j));
+                
+                c = layout.getConstraints(list.get(j));
+                c.fill = GridBagConstraints.HORIZONTAL;
+                c.gridy = layoutRows++;
+            }
         }
+        
     }
+    
     
     private void atualizarCbox() {
         cboxGrupo.removeAllItems();
@@ -75,14 +75,14 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     }
     
     public void atualizarCategoriaPelaTabela() {
-        String[] columnArr = new String[tabIndicadores.getColumnCount()];
-        for (int i = 0; i < tabIndicadores.getColumnCount(); i++) {
-            columnArr[i] = tabIndicadores.getColumnName(i);
+        String[] columnArr = new String[table.size()];
+        for (int i = 0; i < table.size(); i++) {
+            columnArr[i] = table.get(i).get(0).getText();
         }
         String[][] itemArr = new String[columnArr.length][];
         for (int i = 0; i < itemArr.length; i++) {
-            for (int j = 0; j < tabIndicadores.getRowCount(); j++) {
-                itemArr[i][j] = tabIndicadores.getValueAt(j, i).toString();
+            for (int j = 1; j <= table.get(i).size(); j++) {
+                itemArr[i][j] = table.get(i).get(j).getText();
             }
         }
         novaCategoria = new CategoriaIndicadores(lblNome.getName(), columnArr, itemArr);
@@ -97,10 +97,6 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtEditHeader = new javax.swing.JTextField();
-        txtEditCell = new javax.swing.JTextField();
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        menuDelete = new javax.swing.JMenuItem();
         btnVoltar = new javax.swing.JButton();
         lblNovoGrupo = new javax.swing.JLabel();
         txtGrupo = new javax.swing.JTextField();
@@ -111,35 +107,10 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         btnAddItem = new javax.swing.JButton();
         btnResetar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
-        scrollTabela = new javax.swing.JScrollPane();
-        tabIndicadores = new com.mycompany.isa.components.NotEditableJTable();
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-
-        txtEditHeader.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtEditHeader.setText("jTextField1");
-        txtEditHeader.setBorder(null);
-        txtEditHeader.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEditHeaderActionPerformed(evt);
-            }
-        });
-
-        txtEditCell.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtEditCell.setText("jTextField1");
-        txtEditCell.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEditCellActionPerformed(evt);
-            }
-        });
-
-        menuDelete.setText("Delete");
-        menuDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuDeleteActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(menuDelete);
+        scrollTable = new javax.swing.JScrollPane();
+        paneTable = new javax.swing.JPanel();
 
         btnVoltar.setText("Voltar");
 
@@ -194,26 +165,6 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
             }
         });
 
-        scrollTabela.setBackground(new java.awt.Color(255, 255, 204));
-        scrollTabela.setForeground(new java.awt.Color(0, 204, 204));
-        scrollTabela.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        tabIndicadores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tabIndicadores.setToolTipText("Clique duas vezes para editar");
-        tabIndicadores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabIndicadoresMouseClicked(evt);
-            }
-        });
-        scrollTabela.setViewportView(tabIndicadores);
-
         lblNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNome.setText("Nome da Categoria");
@@ -231,6 +182,9 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
                 txtNomeActionPerformed(evt);
             }
         });
+
+        paneTable.setLayout(new java.awt.GridBagLayout());
+        scrollTable.setViewportView(paneTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -252,8 +206,8 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
                     .addComponent(txtNome))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scrollTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
+                    .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                    .addComponent(scrollTable))
                 .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
@@ -274,7 +228,7 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
                         .addComponent(lblNovoGrupo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(11, 11, 11)
                         .addComponent(btnAddGrupo)
                         .addGap(18, 18, 18)
                         .addComponent(lblNovoIndicador)
@@ -284,11 +238,11 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
                         .addComponent(txtItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAddItem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(btnResetar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(scrollTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(scrollTable))
                 .addGap(27, 27, 27))
         );
 
@@ -310,63 +264,7 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         atualizarCbox();
         atualizarTabela();
     }
-    
-    private void editColumnAt(Point p) {
-        int columnIndex = header.columnAtPoint(p);
-
-        if (columnIndex != -1){
-            column = header.getColumnModel().getColumn(columnIndex);
-            Rectangle columnRectangle = header.getHeaderRect(columnIndex);
-
-            txtEditHeader.setText(column.getHeaderValue().toString());
-            renameColumnPopup.setPreferredSize(
-                new Dimension(columnRectangle.width, columnRectangle.height - 1));
-            renameColumnPopup.show(header, columnRectangle.x, 0);
-
-            txtEditHeader.requestFocusInWindow();
-            txtEditHeader.selectAll();
-        }
-     }
-    
-    private void editCellAt(Point p) {
-        cellColumn = tabIndicadores.columnAtPoint(p);
-        cellRow = tabIndicadores.rowAtPoint(p);
-        if (cellColumn != -1 && cellRow != -1){
-            Rectangle cellRectangle = tabIndicadores.getCellRect(cellRow, cellColumn, true);
-            txtEditCell.setText(tabIndicadores.getValueAt(cellRow, cellColumn).toString());
-            renameCellPopup.setPreferredSize(
-                new Dimension(cellRectangle.width, cellRectangle.height+2));
-            renameCellPopup.show(tabIndicadores, cellRectangle.x, cellRectangle.height*cellRow-1);
-//            Point location = renameCellPopup.getLocation();
-//            renameCellPopup.setLocation(location.x, location.y*cellRow);
-
-            txtEditCell.requestFocusInWindow();
-            txtEditCell.selectAll();
-        }
-     }
-
-    private void renameColumn() {
-        String oldKey = column.getHeaderValue().toString();
-        String newKey = txtEditHeader.getText();
-        if (oldKey.equals(newKey)) return;
-        novaCategoria.replaceGrupo(oldKey, newKey);
-        renameColumnPopup.setVisible(false);
-        atualizarTabela();
-        atualizarCbox();
-    }
-    
-    private void renameCell() {
-        String oldValue = tabIndicadores.getValueAt(cellRow, cellColumn).toString();
-        String newValue = txtEditCell.getText();
-        String grupo = tabIndicadores.getColumnName(cellColumn);
-        if (newValue.isBlank()) {
-            novaCategoria.removeItem(grupo, oldValue);
-        } else {
-            novaCategoria.replaceItem(grupo, oldValue, newValue);
-        }
-        renameCellPopup.setVisible(false);
-        atualizarTabela();
-    }
+   
     
     protected void resetar() {
         novaCategoria = new CategoriaIndicadores();
@@ -403,10 +301,6 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         txtItem.setText("");
         atualizarTabela();
     }//GEN-LAST:event_btnAddItemActionPerformed
-
-    private void txtEditHeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditHeaderActionPerformed
-        renameColumn();
-    }//GEN-LAST:event_txtEditHeaderActionPerformed
 
     private void txtGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGrupoActionPerformed
         btnAddGrupoActionPerformed(evt);
@@ -450,27 +344,8 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         resetar();
     }//GEN-LAST:event_btnResetarActionPerformed
 
-    private void txtEditCellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditCellActionPerformed
-        renameCell();
-    }//GEN-LAST:event_txtEditCellActionPerformed
-
     int clickedRow;
     int clickedColumn;
-    private void tabIndicadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabIndicadoresMouseClicked
-        /*if (evt.getButton()==3) {
-            jPopupMenu1.show(tabIndicadores, evt.getX(), evt.getY());
-            clickedRow = tabIndicadores.rowAtPoint(evt.getPoint());
-            clickedColumn = tabIndicadores.columnAtPoint(evt.getPoint());
-        } else */
-        if (evt.getClickCount()>1) {
-            editCellAt(evt.getPoint());
-        }
-    }//GEN-LAST:event_tabIndicadoresMouseClicked
-
-    private void menuDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDeleteActionPerformed
-        novaCategoria.removeItem(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
-    }//GEN-LAST:event_menuDeleteActionPerformed
-
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         txtNome.setText(txtNome.getText().trim());
         lblNome.setText(txtNome.getText());
@@ -483,11 +358,8 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         lblNome.setText(txtNome.getText());
         novaCategoria.setNome(txtNome.getText());
     }//GEN-LAST:event_txtNomeFocusLost
-    private int cellColumn, cellRow;
-    private javax.swing.JPopupMenu renameCellPopup;
-    private javax.swing.JPopupMenu renameColumnPopup;
-    private javax.swing.table.TableColumn column;
-    private javax.swing.table.JTableHeader header;
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddGrupo;
     private javax.swing.JButton btnAddItem;
@@ -495,15 +367,11 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cboxGrupo;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNovoGrupo;
     private javax.swing.JLabel lblNovoIndicador;
-    private javax.swing.JMenuItem menuDelete;
-    private javax.swing.JScrollPane scrollTabela;
-    private com.mycompany.isa.components.NotEditableJTable tabIndicadores;
-    private javax.swing.JTextField txtEditCell;
-    private javax.swing.JTextField txtEditHeader;
+    private javax.swing.JPanel paneTable;
+    private javax.swing.JScrollPane scrollTable;
     private javax.swing.JTextField txtGrupo;
     private javax.swing.JTextField txtItem;
     private javax.swing.JTextField txtNome;
