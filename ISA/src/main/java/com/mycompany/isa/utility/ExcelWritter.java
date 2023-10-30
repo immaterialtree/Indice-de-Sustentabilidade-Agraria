@@ -161,38 +161,59 @@ public class ExcelWritter {
         Row row = sheet.createRow(1);
         String[] values = new String[]{"Assentamento", "Índice de Sustentabilidade"};
         for (int i = 0; i < values.length; i++) {
-            createCellStr(row, i+1, values[i], styleHeader);
+            createCell(row, i+1, values[i], styleHeader);
         }
-        sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 1));
-        sheet.addMergedRegion(new CellRangeAddress(1, 1, 2, 3));
+        CellRangeAddress mergeRegion = new CellRangeAddress(1, 2, 1, 1);
+        sheet.addMergedRegion(mergeRegion);
+        RegionUtil.setBorderLeft(BorderStyle.THIN, mergeRegion, sheet);
+        regionSetAllBorders(BorderStyle.THIN, mergeRegion, sheet);
+        mergeRegion = new CellRangeAddress(1, 1, 2, 3);
+        sheet.addMergedRegion(mergeRegion);
+        regionSetAllBorders(BorderStyle.THIN, mergeRegion, sheet);
         
         row = sheet.createRow(2);
         values = new String[]{"Índice", "Desvio Padrão"};
         for (int i = 0; i < values.length; i++) {
-            createCellStr(row, i+2, values[i], styleHeader);
+            createCell(row, i+2, values[i], styleHeader);
         }
         
         row = sheet.createRow(3);
         Object[] objs = new Object[]{assentamento, CalcularIndice.averageAssentamento(lotes), CalcularIndice.desvioPadraoAssentamento(lotes)};
         for (int i = 0; i < values.length; i++) {
             if (i==0) {
-                createCellStr(row, i+1, (String) objs[i], styleBody);
+                createCell(row, i+1, (String) objs[i], styleBody);
             } else {
-                createCellDouble(row, i+1, (double) objs[i], styleBody);
+                createCell(row, i+1, (double) objs[i], styleBody);
             }
         }
         for (int i = 1; i <= 3; i++) {
-            sheet.autoSizeColumn(i+1);
+            sheet.autoSizeColumn(i);
+        }
+        
+        // Lotes do assentamento
+        //cabeçalho
+        row = sheet.createRow(5);
+        values = new String[]{"Responsável", "Parcela", "Índice do lote"};
+        for (int i = 0; i < values.length; i++) {
+            createCell(row, i+1, values[i], styleHeader);
+        }
+        // dados
+        for (int i = 0; i < lotes.size(); i++) {
+            row = sheet.createRow(i+6); // começa da linha 6
+            Lote lote = lotes.get(i);
+            createCell(row, 1, lote.getResponsavel(), styleBody);
+            createCell(row, 2, lote.getNumParcela(), styleBody);
+            createCell(row, 3, lote.calcularIndiceGeral(), styleBody);
         }
     }
     
-    private Cell createCellStr(Row row, int i, String value, CellStyle style) {
+    private Cell createCell(Row row, int i, String value, CellStyle style) {
         Cell cell = row.createCell(i);
         cell.setCellValue(value);
         cell.setCellStyle(style);
         return cell;        
     }
-    private Cell createCellDouble(Row row, int i, double value, CellStyle style) {
+    private Cell createCell(Row row, int i, double value, CellStyle style) {
         Cell cell = row.createCell(i);
         cell.setCellValue(value);
         cell.setCellStyle(style);
@@ -210,7 +231,7 @@ public class ExcelWritter {
         
         int rowNum = 1;
         Row row = sheet.createRow(rowNum++);
-        createCellStr(row, 1, categoria.getNome(), styleHeader);
+        createCell(row, 1, categoria.getNome(), styleHeader);
         
         CellRangeAddress mergedCell = new CellRangeAddress(rowNum, rowNum, 1, 4);
         sheet.addMergedRegion(mergedCell);
@@ -219,7 +240,7 @@ public class ExcelWritter {
         row = sheet.createRow(rowNum++);
         String[] headers = new String[]{"Indicadores", null, "Parâmetros", "Índice"};
         for (int i = 0; i < headers.length; i++) {
-            createCellStr(row, i+1, headers[i], styleHeader);
+            createCell(row, i+1, headers[i], styleHeader);
         }
         
         mergedCell = new CellRangeAddress(rowNum, rowNum, 1, 2);
@@ -232,7 +253,7 @@ public class ExcelWritter {
             List<String> valores = entry.getValue();
 
             // Defina o valor da célula na coluna 1 (mesclando n linhas)
-            createCellStr(row, 1, chave, styleBody);
+            createCell(row, 1, chave, styleBody);
             mergedCell = new CellRangeAddress(rowNum+1, rowNum+valores.size(), 1, 1);
 //            regionSetAllBorders(BorderStyle.THIN, mergedCell, sheet);
             sheet.addMergedRegion(mergedCell);
@@ -249,8 +270,8 @@ public class ExcelWritter {
             // Preencha os valores da coluna 2            
             int scorePos = 0;
             for (int i=0; i<valores.size(); i++) {
-                createCellStr(row, 2, valores.get(i), styleBody);
-                createCellDouble(row, 3, scores[scorePos++], styleBody);
+                createCell(row, 2, valores.get(i), styleBody);
+                createCell(row, 3, scores[scorePos++], styleBody);
                 row = sheet.createRow(++rowNum);
             }
             regionSetAllBorders(BorderStyle.MEDIUM, new CellRangeAddress(rowNum-valores.size(), rowNum-1, 0, 3) , sheet);

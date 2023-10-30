@@ -8,9 +8,11 @@ import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.DataTransfer;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -35,35 +37,56 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     private void initAll() {
         initComponents();
         atualizarTabela();
+        scrollTable.getVerticalScrollBar().setUnitIncrement(10);
     }
 
     
     private void atualizarTabela() {
+        paneTable.removeAll();
         table.clear();
         GridBagLayout layout = (GridBagLayout) paneTable.getLayout();
-        GridBagConstraints c;
-        int layoutRows = 0;
+        GridBagConstraints c = new GridBagConstraints();
+        int row = 0;
+        c.anchor = GridBagConstraints.PAGE_START;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 1;
+        
         
         String[][] valores = novaCategoria.getAllItemsArr();
         String[] grupo = novaCategoria.getGrupos().toArray(String[]::new);
         for (int i = 0; i < grupo.length; i++) {
             var list = new ArrayList<JTextField>();
-            list.add(new JTextField(grupo[i]));
+            JTextField header = new JTextField(grupo[i]);
+            loadHeaderConf(header);
+            list.add(header);
             table.add(list);
-            paneTable.add(list.get(i));
-            c = layout.getConstraints(list.get(0));
-            c.fill = GridBagConstraints.HORIZONTAL;
-            c.gridy = layoutRows++;
-            for (int j = 1; j < valores[i].length; j++) {
-                list.add(new JTextField(valores[i][j]));
-                paneTable.add(list.get(j));
-                
-                c = layout.getConstraints(list.get(j));
-                c.fill = GridBagConstraints.HORIZONTAL;
-                c.gridy = layoutRows++;
+            c.gridy = row++;
+            paneTable.add(header, c);
+            
+            JTextField item = null;
+            for (int j = 0; j < valores[i].length; j++) {
+                item = new JTextField(valores[i][j]);
+                loadItemConf(item);
+                list.add(item);
+                c.gridy = row++;
+                paneTable.add(item, c);
+            }
+            if (item == null) continue;
+            c = layout.getConstraints(item);
+            c.insets = new Insets(0, 0, 20, 0);
+            layout.setConstraints(item, c);
+            c.insets = new Insets(0, 0, 0, 0);
+        }
+        if (paneTable.getComponentCount()>0) {
+            var comp = paneTable.getComponent(paneTable.getComponentCount()-1);
+            if (comp != null) {
+                c = layout.getConstraints(comp);
+                c.weighty = 1;
+                c.anchor = GridBagConstraints.FIRST_LINE_START;
+                layout.setConstraints(comp, c);
             }
         }
-        
+        paneTable.updateUI();
     }
     
     
@@ -81,8 +104,9 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         }
         String[][] itemArr = new String[columnArr.length][];
         for (int i = 0; i < itemArr.length; i++) {
-            for (int j = 1; j <= table.get(i).size(); j++) {
-                itemArr[i][j] = table.get(i).get(j).getText();
+            itemArr[i] = new String[table.get(i).size()];
+            for (int j = 1; j < table.get(i).size(); j++) {
+                itemArr[i][j-1] = table.get(i).get(j).getText();
             }
         }
         novaCategoria = new CategoriaIndicadores(lblNome.getName(), columnArr, itemArr);
@@ -96,6 +120,7 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         btnVoltar = new javax.swing.JButton();
         lblNovoGrupo = new javax.swing.JLabel();
@@ -111,6 +136,10 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         txtNome = new javax.swing.JTextField();
         scrollTable = new javax.swing.JScrollPane();
         paneTable = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         btnVoltar.setText("Voltar");
 
@@ -184,6 +213,30 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         });
 
         paneTable.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setText("jLabel1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 0;
+        paneTable.add(jLabel1, gridBagConstraints);
+
+        jLabel2.setText("jLabel2");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        paneTable.add(jLabel2, gridBagConstraints);
+
+        jLabel3.setText("jLabel3");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weighty = 1.0;
+        paneTable.add(jLabel3, gridBagConstraints);
+
+        jLabel4.setText("jLabel4");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        paneTable.add(jLabel4, gridBagConstraints);
+
         scrollTable.setViewportView(paneTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -249,9 +302,38 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         getAccessibleContext().setAccessibleName("novoPanel");
     }// </editor-fold>//GEN-END:initComponents
 
-    
     public javax.swing.JButton getBtnVoltar() {
         return btnVoltar;
+    }
+    
+    private void renameHeader(JTextField textField) {
+        String oldKey = textField.getName();
+        String newKey = textField.getText();
+        if (oldKey.equals(newKey)) return;
+        if (newKey.isBlank()) {
+            novaCategoria.removeGrupo(oldKey);
+        } else {
+            novaCategoria.replaceGrupo(oldKey, newKey);
+        }
+        atualizarTabela();
+        atualizarCbox();
+    }
+    
+    private void renameItem(JTextField textField) {
+        String oldValue = textField.getName();
+        String newValue = textField.getText();
+        String grupo = null;
+        for (List<JTextField> list : table) {
+            if (list.contains(textField)) {
+                grupo = list.get(0).getName();
+            }
+        }        
+        if (newValue.isBlank()) {
+            novaCategoria.removeItem(grupo, oldValue);
+        } else {
+            novaCategoria.replaceItem(grupo, oldValue, newValue);
+        }
+        atualizarTabela();
     }
     
     public void carregarCategoria(CategoriaIndicadores categoria, int indice) {
@@ -263,6 +345,31 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         txtNome.setText(novaCategoria.getNome());
         atualizarCbox();
         atualizarTabela();
+    }
+    
+    private void loadTextConf(JTextField textField) {
+        textField.setName(textField.getText());
+        textField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textField.setText(textField.getName());
+            }
+        });
+    }
+    private void loadHeaderConf(JTextField textField) {
+        loadTextConf(textField);
+        textField.setHorizontalAlignment(JTextField.CENTER);
+        textField.setFont(new Font("SegoeUI", Font.BOLD, 14));
+        textField.addActionListener((java.awt.event.ActionEvent evt) -> {
+            renameHeader(textField);
+        });
+    }
+    
+    private void loadItemConf(JTextField textField) {
+        loadTextConf(textField);
+        textField.setFont(new Font("SegoeUI", Font.PLAIN, 14));
+        textField.addActionListener((java.awt.event.ActionEvent evt) -> {
+            renameItem(textField);
+        });
     }
    
     
@@ -367,6 +474,10 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cboxGrupo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNovoGrupo;
     private javax.swing.JLabel lblNovoIndicador;
@@ -376,4 +487,22 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtItem;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
+}
+
+
+class JTextHeader extends JTextField {
+
+    public JTextHeader() {
+        init();
+    }
+
+    public JTextHeader(String text) {
+        super(text);
+        init();
+    }
+    
+    private void init() {
+        setHorizontalAlignment(CENTER);
+        setFont(new Font("SegoeUI", Font.BOLD, 14));
+    }
 }

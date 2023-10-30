@@ -50,12 +50,12 @@ public class AjudaFrame extends javax.swing.JFrame {
         scrollIndice = new javax.swing.JScrollPane();
         scrollablePanel1 = new com.mycompany.isa.components.ScrollablePanel();
         lblIndice = new javax.swing.JLabel();
-        scrollLotes = new javax.swing.JScrollPane();
-        scrollablePanel2 = new com.mycompany.isa.components.ScrollablePanel();
-        lblLotes = new javax.swing.JLabel();
         scrollCategoria = new javax.swing.JScrollPane();
         scrollablePanel3 = new com.mycompany.isa.components.ScrollablePanel();
         lblCategoria = new javax.swing.JLabel();
+        scrollLotes = new javax.swing.JScrollPane();
+        scrollablePanel2 = new com.mycompany.isa.components.ScrollablePanel();
+        lblLotes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ISA-RURAL - Guia do Usuário");
@@ -65,13 +65,12 @@ public class AjudaFrame extends javax.swing.JFrame {
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(520, 400));
 
         scrollIndice.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollIndice.setPreferredSize(new java.awt.Dimension(520, 400));
+        scrollIndice.setPreferredSize(new java.awt.Dimension(520, 18));
 
         scrollablePanel1.setScrollableWidth(com.mycompany.isa.components.ScrollablePanel.ScrollableSizeHint.FIT);
 
         lblIndice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIndice.setText("label");
-        lblIndice.setToolTipText("");
         lblIndice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout scrollablePanel1Layout = new javax.swing.GroupLayout(scrollablePanel1);
@@ -89,7 +88,33 @@ public class AjudaFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Índice de Sustentabilidade", scrollIndice);
 
+        scrollCategoria.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        scrollablePanel3.setScrollableWidth(com.mycompany.isa.components.ScrollablePanel.ScrollableSizeHint.FIT);
+
+        lblCategoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCategoria.setText("jLabel1");
+        lblCategoria.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        javax.swing.GroupLayout scrollablePanel3Layout = new javax.swing.GroupLayout(scrollablePanel3);
+        scrollablePanel3.setLayout(scrollablePanel3Layout);
+        scrollablePanel3Layout.setHorizontalGroup(
+            scrollablePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+        );
+        scrollablePanel3Layout.setVerticalGroup(
+            scrollablePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scrollablePanel3Layout.createSequentialGroup()
+                .addComponent(lblCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 49, Short.MAX_VALUE))
+        );
+
+        scrollCategoria.setViewportView(scrollablePanel3);
+
+        jTabbedPane1.addTab("Gerenciar Categorias", scrollCategoria);
+
         scrollLotes.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollLotes.setPreferredSize(new java.awt.Dimension(520, 18));
 
         scrollablePanel2.setScrollableWidth(com.mycompany.isa.components.ScrollablePanel.ScrollableSizeHint.FIT);
 
@@ -106,40 +131,13 @@ public class AjudaFrame extends javax.swing.JFrame {
         scrollablePanel2Layout.setVerticalGroup(
             scrollablePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(scrollablePanel2Layout.createSequentialGroup()
-                .addComponent(lblLotes)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(lblLotes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         scrollLotes.setViewportView(scrollablePanel2);
 
         jTabbedPane1.addTab("Gerenciar Lotes", scrollLotes);
-
-        scrollCategoria.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        scrollablePanel3.setScrollableWidth(com.mycompany.isa.components.ScrollablePanel.ScrollableSizeHint.FIT);
-
-        lblCategoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCategoria.setText("jLabel1");
-        lblCategoria.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        javax.swing.GroupLayout scrollablePanel3Layout = new javax.swing.GroupLayout(scrollablePanel3);
-        scrollablePanel3.setLayout(scrollablePanel3Layout);
-        scrollablePanel3Layout.setHorizontalGroup(
-            scrollablePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scrollablePanel3Layout.createSequentialGroup()
-                .addComponent(lblCategoria)
-                .addGap(0, 481, Short.MAX_VALUE))
-        );
-        scrollablePanel3Layout.setVerticalGroup(
-            scrollablePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scrollablePanel3Layout.createSequentialGroup()
-                .addComponent(lblCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 49, Short.MAX_VALUE))
-        );
-
-        scrollCategoria.setViewportView(scrollablePanel3);
-
-        jTabbedPane1.addTab("Gerenciar Categorias", scrollCategoria);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

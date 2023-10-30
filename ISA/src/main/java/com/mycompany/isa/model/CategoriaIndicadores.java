@@ -90,8 +90,10 @@ public class CategoriaIndicadores {
     }
     
     public void replaceGrupo(String oldGrupo, String newGrupo) {
-        itemMap.put(newGrupo, itemMap.get(oldGrupo));
-        itemMap.remove(oldGrupo);
+        if (!newGrupo.isBlank()) {            
+            itemMap.put(newGrupo, itemMap.get(oldGrupo));
+            itemMap.remove(oldGrupo);
+        }
     }
     
     public void removeGrupo(String grupo) {
