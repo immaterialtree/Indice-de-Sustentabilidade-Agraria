@@ -200,10 +200,10 @@ public class ExcelWritter {
         // dados
         for (int i = 0; i < lotes.size(); i++) {
             row = sheet.createRow(i+6); // começa da linha 6
-            Lote lote = lotes.get(i);
-            createCell(row, 1, lote.getResponsavel(), styleBody);
-            createCell(row, 2, lote.getNumParcela(), styleBody);
-            createCell(row, 3, lote.calcularIndiceGeral(), styleBody);
+            Lote l = lotes.get(i);
+            createCell(row, 1, l.getResponsavel(), styleBody);
+            createCell(row, 2, l.getNumParcela(), styleBody);
+            createCell(row, 3, l.calcularIndiceGeral(), styleBody);
         }
     }
     
