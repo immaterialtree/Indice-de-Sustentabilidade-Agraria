@@ -28,7 +28,6 @@ public class CalcularIndice {
     
     public static double desvioPadrao(double[] data) {
         int n = data.length;
-        System.out.println(Arrays.toString(data));
         if (n <= 1) {
             return 0.0;
         }
@@ -42,7 +41,6 @@ public class CalcularIndice {
         }
         
         double variance = sumOfSquaredDifferences / (n - 1);
-        System.out.println(variance);
         return Math.sqrt(variance);
     }
 }

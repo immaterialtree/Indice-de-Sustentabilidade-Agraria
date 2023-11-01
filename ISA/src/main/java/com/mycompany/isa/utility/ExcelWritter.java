@@ -179,9 +179,10 @@ public class ExcelWritter {
         
         row = sheet.createRow(3);
         Object[] objs = new Object[]{assentamento, CalcularIndice.averageAssentamento(lotes), CalcularIndice.desvioPadraoAssentamento(lotes)};
-        for (int i = 0; i < values.length; i++) {
+        System.out.println(Arrays.toString(objs));
+        for (int i = 0; i < objs.length; i++) {
             if (i==0) {
-                createCell(row, i+1, (String) objs[i], styleBody);
+                createCell(row, i+1, String.valueOf(objs[i]), styleBody);
             } else {
                 createCell(row, i+1, (double) objs[i], styleBody);
             }
@@ -230,14 +231,14 @@ public class ExcelWritter {
         Sheet sheet = workbook.createSheet(categoria.getNome());
         
         int rowNum = 1;
-        Row row = sheet.createRow(rowNum++);
-        createCell(row, 1, categoria.getNome(), styleHeader);
         
+        Row row = sheet.createRow(rowNum);
+        createCell(row, 1, categoria.getNome(), styleHeader);
         CellRangeAddress mergedCell = new CellRangeAddress(rowNum, rowNum, 1, 4);
         sheet.addMergedRegion(mergedCell);
         regionSetAllBorders(BorderStyle.MEDIUM, mergedCell, sheet);
         
-        row = sheet.createRow(rowNum++);
+        row = sheet.createRow(++rowNum); //2
         String[] headers = new String[]{"Indicadores", null, "Parâmetros", "Índice"};
         for (int i = 0; i < headers.length; i++) {
             createCell(row, i+1, headers[i], styleHeader);
@@ -247,6 +248,7 @@ public class ExcelWritter {
         sheet.addMergedRegion(mergedCell);
         
         // Itere sobre as entradas do dicionário
+        rowNum++; //3
         for (Map.Entry<String, List<String>> entry : dados.entrySet()) {
             row = sheet.createRow(rowNum);
             String chave = entry.getKey();
@@ -254,38 +256,38 @@ public class ExcelWritter {
 
             // Defina o valor da célula na coluna 1 (mesclando n linhas)
             createCell(row, 1, chave, styleBody);
-            mergedCell = new CellRangeAddress(rowNum+1, rowNum+valores.size(), 1, 1);
+            mergedCell = new CellRangeAddress(rowNum, rowNum+valores.size()-1, 1, 1);
 //            regionSetAllBorders(BorderStyle.THIN, mergedCell, sheet);
             sheet.addMergedRegion(mergedCell);
             
             // Valor da célula na coluna 4 (mesclando n linhas)
             Cell cell = row.createCell(4);
             cell.setCellStyle(styleBody);
-            mergedCell = new CellRangeAddress(rowNum, rowNum+valores.size()-1, 3, 3);
+            mergedCell = new CellRangeAddress(rowNum, rowNum+valores.size()-1, 4, 4);
             sheet.addMergedRegion(mergedCell);
             cell.setCellFormula(String.format("AVERAGE(D%d:D%d)", mergedCell.getFirstRow()+2, mergedCell.getLastRow()+2));
             
-            // Borda dos grupos
             
-            // Preencha os valores da coluna 2            
+            // Preencha os valores da coluna 2 e 3          
             int scorePos = 0;
             for (int i=0; i<valores.size(); i++) {
                 createCell(row, 2, valores.get(i), styleBody);
                 createCell(row, 3, scores[scorePos++], styleBody);
                 row = sheet.createRow(++rowNum);
             }
-            regionSetAllBorders(BorderStyle.MEDIUM, new CellRangeAddress(rowNum-valores.size(), rowNum-1, 0, 3) , sheet);
+            // Borda dos grupos
+            regionSetAllBorders(BorderStyle.MEDIUM, new CellRangeAddress(rowNum-valores.size(), rowNum-1, 1, 4) , sheet);
 
         }
         
         // Estilizar tabela
-        for (int i = 1; i < 4; i++) {
-            sheet.autoSizeColumn(i);
+        for (int i = 0; i < 4; i++) {
+            sheet.autoSizeColumn(i, true);
             if (sheet.getColumnWidth(i)>256*50) { // char length = 1/256
                 sheet.setColumnWidth(i, 256*50);
             }
         }
-        regionSetAllBorders(BorderStyle.MEDIUM, new CellRangeAddress(0, scores.length+1, 0, 3) , sheet);
+        regionSetAllBorders(BorderStyle.MEDIUM, new CellRangeAddress(1, scores.length+2, 1, 4) , sheet);
     }
     
     private void regionSetAllBorders(BorderStyle border, CellRangeAddress region, Sheet sheet) {

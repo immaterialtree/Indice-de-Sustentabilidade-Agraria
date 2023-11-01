@@ -453,11 +453,11 @@ public class VisualizarLotes extends javax.swing.JFrame {
         }
     }
     private void exportarLote(Lote lote) {
-        String name = name = lote.getResponsavel()+"-"+lote.getNumParcela();
+        String name = lote.getResponsavel()+"-"+lote.getNumParcela();
         
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Planilha excel","xlsx"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Arquivo do Microsoft Excel (*.xlsx)","xlsx"));
         fileChooser.setSelectedFile(new File(name+".xlsx"));
         
         int result = fileChooser.showSaveDialog(null);
@@ -470,23 +470,29 @@ public class VisualizarLotes extends javax.swing.JFrame {
     private void exportarLotes(Lote[]  lotes) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
         int result = fileChooser.showSaveDialog(null);
         String name;
-        
         if (result == JFileChooser.APPROVE_OPTION) {
             ExcelWritter ew = new ExcelWritter();
             for (Lote lote : lotes) {
-                name = lote.getResponsavel()+"-"+lote.getNumParcela();
-                ew.createLoteWorkbook(lote, new File(fileChooser.getCurrentDirectory().getAbsolutePath(), name));
+                name = lote.getResponsavel()+"-"+lote.getNumParcela()+".xlsx";
+                ew.createLoteWorkbook(lote, new File(fileChooser.getSelectedFile().getAbsolutePath(), name));
             }
         }
     }
     
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
+        String assentamento = (String) cboxAssentamento.getSelectedItem();
         int selected = jListLotes.getSelectedIndex();
         if (selected==-1) return;
-        
-        new IndicadoresFrame(ISA.loteList.get(selected)).setVisible(true);
+        Lote lote;
+        if (assentamentosMap.containsKey(assentamento)){
+            lote = assentamentosMap.get(assentamento).get(selected);
+        } else {
+            lote = ISA.loteList.get(selected);
+        }
+        new IndicadoresFrame(lote).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
