@@ -66,8 +66,8 @@ public class VisualizarLotes extends javax.swing.JFrame {
         for (Lote lote : lotes) {
             String loteString = String.format("<html>"
                     + "<b>Assentamento:</b> %s <br>"
-                    + "<b>Responsável:</b> \t%s <br>"
-                    + "<b>Parcela:</b>     \t%s</html>",
+                    + "<b>Responsável:</b>  %s <br>"
+                    + "<b>Parcela:</b>      %s</html>",
                     lote.getAssentamento(), lote.getResponsavel(), lote.getNumParcela());
             resultList.addElement(loteString);
         }
