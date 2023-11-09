@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -300,6 +302,7 @@ public class ExcelWritter {
     public void saveToFile(File file) {
          // Salve o arquivo Excel
         try (FileOutputStream outputStream = new FileOutputStream(file)) {
+            Files.createDirectories(Paths.get(file.getParent()));
             workbook.write(outputStream);
             outputStream.close();
         } catch (FileNotFoundException ex) {

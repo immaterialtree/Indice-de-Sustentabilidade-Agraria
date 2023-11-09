@@ -82,14 +82,6 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ISA-RURAL");
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
 
         cardPane.setPreferredSize(new java.awt.Dimension(600, 420));
         cardPane.setLayout(new java.awt.CardLayout());
@@ -169,18 +161,6 @@ public class IndicadoresFrame extends javax.swing.JFrame {
         cl.show(cardPane, categorias.get(indice).getNome());
         atualizarBotoes();
     }//GEN-LAST:event_btnAnteriorActionPerformed
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        ExcelWritter excel = new ExcelWritter();
-        excel.createLoteWorkbook(lote);
-        excel.createAssentamentoWorkbook(lote.getAssentamento());
-    }//GEN-LAST:event_formWindowClosed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        ExcelWritter excel = new ExcelWritter();
-        excel.createLoteWorkbook(lote);
-        excel.createAssentamentoWorkbook(lote.getAssentamento());
-    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
