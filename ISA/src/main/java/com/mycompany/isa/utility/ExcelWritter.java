@@ -48,7 +48,7 @@ public class ExcelWritter {
         clearWorkbook();
         this.lote = lote;
         loteInfoSheet();
-        DataTransfer.importIndicadores().forEach(cat->categoriaToSheet(cat));
+        JsonExporter.importIndicadores().forEach(cat->categoriaToSheet(cat));
         String name = lote.getResponsavel()+"-"+lote.getNumParcela()+".xlsx";
         File file = new File(DEFAULT_PATH_LOTE, name);
         saveToFile(file);
@@ -58,7 +58,7 @@ public class ExcelWritter {
         clearWorkbook();
         this.lote = lote;
         loteInfoSheet();
-        DataTransfer.importIndicadores().forEach(cat->categoriaToSheet(cat));
+        JsonExporter.importIndicadores().forEach(cat->categoriaToSheet(cat));
         saveToFile(file);
     }
     

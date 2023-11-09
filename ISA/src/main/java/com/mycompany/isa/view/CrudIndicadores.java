@@ -6,7 +6,7 @@ package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.CategoriaIndicadores;
-import com.mycompany.isa.utility.DataTransfer;
+import com.mycompany.isa.utility.JsonExporter;
 import java.awt.CardLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -312,8 +312,8 @@ public class CrudIndicadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jListModelosValueChanged
 
     private void btnResetDefaultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetDefaultActionPerformed
-        DataTransfer.resetIndicadores();
-        ISA.categoriaList = DataTransfer.importIndicadores();
+        JsonExporter.resetIndicadores();
+        ISA.categoriaList = JsonExporter.importIndicadores();
         preencherLista();
     }//GEN-LAST:event_btnResetDefaultActionPerformed
     

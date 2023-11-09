@@ -11,6 +11,7 @@ import com.mycompany.isa.model.CategoriaIndicadores;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,12 +21,21 @@ import java.util.logging.Logger;
  *
  * @author naoki
  */
-public class DataTransfer {
+public class JsonExporter {
     private static final String ROOT = "json";
     private static final String PATH_LOTE = String.join(File.separator, ROOT, "lotes");
     private static final String PATH_INDICADOR = String.join(File.separator, ROOT, "indicadores");
     private static final String PATH_DEFAULT_INDICADOR = String.join(File.separator, ROOT, "indicadores padrao");
     
+    public static void createPaths() {
+        try {
+            Files.createDirectories(Paths.get(PATH_DEFAULT_INDICADOR));
+            Files.createDirectories(Paths.get(PATH_LOTE));
+            Files.createDirectories(Paths.get(PATH_INDICADOR));
+        } catch (IOException ex) {
+            Logger.getLogger(JsonExporter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public static ArrayList<Lote> importLotes()  {
         ArrayList<Lote> lotes = new ArrayList<>();
@@ -36,7 +46,7 @@ public class DataTransfer {
                 Lote l = mapper.readValue(f, new TypeReference<Lote>(){});
                 lotes.add(l);
             } catch (IOException ex) {
-                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JsonExporter.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return lotes;
@@ -52,7 +62,7 @@ public class DataTransfer {
                 i = mapper.readValue(f, new TypeReference<CategoriaIndicadores>(){});
                 indicadores.add(i);
             } catch (IOException ex) {
-                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JsonExporter.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return indicadores;
@@ -66,7 +76,7 @@ public class DataTransfer {
             try {
                 mapper.writeValue(resultFile, lote);
             } catch (IOException ex) {
-                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JsonExporter.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -78,7 +88,7 @@ public class DataTransfer {
         try {
             mapper.writeValue(resultFile, lote);
         } catch (IOException ex) {
-            Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JsonExporter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -90,7 +100,7 @@ public class DataTransfer {
             try {
                 mapper.writeValue(resultFile, indicador);
             } catch (IOException ex) {
-                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JsonExporter.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -122,7 +132,7 @@ public class DataTransfer {
                     File target = new File(PATH_INDICADOR, f.getName());
                     Files.copy(f.toPath(), target.toPath());
                 } catch (IOException ex) {
-                    Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(JsonExporter.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

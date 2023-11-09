@@ -7,7 +7,7 @@ package com.mycompany.isa.view.indicadores;
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.model.CategoriaIndicadores;
-import com.mycompany.isa.utility.DataTransfer;
+import com.mycompany.isa.utility.JsonExporter;
 import com.mycompany.isa.utility.ExcelWritter;
 import com.mycompany.isa.view.CrudIndicadores;
 import com.mycompany.isa.view.CrudLote;

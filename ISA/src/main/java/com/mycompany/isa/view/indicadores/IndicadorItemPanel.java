@@ -5,7 +5,7 @@
 package com.mycompany.isa.view.indicadores;
 
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.utility.DataTransfer;
+import com.mycompany.isa.utility.JsonExporter;
 import java.awt.Color;
 import javax.swing.JTextField;
 
@@ -115,7 +115,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         }
         txtValorItem.setText(String.format("%.2f", valor));
         IndicadoresFrame.lote.setScore(tab, row, valor);
-        DataTransfer.exportLote(IndicadoresFrame.lote);        
+        JsonExporter.exportLote(IndicadoresFrame.lote);        
     }//GEN-LAST:event_txtValorItemFocusLost
 
     private void txtValorItemFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorItemFocusGained
@@ -132,7 +132,7 @@ public class IndicadorItemPanel extends javax.swing.JPanel {
         } catch (NumberFormatException e) {
         }
         IndicadoresFrame.lote.setScore(tab, row, valor);
-        DataTransfer.exportLote(IndicadoresFrame.lote);
+        JsonExporter.exportLote(IndicadoresFrame.lote);
         updateTxtColor();
     }
     public void updateTxtColor() {

@@ -6,7 +6,7 @@ package com.mycompany.isa;
 
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.model.CategoriaIndicadores;
-import com.mycompany.isa.utility.DataTransfer;
+import com.mycompany.isa.utility.JsonExporter;
 import com.mycompany.isa.view.MainFrame;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +33,10 @@ public class ISA {
         catch (Exception e) {
             System.out.println("Look and Feel não configurado");
         }
-        
+        JsonExporter.createPaths();
         // load objects
-        loteList = DataTransfer.importLotes();
-        categoriaList = DataTransfer.importIndicadores();
+        loteList = JsonExporter.importLotes();
+        categoriaList = JsonExporter.importIndicadores();
         
         // start aplication
         MainFrame telaPrincipal = new MainFrame();

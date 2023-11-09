@@ -6,12 +6,10 @@ package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.CategoriaIndicadores;
-import com.mycompany.isa.utility.DataTransfer;
-import java.awt.Component;
+import com.mycompany.isa.utility.JsonExporter;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
 
@@ -64,8 +62,8 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
             paneTable.add(header, c);
             
             JTextField item = null;
-            for (int j = 0; j < valores[i].length; j++) {
-                item = new JTextField(valores[i][j]);
+            for (String valor : valores[i]) {
+                item = new JTextField(valor);
                 loadItemConf(item);
                 list.add(item);
                 c.gridy = row++;
@@ -120,7 +118,6 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         btnVoltar = new javax.swing.JButton();
         lblNovoGrupo = new javax.swing.JLabel();
@@ -136,10 +133,6 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         txtNome = new javax.swing.JTextField();
         scrollTable = new javax.swing.JScrollPane();
         paneTable = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         btnVoltar.setText("Voltar");
 
@@ -213,30 +206,6 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         });
 
         paneTable.setLayout(new java.awt.GridBagLayout());
-
-        jLabel1.setText("jLabel1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 0;
-        paneTable.add(jLabel1, gridBagConstraints);
-
-        jLabel2.setText("jLabel2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 1;
-        paneTable.add(jLabel2, gridBagConstraints);
-
-        jLabel3.setText("jLabel3");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weighty = 1.0;
-        paneTable.add(jLabel3, gridBagConstraints);
-
-        jLabel4.setText("jLabel4");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 100;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        paneTable.add(jLabel4, gridBagConstraints);
-
         scrollTable.setViewportView(paneTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -437,8 +406,8 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
             ISA.categoriaList.add(novaCategoria);
         }
         resetar();
-        DataTransfer.deleteIndicadores();
-        DataTransfer.exportIndicadores(ISA.categoriaList);
+        JsonExporter.deleteIndicadores();
+        JsonExporter.exportIndicadores(ISA.categoriaList);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnResetarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetarActionPerformed
@@ -474,10 +443,6 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cboxGrupo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNovoGrupo;
     private javax.swing.JLabel lblNovoIndicador;

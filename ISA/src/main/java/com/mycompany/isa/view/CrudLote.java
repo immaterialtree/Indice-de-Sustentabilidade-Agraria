@@ -6,7 +6,7 @@ package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.model.Lote;
-import com.mycompany.isa.utility.DataTransfer;
+import com.mycompany.isa.utility.JsonExporter;
 import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -517,7 +517,7 @@ public class CrudLote extends javax.swing.JFrame {
         double y = Double.parseDouble(txtCoordenadaY.getText().replace(',', '.'));
         lote.setCoordenada(new double[] {x, y});
         ISA.loteList.add(lote);
-        DataTransfer.exportLote(lote);
+        JsonExporter.exportLote(lote);
         
         indice = ISA.loteList.size()-1;
         preencherTabela();
@@ -549,8 +549,8 @@ public class CrudLote extends javax.swing.JFrame {
             return;
         }
         ISA.loteList.remove(indice);
-        DataTransfer.deleteLotes();
-        DataTransfer.exportAllLotes(ISA.loteList);
+        JsonExporter.deleteLotes();
+        JsonExporter.exportAllLotes(ISA.loteList);
         indice += (indice>0 || ISA.loteList.isEmpty()) ? -1 : 0;
         preencherTabela();
         tabLote.changeSelection(indice, 1, false, false);
@@ -594,8 +594,8 @@ public class CrudLote extends javax.swing.JFrame {
         
         ISA.loteList.remove(editing_row);
         ISA.loteList.add(editing_row, lote);
-        DataTransfer.deleteLotes();
-        DataTransfer.exportAllLotes(ISA.loteList);
+        JsonExporter.deleteLotes();
+        JsonExporter.exportAllLotes(ISA.loteList);
         preencherTabela();
         dialogEditar.dispose();
     }//GEN-LAST:event_btnSalvar_editarActionPerformed
