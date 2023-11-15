@@ -28,13 +28,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author naoki
  */
-public class VisualizarLotes extends javax.swing.JFrame {
+public class VizualizarIndices extends javax.swing.JFrame {
     private Map<String, List<Lote>> assentamentosMap;
-    private JDialog diag = new JDialog(this, Dialog.ModalityType.APPLICATION_MODAL);
+    private final JDialog diag = new JDialog(this, Dialog.ModalityType.APPLICATION_MODAL);
     /**
      * Creates new form VisualizarLotes
      */
-    public VisualizarLotes() {
+    public VizualizarIndices() {
         gerarMapAssentamento();
         initComponents();
         lblIndice.setVisible(false);
@@ -528,8 +528,7 @@ public class VisualizarLotes extends javax.swing.JFrame {
     }//GEN-LAST:event_jListLotesKeyTyped
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        this.setVisible(false);
-        new MainFrame().setVisible(true);
+        ISA.trocarJanela(ISA.Janela.MAIN);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void jListLotesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListLotesValueChanged
@@ -648,21 +647,27 @@ public class VisualizarLotes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VisualizarLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VizualizarIndices.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VisualizarLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VizualizarIndices.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VisualizarLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VizualizarIndices.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VisualizarLotes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VizualizarIndices.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisualizarLotes().setVisible(true);
+                new VizualizarIndices().setVisible(true);
             }
         });
     }

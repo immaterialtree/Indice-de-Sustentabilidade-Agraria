@@ -6,11 +6,7 @@ package com.mycompany.isa.components;
 
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.view.AjudaFrame;
-import com.mycompany.isa.view.CrudIndicadores;
-import com.mycompany.isa.view.CrudLote;
-import com.mycompany.isa.view.MainFrame;
 import com.mycompany.isa.view.SobreDialog;
-import com.mycompany.isa.view.VisualizarLotes;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -106,22 +102,18 @@ public class StandartMenuBar extends JMenuBar{
 
     }
     private void menuInicioMousePressed(java.awt.event.MouseEvent evt) {
-        disposeAllWindows();
-        new MainFrame().setVisible(true);
+        ISA.trocarJanela(ISA.Janela.MAIN);
     }
     
     private void menuCalcularIndiceMousePressed(java.awt.event.MouseEvent evt) {                                                
-        disposeAllWindows();
-        new VisualizarLotes().setVisible(true);
-    }                                                                                             
+        ISA.trocarJanela(ISA.Janela.VER_INDICE);
+    }
 
     private void menuGerenciarLotesMousePressed(java.awt.event.MouseEvent evt) {                                                
-        disposeAllWindows();
-        new CrudLote().setVisible(true);
-    }                                                                                              
+        ISA.trocarJanela(ISA.Janela.CRUD_LOTE);
+    }
 
     private void menuGerenciarIndicadoresMousePressed(java.awt.event.MouseEvent evt) {                                                      
-        disposeAllWindows();
-        new CrudIndicadores(ISA.categoriaList).setVisible(true);
-    }                                                     
+        ISA.trocarJanela(ISA.Janela.CRUD_INDICADOR);
+    }
 }

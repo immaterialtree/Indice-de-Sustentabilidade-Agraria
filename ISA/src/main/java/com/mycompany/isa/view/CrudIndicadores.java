@@ -29,12 +29,6 @@ public class CrudIndicadores extends javax.swing.JFrame {
         initAll();
     }
     
-    public CrudIndicadores(List<CategoriaIndicadores> indicadores) {
-        ISA.categoriaList = indicadores;
-        initAll();
-        
-    }
-    
     private void initAll() {
         initComponents();
         scrollTablePanel.getVerticalScrollBar().setUnitIncrement(10);

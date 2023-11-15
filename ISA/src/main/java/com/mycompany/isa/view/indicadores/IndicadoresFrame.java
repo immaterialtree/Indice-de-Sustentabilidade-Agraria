@@ -12,7 +12,7 @@ import com.mycompany.isa.utility.ExcelWritter;
 import com.mycompany.isa.view.CrudIndicadores;
 import com.mycompany.isa.view.CrudLote;
 import com.mycompany.isa.view.MainFrame;
-import com.mycompany.isa.view.VisualizarLotes;
+import com.mycompany.isa.view.VizualizarIndices;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JOptionPane;

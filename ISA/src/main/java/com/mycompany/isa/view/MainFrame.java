@@ -5,8 +5,6 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
-import java.awt.CardLayout;
-import java.awt.Component;
 
 /**
  *
@@ -236,18 +234,15 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGerenciarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarLotesActionPerformed
-        this.setVisible(false);
-        new CrudLote().setVisible(true);
+        ISA.trocarJanela(ISA.Janela.CRUD_LOTE);
     }//GEN-LAST:event_btnGerenciarLotesActionPerformed
 
     private void btnGerenciarIndicadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarIndicadoresActionPerformed
-        this.setVisible(false);
-        new CrudIndicadores(ISA.categoriaList).setVisible(true);
+        ISA.trocarJanela(ISA.Janela.CRUD_INDICADOR);
     }//GEN-LAST:event_btnGerenciarIndicadoresActionPerformed
 
     private void btnVisualizarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarLotesActionPerformed
-        this.setVisible(false);
-        new VisualizarLotes().setVisible(true);
+        ISA.trocarJanela(ISA.Janela.VER_INDICE);
     }//GEN-LAST:event_btnVisualizarLotesActionPerformed
 
     /**
