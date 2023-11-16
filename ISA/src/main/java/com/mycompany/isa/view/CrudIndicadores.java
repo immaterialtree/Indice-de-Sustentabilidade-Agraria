@@ -5,6 +5,7 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
+import com.mycompany.isa.components.RefreshJanela;
 import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.JsonExporter;
 import java.awt.CardLayout;
@@ -20,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author naoki
  */
-public class CrudIndicadores extends javax.swing.JFrame {
+public class CrudIndicadores extends RefreshJanela{
 //    List<IndicadoresModelo> ISA.indicadoresList = new ArrayList<>();
     NovaCategoriaPanel novoModeloPanel;
     CardLayout cl;
@@ -33,9 +34,7 @@ public class CrudIndicadores extends javax.swing.JFrame {
         initComponents();
         scrollTablePanel.getVerticalScrollBar().setUnitIncrement(10);
         cl = (CardLayout) cardPanel.getLayout();
-        preencherLista();
-        preencherTabela(0);
-        jListModelos.setSelectedIndex(0);
+        refreshJanela();
         
         novoModeloPanel = new NovaCategoriaPanel();
         cardPanel.add(novoModeloPanel, "new");
@@ -113,7 +112,12 @@ public class CrudIndicadores extends javax.swing.JFrame {
             c.gridy = i++;
             layout.setConstraints(lblTable, c);
         }
-     }
+    }
+    
+    @Override
+    public void refreshJanela() {
+        preencherLista();
+    }
     
     /**
      * Creates new form CadastrarModelo

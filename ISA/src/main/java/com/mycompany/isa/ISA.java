@@ -4,6 +4,7 @@
  */
 package com.mycompany.isa;
 
+import com.mycompany.isa.components.RefreshJanela;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.JsonExporter;
@@ -11,6 +12,7 @@ import com.mycompany.isa.view.CrudIndicadores;
 import com.mycompany.isa.view.CrudLote;
 import com.mycompany.isa.view.MainFrame;
 import com.mycompany.isa.view.VizualizarIndices;
+import com.mycompany.isa.view.indicadores.IndicadoresFrame;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,11 +26,11 @@ import javax.swing.UIManager;
 public class ISA {
     public static List<Lote> loteList = new ArrayList<>();
     public static List<CategoriaIndicadores> categoriaList = new ArrayList<>();
-    private static Map<Janela, javax.swing.JFrame> janelaMap = new HashMap<>();
+    private static Map<Janela, RefreshJanela> janelaMap = new HashMap<>();
     private static Janela janelaAtual;
     
     public enum Janela {
-        MAIN, CRUD_LOTE, CRUD_INDICADOR, VER_INDICE
+        MAIN, CRUD_LOTE, CRUD_INDICADOR, VER_INDICE, INDICADORES
     }
     
     public static void main(String[] args) {
@@ -53,6 +55,7 @@ public class ISA {
         janelaMap.put(Janela.CRUD_LOTE, new CrudLote());
         janelaMap.put(Janela.CRUD_INDICADOR, new CrudIndicadores());
         janelaMap.put(Janela.VER_INDICE, new VizualizarIndices());
+        janelaMap.put(Janela.INDICADORES, new IndicadoresFrame());
         
         // inicializar aplicativo
         janelaAtual = Janela.MAIN;
@@ -61,9 +64,11 @@ public class ISA {
     
     public static void trocarJanela(Janela novaJanela) {
         if (janelaAtual==novaJanela) return;
-        janelaMap.get(novaJanela).setLocationRelativeTo(janelaMap.get(janelaAtual));
-        janelaMap.get(novaJanela).setVisible(true);
-        janelaMap.get(janelaAtual).setVisible(false);
+        RefreshJanela janelaFrame = janelaMap.get(novaJanela);
+        janelaFrame.setLocationRelativeTo(janelaMap.get(janelaAtual));
+        janelaFrame.refreshJanela();
+        janelaFrame.setVisible(true);
+        janelaMap.get(janelaAtual).dispose();
         janelaAtual = novaJanela;
     }
     

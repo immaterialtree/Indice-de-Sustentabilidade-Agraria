@@ -34,7 +34,14 @@ public class AjudaFrame extends javax.swing.JFrame {
         lblLotes.setText(htmlAjudaLote);
         lblCategoria.setText(htmlAjudaCategoria);
         lblIndice.setText(htmlAjudaIndice);
-        
+    }
+    
+    public void refresh() {
+        remove(jTabbedPane1);
+        initComponents();
+        lblLotes.setText(htmlAjudaLote);
+        lblCategoria.setText(htmlAjudaCategoria);
+        lblIndice.setText(htmlAjudaIndice);
     }
 
     /**

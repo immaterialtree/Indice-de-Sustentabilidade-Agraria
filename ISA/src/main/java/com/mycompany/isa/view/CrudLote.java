@@ -5,6 +5,7 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
+import com.mycompany.isa.components.RefreshJanela;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.utility.JsonExporter;
 import java.util.*;
@@ -17,19 +18,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author naoki
  */
-public class CrudLote extends javax.swing.JFrame {
+public class CrudLote extends RefreshJanela{
 
 //    List<Lote> loteList = new ArrayList<>();
     int indice = 0;
     
     public CrudLote() {
         initComponents();
-        atualizarBotoes();
-        if (! ISA.loteList.isEmpty()) {
-            preencherTabela();
-            tabLote.changeSelection(indice, 1, false, false);
-        }
-        atualizarCbox();
+        refreshJanela();
     }
     
     private void atualizarBotoes() {      
@@ -492,6 +488,25 @@ public class CrudLote extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public void refreshJanela() {
+        atualizarBotoes();
+        if (! ISA.loteList.isEmpty()) {
+            preencherTabela();
+            tabLote.changeSelection(indice, 1, false, false);
+        }
+        atualizarCbox();
+        limparCampos();
+    }
+    
+    private void limparCampos() {
+        txtNome.setText("");
+        txtNumParcela.setText("");
+        txtContato.setText("");
+        txtCoordenadaX.setText("");
+        txtCoordenadaY.setText("");
+    }
+    
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // check null fields
         if (txtNome.getText().isBlank() |
@@ -605,17 +620,13 @@ public class CrudLote extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelar_editarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        txtNome.setText("");
-        txtNumParcela.setText("");
-        txtContato.setText("");
-        txtCoordenadaX.setText("");
-        txtCoordenadaY.setText("");
+        limparCampos();
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAddAssentamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAssentamentoActionPerformed
         String assentamento = JOptionPane.showInputDialog(this, "Digite o nome do assentamento", "Novo Assentamento", JOptionPane.PLAIN_MESSAGE);
         assentamento = assentamento.trim();
-        if (assentamento.isBlank()) {
+        if (assentamento.isBlank()) { 
             return;
         }
         boolean isReapeted = false;

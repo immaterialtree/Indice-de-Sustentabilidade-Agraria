@@ -5,6 +5,7 @@
 package com.mycompany.isa.view.indicadores;
 
 import com.mycompany.isa.ISA;
+import com.mycompany.isa.components.RefreshJanela;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.JsonExporter;
@@ -20,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author Admin
  */
-public class IndicadoresFrame extends javax.swing.JFrame {
+public class IndicadoresFrame extends RefreshJanela {
     public static Lote lote;
     List<CategoriaIndicadores> categorias;
     CardLayout cl;
@@ -38,13 +39,23 @@ public class IndicadoresFrame extends javax.swing.JFrame {
     public IndicadoresFrame(Lote lote) {
         initComponents();
         IndicadoresFrame.lote = lote;
+        refreshJanela();
+    }
+    
+    private void atualizarBotoes() {
+        btnAnterior.setEnabled(indice > 0);
+        btnProximo.setEnabled(indice < categorias.size()-1);
+    }
+    
+    @Override
+    public void refreshJanela() {
         cl = (CardLayout) cardPane.getLayout();
         loteString = String.format(loteString, lote.getAssentamento(), lote.getResponsavel(), lote.getNumParcela());
         lblLoteNome.setText(loteString);
         categorias = ISA.categoriaList;
         if (categorias.isEmpty()) {
             indice = -1;
-            JOptionPane.showMessageDialog(this, "Nenhuma categoria de indicadores cadastrada", "", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Nenhuma categoria de indicadores cadastrada", "", JOptionPane.WARNING_MESSAGE);
         } else {
             indice = 0;
             for (CategoriaIndicadores categoria : categorias) {
@@ -53,16 +64,7 @@ public class IndicadoresFrame extends javax.swing.JFrame {
             cl.show(cardPane, categorias.get(indice).getNome());
         }
         atualizarBotoes();
-        
     }
-    
-    
-    
-    private void atualizarBotoes() {
-        btnAnterior.setEnabled(indice > 0);
-        btnProximo.setEnabled(indice < categorias.size()-1);
-    }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

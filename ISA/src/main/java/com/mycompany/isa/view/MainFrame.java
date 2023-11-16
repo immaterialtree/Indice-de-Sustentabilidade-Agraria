@@ -5,12 +5,13 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
+import com.mycompany.isa.components.RefreshJanela;
 
 /**
  *
  * @author Admin
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends RefreshJanela{
 
     /**
      * Creates new form MainFrame
@@ -233,6 +234,9 @@ public class MainFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public void refreshJanela() {}
+    
     private void btnGerenciarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarLotesActionPerformed
         ISA.trocarJanela(ISA.Janela.CRUD_LOTE);
     }//GEN-LAST:event_btnGerenciarLotesActionPerformed

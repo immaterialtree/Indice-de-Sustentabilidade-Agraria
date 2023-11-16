@@ -5,12 +5,13 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
+import com.mycompany.isa.components.RefreshJanela;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.utility.CalcularIndice;
 import com.mycompany.isa.utility.ExcelWritter;
 import com.mycompany.isa.view.indicadores.IndicadoresFrame;
-import java.awt.Color;
-import java.awt.Dialog;
+import java.awt.Cursor;
+
 import java.io.File;
 
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.awt.Dialog;
+import java.awt.event.MouseEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -28,30 +31,27 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author naoki
  */
-public class VizualizarIndices extends javax.swing.JFrame {
+public class VizualizarIndices extends RefreshJanela {
     private Map<String, List<Lote>> assentamentosMap;
     private final JDialog diag = new JDialog(this, Dialog.ModalityType.APPLICATION_MODAL);
     /**
      * Creates new form VisualizarLotes
      */
     public VizualizarIndices() {
-        gerarMapAssentamento();
         initComponents();
-        lblIndice.setVisible(false);
         scrollAssentamento.getVerticalScrollBar().setUnitIncrement(10);
-        preencherLista(null);
-        atualizarCbox();
         if (ISA.loteList.isEmpty()) {
             btnPropriedades.setEnabled(false);
             btnVisualizar.setEnabled(false);
         } else 
             jListLotes.setSelectedIndex(0);
+        refreshJanela();
     }
     
     private void gerarMapAssentamento() {
-         assentamentosMap = new HashMap<>();
+        assentamentosMap = new HashMap<>();
         for (Lote lote : ISA.loteList) {
-            if (!assentamentosMap.keySet().contains(lote.getAssentamento())) {
+            if (!assentamentosMap.containsKey(lote.getAssentamento())) {
                 assentamentosMap.put(lote.getAssentamento(), new ArrayList<>());
             }
             assentamentosMap.get(lote.getAssentamento()).add(lote);
@@ -79,6 +79,15 @@ public class VizualizarIndices extends javax.swing.JFrame {
         cboxAssentamento.addItem(" - Mostrar todos - ");
         for (String assentamento : assentamentosMap.keySet())
             cboxAssentamento.addItem(assentamento);
+    }
+    
+    @Override
+    public void refreshJanela() {
+        gerarMapAssentamento();
+        lblIndice.setVisible(false);
+        preencherLista(null);
+        atualizarCbox();
+        jListLotes.updateUI();
     }
 
     /**
@@ -311,11 +320,6 @@ public class VizualizarIndices extends javax.swing.JFrame {
                 jListLotesMouseClicked(evt);
             }
         });
-        jListLotes.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jListLotesKeyTyped(evt);
-            }
-        });
         jListLotes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jListLotesValueChanged(evt);
@@ -441,6 +445,22 @@ public class VizualizarIndices extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
+    private void abrirAssentamento() {
+        String assentamento = (String) cboxAssentamento.getSelectedItem();
+        int selected = jListLotes.getSelectedIndex();
+        if (selected==-1) return;
+        Lote lote;
+        if (assentamentosMap.containsKey(assentamento)){
+            lote = assentamentosMap.get(assentamento).get(selected);
+        } else {
+            lote = ISA.loteList.get(selected);
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        IndicadoresFrame.lote = lote;
+        ISA.trocarJanela(ISA.Janela.INDICADORES);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     private void exportarAssentamento(String assentamento) {
         JFileChooser fileChooser = new JFileChooser(); 
         fileChooser.setSelectedFile(new File(assentamento+".xlsx"));
@@ -483,17 +503,7 @@ public class VizualizarIndices extends javax.swing.JFrame {
     }
     
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
-        String assentamento = (String) cboxAssentamento.getSelectedItem();
-        int selected = jListLotes.getSelectedIndex();
-        if (selected==-1) return;
-        Lote lote;
-        if (assentamentosMap.containsKey(assentamento)){
-            lote = assentamentosMap.get(assentamento).get(selected);
-        } else {
-            lote = ISA.loteList.get(selected);
-        }
-        new IndicadoresFrame(lote).setVisible(true);
-        this.dispose();
+        abrirAssentamento();
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
     private void btnPropriedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropriedadesActionPerformed
@@ -514,18 +524,9 @@ public class VizualizarIndices extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPropriedadesActionPerformed
 
     private void jListLotesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListLotesMouseClicked
-        if (evt.getClickCount()>1) {
-            int selected = jListLotes.getSelectedIndex();
-            if (selected==-1) return;
-
-            new IndicadoresFrame(ISA.loteList.get(selected)).setVisible(true);
-            this.dispose();
-        }
+        if (evt.getClickCount()>1 && evt.getButton()==MouseEvent.BUTTON1)
+            abrirAssentamento();
     }//GEN-LAST:event_jListLotesMouseClicked
-
-    private void jListLotesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jListLotesKeyTyped
-        
-    }//GEN-LAST:event_jListLotesKeyTyped
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         ISA.trocarJanela(ISA.Janela.MAIN);
@@ -575,6 +576,7 @@ public class VizualizarIndices extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIndiceAssentamentosActionPerformed
 
     private void cboxAssentamentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboxAssentamentoItemStateChanged
+        if (cboxAssentamento.getSelectedIndex()==-1) return;
         if (cboxAssentamento.getSelectedIndex()==0) {
             preencherLista(null);
             lblIndice.setVisible(false);

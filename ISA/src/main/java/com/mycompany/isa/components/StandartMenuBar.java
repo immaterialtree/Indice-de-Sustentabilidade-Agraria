@@ -7,6 +7,7 @@ package com.mycompany.isa.components;
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.view.AjudaFrame;
 import com.mycompany.isa.view.SobreDialog;
+import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -68,13 +69,23 @@ public class StandartMenuBar extends JMenuBar{
         itemManual.setText("Manual do usuário");
         itemManual.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
+                Arrays.stream(java.awt.Frame.getFrames()).forEach(a->
+                    System.out.println(a.getName() + ", " +a.getClass().getName()+", "+ a.getTitle())
+                );
+                // Verifica se essa janela já foi criada
                 for (var frame : java.awt.Frame.getFrames()) {
                     if (frame.getName().equals("ajuda")){
-                        frame.requestFocus();
-                        frame.setVisible(true);
+                        if (frame.isVisible()) {
+                            frame.requestFocus();
+                        } else {
+                            ((AjudaFrame)frame).refresh();
+                            frame.setLocationRelativeTo(menuAjuda);
+                            frame.setVisible(true);
+                        }
                         return;
                     }
-                }                
+                }
+                // Cria a janela na primeira vez que o método é invocado
                 AjudaFrame ajuda = new AjudaFrame();
                 ajuda.setLocationRelativeTo(menuAjuda);                
                 ajuda.setVisible(true);
