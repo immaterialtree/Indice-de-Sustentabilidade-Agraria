@@ -5,7 +5,7 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.components.RefreshJanela;
+import com.mycompany.isa.components.RefreshableJanela;
 import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.JsonExporter;
 import java.awt.CardLayout;
@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author naoki
  */
-public class CrudIndicadores extends RefreshJanela{
+public class CrudIndicadores extends RefreshableJanela{
 //    List<IndicadoresModelo> ISA.indicadoresList = new ArrayList<>();
     NovaCategoriaPanel novoModeloPanel;
     CardLayout cl;

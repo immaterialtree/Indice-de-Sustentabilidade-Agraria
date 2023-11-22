@@ -5,13 +5,13 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.components.RefreshJanela;
+import com.mycompany.isa.components.RefreshableJanela;
 
 /**
  *
  * @author Admin
  */
-public class MainFrame extends RefreshJanela{
+public class MainFrame extends RefreshableJanela{
 
     /**
      * Creates new form MainFrame

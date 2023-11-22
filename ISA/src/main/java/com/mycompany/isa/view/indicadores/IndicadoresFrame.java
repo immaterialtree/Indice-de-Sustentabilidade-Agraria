@@ -5,15 +5,9 @@
 package com.mycompany.isa.view.indicadores;
 
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.components.RefreshJanela;
+import com.mycompany.isa.components.RefreshableJanela;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.model.CategoriaIndicadores;
-import com.mycompany.isa.utility.JsonExporter;
-import com.mycompany.isa.utility.ExcelWritter;
-import com.mycompany.isa.view.CrudIndicadores;
-import com.mycompany.isa.view.CrudLote;
-import com.mycompany.isa.view.MainFrame;
-import com.mycompany.isa.view.VizualizarIndices;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -21,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Admin
  */
-public class IndicadoresFrame extends RefreshJanela {
+public class IndicadoresFrame extends RefreshableJanela {
     public static Lote lote;
     List<CategoriaIndicadores> categorias;
     CardLayout cl;

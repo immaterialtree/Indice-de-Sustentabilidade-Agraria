@@ -4,7 +4,7 @@
  */
 package com.mycompany.isa;
 
-import com.mycompany.isa.components.RefreshJanela;
+import com.mycompany.isa.components.RefreshableJanela;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.model.CategoriaIndicadores;
 import com.mycompany.isa.utility.JsonExporter;
@@ -26,7 +26,7 @@ import javax.swing.UIManager;
 public class ISA {
     public static List<Lote> loteList = new ArrayList<>();
     public static List<CategoriaIndicadores> categoriaList = new ArrayList<>();
-    private static Map<Janela, RefreshJanela> janelaMap = new HashMap<>();
+    private static Map<Janela, RefreshableJanela> janelaMap = new HashMap<>();
     private static Janela janelaAtual;
     
     public enum Janela {
@@ -64,7 +64,7 @@ public class ISA {
     
     public static void trocarJanela(Janela novaJanela) {
         if (janelaAtual==novaJanela) return;
-        RefreshJanela janelaFrame = janelaMap.get(novaJanela);
+        RefreshableJanela janelaFrame = janelaMap.get(novaJanela);
         janelaFrame.setLocationRelativeTo(janelaMap.get(janelaAtual));
         janelaFrame.refreshJanela();
         janelaFrame.setVisible(true);

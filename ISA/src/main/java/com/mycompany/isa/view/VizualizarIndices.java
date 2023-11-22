@@ -5,7 +5,7 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.components.RefreshJanela;
+import com.mycompany.isa.components.RefreshableJanela;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.utility.CalcularIndice;
 import com.mycompany.isa.utility.ExcelWritter;
@@ -31,7 +31,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author naoki
  */
-public class VizualizarIndices extends RefreshJanela {
+public class VizualizarIndices extends RefreshableJanela {
     private Map<String, List<Lote>> assentamentosMap;
     private final JDialog diag = new JDialog(this, Dialog.ModalityType.APPLICATION_MODAL);
     /**

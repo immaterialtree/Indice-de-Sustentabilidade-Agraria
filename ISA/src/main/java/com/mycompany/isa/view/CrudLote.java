@@ -5,12 +5,12 @@
 package com.mycompany.isa.view;
 
 import com.mycompany.isa.ISA;
-import com.mycompany.isa.components.RefreshJanela;
+import com.mycompany.isa.components.RefreshableJanela;
 import com.mycompany.isa.model.Lote;
 import com.mycompany.isa.utility.JsonExporter;
 import java.util.*;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,9 +18,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author naoki
  */
-public class CrudLote extends RefreshJanela{
+public class CrudLote extends RefreshableJanela{
 
 //    List<Lote> loteList = new ArrayList<>();
+    Set<String> assentamentosSet = new LinkedHashSet<>();
     int indice = 0;
     
     public CrudLote() {
@@ -58,19 +59,24 @@ public class CrudLote extends RefreshJanela{
     }
     
     private void atualizarCbox() {
-        cboxAssentamento.removeAllItems();
+        preencherAssentamentosSet();
+        JComboBox[] cboxes = new JComboBox[]{cboxAssentamento, cboxAssentamento_editar, cboxRemoverAssentamento};
+        for (var cbox : cboxes) {
+            preencherCbox(cbox);
+        }
+    }
+    
+    private void preencherAssentamentosSet() {
+        assentamentosSet.clear();
         for (Lote lote : ISA.loteList) {
-            boolean isReapeted = false;
-            for (int i = 0; i < cboxAssentamento.getItemCount(); i++) {
-                if (cboxAssentamento.getItemAt(i).equals(lote.getAssentamento())) {
-                    isReapeted = true;
-                    break;
-                }
-            }
-            if (!isReapeted) {
-                cboxAssentamento.addItem(lote.getAssentamento());
-                cboxAssentamento_editar.addItem(lote.getAssentamento());
-            }
+            assentamentosSet.add(lote.getAssentamento());
+        }
+    }
+    
+    private void preencherCbox(javax.swing.JComboBox cbox) {
+        cbox.removeAllItems();
+        for (String a : assentamentosSet) {
+            cbox.addItem(a);
         }
     }
 
@@ -96,6 +102,11 @@ public class CrudLote extends RefreshJanela{
         txtCoordenadaY_editar = new javax.swing.JFormattedTextField();
         cboxAssentamento_editar = new javax.swing.JComboBox<>();
         btnAddAssentamento_editar = new javax.swing.JButton();
+        diagRemoverAssentamento = new javax.swing.JDialog();
+        panelRemoverAssentamento = new javax.swing.JPanel();
+        lblRemoverAssentamento = new javax.swing.JLabel();
+        cboxRemoverAssentamento = new javax.swing.JComboBox<>();
+        btnConfirmaRemoverAssentamento = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtNome = new javax.swing.JTextField();
         lblCadTitulo = new javax.swing.JLabel();
@@ -116,6 +127,7 @@ public class CrudLote extends RefreshJanela{
         cboxAssentamento = new javax.swing.JComboBox<>();
         btnAddAssentamento = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnRemoverAssentamento = new javax.swing.JButton();
         standartMenuBar1 = new com.mycompany.isa.components.StandartMenuBar();
 
         dialogEditar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -233,6 +245,54 @@ public class CrudLote extends RefreshJanela{
             }
         });
 
+        diagRemoverAssentamento.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        diagRemoverAssentamento.setTitle("Remover Assentamento");
+        diagRemoverAssentamento.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+
+        lblRemoverAssentamento.setText("<html>\n<p>Escolha um assentamento para remover. Todos os lotes desse assentamento serão removidos</p>");
+
+        btnConfirmaRemoverAssentamento.setText("Excluir");
+        btnConfirmaRemoverAssentamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmaRemoverAssentamentoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelRemoverAssentamentoLayout = new javax.swing.GroupLayout(panelRemoverAssentamento);
+        panelRemoverAssentamento.setLayout(panelRemoverAssentamentoLayout);
+        panelRemoverAssentamentoLayout.setHorizontalGroup(
+            panelRemoverAssentamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRemoverAssentamentoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelRemoverAssentamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboxRemoverAssentamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnConfirmaRemoverAssentamento, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(lblRemoverAssentamento, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panelRemoverAssentamentoLayout.setVerticalGroup(
+            panelRemoverAssentamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRemoverAssentamentoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblRemoverAssentamento, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cboxRemoverAssentamento, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(btnConfirmaRemoverAssentamento)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout diagRemoverAssentamentoLayout = new javax.swing.GroupLayout(diagRemoverAssentamento.getContentPane());
+        diagRemoverAssentamento.getContentPane().setLayout(diagRemoverAssentamentoLayout);
+        diagRemoverAssentamentoLayout.setHorizontalGroup(
+            diagRemoverAssentamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelRemoverAssentamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        diagRemoverAssentamentoLayout.setVerticalGroup(
+            diagRemoverAssentamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelRemoverAssentamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciar Lotes");
         setResizable(false);
@@ -259,7 +319,7 @@ public class CrudLote extends RefreshJanela{
 
         btnEditar.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-edit-16.png"))); // NOI18N
-        btnEditar.setText("Editar");
+        btnEditar.setText("Editar lote");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -270,7 +330,7 @@ public class CrudLote extends RefreshJanela{
 
         btnRemover.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
         btnRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-trash-16.png"))); // NOI18N
-        btnRemover.setText("Remover");
+        btnRemover.setText("Remover lote");
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoverActionPerformed(evt);
@@ -380,6 +440,11 @@ public class CrudLote extends RefreshJanela{
         );
 
         cboxAssentamento.setBorder(javax.swing.BorderFactory.createTitledBorder("Assentamento"));
+        cboxAssentamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxAssentamentoActionPerformed(evt);
+            }
+        });
 
         btnAddAssentamento.setText("Adicionar assentamento");
         btnAddAssentamento.addActionListener(new java.awt.event.ActionListener() {
@@ -392,18 +457,30 @@ public class CrudLote extends RefreshJanela{
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Adicionar lote");
 
+        btnRemoverAssentamento.setFont(new java.awt.Font("Quicksand Medium", 0, 14)); // NOI18N
+        btnRemoverAssentamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-trash-16.png"))); // NOI18N
+        btnRemoverAssentamento.setText("Remover assentamento");
+        btnRemoverAssentamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverAssentamentoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEditar)
                         .addGap(18, 18, 18)
-                        .addComponent(btnRemover))
+                        .addComponent(btnRemover)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRemoverAssentamento))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNome)
@@ -428,8 +505,6 @@ public class CrudLote extends RefreshJanela{
                     .addComponent(lblErro, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(615, Short.MAX_VALUE)))
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEditar, btnRemover});
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnLimpar, btnSalvar});
 
@@ -462,7 +537,8 @@ public class CrudLote extends RefreshJanela{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRemover)
-                    .addComponent(btnEditar))
+                    .addComponent(btnEditar)
+                    .addComponent(btnRemoverAssentamento))
                 .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -490,11 +566,11 @@ public class CrudLote extends RefreshJanela{
 
     @Override
     public void refreshJanela() {
-        atualizarBotoes();
         if (! ISA.loteList.isEmpty()) {
             preencherTabela();
             tabLote.changeSelection(indice, 1, false, false);
         }
+        atualizarBotoes();
         atualizarCbox();
         limparCampos();
     }
@@ -511,7 +587,6 @@ public class CrudLote extends RefreshJanela{
         // check null fields
         if (txtNome.getText().isBlank() |
             txtNumParcela.getText().isBlank() ||
-            txtContato.getText().isBlank() ||
             txtCoordenadaX.getText().isBlank() ||
             txtCoordenadaY.getText().isBlank() ||
             cboxAssentamento.getSelectedIndex() < 0
@@ -523,11 +598,12 @@ public class CrudLote extends RefreshJanela{
         }
           
         Lote lote = new Lote();
-        
         lote.setAssentamento((String) cboxAssentamento.getSelectedItem());
         lote.setResponsavel(txtNome.getText().trim());
         lote.setNumParcela(txtNumParcela.getText().trim());
-        lote.setContato(txtContato.getText());
+        String contato = (txtContato.getText().replaceAll(" ", "").length() < 15) ?
+                "" : txtContato.getText();
+        lote.setContato(contato);
         double x = Double.parseDouble(txtCoordenadaX.getText().replace(',','.'));
         double y = Double.parseDouble(txtCoordenadaY.getText().replace(',', '.'));
         lote.setCoordenada(new double[] {x, y});
@@ -625,18 +701,12 @@ public class CrudLote extends RefreshJanela{
 
     private void btnAddAssentamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAssentamentoActionPerformed
         String assentamento = JOptionPane.showInputDialog(this, "Digite o nome do assentamento", "Novo Assentamento", JOptionPane.PLAIN_MESSAGE);
+        if (assentamento==null) return;
         assentamento = assentamento.trim();
         if (assentamento.isBlank()) { 
             return;
         }
-        boolean isReapeted = false;
-        for (int i = 0; i < cboxAssentamento.getItemCount(); i++) {
-            if (cboxAssentamento.getItemAt(i).equals(assentamento)) {
-                isReapeted = true;
-                break;
-            }
-        }
-        if (!isReapeted) {
+        if (!assentamentosSet.contains(assentamento)) {
             cboxAssentamento.addItem(assentamento);
             cboxAssentamento.setSelectedItem(assentamento);
             cboxAssentamento_editar.addItem(assentamento);
@@ -675,6 +745,44 @@ public class CrudLote extends RefreshJanela{
     private void txtCoordenadaXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCoordenadaXActionPerformed
         txtCoordenadaY.requestFocus();
     }//GEN-LAST:event_txtCoordenadaXActionPerformed
+
+    private void btnRemoverAssentamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverAssentamentoActionPerformed
+        atualizarCbox();
+        diagRemoverAssentamento.pack();
+        diagRemoverAssentamento.setLocationRelativeTo(this);
+        diagRemoverAssentamento.setVisible(true);
+    }//GEN-LAST:event_btnRemoverAssentamentoActionPerformed
+
+    private void btnConfirmaRemoverAssentamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmaRemoverAssentamentoActionPerformed
+        String assentamento = cboxRemoverAssentamento.getSelectedItem().toString();
+        
+        if (0!=JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir o assentamento '"+assentamento+"' e todos os seus lotes?",
+                "Confirmar exclusão", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION)) {
+            return;
+        }
+        diagRemoverAssentamento.dispose();
+        
+        ISA.loteList.removeIf(lote -> lote.getAssentamento().equals(assentamento));
+        
+        JsonExporter.deleteLotes();
+        JsonExporter.exportAllLotes(ISA.loteList);
+        indice += (indice>0 || ISA.loteList.isEmpty()) ? -1 : 0;
+        preencherTabela();
+        tabLote.changeSelection(indice, 1, false, false);
+        atualizarBotoes();
+    }//GEN-LAST:event_btnConfirmaRemoverAssentamentoActionPerformed
+
+    private void cboxAssentamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxAssentamentoActionPerformed
+        String assentamento = (String) cboxAssentamento.getSelectedItem();
+        if (assentamentosSet.contains(assentamento)) return;
+        if (assentamento==null) return;
+        if (assentamento.isBlank()) return;
+        
+        assentamento = assentamento.trim();
+        assentamentosSet.add(assentamento);
+        preencherCbox(cboxAssentamento);
+        cboxAssentamento.setSelectedItem(assentamento);
+    }//GEN-LAST:event_cboxAssentamentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -718,13 +826,17 @@ public class CrudLote extends RefreshJanela{
     private javax.swing.JButton btnAddAssentamento;
     private javax.swing.JButton btnAddAssentamento_editar;
     private javax.swing.JButton btnCancelar_editar;
+    private javax.swing.JButton btnConfirmaRemoverAssentamento;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnRemover;
+    private javax.swing.JButton btnRemoverAssentamento;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnSalvar_editar;
     private javax.swing.JComboBox<String> cboxAssentamento;
     private javax.swing.JComboBox<String> cboxAssentamento_editar;
+    private javax.swing.JComboBox<String> cboxRemoverAssentamento;
+    private javax.swing.JDialog diagRemoverAssentamento;
     private javax.swing.JDialog dialogEditar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -734,8 +846,10 @@ public class CrudLote extends RefreshJanela{
     private javax.swing.JLabel lblCoordenadaY;
     private javax.swing.JLabel lblCoordenadaY_editar;
     private javax.swing.JLabel lblErro;
+    private javax.swing.JLabel lblRemoverAssentamento;
     private javax.swing.JPanel panelCoordenada;
     private javax.swing.JPanel panelCoordenada_editar;
+    private javax.swing.JPanel panelRemoverAssentamento;
     private javax.swing.JScrollPane scrollTabela;
     private com.mycompany.isa.components.StandartMenuBar standartMenuBar1;
     private javax.swing.JTable tabLote;

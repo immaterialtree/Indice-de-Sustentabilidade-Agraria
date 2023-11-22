@@ -8,6 +8,6 @@ package com.mycompany.isa.components;
  *
  * @author naoki
  */
-public abstract class RefreshJanela extends javax.swing.JFrame{
+public abstract class RefreshableJanela extends javax.swing.JFrame{
      public abstract void refreshJanela();
 }
