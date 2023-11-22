@@ -22,7 +22,7 @@ public class CrudLote extends RefreshableJanela{
 
 //    List<Lote> loteList = new ArrayList<>();
     Set<String> assentamentosSet = new LinkedHashSet<>();
-    int indice = 0;
+    int indice = -1;
     
     public CrudLote() {
         initComponents();
@@ -32,6 +32,7 @@ public class CrudLote extends RefreshableJanela{
     private void atualizarBotoes() {      
         btnRemover.setEnabled(indice!=-1);
         btnEditar.setEnabled(indice!=-1);
+        btnRemoverAssentamento.setEnabled(!assentamentosSet.isEmpty());
     }
     
     private void preencherTabela() {
@@ -570,9 +571,9 @@ public class CrudLote extends RefreshableJanela{
             preencherTabela();
             tabLote.changeSelection(indice, 1, false, false);
         }
-        atualizarBotoes();
-        atualizarCbox();
         limparCampos();
+        atualizarCbox();
+        atualizarBotoes();
     }
     
     private void limparCampos() {
@@ -613,8 +614,8 @@ public class CrudLote extends RefreshableJanela{
         indice = ISA.loteList.size()-1;
         preencherTabela();
         tabLote.changeSelection(indice, 1, false, false);
-        atualizarBotoes();
         btnLimparActionPerformed(evt);
+        atualizarBotoes();
     }//GEN-LAST:event_btnSalvarActionPerformed
     
     int editing_row;
@@ -769,6 +770,7 @@ public class CrudLote extends RefreshableJanela{
         indice += (indice>0 || ISA.loteList.isEmpty()) ? -1 : 0;
         preencherTabela();
         tabLote.changeSelection(indice, 1, false, false);
+        atualizarCbox();
         atualizarBotoes();
     }//GEN-LAST:event_btnConfirmaRemoverAssentamentoActionPerformed
 
