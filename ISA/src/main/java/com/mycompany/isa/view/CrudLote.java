@@ -441,11 +441,6 @@ public class CrudLote extends RefreshableJanela{
         );
 
         cboxAssentamento.setBorder(javax.swing.BorderFactory.createTitledBorder("Assentamento"));
-        cboxAssentamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxAssentamentoActionPerformed(evt);
-            }
-        });
 
         btnAddAssentamento.setText("Adicionar assentamento");
         btnAddAssentamento.addActionListener(new java.awt.event.ActionListener() {
@@ -773,18 +768,6 @@ public class CrudLote extends RefreshableJanela{
         atualizarCbox();
         atualizarBotoes();
     }//GEN-LAST:event_btnConfirmaRemoverAssentamentoActionPerformed
-
-    private void cboxAssentamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxAssentamentoActionPerformed
-        String assentamento = (String) cboxAssentamento.getSelectedItem();
-        if (assentamentosSet.contains(assentamento)) return;
-        if (assentamento==null) return;
-        if (assentamento.isBlank()) return;
-        
-        assentamento = assentamento.trim();
-        assentamentosSet.add(assentamento);
-        preencherCbox(cboxAssentamento);
-        cboxAssentamento.setSelectedItem(assentamento);
-    }//GEN-LAST:event_cboxAssentamentoActionPerformed
 
     /**
      * @param args the command line arguments
