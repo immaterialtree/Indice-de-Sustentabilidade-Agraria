@@ -310,7 +310,7 @@ public class CrudIndicadores extends RefreshableJanela{
     }//GEN-LAST:event_jListModelosValueChanged
 
     private void btnResetDefaultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetDefaultActionPerformed
-        JsonExporter.resetIndicadores();
+        JsonExporter.restaurarIndicadoresPadrao();
         ISA.categoriaList = JsonExporter.importIndicadores();
         preencherLista();
     }//GEN-LAST:event_btnResetDefaultActionPerformed

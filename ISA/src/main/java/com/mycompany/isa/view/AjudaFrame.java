@@ -4,7 +4,11 @@
  */
 package com.mycompany.isa.view;
 
+import com.mycompany.isa.utility.JsonExporter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.logging.Level;
@@ -24,9 +28,9 @@ public class AjudaFrame extends javax.swing.JFrame {
      */
     public AjudaFrame() {
         try {
-            this.htmlAjudaLote = Files.readString(Path.of("src/main/resources/html/ajuda_gerenciar-lotes.html"));
-            this.htmlAjudaCategoria = Files.readString(Path.of("src/main/resources/html/ajuda_gerenciar-categorias.html"));
-            this.htmlAjudaIndice = Files.readString(Path.of("src/main/resources/html/ajuda_indice-de-sustentabilidade.html"));
+            this.htmlAjudaLote = JsonExporter.lerArquivoJAR("/html/ajuda_gerenciar-lotes.html");
+            this.htmlAjudaCategoria = JsonExporter.lerArquivoJAR("/html/ajuda_gerenciar-categorias.html");
+            this.htmlAjudaIndice = JsonExporter.lerArquivoJAR("/html/ajuda_indice-de-sustentabilidade.html");
         } catch (IOException ex) {
             Logger.getLogger(AjudaFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -161,7 +165,17 @@ public class AjudaFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public String lerArquivoJAR(String caminho) throws IOException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        System.out.println(classLoader.getResource(caminho));
+        try (InputStream inputStream = classLoader.getResourceAsStream(caminho)) {
+            if (inputStream == null) {
+                throw new IOException("Arquivo não encontrado: " + caminho);
+            }
+            byte[] bytes = inputStream.readAllBytes();
+            return new String(bytes, StandardCharsets.UTF_8);
+        }
+    }
     /**
      * @param args the command line arguments
      */

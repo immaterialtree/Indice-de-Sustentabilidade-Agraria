@@ -4,13 +4,11 @@
  */
 package com.mycompany.isa.view;
 
-import java.awt.Dimension;
+import com.mycompany.isa.utility.JsonExporter;
 import java.awt.Frame;
 import java.awt.Window;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  *
@@ -48,7 +46,7 @@ public class SobreDialog extends javax.swing.JDialog {
     private String readHtmlAsString() {
         String htmlSobre = null;
         try {
-            htmlSobre = Files.readString(Path.of("src/main/resources/html/sobre.html"));
+            htmlSobre = JsonExporter.lerArquivoJAR("/html/sobre.html");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         } 
@@ -127,6 +125,7 @@ public class SobreDialog extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

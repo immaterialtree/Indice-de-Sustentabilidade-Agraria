@@ -1,7 +1,7 @@
 {
     "nome":"Indicadores Econômicos",
     "itemMap":{
-        "Renda ": [	
+        "Renda": [	
             "Renda líquida do estabelecimento",
             "Noção de Lucratividade",
             "Diversidade de fontes de renda ",
@@ -10,7 +10,7 @@
             "Produção de subsistência",
             "Produção de mercado"
         ],
-        "Crédito ": [	
+        "Crédito": [	
             "Dependência de auxílios financeiros",
             "Acesso a crédito agrícola",
             "Dificuldade de ter acesso a algum tipo de crédito ou financiamento",

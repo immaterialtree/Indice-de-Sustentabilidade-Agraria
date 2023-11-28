@@ -69,9 +69,6 @@ public class StandartMenuBar extends JMenuBar{
         itemManual.setText("Manual do usuário");
         itemManual.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                Arrays.stream(java.awt.Frame.getFrames()).forEach(a->
-                    System.out.println(a.getName() + ", " +a.getClass().getName()+", "+ a.getTitle())
-                );
                 // Verifica se essa janela já foi criada
                 for (var frame : java.awt.Frame.getFrames()) {
                     if (frame.getName().equals("ajuda")){
