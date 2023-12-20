@@ -383,6 +383,12 @@ public class CrudLote extends RefreshableJanela{
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtContato.setText("");
+        txtContato.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtContatoFocusGained(evt);
+            }
+        });
         txtContato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContatoActionPerformed(evt);
@@ -574,7 +580,7 @@ public class CrudLote extends RefreshableJanela{
     private void limparCampos() {
         txtNome.setText("");
         txtNumParcela.setText("");
-        txtContato.setText("");
+        txtContato.setValue("");
         txtCoordenadaX.setText("");
         txtCoordenadaY.setText("");
     }
@@ -597,7 +603,7 @@ public class CrudLote extends RefreshableJanela{
         lote.setAssentamento((String) cboxAssentamento.getSelectedItem());
         lote.setResponsavel(txtNome.getText().trim());
         lote.setNumParcela(txtNumParcela.getText().trim());
-        String contato = (txtContato.getText().replaceAll(" ", "").length() < 15) ?
+        String contato = (txtContato.getText().replaceAll(" ", "").length() < 14) ?
                 "" : txtContato.getText();
         lote.setContato(contato);
         double x = Double.parseDouble(txtCoordenadaX.getText().replace(',','.'));
@@ -609,7 +615,7 @@ public class CrudLote extends RefreshableJanela{
         indice = ISA.loteList.size()-1;
         preencherTabela();
         tabLote.changeSelection(indice, 1, false, false);
-        btnLimparActionPerformed(evt);
+        limparCampos();
         atualizarBotoes();
     }//GEN-LAST:event_btnSalvarActionPerformed
     
@@ -768,6 +774,10 @@ public class CrudLote extends RefreshableJanela{
         atualizarCbox();
         atualizarBotoes();
     }//GEN-LAST:event_btnConfirmaRemoverAssentamentoActionPerformed
+
+    private void txtContatoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContatoFocusGained
+        txtContato.getCaret().setDot(0);
+    }//GEN-LAST:event_txtContatoFocusGained
 
     /**
      * @param args the command line arguments

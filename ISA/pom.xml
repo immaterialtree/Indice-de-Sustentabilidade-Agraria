@@ -68,7 +68,7 @@
                    <descriptorRefs>
                        <descriptorRef>jar-with-dependencies</descriptorRef>
                    </descriptorRefs>
-                    <!--<skipAssembly>${assembly.skipAssembly}</skipAssembly>-->
+                    <skipAssembly>${assembly.skipAssembly}</skipAssembly>
                 </configuration>
                 <executions>
                    <execution>
