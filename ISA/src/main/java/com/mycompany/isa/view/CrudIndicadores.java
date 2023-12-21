@@ -54,11 +54,12 @@ public class CrudIndicadores extends RefreshableJanela{
         jListModelos.setModel(resultList);
         if (jListModelos.getSelectedIndex()==-1 && jListModelos.getModel().getSize() > 0) {
             jListModelos.setSelectedIndex(0);
-            preencherTabela(0);
         }
+        preencherTabela(jListModelos.getSelectedIndex());
     }
     void preencherTabela(int indice) {
         tablePanel.removeAll();
+        tablePanel.updateUI();
         scrollTablePanel.getVerticalScrollBar().setValue(0);
         if (indice < 0) return;
         if (ISA.categoriaList.isEmpty()) {
@@ -111,6 +112,7 @@ public class CrudIndicadores extends RefreshableJanela{
             c.insets = new Insets(0, 0, 10, 0);
             c.gridy = i++;
             layout.setConstraints(lblTable, c);
+            tablePanel.updateUI();
         }
     }
     
@@ -292,7 +294,6 @@ public class CrudIndicadores extends RefreshableJanela{
         }
         ISA.categoriaList.remove(jListModelos.getSelectedIndex());
         preencherLista();
-        preencherTabela(-1);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
