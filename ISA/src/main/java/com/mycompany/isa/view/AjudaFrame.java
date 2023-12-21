@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,15 +26,12 @@ public class AjudaFrame extends javax.swing.JFrame {
     String htmlAjudaIndice;
     /**
      * Creates new form AjudaFrame
+     * @throws java.io.IOException
      */
-    public AjudaFrame() {
-        try {
-            this.htmlAjudaLote = JsonExporter.lerArquivoJAR("/html/ajuda_gerenciar-lotes.html");
-            this.htmlAjudaCategoria = JsonExporter.lerArquivoJAR("/html/ajuda_gerenciar-categorias.html");
-            this.htmlAjudaIndice = JsonExporter.lerArquivoJAR("/html/ajuda_indice-de-sustentabilidade.html");
-        } catch (IOException ex) {
-            Logger.getLogger(AjudaFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public AjudaFrame() throws IOException {
+        this.htmlAjudaLote = JsonExporter.lerArquivoJAR("/html/ajuda_gerenciar-lotes.html");
+        this.htmlAjudaCategoria = JsonExporter.lerArquivoJAR("/html/ajuda_gerenciar-categorias.html");
+        this.htmlAjudaIndice = JsonExporter.lerArquivoJAR("/html/ajuda_indice-de-sustentabilidade.html");
         initComponents();
         lblLotes.setText(htmlAjudaLote);
         lblCategoria.setText(htmlAjudaCategoria);
@@ -207,7 +205,13 @@ public class AjudaFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AjudaFrame().setVisible(true);
+                try {
+                    new AjudaFrame().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(AjudaFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Não foi possível carregar os arquivos de ajuda",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

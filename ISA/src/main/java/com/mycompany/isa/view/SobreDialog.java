@@ -9,6 +9,7 @@ import java.awt.Frame;
 import java.awt.Window;
 
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,6 +50,8 @@ public class SobreDialog extends javax.swing.JDialog {
             htmlSobre = JsonExporter.lerArquivoJAR("/html/sobre.html");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Não foi possível carregar os arquivos de créditos",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
         } 
         return htmlSobre;
     }

@@ -7,11 +7,15 @@ package com.mycompany.isa.components;
 import com.mycompany.isa.ISA;
 import com.mycompany.isa.view.AjudaFrame;
 import com.mycompany.isa.view.SobreDialog;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -83,9 +87,15 @@ public class StandartMenuBar extends JMenuBar{
                     }
                 }
                 // Cria a janela na primeira vez que o método é invocado
-                AjudaFrame ajuda = new AjudaFrame();
-                ajuda.setLocationRelativeTo(menuAjuda);                
-                ajuda.setVisible(true);
+                try {
+                    AjudaFrame ajuda = new AjudaFrame();
+                    ajuda.setLocationRelativeTo(menuAjuda);                
+                    ajuda.setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(StandartMenuBar.class.getName()).log(Level.WARNING, null, ex);
+                    JOptionPane.showMessageDialog(null, "Não foi possível carregar os arquivos de ajuda",
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         menuAjuda.add(itemManual);

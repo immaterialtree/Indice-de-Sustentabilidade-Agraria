@@ -142,20 +142,19 @@ public class JsonExporter {
     }
 
     public static void restaurarIndicadoresPadrao() {
-        String sourceType = JsonExporter.class.getResource("/").getProtocol();
-        
-        if (sourceType.equals("jar")) {
+        String sourceType = JsonExporter.class.getResource("/com").getProtocol();
             try {
+            if (sourceType.equals("jar")) {
                 deleteIndicadores();
                 copiarArquivosDoJarParaFora(JAR_PATH_DEFAULT_INDICADOR, PATH_INDICADOR);
-            } catch (IOException ex) {
-                Logger.getLogger(JsonExporter.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (URISyntaxException ex) {
-                Logger.getLogger(JsonExporter.class.getName()).log(Level.SEVERE, null, ex);
+            } else {    
+                copiarArquivosDeDiretorioParaOutro(JAR_PATH_DEFAULT_INDICADOR, PATH_INDICADOR);
             }
-        } else {
-            copiarArquivosDeDiretorioParaOutro(JAR_PATH_DEFAULT_INDICADOR, PATH_INDICADOR);
-        }
+            } catch (IOException | URISyntaxException ex) {
+                Logger.getLogger(JsonExporter.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Erro ao restaurar os arquivos padrões",
+                "Erro", JOptionPane.ERROR_MESSAGE);
+            }
     }
 
     public static String lerArquivoJAR(String caminho) throws IOException {
@@ -168,30 +167,23 @@ public class JsonExporter {
             return new String(bytes, StandardCharsets.UTF_8);
         }
     }
-    
-    private static void copiarArquivosDeDiretorioParaOutro(String diretorioOrigem, String diretorioDestino) {
-        try {
-            // Diretório de origem e destino
-            // Origem dentro de pacote
-            Path pathOrigem = Paths.get(JsonExporter.class.getResource("/"+diretorioOrigem).toURI());
-            Path pathDestino = Paths.get(diretorioDestino);
-            // Copiando os arquivos do diretório de origem para o diretório de destino
-            Files.walk(pathOrigem)
-                 .filter(Files::isRegularFile)
-                 .forEach(arquivo -> {
-                     try {
-                         Path arquivoDestino = pathDestino.resolve(pathOrigem.relativize(arquivo));
-                         Files.copy(arquivo, arquivoDestino, StandardCopyOption.REPLACE_EXISTING);
-                     } catch (IOException e) {
-                         System.err.println("Erro ao copiar o arquivo: " + e.getMessage());
-                     }
-                 });
-        } catch (IOException e) {
-            System.err.println("Erro ao acessar os diretórios: " + e.getMessage());
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(JsonExporter.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Não foi possível encontrar o diretório");
-        }
+
+    private static void copiarArquivosDeDiretorioParaOutro(String diretorioOrigem, String diretorioDestino) throws URISyntaxException, IOException {
+        // Diretório de origem e destino
+        // Origem dentro de pacote
+        Path pathOrigem = Paths.get(JsonExporter.class.getResource("/" + diretorioOrigem).toURI());
+        Path pathDestino = Paths.get(diretorioDestino);
+        // Copiando os arquivos do diretório de origem para o diretório de destino
+        Files.walk(pathOrigem)
+                .filter(Files::isRegularFile)
+                .forEach(arquivo -> {
+                    try {
+                        Path arquivoDestino = pathDestino.resolve(pathOrigem.relativize(arquivo));
+                        Files.copy(arquivo, arquivoDestino, StandardCopyOption.REPLACE_EXISTING);
+                    } catch (IOException e) {
+                        System.err.println("Erro ao copiar o arquivo: " + e.getMessage());
+                    }
+                });
     }
 
     private static void copiarArquivosDoJarParaFora(String diretorioAlvoNoJar, String diretorioDestino) throws IOException, URISyntaxException {
