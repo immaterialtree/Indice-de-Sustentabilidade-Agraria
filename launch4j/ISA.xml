@@ -3,7 +3,7 @@
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
   <jar>C:\Users\naoki\Documents\Repositorios\Indice-de-Sustentabilidade-Agraria\ISA\target\ISA-1.0.4-jar-with-dependencies.jar</jar>
-  <outfile>C:\Users\naoki\Documents\Repositorios\Indice-de-Sustentabilidade-Agraria\exe\isa.exe</outfile>
+  <outfile>C:\Users\naoki\Documents\Repositorios\Indice-de-Sustentabilidade-Agraria\launch4j\isa.exe</outfile>
   <errTitle>ISA - Rural</errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
