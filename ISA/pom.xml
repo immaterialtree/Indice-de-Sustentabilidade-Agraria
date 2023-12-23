@@ -60,23 +60,74 @@
                 <!-- Buil an executable JAR with dependencies-->
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                   <archive>
-                       <manifest>
-                           <mainClass>com.mycompany.isa.ISA</mainClass>
-                       </manifest>
-                   </archive>
-                   <descriptorRefs>
-                       <descriptorRef>jar-with-dependencies</descriptorRef>
-                   </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.mycompany.isa.ISA</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                     <skipAssembly>${assembly.skipAssembly}</skipAssembly>
                 </configuration>
                 <executions>
-                   <execution>
-                       <phase>package</phase>
-                       <goals>
-                          <goal>single</goal>
-                       </goals>
-                   </execution>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!--generate module-info-->
+            <plugin>
+                <groupId>org.moditect</groupId>
+                <artifactId>moditect-maven-plugin</artifactId>
+                <version>1.0.0.Final</version> <!-- ou versão mais recente -->
+                <executions>
+                    <execution>
+                        <id>generate-module-info</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-module-info</goal>
+                        </goals>
+                        <configuration>
+                            <modules>
+                                <module>
+                                    <moduleInfo>
+                                        <name>com.mycompany.isa</name> <!-- nome do seu módulo -->
+                                        <exports>
+                                            com.mycompany.isa;
+                                            com.mycompany.isa.view;
+                                            com.mycompany.isa.components;
+                                            com.mycompany.isa.utility;
+                                        </exports>
+                                    </moduleInfo>
+                                </module>
+                            </modules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+    
+            
+            <!--custom JRE-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jlink-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>create-runtime-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jlink</goal>
+                        </goals>
+                        <configuration>
+                            <launcher>isa-rural=com.mycompany.isa.ISA</launcher>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
@@ -113,14 +164,14 @@
             <version>1.0.9</version>
         </dependency>
         <dependency>
-              <groupId>org.dhatim</groupId>
-              <artifactId>fastexcel-reader</artifactId>
-              <version>0.15.3</version>
+            <groupId>org.dhatim</groupId>
+            <artifactId>fastexcel-reader</artifactId>
+            <version>0.15.3</version>
         </dependency>
         <dependency>
-              <groupId>org.dhatim</groupId>
-              <artifactId>fastexcel</artifactId>
-              <version>0.15.3</version>
+            <groupId>org.dhatim</groupId>
+            <artifactId>fastexcel</artifactId>
+            <version>0.15.3</version>
         </dependency>
     </dependencies>
 </project>
