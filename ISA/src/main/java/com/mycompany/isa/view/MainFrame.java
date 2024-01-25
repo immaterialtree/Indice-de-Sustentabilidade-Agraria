@@ -41,7 +41,6 @@ public class MainFrame extends RefreshableJanela{
         mainPanel = new javax.swing.JPanel();
         btnGerenciarLotes = new javax.swing.JButton();
         btnVisualizarLotes = new javax.swing.JButton();
-        btnGerenciarIndicadores = new javax.swing.JButton();
         lblMainTitle = new javax.swing.JLabel();
         ajudaPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -141,16 +140,6 @@ public class MainFrame extends RefreshableJanela{
             }
         });
 
-        btnGerenciarIndicadores.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGerenciarIndicadores.setText("Gerenciar indicadores");
-        btnGerenciarIndicadores.setMaximumSize(new java.awt.Dimension(118, 27));
-        btnGerenciarIndicadores.setMinimumSize(new java.awt.Dimension(118, 27));
-        btnGerenciarIndicadores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGerenciarIndicadoresActionPerformed(evt);
-            }
-        });
-
         lblMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblMainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainTitle.setText("ÍNDICE DE SUSTENTABILIDADE DE ASSENTAMENTO");
@@ -163,7 +152,6 @@ public class MainFrame extends RefreshableJanela{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addGap(194, 194, 194)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnGerenciarIndicadores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(180, 180, 180))
@@ -173,13 +161,11 @@ public class MainFrame extends RefreshableJanela{
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(lblMainTitle)
-                .addGap(27, 27, 27)
-                .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addGap(11, 11, 11)
+                .addGap(46, 46, 46)
                 .addComponent(btnGerenciarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnGerenciarIndicadores, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addGap(37, 37, 37))
+                .addGap(18, 18, 18)
+                .addComponent(btnVisualizarLotes, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addGap(86, 86, 86))
         );
 
         cardPanel.add(mainPanel, "main");
@@ -241,10 +227,6 @@ public class MainFrame extends RefreshableJanela{
         ISA.trocarJanela(ISA.Janela.CRUD_LOTE);
     }//GEN-LAST:event_btnGerenciarLotesActionPerformed
 
-    private void btnGerenciarIndicadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarIndicadoresActionPerformed
-        ISA.trocarJanela(ISA.Janela.CRUD_INDICADOR);
-    }//GEN-LAST:event_btnGerenciarIndicadoresActionPerformed
-
     private void btnVisualizarLotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarLotesActionPerformed
         ISA.trocarJanela(ISA.Janela.VER_INDICE);
     }//GEN-LAST:event_btnVisualizarLotesActionPerformed
@@ -287,7 +269,6 @@ public class MainFrame extends RefreshableJanela{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ajudaPanel;
-    private javax.swing.JButton btnGerenciarIndicadores;
     private javax.swing.JButton btnGerenciarLotes;
     private javax.swing.JButton btnVisualizarLotes;
     private javax.swing.JPanel cardPanel;
