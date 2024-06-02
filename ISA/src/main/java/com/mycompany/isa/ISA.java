@@ -13,10 +13,13 @@ import com.mycompany.isa.view.CrudLote;
 import com.mycompany.isa.view.MainFrame;
 import com.mycompany.isa.view.VizualizarIndices;
 import com.mycompany.isa.view.indicadores.IndicadoresFrame;
+import java.awt.Image;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 /**
@@ -24,46 +27,55 @@ import javax.swing.UIManager;
  * @author Admin
  */
 public class ISA {
+
     public static List<Lote> loteList = new ArrayList<>();
     public static List<CategoriaIndicadores> categoriaList = new ArrayList<>();
     private static Map<Janela, RefreshableJanela> janelaMap = new HashMap<>();
     private static Janela janelaAtual;
-    
+
     public enum Janela {
         MAIN, CRUD_LOTE, CRUD_INDICADOR, VER_INDICE, INDICADORES
     }
-    
+
     public static void main(String[] args) {
         // Configurar look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Look and Feel do sistema não encontrado. Utilizando o padrão");
+        } finally {
+            System.out.println("O Look and Feel em uso é: " + UIManager.getLookAndFeel().getDescription());
         }
-        finally {
-            System.out.println("O Look and Feel em uso é: "+UIManager.getLookAndFeel().getDescription());
-        }
-        
+
         // Importar objetos pelo JSON
         JsonExporter.createPaths();
         loteList = JsonExporter.importLotes();
         categoriaList = JsonExporter.importIndicadores();
-        
+
         // Inicializar janelas
         janelaMap.put(Janela.MAIN, new MainFrame());
         janelaMap.put(Janela.CRUD_LOTE, new CrudLote());
         janelaMap.put(Janela.CRUD_INDICADOR, new CrudIndicadores());
         janelaMap.put(Janela.VER_INDICE, new VizualizarIndices());
         janelaMap.put(Janela.INDICADORES, new IndicadoresFrame());
-        
+
         // inicializar aplicativo
         janelaAtual = Janela.MAIN;
         janelaMap.get(janelaAtual).setVisible(true);
+
+        // ícone nas janelas
+        URL urlIcone = ISA.class.getResource("/images/logo64.png");
+        Image icone = new ImageIcon(urlIcone).getImage();
+
+        for (javax.swing.JFrame j : janelaMap.values()) {
+            j.setIconImage(icone);
+        }
     }
-    
+
     public static void trocarJanela(Janela novaJanela) {
-        if (janelaAtual==novaJanela) return;
+        if (janelaAtual == novaJanela) {
+            return;
+        }
         RefreshableJanela janelaFrame = janelaMap.get(novaJanela);
         janelaFrame.setLocationRelativeTo(janelaMap.get(janelaAtual));
         janelaFrame.refreshJanela();
@@ -71,7 +83,7 @@ public class ISA {
         janelaMap.get(janelaAtual).dispose();
         janelaAtual = novaJanela;
     }
-    
+
     public static javax.swing.JFrame getJanela(Janela janela) {
         return janelaMap.get(janela);
     }
