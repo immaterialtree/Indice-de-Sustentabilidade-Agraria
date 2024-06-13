@@ -22,7 +22,6 @@ import javax.swing.JOptionPane;
  * @author naoki
  */
 public class CrudIndicadores extends RefreshableJanela{
-//    List<IndicadoresModelo> ISA.indicadoresList = new ArrayList<>();
     NovaCategoriaPanel novoModeloPanel;
     CardLayout cl;
     
@@ -57,6 +56,8 @@ public class CrudIndicadores extends RefreshableJanela{
         }
         preencherTabela(jListModelos.getSelectedIndex());
     }
+    
+    private StringBuilder htmlTable;
     void preencherTabela(int indice) {
         tablePanel.removeAll();
         tablePanel.updateUI();
@@ -73,7 +74,7 @@ public class CrudIndicadores extends RefreshableJanela{
             String htmlStyle = """
                                <style>
                                table {
-                                 width: 350px;
+                                 width: %dpx;
                                  font-family: segoe, sans-serif;
                                  font-size:10px;
                                  border-collapse: collapse;
@@ -100,12 +101,14 @@ public class CrudIndicadores extends RefreshableJanela{
             String htmlHeader = "<table> <tr> <th>%s</th> </tr>";
             htmlHeader = String.format(htmlHeader, grupo.getKey());
             String htmlItem = "<tr> <td>%s</td> </tr>";
-            StringBuilder htmlTable= new StringBuilder("<html>"+htmlStyle+htmlHeader);
+            htmlTable= new StringBuilder("<html>"+htmlStyle+htmlHeader);
             for (String item : (List<String>) grupo.getValue()) {
                 htmlTable.append(String.format(htmlItem, item));
             }
             htmlTable.append("</table></html>");
-            lblTable.setText(htmlTable.toString());
+            int width = (int) (scrollTablePanel.getWidth()*0.70);
+            String strTable = String.format(htmlTable.toString(), width);
+            lblTable.setText(strTable);
             tablePanel.add(lblTable);
             GridBagLayout layout = (GridBagLayout) tablePanel.getLayout();
             GridBagConstraints c = layout.getConstraints(lblTable);
@@ -133,6 +136,7 @@ public class CrudIndicadores extends RefreshableJanela{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         cardPanel = new javax.swing.JPanel();
         homePanel = new javax.swing.JPanel();
@@ -204,6 +208,11 @@ public class CrudIndicadores extends RefreshableJanela{
 
         scrollTablePanel.setBorder(null);
 
+        tablePanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                tablePanelComponentResized(evt);
+            }
+        });
         tablePanel.setLayout(new java.awt.GridBagLayout());
         scrollTablePanel.setViewportView(tablePanel);
 
@@ -230,8 +239,8 @@ public class CrudIndicadores extends RefreshableJanela{
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
-                    .addComponent(lblNomeModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
+                    .addComponent(lblNomeModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                    .addComponent(scrollTablePanel))
                 .addGap(30, 30, 30))
         );
         homePanelLayout.setVerticalGroup(
@@ -315,6 +324,10 @@ public class CrudIndicadores extends RefreshableJanela{
         ISA.categoriaList = JsonExporter.importIndicadores();
         preencherLista();
     }//GEN-LAST:event_btnResetDefaultActionPerformed
+
+    private void tablePanelComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tablePanelComponentResized
+        preencherTabela(jListModelos.getSelectedIndex());
+    }//GEN-LAST:event_tablePanelComponentResized
     
     
    
