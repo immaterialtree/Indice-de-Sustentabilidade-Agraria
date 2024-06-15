@@ -55,6 +55,12 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
         for (int i = 0; i < grupo.length; i++) {
             var list = new ArrayList<JTextField>();
             JTextField header = new JTextField(grupo[i]);
+            header.setToolTipText("""
+                                  <html>
+                                  Para editar o nome do grupo, altere o nome e pressione 'Enter'. <br>
+                                  Para apagar o grupo, limpe seu nome e pressione 'Enter'. <br>
+                                  Atenção, apagar o grupo limpa todos os seus itens.
+                                  """);
             loadHeaderConf(header);
             list.add(header);
             table.add(list);
@@ -64,6 +70,11 @@ public class NovaCategoriaPanel extends javax.swing.JPanel {
             JTextField item = null;
             for (String valor : valores[i]) {
                 item = new JTextField(valor);
+                item.setToolTipText("""
+                                  <html>
+                                  Para editar o nome do item, altere o nome e pressione 'Enter'. <br>
+                                  Para apagar o item, limpe seu nome e pressione 'Enter'.
+                                  """);
                 loadItemConf(item);
                 list.add(item);
                 c.gridy = row++;

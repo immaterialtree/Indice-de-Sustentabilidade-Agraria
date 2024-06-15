@@ -40,7 +40,11 @@ public class CrudIndicadores extends RefreshableJanela{
         novoModeloPanel.getBtnVoltar().addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 preencherLista();
-                cl.show(cardPanel, "home");
+                int reply = JOptionPane.showConfirmDialog(null, 
+                        "Tem certeza que deseja sair sem salvar?", "Sair sem salvar", 
+                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (reply==JOptionPane.YES_OPTION)
+                    cl.show(cardPanel, "home");
             }
         });
     }
@@ -136,7 +140,6 @@ public class CrudIndicadores extends RefreshableJanela{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         cardPanel = new javax.swing.JPanel();
         homePanel = new javax.swing.JPanel();
@@ -153,7 +156,7 @@ public class CrudIndicadores extends RefreshableJanela{
         standartMenuBar1 = new com.mycompany.isa.components.StandartMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Gerenciar Indicadores");
+        setTitle("ISA-Rural - Gerenciar Indicadores");
 
         cardPanel.setPreferredSize(new java.awt.Dimension(1317, 470));
         cardPanel.setLayout(new java.awt.CardLayout());

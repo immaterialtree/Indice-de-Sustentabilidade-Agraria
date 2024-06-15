@@ -4,15 +4,16 @@
  */
 package com.mycompany.isa.view;
 
+import com.mycompany.isa.ISA;
 import com.mycompany.isa.utility.JsonExporter;
+import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,6 +37,10 @@ public class AjudaFrame extends javax.swing.JFrame {
         lblLotes.setText(htmlAjudaLote);
         lblCategoria.setText(htmlAjudaCategoria);
         lblIndice.setText(htmlAjudaIndice);
+        
+        URL urlIcone = ISA.class.getResource("/images/logo64.png");
+        Image icone = new ImageIcon(urlIcone).getImage();
+        this.setIconImage(icone);
     }
     
     public void refresh() {

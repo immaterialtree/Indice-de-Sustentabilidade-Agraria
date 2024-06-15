@@ -133,7 +133,9 @@ public class CrudLote extends RefreshableJanela{
 
         dialogEditar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         dialogEditar.setTitle("Editar");
+        dialogEditar.setAlwaysOnTop(true);
         dialogEditar.setResizable(false);
+        dialogEditar.setSize(new java.awt.Dimension(370, 450));
 
         txtNome_editar.setBorder(javax.swing.BorderFactory.createTitledBorder("Responsavel"));
 
@@ -295,7 +297,7 @@ public class CrudLote extends RefreshableJanela{
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Gerenciar Lotes");
+        setTitle("ISA-Rural - Gerenciar Lotes");
 
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Responsável"));
         txtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -485,12 +487,12 @@ public class CrudLote extends RefreshableJanela{
                     .addComponent(txtNumParcela)
                     .addComponent(txtContato)
                     .addComponent(panelCoordenada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCadTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scrollTabela)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 164, Short.MAX_VALUE)
+                        .addGap(0, 129, Short.MAX_VALUE)
                         .addComponent(btnEditar)
                         .addGap(18, 18, 18)
                         .addComponent(btnRemover)
@@ -583,15 +585,14 @@ public class CrudLote extends RefreshableJanela{
         if (txtNome.getText().isBlank() |
             txtNumParcela.getText().isBlank() ||
             txtCoordenadaX.getText().isBlank() ||
-            txtCoordenadaY.getText().isBlank() ||
-            cboxAssentamento.getSelectedIndex() < 0
+            txtCoordenadaY.getText().isBlank()
         ) {
             JOptionPane.showMessageDialog(
                 this, "Preencha todos os campos", 
                 "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-          
+        // model lote
         Lote lote = new Lote();
         lote.setAssentamento((String) cboxAssentamento.getSelectedItem());
         lote.setResponsavel(txtNome.getText().trim());
@@ -602,9 +603,11 @@ public class CrudLote extends RefreshableJanela{
         double x = Double.parseDouble(txtCoordenadaX.getText().replace(',','.'));
         double y = Double.parseDouble(txtCoordenadaY.getText().replace(',', '.'));
         lote.setCoordenada(new double[] {x, y});
+        //salvar model
         ISA.loteList.add(lote);
         JsonExporter.exportLote(lote);
         
+        //atualizar views
         indice = ISA.loteList.size()-1;
         preencherTabela();
         tabLote.changeSelection(indice, 1, false, false);
@@ -613,12 +616,12 @@ public class CrudLote extends RefreshableJanela{
         atualizarBotoes();
     }//GEN-LAST:event_btnSalvarActionPerformed
     
-    int editing_row;
+    private int editing_row;
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         editing_row = tabLote.getSelectedRow();
         Lote lote = ISA.loteList.get(editing_row);
         
-        
+        cboxAssentamento_editar.setSelectedItem(lote.getAssentamento());
         txtNome_editar.setText(lote.getResponsavel());
         txtNumParcela_editar.setText(lote.getNumParcela());
         txtContato_editar.setText(lote.getContato());
@@ -626,7 +629,7 @@ public class CrudLote extends RefreshableJanela{
         txtCoordenadaY_editar.setText(String.valueOf(lote.getCoordenada()[1]));
         
         dialogEditar.setSize(390, 415);
-        dialogEditar.setLocationRelativeTo(null);
+        dialogEditar.setLocationRelativeTo(this);
         dialogEditar.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -639,8 +642,10 @@ public class CrudLote extends RefreshableJanela{
         JsonExporter.deleteLotes();
         JsonExporter.exportAllLotes(ISA.loteList);
         indice += (indice>0 || ISA.loteList.isEmpty()) ? -1 : 0;
+        
         preencherTabela();
         tabLote.changeSelection(indice, 1, false, false);
+        atualizarCbox();
         atualizarBotoes();
 
     }//GEN-LAST:event_btnRemoverActionPerformed
@@ -657,7 +662,7 @@ public class CrudLote extends RefreshableJanela{
 
     private void btnSalvar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar_editarActionPerformed
         // check null fields
-        if (cboxAssentamento_editar.getSelectedItem().toString().isBlank() ||
+        if (cboxAssentamento_editar.getSelectedIndex()== 0 ||
             txtNome_editar.getText().isBlank() ||
             txtNumParcela_editar.getText().isBlank() ||
             txtContato_editar.getText().isBlank() ||

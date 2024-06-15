@@ -68,11 +68,13 @@ public class IndicadoresFrame extends RefreshableJanela {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         cardPane = new javax.swing.JPanel();
         btnAnterior = new javax.swing.JButton();
         btnProximo = new javax.swing.JButton();
         lblLoteNome = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         btnConcluir = new javax.swing.JToggleButton();
         standartMenuBar1 = new com.mycompany.isa.components.StandartMenuBar();
 
@@ -83,7 +85,6 @@ public class IndicadoresFrame extends RefreshableJanela {
         cardPane.setPreferredSize(new java.awt.Dimension(600, 420));
         cardPane.setLayout(new java.awt.CardLayout());
 
-        btnAnterior.setBackground(new java.awt.Color(255, 252, 252));
         btnAnterior.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnAnterior.setText("<");
         btnAnterior.setEnabled(false);
@@ -93,7 +94,6 @@ public class IndicadoresFrame extends RefreshableJanela {
             }
         });
 
-        btnProximo.setBackground(new java.awt.Color(255, 252, 252));
         btnProximo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnProximo.setText(">");
         btnProximo.addActionListener(new java.awt.event.ActionListener() {
@@ -104,12 +104,20 @@ public class IndicadoresFrame extends RefreshableJanela {
 
         lblLoteNome.setText("Lote");
 
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
         btnConcluir.setText("Concluir");
         btnConcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConcluirActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        jPanel1.add(btnConcluir, gridBagConstraints);
+
         setJMenuBar(standartMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,33 +128,31 @@ public class IndicadoresFrame extends RefreshableJanela {
                 .addContainerGap()
                 .addComponent(lblLoteNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConcluir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addComponent(btnAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cardPane, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cardPane, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblLoteNome, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cardPane, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                    .addComponent(cardPane, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                     .addComponent(btnProximo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnConcluir)
-                .addGap(13, 13, 13))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -214,6 +220,7 @@ public class IndicadoresFrame extends RefreshableJanela {
     private javax.swing.JToggleButton btnConcluir;
     private javax.swing.JButton btnProximo;
     private javax.swing.JPanel cardPane;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLoteNome;
     private com.mycompany.isa.components.StandartMenuBar standartMenuBar1;
     // End of variables declaration//GEN-END:variables
