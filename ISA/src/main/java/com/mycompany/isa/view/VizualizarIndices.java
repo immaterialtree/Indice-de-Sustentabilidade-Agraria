@@ -269,6 +269,11 @@ public class VizualizarIndices extends RefreshableJanela {
 
         cboxExportar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cboxExportar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Exportar lote selecionado", "Exportar um assentamento...", "Exportar todos os lotes de um assentamento..." }));
+        cboxExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxExportarActionPerformed(evt);
+            }
+        });
 
         btnExportarConfirma.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnExportarConfirma.setText("Exportar");
@@ -601,6 +606,7 @@ public class VizualizarIndices extends RefreshableJanela {
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         String selection = jListLotes.getSelectedValue();
         lblExportarLoteSelecionado.setText(selection);
+        cboxExportar.setSelectedIndex(0);
         diag.setTitle("Exportar");
         diag.getContentPane().add(panelExportar);
         diag.pack();
@@ -634,6 +640,14 @@ public class VizualizarIndices extends RefreshableJanela {
         }
         
     }//GEN-LAST:event_btnExportarConfirmaActionPerformed
+
+    private void cboxExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxExportarActionPerformed
+        boolean isLoteSelected = cboxExportar.getSelectedIndex()==0;
+        lblExportarLoteSelecionado.setEnabled(isLoteSelected);
+        btnExportarConfirma.setText(isLoteSelected ? 
+                                "Exportar" :
+                                "Escolher assentamento");
+    }//GEN-LAST:event_cboxExportarActionPerformed
 
     /**
      * @param args the command line arguments
