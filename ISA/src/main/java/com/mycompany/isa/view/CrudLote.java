@@ -325,6 +325,7 @@ public class CrudLote extends RefreshableJanela{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ISA-Rural - Gerenciar Lotes");
+        setMinimumSize(new java.awt.Dimension(930, 475));
 
         txtNome.setBorder(javax.swing.BorderFactory.createTitledBorder("Responsável"));
         txtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -490,6 +491,8 @@ public class CrudLote extends RefreshableJanela{
         );
 
         cboxAssentamento.setBorder(javax.swing.BorderFactory.createTitledBorder("Assentamento"));
+        cboxAssentamento.setMaximumSize(new java.awt.Dimension(73, 43));
+        cboxAssentamento.setMinimumSize(new java.awt.Dimension(50, 43));
 
         btnAddAssentamento.setText("Adicionar assentamento");
         btnAddAssentamento.addActionListener(new java.awt.event.ActionListener() {

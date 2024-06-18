@@ -80,6 +80,12 @@ public class IndicadoresFrame extends RefreshableJanela {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ISA-RURAL");
+        setPreferredSize(new java.awt.Dimension(775, 380));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
 
         cardPane.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         cardPane.setPreferredSize(new java.awt.Dimension(600, 420));
@@ -126,11 +132,8 @@ public class IndicadoresFrame extends RefreshableJanela {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblLoteNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLoteNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,6 +179,10 @@ public class IndicadoresFrame extends RefreshableJanela {
     private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
         ISA.trocarJanela(ISA.Janela.VER_INDICE);
     }//GEN-LAST:event_btnConcluirActionPerformed
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        System.out.println("w:"+this.getWidth()+" h:"+this.getHeight());
+    }//GEN-LAST:event_formComponentResized
 
     /**
      * @param args the command line arguments

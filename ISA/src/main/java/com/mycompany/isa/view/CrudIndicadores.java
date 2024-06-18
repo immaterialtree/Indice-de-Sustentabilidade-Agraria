@@ -157,6 +157,7 @@ public class CrudIndicadores extends RefreshableJanela{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ISA-Rural - Gerenciar Indicadores");
+        setMinimumSize(new java.awt.Dimension(570, 430));
 
         cardPanel.setPreferredSize(new java.awt.Dimension(1317, 470));
         cardPanel.setLayout(new java.awt.CardLayout());
@@ -256,7 +257,7 @@ public class CrudIndicadores extends RefreshableJanela{
                 .addGap(18, 18, 18)
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
-                    .addComponent(scrollTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
+                    .addComponent(scrollTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluir)
