@@ -55,6 +55,9 @@ public class CrudLote extends RefreshableJanela{
                 lote.getNumParcela(), 
                 lote.getContato(), 
                 Arrays.toString(lote.getCoordenada())
+                        .replaceAll("\\[|\\]", "")
+                        .replaceAll(",", "  ")
+                        .replace('.', ',')
             });
         }
     }
@@ -79,6 +82,10 @@ public class CrudLote extends RefreshableJanela{
         for (String a : assentamentosSet) {
             cbox.addItem(a);
         }
+    }
+    
+    private void formatarPontoPorVirgula(javax.swing.JFormattedTextField txt) {
+        txt.setText(txt.getText().replace(".", ","));
     }
 
     /**
@@ -172,8 +179,28 @@ public class CrudLote extends RefreshableJanela{
         lblCoordenadaY_editar.setText("Longitude");
 
         txtCoordenadaX_editar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00000"))));
+        txtCoordenadaX_editar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCoordenadaX_editarFocusLost(evt);
+            }
+        });
+        txtCoordenadaX_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCoordenadaX_editarActionPerformed(evt);
+            }
+        });
 
         txtCoordenadaY_editar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00000"))));
+        txtCoordenadaY_editar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCoordenadaY_editarFocusLost(evt);
+            }
+        });
+        txtCoordenadaY_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCoordenadaY_editarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCoordenada_editarLayout = new javax.swing.GroupLayout(panelCoordenada_editar);
         panelCoordenada_editar.setLayout(panelCoordenada_editarLayout);
@@ -413,6 +440,11 @@ public class CrudLote extends RefreshableJanela{
         lblCoordenadaY.setText("Longitude");
 
         txtCoordenadaX.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00000"))));
+        txtCoordenadaX.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCoordenadaXFocusLost(evt);
+            }
+        });
         txtCoordenadaX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCoordenadaXActionPerformed(evt);
@@ -420,6 +452,16 @@ public class CrudLote extends RefreshableJanela{
         });
 
         txtCoordenadaY.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00000"))));
+        txtCoordenadaY.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCoordenadaYFocusLost(evt);
+            }
+        });
+        txtCoordenadaY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCoordenadaYActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCoordenadaLayout = new javax.swing.GroupLayout(panelCoordenada);
         panelCoordenada.setLayout(panelCoordenadaLayout);
@@ -744,6 +786,7 @@ public class CrudLote extends RefreshableJanela{
     }//GEN-LAST:event_txtContatoActionPerformed
 
     private void txtCoordenadaXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCoordenadaXActionPerformed
+        formatarPontoPorVirgula(txtCoordenadaX);
         txtCoordenadaY.requestFocus();
     }//GEN-LAST:event_txtCoordenadaXActionPerformed
 
@@ -770,6 +813,7 @@ public class CrudLote extends RefreshableJanela{
         indice += (indice>0 || ISA.loteList.isEmpty()) ? -1 : 0;
         preencherTabela();
         tabLote.changeSelection(indice, 1, false, false);
+        preencherAssentamentosSet();
         atualizarCbox();
         atualizarBotoes();
     }//GEN-LAST:event_btnConfirmaRemoverAssentamentoActionPerformed
@@ -777,6 +821,34 @@ public class CrudLote extends RefreshableJanela{
     private void txtContatoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContatoFocusGained
         txtContato.getCaret().setDot(0);
     }//GEN-LAST:event_txtContatoFocusGained
+
+    private void txtCoordenadaXFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCoordenadaXFocusLost
+        formatarPontoPorVirgula(txtCoordenadaX);
+    }//GEN-LAST:event_txtCoordenadaXFocusLost
+
+    private void txtCoordenadaYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCoordenadaYActionPerformed
+        formatarPontoPorVirgula(txtCoordenadaY);
+    }//GEN-LAST:event_txtCoordenadaYActionPerformed
+
+    private void txtCoordenadaYFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCoordenadaYFocusLost
+        formatarPontoPorVirgula(txtCoordenadaY);
+    }//GEN-LAST:event_txtCoordenadaYFocusLost
+
+    private void txtCoordenadaX_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCoordenadaX_editarActionPerformed
+        formatarPontoPorVirgula(txtCoordenadaX_editar);
+    }//GEN-LAST:event_txtCoordenadaX_editarActionPerformed
+
+    private void txtCoordenadaX_editarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCoordenadaX_editarFocusLost
+        formatarPontoPorVirgula(txtCoordenadaX_editar);
+    }//GEN-LAST:event_txtCoordenadaX_editarFocusLost
+
+    private void txtCoordenadaY_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCoordenadaY_editarActionPerformed
+        formatarPontoPorVirgula(txtCoordenadaY_editar);
+    }//GEN-LAST:event_txtCoordenadaY_editarActionPerformed
+
+    private void txtCoordenadaY_editarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCoordenadaY_editarFocusLost
+        formatarPontoPorVirgula(txtCoordenadaY_editar);
+    }//GEN-LAST:event_txtCoordenadaY_editarFocusLost
 
     /**
      * @param args the command line arguments
