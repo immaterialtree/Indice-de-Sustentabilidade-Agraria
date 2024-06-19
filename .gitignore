@@ -27,3 +27,6 @@ replay_pid*
 /ISA/build/
 /ISA/dist/
 /ISA/target/
+
+# builded installers
+/installer/output/*
